@@ -1,0 +1,109 @@
+{
+  "schema_version": 1,
+  "labels": [
+    {
+      "name": "agent:luna",
+      "description": "固定契約の局所実装。未定義の安全判断は上位へ。"
+    },
+    {
+      "name": "agent:sol",
+      "description": "統合・Windows API・中高度の実装/設計判断。"
+    },
+    {
+      "name": "agent:astra",
+      "description": "整合性・危険境界・ゲートの高難度設計判断。"
+    },
+    {
+      "name": "review:sol",
+      "description": "作者とは別のSOL以上によるレビュー必須。"
+    },
+    {
+      "name": "review:astra",
+      "description": "作者とは別のAstra級の安全性/設計レビュー必須。"
+    },
+    {
+      "name": "status:ready",
+      "description": "契約/依存/必要承認が揃い着手可能。"
+    },
+    {
+      "name": "status:blocked",
+      "description": "未完の依存や契約があるため着手待ち。"
+    },
+    {
+      "name": "status:needs-decision",
+      "description": "所有者の明示決定待ち。実装で勝手に確定しない。"
+    },
+    {
+      "name": "priority:p0",
+      "description": "安全性/開始条件に必須。"
+    },
+    {
+      "name": "priority:p1",
+      "description": "MVP/lab実用化に必要。"
+    },
+    {
+      "name": "priority:p2",
+      "description": "後段のGUI/利便性機能。"
+    },
+    {
+      "name": "area:architecture",
+      "description": "アーキテクチャと低レベル契約"
+    },
+    {
+      "name": "area:model",
+      "description": "オフラインモデル/オラクル/回帰trace"
+    },
+    {
+      "name": "area:driver",
+      "description": "Windowsドライバー/I/O/lifecycle"
+    },
+    {
+      "name": "area:control",
+      "description": "管理サービス/CLI/対象選定"
+    },
+    {
+      "name": "area:performance",
+      "description": "測定/policy/資源予算"
+    },
+    {
+      "name": "area:gui",
+      "description": "Tauri/Vue UI"
+    },
+    {
+      "name": "area:tooling",
+      "description": "Rust workspace/CI/静的検査"
+    },
+    {
+      "name": "area:release",
+      "description": "署名/配布/復旧/qualification"
+    },
+    {
+      "name": "area:security",
+      "description": "権限/入力検証/診断/秘密情報"
+    },
+    {
+      "name": "area:planning",
+      "description": "依存計画と独立ゲートレビュー"
+    },
+    {
+      "name": "type:design",
+      "description": "選択/契約を証拠付きで確定する。"
+    },
+    {
+      "name": "type:task",
+      "description": "明確な成果物と受入試験を持つ実装/検証。"
+    },
+    {
+      "name": "type:gate",
+      "description": "証拠を独立審査し次段階への進行を判断。"
+    },
+    {
+      "name": "type:tracking",
+      "description": "子Issueと段階を追跡する親トラッカー。"
+    },
+    {
+      "name": "decision:owner",
+      "description": "ライセンス/公開/費用/実機等の所有者判断が必要。"
+    }
+  ]
+}

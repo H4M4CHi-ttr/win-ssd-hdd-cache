@@ -1,0 +1,26 @@
+name: Data-integrity or lifecycle concern
+description: 合成データの最小再現だけで報告。秘密や実disk dumpを貼らない
+title: "[INTEGRITY] "
+labels: ["type:task", "agent:astra", "review:astra", "priority:p0", "area:driver", "status:blocked"]
+body:
+  - type: markdown
+    attributes:
+      value: "実データでのactive利用を止めてください。脆弱性・秘密情報はSECURITY.mdの方針を参照し、公開Issueへdumpを貼らないでください。"
+  - type: textarea
+    id: repro
+    attributes:
+      label: Synthetic reproduction / trace / seed
+    validations:
+      required: true
+  - type: textarea
+    id: observed
+    attributes:
+      label: Expected / actual / contract violated
+    validations:
+      required: true
+  - type: textarea
+    id: environment
+    attributes:
+      label: Source commit / anonymized environment / unverified conditions
+    validations:
+      required: true

@@ -1,0 +1,52 @@
+name: Bounded implementation task
+description: 固定契約と受入試験のある作業を依頼
+title: "[TASK] "
+labels: ["type:task", "status:blocked"]
+body:
+  - type: textarea
+    id: goal
+    attributes:
+      label: Goal / non-goals
+      description: 成果物と変更しない範囲
+    validations:
+      required: true
+  - type: textarea
+    id: contract
+    attributes:
+      label: Contracts / files / dependencies
+      description: 正確なpath、入力出力、先行Issueと承認済み契約。未決ならblocked。
+    validations:
+      required: true
+  - type: textarea
+    id: acceptance
+    attributes:
+      label: Acceptance tests
+      description: 入力・期待結果・実行コマンドと失敗条件
+    validations:
+      required: true
+  - type: dropdown
+    id: agent
+    attributes:
+      label: Minimum implementer tier
+      options:
+        - Luna
+        - SOL
+        - Astra
+    validations:
+      required: true
+  - type: dropdown
+    id: review
+    attributes:
+      label: Mandatory independent review
+      options:
+        - SOL
+        - Astra
+    validations:
+      required: true
+  - type: textarea
+    id: escalate
+    attributes:
+      label: Escalation / authorization
+      description: 推測せず止める条件。選択欄はラベルを自動変更しないのでtriage時に対応ラベルを付ける。
+    validations:
+      required: true

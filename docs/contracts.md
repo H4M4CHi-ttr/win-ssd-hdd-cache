@@ -155,3 +155,43 @@ D02がtraceを凍結する際、origin-write submit/apply/complete、read snapsh
 - Rust参照/Vec/String/未検証enumをC/wireへ直接渡さない。固定幅値・checked length・opaque handleを使い、invalid valueをRustの有効な型へ作り込まない。
 - host向け依存をno_std kernelへ流用しない。allocator/Dropが待機できるIRQLとpoolを明示。
 - 生のdisk操作をTauri commandとして公開しない。frontend validationとは別にserviceで再検証する。
+
+
+## 10. 固定契約: fake completion queue（F03）
+
+```rust
+pub struct RequestToken; // private monotonically increasing u64、Copy/Eq/Ord
+pub struct Completion {
+    pub token: RequestToken,
+    pub payload: std::sync::Arc<[u8]>,
+    pub cancel_requested: bool,
+}
+pub enum QueueError {
+    Full, PayloadTooLarge, PayloadBudgetExceeded, UnknownToken, TokenExhausted
+}
+pub struct CompletionQueue;
+impl CompletionQueue {
+    pub fn new() -> Self;
+    pub fn reserve(&mut self, payload: std::sync::Arc<[u8]>)
+        -> Result<RequestToken, QueueError>;
+    pub fn request_cancel(&mut self, token: RequestToken) -> Result<(), QueueError>;
+    pub fn deliver(&mut self, token: RequestToken) -> Result<Completion, QueueError>;
+}
+```
+
+pending最大1,024件、1payload最大1,048,576 bytes、queueが保持するpayload length合計最大16,777,216 bytes。reserveの拒否優先はFull→PayloadTooLarge→PayloadBudgetExceeded→TokenExhausted。失敗で既存queueを変えない。tokenは1から単調増加し再利用しない。上限到達時はTokenExhausted、wrapしない。
+
+cancelはpending flagだけを立て、pending中は冪等成功。完了や解放を意味しない。deliverは明示呼出しだけで起こり、順序を自由に変えられる。二重deliver/完了後cancel/未知tokenはUnknownToken。deliver後payloadは返却Arcの所有により有効。これはhost-onlyのモデルであり、device I/Oや実DMA停止を模擬できたという意味ではない。
+
+## 11. バックログのmachine-readable契約（F02）
+
+`docs/backlog.json`: schema_version=1、plan_date（YYYY-MM-DD）、tasks配列。各taskの必須キーはid/title/agent/review/status/priority/type/area/owner_decision/dependencies/files/output/acceptance/escalation/issue_number/issue_url/completion。
+
+- idはGOV01、D01等の大文字英数stable ID、一意。
+- agent=luna/sol/astra、review=sol/astra、status=ready/blocked/needs-decision、priority=p0/p1/p2、type=design/task/gate、areaはlabels.jsonに定義したarea suffix。
+- owner_decisionはbool。dependenciesは他task IDの重複なし配列、DAGであること。self-reference禁止。
+- issue_numberは正整数、issue_urlはこのrepoの対応URL。初回起票中のみnullを許容するが、完成したbaselineではnullなし。
+- completion=pending/accepted/not-planned。初回は全件pending。acceptedへ変える際はIssueのreview/test証拠へのリンクを本文/計画へ残す。
+- readyは全dependenciesがacceptedで、owner_decision=falseの時だけ許可。needs-decisionはowner_decision=true。blockedは未解決前提を本文に示す。
+- filesは予定path配列であり、codeが現存するという判定には使わない。相対Markdownリンクは現存docのみを解決し、code span内のplanned pathは欠落と誤認しない。
+- これは計画時点のsnapshot。GitHubのlive進捗と自動同期されるとは主張しない。契約変更/依存変更/受入完了時にsnapshotもPRで更新する。

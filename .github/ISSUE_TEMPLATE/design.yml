@@ -1,0 +1,24 @@
+name: Design decision / safety question
+description: 未確定の安全契約を実装に先立ち確定する
+title: "[DESIGN] "
+labels: ["type:design", "agent:sol", "review:astra", "status:blocked"]
+body:
+  - type: textarea
+    id: question
+    attributes:
+      label: Decision and material uncertainty
+      description: 何を決めると後続実装が変わるか
+    validations:
+      required: true
+  - type: textarea
+    id: evidence
+    attributes:
+      label: Options / primary sources / counterexamples
+    validations:
+      required: true
+  - type: textarea
+    id: deliverables
+    attributes:
+      label: ADR / frozen contracts / validation / affected issues
+    validations:
+      required: true
