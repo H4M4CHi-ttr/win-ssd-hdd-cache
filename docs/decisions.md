@@ -14,7 +14,7 @@
 | ADR-008 | 採択 | CLI/serviceを先に、非特権Tauri UIは後段 | UIとkernelの危険な依存を切り、安全条件を再利用 |
 | ADR-009 | 採択 | unsafe境界・ABI・同時実行は上位担当/独立review | Lunaに未定義の安全契約を決めさせない |
 | ADR-010 | 設計ゲート D08 | 一般公開はWHCP/HLK条件確認を基本 | attestation/test trustと製品公開条件を混同しない |
-| ADR-011 | owner decision GOV01 | original code MIT OR Apache-2.0を提案 | 未採択。LICENSE/公開/第三者取り込み前に決定 |
+| ADR-011 | owner decision GOV01 | original code MIT OR Apache-2.0を提案 | 未採択。LICENSE/公開/第三者ソースvendoring前に決定 |
 | ADR-012 | 採択 | 原本の暗黙変更、危険な実機自動試験は禁止 | task実装許可とdisk消去/OS安全機能変更の許可は別 |
 
 ## 個別ADRの完了形式

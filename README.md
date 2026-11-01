@@ -15,10 +15,21 @@ Windows向けに、既存のHDDを正本に保ち、SSDを破棄可能な読み�
 
 ## 開発状況
 
+正式設計・実装計画と**49作業Issue + 親ロードマップ**を整備しました。コード実装はまだ開始していません。
+
 [ロードマップと課題一覧](https://github.com/H4M4CHi-ttr/win-ssd-hdd-cache/issues/1) を起点にしてください。[正式設計と関連文書](docs/README.md)・[貢献ルール](CONTRIBUTING.md)を参照してください。
 
 This project is in the **design phase**: a discardable, clean SSD read cache for selected Windows data HDDs. No production driver or verified hardware support is available yet.
 
+## 最初に進めるIssue
+
+- [F01 #5: Rust workspaceと範囲計算](https://github.com/H4M4CHi-ttr/win-ssd-hdd-cache/issues/5) — Luna向けの最初の着手点。
+- [D01 #3: I/O捕捉位置](https://github.com/H4M4CHi-ttr/win-ssd-hdd-cache/issues/3) / [D02 #4: 整合性モデル](https://github.com/H4M4CHi-ttr/win-ssd-hdd-cache/issues/4) — Astraの設計判断。
+- [D09 #6: Rust/WDK境界](https://github.com/H4M4CHi-ttr/win-ssd-hdd-cache/issues/6) — SOL実証 + Astraレビュー。
+- [全Issueと依存関係](docs/backlog.md) / [モデル担当とreview規則](docs/agent-routing.md)。
+
+GUIはTauriを用いますが、CLI/serviceと安全なdata pathの契約を先に固めます。
+
 ## ライセンスと公開
 
-オープンソースとしての公開を目指しますが、ライセンスの採択と公開範囲の変更は、所有者の明示的な決定をリリース前ゲートとします。第三者コードはそのライセンスに従い、未決の段階で取り込みません。現時点でライセンスが付与済みの完成OSSであるとは表示しません。
+オープンソースとしての公開を目指しますが、ライセンスの採択と公開範囲の変更は、所有者の明示的な決定をリリース前ゲートとします。通常のCargo/npmパッケージ依存はlicense・hashを確認して利用できます。第三者ソースのvendoringや外部contributionの受付はGOV01の方針採択後とし、通知を保持します。現時点でライセンスが付与済みの完成OSSであるとは表示しません。

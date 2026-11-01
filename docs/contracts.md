@@ -19,7 +19,7 @@ planned crates:
 | `xtask` | repo整合性検査などの開発補助 | 禁止 |
 | `apps/gui` | Tauri + Vue/TypeScriptの非特権UI | raw I/O禁止 |
 
-host testsにWDK、管理者権限、実disk、network、署名鍵を要求しない。host crateはWindows/Linuxの両方で試験。最初のF01ではcache-typesのrangeとworkspaceだけを作り、未使用crateの空殻を大量に作らない。依存crateは必要なtaskで追加する。
+host testsにWDK、管理者権限、実disk、network、署名鍵を要求しない。host crateはWindows/Linuxの両方で試験。最初のF01ではcache-typesのrangeとworkspaceだけを作り、未使用crateの空殻を大量に作らない。依存crateは必要なtaskで追加する。各taskのFilesは主要pathを列挙しており、そのtaskに必要なworkspace登録/Cargo.lock/lib.rs export/test登録は付随変更として許可する。無関係な依存更新は行わず、共有ファイルの統合順を調整する。
 
 serde/serde_json等は用途とlicenseを記録してpin。unsafeな自作JSON parserや勝手なJSON Valueへのroundtripで重複キーを消す処理は避ける。GUIのexact Tauri/Node/package versionsはU01でpinし、kernel toolchainとは独立に管理する。
 

@@ -1,6 +1,6 @@
 # 貢献ガイド
 
-現在は設計段階です。ライセンス/外部contribution条件の採択前は、外部コードの取り込みや一般向け公開を開始しません。GOV01の決定を待ってください。
+現在は設計段階です。ライセンス/外部contribution条件の採択前は、第三者ソースのvendoring、外部contributionの受付、一般向け公開を開始しません（GOV01）。通常のCargo/npmパッケージ依存はlicense・hashを確認し、lockfileを更新して利用できます。この利用許可は本repo自体のOSSライセンス採択とは別です。
 
 1. [設計](docs/README.md)と[担当ルール](docs/agent-routing.md)を読む。
 2. [Issue一覧](docs/backlog.md)からstatus:readyを選び、依存と必要reviewを確認する。

@@ -50,11 +50,11 @@ F01後に使えるhost commands: `cargo fmt --all -- --check`、`cargo clippy --
 
 詳細な依存と最新Issueリンクは[バックログ](../../backlog.md)、machine-readable snapshotは[backlog.json](../../backlog.json)。次の契約はIssue本文にも埋め込み、Issueだけを渡されても禁止範囲/期待結果がわかるようにする。
 
-### GOV01: OSSライセンス・外部貢献条件・公開範囲を所有者と確定する
+### [GOV01 #2](https://github.com/H4M4CHi-ttr/win-ssd-hdd-cache/issues/2): OSSライセンス・外部貢献条件・公開範囲を所有者と確定する
 
 **担当 / review:** SOL / ASTRA  
 **Depends on:** なし  
-**Files (planned):** `docs/adr/0011-license-and-governance.md`, `LICENSE-MIT (採択時のみ)`, `LICENSE-APACHE (採択時のみ)`, `CONTRIBUTING.md`, `SECURITY.md`
+**Files (planned):** `docs/adr/0011-license-and-governance.md`, `LICENSE-MIT`, `LICENSE-APACHE`, `CONTRIBUTING.md`, `SECURITY.md`
 
 **Interfaces**
 - Consumes: 本設計の固定契約と docs/contracts.md / INV-01〜12。
@@ -62,7 +62,7 @@ F01後に使えるhost commands: `cargo fmt --all -- --check`、`cargo clippy --
 
 **受入条件**
 - 候補licenseとOCF BSD-3-Clause等の通知義務の対応表を作る
-- 所有者が未決なら明示的に保留し、外部コード導入/公開をgateで止める
+- 所有者が未決ならソースvendoring・外部contribution受付・公開をgateで止める。通常のCargo/npm依存はlicense/hash/lockfile確認の下で利用可能
 - 公開範囲変更や証明書購入はこのIssueを起票しただけで実行しない
 
 - [ ] 先行契約と一次資料を読み、決める問い・代替案・停止条件を記録する。
@@ -72,7 +72,7 @@ F01後に使えるhost commands: `cargo fmt --all -- --check`、`cargo clippy --
 
 **Escalation:** 権利帰属・license互換性・署名主体が不明なら所有者/適切な専門家へ。
 
-### D01: WindowsのI/O捕捉位置と全変更経路の対応表を決める
+### [D01 #3](https://github.com/H4M4CHi-ttr/win-ssd-hdd-cache/issues/3): WindowsのI/O捕捉位置と全変更経路の対応表を決める
 
 **担当 / review:** ASTRA / ASTRA  
 **Depends on:** なし  
@@ -94,7 +94,7 @@ F01後に使えるhost commands: `cargo fmt --all -- --check`、`cargo clippy --
 
 **Escalation:** 捕捉できないmutationが1つでも残るならsupportedとしない。方式変更/対象縮小をADRで判断する。
 
-### D02: clean-cacheの整合性モデル・世代・公開条件を反例付きで凍結する
+### [D02 #4](https://github.com/H4M4CHi-ttr/win-ssd-hdd-cache/issues/4): clean-cacheの整合性モデル・世代・公開条件を反例付きで凍結する
 
 **担当 / review:** ASTRA / ASTRA  
 **Depends on:** なし  
@@ -116,7 +116,7 @@ F01後に使えるhost commands: `cargo fmt --all -- --check`、`cargo clippy --
 
 **Escalation:** Windowsが保証しないmulti-sector atomicityを仮定せず、許容する並行readの結果集合を明記する。
 
-### D03: OCF WIと最小Rust coreを比較しcache engineの採否を決める
+### [D03 #8](https://github.com/H4M4CHi-ttr/win-ssd-hdd-cache/issues/8): OCF WIと最小Rust coreを比較しcache engineの採否を決める
 
 **担当 / review:** SOL / ASTRA  
 **Depends on:** D02  
@@ -129,7 +129,7 @@ F01後に使えるhost commands: `cargo fmt --all -- --check`、`cargo clippy --
 **受入条件**
 - WIとWAを混同せずD02の反例をcandidate harnessで再現する
 - cacheline/sector pair、nonpaged想定memory、async callback、cancel、allocator依存を列挙して未対応を明記
-- OCF No-Go時の代替、試験再利用、後続W02/F09契約更新をADRに記す。第三者コードを取り込む前にlicense条件を確認
+- OCF No-Go時の代替、試験再利用、後続W02/F09契約更新をADRに記す。通常依存はlicense/hash確認、ソースvendoringはGOV01採択後
 
 - [ ] 先行契約と一次資料を読み、決める問い・代替案・停止条件を記録する。
 - [ ] 受入条件の反例/小さなlab-only検証を設計し、未検証を明示する。
@@ -138,7 +138,7 @@ F01後に使えるhost commands: `cargo fmt --all -- --check`、`cargo clippy --
 
 **Escalation:** upstreamの動作を推測で包まない。C/Rust ownershipやlicenseが不明ならAstra/所有者判断まで止める。
 
-### D04: IRP・MDL・DMA・FFIの所有権とcancel/timeout契約を固定する
+### [D04 #11](https://github.com/H4M4CHi-ttr/win-ssd-hdd-cache/issues/11): IRP・MDL・DMA・FFIの所有権とcancel/timeout契約を固定する
 
 **担当 / review:** SOL / ASTRA  
 **Depends on:** D01, D02, D03, D09  
@@ -160,7 +160,7 @@ F01後に使えるhost commands: `cargo fmt --all -- --check`、`cargo clippy --
 
 **Escalation:** Pin/Arc/RAIIをdevice completionの代用にしない。unbounded waitを有限回復として書かない。
 
-### D05: 対象identity・暗号化境界・power・解除の状態遷移を固定する
+### [D05 #15](https://github.com/H4M4CHi-ttr/win-ssd-hdd-cache/issues/15): 対象identity・暗号化境界・power・解除の状態遷移を固定する
 
 **担当 / review:** SOL / ASTRA  
 **Depends on:** D01, D04  
@@ -182,7 +182,7 @@ F01後に使えるhost commands: `cargo fmt --all -- --check`、`cargo clippy --
 
 **Escalation:** 必要属性が取得不能ならfalseとして許可せず非対応にする。曖昧なdisk消去/初期化は所有者へ。
 
-### D06: 管理サービス・IOCTL・IPCの認可とversioned ABIを設計する
+### [D06 #19](https://github.com/H4M4CHi-ttr/win-ssd-hdd-cache/issues/19): 管理サービス・IOCTL・IPCの認可とversioned ABIを設計する
 
 **担当 / review:** SOL / ASTRA  
 **Depends on:** D04, D05  
@@ -204,7 +204,7 @@ F01後に使えるhost commands: `cargo fmt --all -- --check`、`cargo clippy --
 
 **Escalation:** frontendの確認だけに安全性を依存させない。暗号化層/権限の未確定はAstraへ。
 
-### D07: 整合性・flush耐久性・故障注入のoracleを定義する
+### [D07 #17](https://github.com/H4M4CHi-ttr/win-ssd-hdd-cache/issues/17): 整合性・flush耐久性・故障注入のoracleを定義する
 
 **担当 / review:** ASTRA / ASTRA  
 **Depends on:** D02, D04  
@@ -226,7 +226,7 @@ F01後に使えるhost commands: `cargo fmt --all -- --check`、`cargo clippy --
 
 **Escalation:** oracleとengineが同じ誤ったロジックを共有しないよう独立review。証拠不足ならgateを閉じない。
 
-### D08: 署名・HLK・HVCI・配布/更新の実行可能性を確認する
+### [D08 #9](https://github.com/H4M4CHi-ttr/win-ssd-hdd-cache/issues/9): 署名・HLK・HVCI・配布/更新の実行可能性を確認する
 
 **担当 / review:** SOL / ASTRA  
 **Depends on:** D01, D09  
@@ -248,7 +248,7 @@ F01後に使えるhost commands: `cargo fmt --all -- --check`、`cargo clippy --
 
 **Escalation:** アカウント資格/契約/費用の確定に新権限が必要なら調査成果を先に残して所有者判断を求める。
 
-### D09: Rust kernel/WDKの適合性とC shimの最小境界を決める
+### [D09 #6](https://github.com/H4M4CHi-ttr/win-ssd-hdd-cache/issues/6): Rust kernel/WDKの適合性とC shimの最小境界を決める
 
 **担当 / review:** SOL / ASTRA  
 **Depends on:** なし  
@@ -270,7 +270,7 @@ F01後に使えるhost commands: `cargo fmt --all -- --check`、`cargo clippy --
 
 **Escalation:** Rust優先と安全/WDK制約が衝突したら無理に全面Rust化せず、狭い代替をAstraレビューで決める。
 
-### F01: Rust workspaceとchecked byte-range/line-spanを実装する
+### [F01 #5](https://github.com/H4M4CHi-ttr/win-ssd-hdd-cache/issues/5): Rust workspaceとchecked byte-range/line-spanを実装する
 
 **担当 / review:** LUNA / SOL  
 **Depends on:** なし  
@@ -293,7 +293,7 @@ F01後に使えるhost commands: `cargo fmt --all -- --check`、`cargo clippy --
 
 **Escalation:** sector alignmentや製品I/O semanticsをhelperへ加える必要があればSOLへ。共有Cargo manifestの同時変更は調整する。
 
-### F02: ラベルとバックログの静的整合性を検査するxtaskを作る
+### [F02 #10](https://github.com/H4M4CHi-ttr/win-ssd-hdd-cache/issues/10): ラベルとバックログの静的整合性を検査するxtaskを作る
 
 **担当 / review:** LUNA / SOL  
 **Depends on:** F01  
@@ -305,7 +305,7 @@ F01後に使えるhost commands: `cargo fmt --all -- --check`、`cargo clippy --
 
 **受入条件**
 - 正本manifest/backlogをPASS。duplicate name、unknownprefix、duplicateID、missingdep、cycle、依存未完readyのfixtureをFAIL
-- 違反は契約どおり(code,path)でstable sortし、入力配列順を変えても同じ結果
+- 違反は契約どおり(code,path)でstable sortし、同一入力には常に同じ順序で返す。配列の並べ替えでJSON Pointerのindexが変わることは許容する
 - cargo test -p xtask / cargo xtask check-planning がPASS。GitHub API・token・自動修正/label削除を一切使わない
 
 - [ ] 受入条件の各具体例から失敗するテストを先に作る。予定test fileは上記Files。
@@ -316,7 +316,7 @@ F01後に使えるhost commands: `cargo fmt --all -- --check`、`cargo clippy --
 
 **Escalation:** taxonomyやready判定契約を変えないと通らない場合、fixture/期待値を緩めずSOLへ。
 
-### F03: cancelとcompletionを分ける決定的fake-I/Oキューを実装する
+### [F03 #7](https://github.com/H4M4CHi-ttr/win-ssd-hdd-cache/issues/7): cancelとcompletionを分ける決定的fake-I/Oキューを実装する
 
 **担当 / review:** LUNA / SOL  
 **Depends on:** F01  
@@ -339,7 +339,7 @@ F01後に使えるhost commands: `cargo fmt --all -- --check`、`cargo clippy --
 
 **Escalation:** Windows DMA/MDLやIoCancelIrpをこのhost queueに導入しない。実機安全性と混同しそうならSOLへ。
 
-### F04: discardをunknownとして扱うin-memory originを実装する
+### [F04 #12](https://github.com/H4M4CHi-ttr/win-ssd-hdd-cache/issues/12): discardをunknownとして扱うin-memory originを実装する
 
 **担当 / review:** LUNA / SOL  
 **Depends on:** F01, F03  
@@ -362,7 +362,7 @@ F01後に使えるhost commands: `cargo fmt --all -- --check`、`cargo clippy --
 
 **Escalation:** 並行性/永続化の期待値が必要ならD02/D07へ。仕様にないsector atomicityを仮定しない。
 
-### F05: 凍結済みtrace v1のstrict Rust parserを実装する
+### [F05 #14](https://github.com/H4M4CHi-ttr/win-ssd-hdd-cache/issues/14): 凍結済みtrace v1のstrict Rust parserを実装する
 
 **担当 / review:** LUNA / SOL  
 **Depends on:** F01, D02  
@@ -385,7 +385,7 @@ F01後に使えるhost commands: `cargo fmt --all -- --check`、`cargo clippy --
 
 **Escalation:** event意味論やexpected valueが未定義なら実装せずD02へ。JSON Value変換で重複keyを消さない。
 
-### F06: traceを再生し独立oracleと照合するRust harnessを作る
+### [F06 #20](https://github.com/H4M4CHi-ttr/win-ssd-hdd-cache/issues/20): traceを再生し独立oracleと照合するRust harnessを作る
 
 **担当 / review:** SOL / ASTRA  
 **Depends on:** D07, F03, F04, F05  
@@ -408,7 +408,7 @@ F01後に使えるhost commands: `cargo fmt --all -- --check`、`cargo clippy --
 
 **Escalation:** D02/D07の矛盾をharness内で勝手に解決しない。期待結果集合の追加はAstraレビュー。
 
-### F07: 基本WI・partial write・複数writer・stale-fillの回帰traceを追加する
+### [F07 #23](https://github.com/H4M4CHi-ttr/win-ssd-hdd-cache/issues/23): 基本WI・partial write・複数writer・stale-fillの回帰traceを追加する
 
 **担当 / review:** LUNA / ASTRA  
 **Depends on:** F06  
@@ -431,7 +431,7 @@ F01後に使えるhost commands: `cargo fmt --all -- --check`、`cargo clippy --
 
 **Escalation:** どのread結果が許容されるか迷ったらAstraへ。runnerの結果に合わせて期待値を書き換えない。
 
-### F08: late completion・slot再利用・resource faultの回帰traceを追加する
+### [F08 #25](https://github.com/H4M4CHi-ttr/win-ssd-hdd-cache/issues/25): late completion・slot再利用・resource faultの回帰traceを追加する
 
 **担当 / review:** LUNA / ASTRA  
 **Depends on:** F06, D04  
@@ -454,7 +454,7 @@ F01後に使えるhost commands: `cargo fmt --all -- --check`、`cargo clippy --
 
 **Escalation:** fake queueが実DMA停止を証明したと解釈しない。期待値や所有権が不明ならAstraへ。
 
-### F09: 選定engineをuser-mode harnessで独立oracleと対照試験する
+### [F09 #27](https://github.com/H4M4CHi-ttr/win-ssd-hdd-cache/issues/27): 選定engineをuser-mode harnessで独立oracleと対照試験する
 
 **担当 / review:** SOL / ASTRA  
 **Depends on:** D03, D09, F06, GOV01, F07, F08  
@@ -477,7 +477,7 @@ F01後に使えるhost commands: `cargo fmt --all -- --check`、`cargo clippy --
 
 **Escalation:** OCF GoとRust kernel Goを混同しない。hostで通ってもWindows適合完了にしない。
 
-### G01: 設計契約とoffline modelのG1ゲートをレビューする
+### [G01 #29](https://github.com/H4M4CHi-ttr/win-ssd-hdd-cache/issues/29): 設計契約とoffline modelのG1ゲートをレビューする
 
 **担当 / review:** ASTRA / ASTRA  
 **Depends on:** D01, D02, D03, D04, D05, D06, D07, D08, D09, F07, F08, F09, F10  
@@ -499,7 +499,7 @@ F01後に使えるhost commands: `cargo fmt --all -- --check`、`cargo clippy --
 
 **Escalation:** モデルで捕捉不能な物理/OS前提がある場合、kernel進行条件/非対応範囲を再設計する。
 
-### F10: 秘密・管理者操作なしのRust host CIを構成する
+### [F10 #13](https://github.com/H4M4CHi-ttr/win-ssd-hdd-cache/issues/13): 秘密・管理者操作なしのRust host CIを構成する
 
 **担当 / review:** LUNA / SOL  
 **Depends on:** F02  
@@ -522,11 +522,11 @@ F01後に使えるhost commands: `cargo fmt --all -- --check`、`cargo clippy --
 
 **Escalation:** WDK/HLK/管理者/署名鍵が必要なら別trusted pipelineとしてSOLへ。PR jobへ権限を足さない。
 
-### W01: 専用lab向けpassthrough-only driverを構築する
+### [W01 #31](https://github.com/H4M4CHi-ttr/win-ssd-hdd-cache/issues/31): 専用lab向けpassthrough-only driverを構築する
 
 **担当 / review:** SOL / ASTRA  
 **Depends on:** G01  
-**Files (planned):** `drivers/windows/README.md`, `drivers/windows/ (D01/D09採択のproject/INF/entry files)`, `tests/windows/passthrough/`
+**Files (planned):** `drivers/windows/README.md`, `drivers/windows/`, `tests/windows/passthrough/`
 
 **Interfaces**
 - Consumes: G01の承認済み成果物と docs/contracts.md / INV-01〜12。
@@ -545,7 +545,7 @@ F01後に使えるhost commands: `cargo fmt --all -- --check`、`cargo clippy --
 
 **Escalation:** 対象外diskやbootへ影響したら直ちに止めD01/D05へ。C shim境界を無断拡大しない。
 
-### W02: 選定cache engineとWindows境界を最小FFIで接続する
+### [W02 #34](https://github.com/H4M4CHi-ttr/win-ssd-hdd-cache/issues/34): 選定cache engineとWindows境界を最小FFIで接続する
 
 **担当 / review:** SOL / ASTRA  
 **Depends on:** W01, D03, D04, F09  
@@ -568,7 +568,7 @@ F01後に使えるhost commands: `cargo fmt --all -- --check`、`cargo clippy --
 
 **Escalation:** Rust安全wrapperが実際にはaliasing/IRQLを隠す場合はAstraへ。FFI越境panicを許容しない。
 
-### W03: owned bufferと非同期I/O rundownを実装する
+### [W03 #32](https://github.com/H4M4CHi-ttr/win-ssd-hdd-cache/issues/32): owned bufferと非同期I/O rundownを実装する
 
 **担当 / review:** SOL / ASTRA  
 **Depends on:** W01, D04  
@@ -591,7 +591,7 @@ F01後に使えるhost commands: `cargo fmt --all -- --check`、`cargo clippy --
 
 **Escalation:** cancel/drainが確認不能ならbypass固定/参照維持の契約に戻り、強制freeで隠さない。
 
-### W04: 専有SSD cache backendとslot再利用障壁を実装する
+### [W04 #36](https://github.com/H4M4CHi-ttr/win-ssd-hdd-cache/issues/36): 専有SSD cache backendとslot再利用障壁を実装する
 
 **担当 / review:** SOL / ASTRA  
 **Depends on:** W03, D05  
@@ -614,7 +614,7 @@ F01後に使えるhost commands: `cargo fmt --all -- --check`、`cargo clippy --
 
 **Escalation:** devicehangからのquiesceを証明できなければ同一領域再開禁止。CRC一致でfreshnessを保証しない。
 
-### W05: write-invalidateと原本write/flush順序を実装する
+### [W05 #35](https://github.com/H4M4CHi-ttr/win-ssd-hdd-cache/issues/35): write-invalidateと原本write/flush順序を実装する
 
 **担当 / review:** SOL / ASTRA  
 **Depends on:** W01, D02, D04  
@@ -637,7 +637,7 @@ F01後に使えるhost commands: `cargo fmt --all -- --check`、`cargo clippy --
 
 **Escalation:** 原本orderingとcachepublishの線形化点が合わないならAstraへ。性能優先でbarrierを省略しない。
 
-### W06: DSM・raw/control・未知mutationの安全な処理を実装する
+### [W06 #33](https://github.com/H4M4CHi-ttr/win-ssd-hdd-cache/issues/33): DSM・raw/control・未知mutationの安全な処理を実装する
 
 **担当 / review:** SOL / ASTRA  
 **Depends on:** W01, D01, D05  
@@ -660,7 +660,7 @@ F01後に使えるhost commands: `cargo fmt --all -- --check`、`cargo clippy --
 
 **Escalation:** captureできない経路を見つけたらD01のsupport条件を縮める/方式を改める。
 
-### W07: attach・power・disable・removeのcold-reset lifecycleを実装する
+### [W07 #37](https://github.com/H4M4CHi-ttr/win-ssd-hdd-cache/issues/37): attach・power・disable・removeのcold-reset lifecycleを実装する
 
 **担当 / review:** SOL / ASTRA  
 **Depends on:** W01, W03, D05, C05  
@@ -683,7 +683,7 @@ F01後に使えるhost commands: `cargo fmt --all -- --check`、`cargo clippy --
 
 **Escalation:** 対象誤認/未知powertransition/参照漏れはAstraへ。原本formatで回復しない。
 
-### W08: 原本だけを返すshadow cache観測を統合する
+### [W08 #39](https://github.com/H4M4CHi-ttr/win-ssd-hdd-cache/issues/39): 原本だけを返すshadow cache観測を統合する
 
 **担当 / review:** SOL / ASTRA  
 **Depends on:** W02, W03, W04, W05, W06, W07  
@@ -706,7 +706,7 @@ F01後に使えるhost commands: `cargo fmt --all -- --check`、`cargo clippy --
 
 **Escalation:** shadowの比較根拠/同世代条件に未定義があればD02/D07へ。hit提供を先行しない。
 
-### G02: passthrough・shadowのG2ゲートを独立レビューする
+### [G02 #41](https://github.com/H4M4CHi-ttr/win-ssd-hdd-cache/issues/41): passthrough・shadowのG2ゲートを独立レビューする
 
 **担当 / review:** ASTRA / ASTRA  
 **Depends on:** W08, C04, C05, C06  
@@ -728,7 +728,7 @@ F01後に使えるhost commands: `cargo fmt --all -- --check`、`cargo clippy --
 
 **Escalation:** 証拠欠落を『たぶん安全』で埋めない。人間の実機承認は別に確保する。
 
-### W09: 検証済みlab構成でのみread-cache hit提供を有効にする
+### [W09 #43](https://github.com/H4M4CHi-ttr/win-ssd-hdd-cache/issues/43): 検証済みlab構成でのみread-cache hit提供を有効にする
 
 **担当 / review:** SOL / ASTRA  
 **Depends on:** G02, B03  
@@ -751,7 +751,7 @@ F01後に使えるhost commands: `cargo fmt --all -- --check`、`cargo clippy --
 
 **Escalation:** データ差異、UAF、origin/cache対象混同は即停止。性能のため安全条件を緩めない。
 
-### C01: offline status v1のRust型とstrict JSON codecを実装する
+### [C01 #16](https://github.com/H4M4CHi-ttr/win-ssd-hdd-cache/issues/16): offline status v1のRust型とstrict JSON codecを実装する
 
 **担当 / review:** LUNA / SOL  
 **Depends on:** F01  
@@ -774,7 +774,7 @@ F01後に使えるhost commands: `cargo fmt --all -- --check`、`cargo clippy --
 
 **Escalation:** 新state/writebackmode/livecontrolの追加が必要ならD06/SOLへ。ここでkernel ABIを発明しない。
 
-### C02: offline statusを表示するRust CLIを作る
+### [C02 #22](https://github.com/H4M4CHi-ttr/win-ssd-hdd-cache/issues/22): offline statusを表示するRust CLIを作る
 
 **担当 / review:** LUNA / SOL  
 **Depends on:** C01  
@@ -797,7 +797,7 @@ F01後に使えるhost commands: `cargo fmt --all -- --check`、`cargo clippy --
 
 **Escalation:** live接続・権限変更・state遷移を表示taskへ追加しない。D06/C04へ分離する。
 
-### C03: 診断情報をallowlistだけで出力するRust関数を実装する
+### [C03 #21](https://github.com/H4M4CHi-ttr/win-ssd-hdd-cache/issues/21): 診断情報をallowlistだけで出力するRust関数を実装する
 
 **担当 / review:** LUNA / ASTRA  
 **Depends on:** C01  
@@ -820,14 +820,14 @@ F01後に使えるhost commands: `cargo fmt --all -- --check`、`cargo clippy --
 
 **Escalation:** 復旧診断に識別子追加が必要ならD06でprivacy/権限/保存期間を再設計。
 
-### C04: Rust管理サービスと最小権限IPCを実装する
+### [C04 #38](https://github.com/H4M4CHi-ttr/win-ssd-hdd-cache/issues/38): Rust管理サービスと最小権限IPCを実装する
 
 **担当 / review:** SOL / ASTRA  
-**Depends on:** D06, C01, W01  
+**Depends on:** D06, C01, W01, C02  
 **Files (planned):** `crates/cache-service/Cargo.toml`, `crates/cache-service/src/ipc.rs`, `crates/cache-service/src/inventory.rs`, `crates/cache-service/src/driver_control.rs`, `tests/windows/service/`
 
 **Interfaces**
-- Consumes: D06, C01, W01の承認済み成果物と docs/contracts.md / INV-01〜12。
+- Consumes: D06, C01, W01, C02の承認済み成果物と docs/contracts.md / INV-01〜12。
 - Produces: D06 localIPC/ACL/authz、Windows inventory収集とunknown保持、driver status/controlの固定adapter。データ面と非同期に分離。
 
 **受入条件**
@@ -843,7 +843,7 @@ F01後に使えるhost commands: `cargo fmt --all -- --check`、`cargo clippy --
 
 **Escalation:** OS属性の信頼性、TOCTOU、privilege scopeが不明ならD05/D06へ。必要以上のrawIOを公開しない。
 
-### C05: 凍結済みtarget descriptorの純粋な許可/拒否判定器を作る
+### [C05 #26](https://github.com/H4M4CHi-ttr/win-ssd-hdd-cache/issues/26): 凍結済みtarget descriptorの純粋な許可/拒否判定器を作る
 
 **担当 / review:** LUNA / ASTRA  
 **Depends on:** F01, D05  
@@ -866,7 +866,7 @@ F01後に使えるhost commands: `cargo fmt --all -- --check`、`cargo clippy --
 
 **Escalation:** descriptorに判定に必要な情報がなければD05へ。存在しない情報を推測しない。
 
-### C06: control ABIの固定golden vectorsと不正入力回帰を追加する
+### [C06 #24](https://github.com/H4M4CHi-ttr/win-ssd-hdd-cache/issues/24): control ABIの固定golden vectorsと不正入力回帰を追加する
 
 **担当 / review:** LUNA / ASTRA  
 **Depends on:** F01, D06  
@@ -889,7 +889,7 @@ F01後に使えるhost commands: `cargo fmt --all -- --check`、`cargo clippy --
 
 **Escalation:** C/Rust structとwireが食い違う、互換変換が必要ならD06/Astraへ。
 
-### C07: cache専用partitionのdry-run準備と明示確認を実装する
+### [C07 #40](https://github.com/H4M4CHi-ttr/win-ssd-hdd-cache/issues/40): cache専用partitionのdry-run準備と明示確認を実装する
 
 **担当 / review:** SOL / ASTRA  
 **Depends on:** D05, C04, C05  
@@ -912,7 +912,7 @@ F01後に使えるhost commands: `cargo fmt --all -- --check`、`cargo clippy --
 
 **Escalation:** 破壊対象や所有権が曖昧なら止める。Issue実装許可だけで利用者のSSDを初期化しない。
 
-### C08: install・upgrade・rollback・uninstallの安全な運用を作る
+### [C08 #42](https://github.com/H4M4CHi-ttr/win-ssd-hdd-cache/issues/42): install・upgrade・rollback・uninstallの安全な運用を作る
 
 **担当 / review:** SOL / ASTRA  
 **Depends on:** D08, W07, C07  
@@ -935,7 +935,7 @@ F01後に使えるhost commands: `cargo fmt --all -- --check`、`cargo clippy --
 
 **Escalation:** boot/filter残留や署名条件不明ならD05/D08へ。安全なdrainを強制freeで置換しない。
 
-### B01: Rustでlatency統計とstrict benchmark v1 codecを実装する
+### [B01 #18](https://github.com/H4M4CHi-ttr/win-ssd-hdd-cache/issues/18): Rustでlatency統計とstrict benchmark v1 codecを実装する
 
 **担当 / review:** LUNA / SOL  
 **Depends on:** F01  
@@ -958,7 +958,7 @@ F01後に使えるhost commands: `cargo fmt --all -- --check`、`cargo clippy --
 
 **Escalation:** 比較条件や統計的有意性を追加する判断はB03/SOLへ。
 
-### B02: 条件が一致するベンチだけを比較するRustレポートを作る
+### [B02 #28](https://github.com/H4M4CHi-ttr/win-ssd-hdd-cache/issues/28): 条件が一致するベンチだけを比較するRustレポートを作る
 
 **担当 / review:** LUNA / SOL  
 **Depends on:** B01, C02  
@@ -981,7 +981,7 @@ F01後に使えるhost commands: `cargo fmt --all -- --check`、`cargo clippy --
 
 **Escalation:** 比較対象の採用/除外ルールを変えたくなったらB03へ。
 
-### B03: cache policy・kernel資源予算・性能採否基準を測定前に固定する
+### [B03 #30](https://github.com/H4M4CHi-ttr/win-ssd-hdd-cache/issues/30): cache policy・kernel資源予算・性能採否基準を測定前に固定する
 
 **担当 / review:** SOL / ASTRA  
 **Depends on:** D03, D04, F09, B02  
@@ -1003,7 +1003,7 @@ F01後に使えるhost commands: `cargo fmt --all -- --check`、`cargo clippy --
 
 **Escalation:** 性能を得るためINVを緩める必要があるならNo-Go。cachehit率だけで価値を主張しない。
 
-### Q01: lab active-modeの障害注入matrixを実行しG3証拠を揃える
+### [Q01 #45](https://github.com/H4M4CHi-ttr/win-ssd-hdd-cache/issues/45): lab active-modeの障害注入matrixを実行しG3証拠を揃える
 
 **担当 / review:** SOL / ASTRA  
 **Depends on:** W09, C07, F08, C06  
@@ -1026,7 +1026,7 @@ F01後に使えるhost commands: `cargo fmt --all -- --check`、`cargo clippy --
 
 **Escalation:** 所有権/整合性の故障は直ちに停止してAstra。実disk使用は別途承認済みlabのみ。
 
-### Q02: 実機・HVCI・Verifier・電源/撤去のqualificationを実施する
+### [Q02 #48](https://github.com/H4M4CHi-ttr/win-ssd-hdd-cache/issues/48): 実機・HVCI・Verifier・電源/撤去のqualificationを実施する
 
 **担当 / review:** SOL / ASTRA  
 **Depends on:** Q01, C08  
@@ -1049,7 +1049,7 @@ F01後に使えるhost commands: `cargo fmt --all -- --check`、`cargo clippy --
 
 **Escalation:** lab機器/電源操作/破壊的試験の所有者承認がなければ停止し、独立にできる証拠整理だけ進める。
 
-### Q03: 開発作業の効果とmiss時overheadを実測して採否を報告する
+### [Q03 #46](https://github.com/H4M4CHi-ttr/win-ssd-hdd-cache/issues/46): 開発作業の効果とmiss時overheadを実測して採否を報告する
 
 **担当 / review:** SOL / SOL  
 **Depends on:** W09, B03, B02  
@@ -1072,11 +1072,11 @@ F01後に使えるhost commands: `cargo fmt --all -- --check`、`cargo clippy --
 
 **Escalation:** 閾値を結果に合わせて変えず、未達は再設計またはNo-Goとして報告する。
 
-### Q04: 人間の専門レビューを含む限定beta公開のG4判定を行う
+### [Q04 #50](https://github.com/H4M4CHi-ttr/win-ssd-hdd-cache/issues/50): 人間の専門レビューを含む限定beta公開のG4判定を行う
 
 **担当 / review:** ASTRA / ASTRA  
 **Depends on:** Q01, Q02, Q03, D08, GOV01, C08  
-**Files (planned):** `docs/gates/g4-beta-release.md`, `docs/release-readiness.md`, `release/manifest.json (実配布時)`
+**Files (planned):** `docs/gates/g4-beta-release.md`, `docs/release-readiness.md`, `release/manifest.json`
 
 **Interfaces**
 - Consumes: Q01, Q02, Q03, D08, GOV01, C08の承認済み成果物と docs/contracts.md / INV-01〜12。
@@ -1094,7 +1094,7 @@ F01後に使えるhost commands: `cargo fmt --all -- --check`、`cargo clippy --
 
 **Escalation:** 資格・費用・専門家・証拠不足ならblocked/No-Goを正直に残す。
 
-### U01: 非特権Tauri GUIの境界と画面/操作契約を設計する
+### [U01 #44](https://github.com/H4M4CHi-ttr/win-ssd-hdd-cache/issues/44): 非特権Tauri GUIの境界と画面/操作契約を設計する
 
 **担当 / review:** SOL / ASTRA  
 **Depends on:** D06, C04, C02, C03, G02  
@@ -1116,7 +1116,7 @@ F01後に使えるhost commands: `cargo fmt --all -- --check`、`cargo clippy --
 
 **Escalation:** UIから直接disk操作したくなる場合はD06へ。GUI都合でkernel/IPCを拡張しない。
 
-### U02: Tauri/Vueで状態・診断の読み取り専用画面を作る
+### [U02 #47](https://github.com/H4M4CHi-ttr/win-ssd-hdd-cache/issues/47): Tauri/Vueで状態・診断の読み取り専用画面を作る
 
 **担当 / review:** LUNA / SOL  
 **Depends on:** U01  
@@ -1139,7 +1139,7 @@ F01後に使えるhost commands: `cargo fmt --all -- --check`、`cargo clippy --
 
 **Escalation:** API/画面契約が不明、state遷移やadmin権限が必要ならSOLへ。
 
-### U03: Tauri GUIから安全な準備・enable/disable・解除を統合する
+### [U03 #49](https://github.com/H4M4CHi-ttr/win-ssd-hdd-cache/issues/49): Tauri GUIから安全な準備・enable/disable・解除を統合する
 
 **担当 / review:** SOL / ASTRA  
 **Depends on:** U02, C07, C08  

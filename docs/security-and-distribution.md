@@ -57,7 +57,7 @@ Microsoftの一次資料を2026-11-02に確認した時点:
 
 ## 6. OSSガバナンス
 
-GOV01でライセンスを明示決定する。提案はRustの慣例との親和性を考えMIT OR Apache-2.0（original code）だが、採択前にLICENSEを作成して権利付与済みとしない。OCF等の第三者コードは各license/noticeを保持。外部contributionの受付条件（DCO/CLA要否）も決める。
+GOV01でライセンスを明示決定する。提案はRustの慣例との親和性を考えMIT OR Apache-2.0（original code）だが、採択前にLICENSEを作成して権利付与済みとしない。通常のCargo/npmパッケージ依存はlicense/hash確認とlockfile管理の下で利用できる。本repoへ第三者ソースをvendoringする場合はGOV01の方針採択後、OCF等の各license/noticeを保持する。外部contributionの受付条件（DCO/CLA要否）も決める。
 
 私有repoを自動公開しない。公開時は、security reporting経路、maintainer、支援可能なWindows build、issue template、release policyを整える。脆弱性報告経路が未設定の間は、個人dataを含むdumpをpublic issueへ投稿させない。
 

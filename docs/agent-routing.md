@@ -31,11 +31,11 @@
 4. 一つのbranch/PRで一つの独立受入単位を扱う。共有manifestの追加は短い統合順で直列化する。
 5. 下位依存にないscopeを発見したら、関連Issueを追加/更新してレビューする。隠れた前提を作らない。
 
-本計画時点では製品codeはない。初期のLuna着手点はF01。F01が完了すると、F02/F03/F04/B01/C01等のpure Rust作業を並列化できる。設計D01/D02/D09は独立に進められる。
+本計画時点では製品codeはない。初期のLuna着手点はF01。F01が完了すると、F02/F03/B01/C01等のpure Rust作業（F04はcache-model新設を担当するF03の後）を並列化できる。設計D01/D02/D09は独立に進められる。
 
 ## 3. Luna課題の標準完了条件
 
-- 指定pathとcontractだけを変更。
+- 指定pathとcontractを変更範囲の基本とする。必要なcrateのworkspace登録、Cargo.lock、lib.rs/module export、test登録のみ付随変更を許可し、統合順を調整して差分を説明する。無関係な依存更新はしない。
 - 先に失敗するテストを作り、FAILの理由を確認してから最小実装。
 - 指定test + fmt + clippyがPASSし、テスト0件を合格扱いしない。
 - cargo lock/toolchain変更を説明。unsafe、Windows API、network、raw diskを指示なしに追加しない。
