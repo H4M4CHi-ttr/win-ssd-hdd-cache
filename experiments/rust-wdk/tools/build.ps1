@@ -30,11 +30,13 @@ try {
     Invoke-Native $vswhere @('-all', '-products', '*', '-format', 'json', '-utf8')
     $vs = & $vswhere -latest -version '[17.0,18.0)' -products '*' -requires Microsoft.VisualStudio.Component.VC.Tools.x86.x64 -property installationPath
     if ($LASTEXITCODE -ne 0 -or -not $vs) { throw 'D09_VS2022_MISSING' }
-    # Compiler environment only, never print the captured environment or secrets.
-    $vars = & cmd.exe /d /s /c "`"`"$vs\Common7\Tools\VsDevCmd.bat`" -no_logo -arch=x64 -host_arch=x64 && set`""
-    if ($LASTEXITCODE -ne 0) { throw 'D09_MSVC_ENV_FAILED' }
-    foreach ($line in $vars) {
-        if ($line -match '^([^=]+)=(.*)$') { [Environment]::SetEnvironmentVariable($matches[1], $matches[2], 'Process') }
+    # Microsoft's scripting entry point avoids cmd.exe's nested quote parsing.
+    # Compiler environment only; do not dump process variables or secrets.
+    $devShell = Join-Path $vs 'Common7\Tools\Launch-VsDevShell.ps1'
+    if (-not (Test-Path -LiteralPath $devShell)) { throw 'D09_DEVSHELL_MISSING' }
+    & $devShell -Arch amd64 -HostArch amd64 -SkipAutomaticLocation
+    if ($env:VSCMD_ARG_TGT_ARCH -ne 'x64' -or $env:VSCMD_ARG_HOST_ARCH -ne 'x64') {
+        throw 'D09_MSVC_ARCH_MISMATCH'
     }
     Invoke-Native 'rustc' @('--version', '--verbose')
     Invoke-Native 'cargo' @('--version')
