@@ -9,6 +9,7 @@
 5. 作者と別のreviewerが確認。安全契約に触れる場合はreview:astra以上、出荷前は人間の専門レビューも必要。
 6. merge後にIssueへ証拠を残し、依存課題のready条件を再評価する。
 
-planned command: `cargo test -p cache-types` 等。現在まだCargo workspaceはありません。F01が作成するまで、実行可能と誤認しないでください。
+F01のportable workspaceで `cargo test --locked`、`cargo fmt --all -- --check`、`cargo clippy --all-targets --locked -- -D warnings` を使います。Windows/Linux両hostでの実行証拠はF10で記録し、Linuxだけの結果をWindows合格とは扱いません。
 
 kernel/実機試験は開発専用環境でのみ行います。Issueに実装を依頼されただけで、利用者の普段のHDDを初期化する権限は生じません。
+

@@ -156,7 +156,7 @@ D03/B03でline size、max cache size、nonpaged budget、promotion、scan cutoff
 - G2: 使い捨て環境でpassthrough-only → mutation観測 → SHADOW。HDD内容はcacheから返さない。
 - G3: 明示opt-inしたlabだけでcache hit提供。fault、resource、PnP/power、取消し、回復を実証。
 - G4: 人間の専門レビュー、指定build/機器の実機試験、署名/HLK/配布・更新・撤去証拠をそろえて限定beta判断。
-- G5（将来別RFC）: persistent read cache、暗号化、複数SSD、GUI、広い互換性。write-backは本ロードマップの対象外。
+- G5（将来別RFC）: persistent read cache、暗号化、複数SSD、広い互換性。U01〜U03のTauri GUIは本ロードマップ内の任意後段作業で、CLIでのlab試験を妨げない。write-backは本ロードマップの対象外。
 
 G1/G2/G3/G4の具体的acceptanceは [検証文書](../../validation.md)。各ゲートは独立レビューで閉じる。未解決の前提をLunaの実装Issue内で暗黙に確定しない。
 
@@ -177,3 +177,4 @@ G1/G2/G3/G4の具体的acceptanceは [検証文書](../../validation.md)。各�
 | 実用policy・性能目標 | B03 | 実測と予算/採否基準 |
 
 安全に関わる未決事項は、明記されたゲートとして後続作業を止める。見積りのための仮定は、実装契約として使わない。
+

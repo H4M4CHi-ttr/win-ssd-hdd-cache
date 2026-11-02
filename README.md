@@ -15,11 +15,11 @@ Windows向けに、既存のHDDを正本に保ち、SSDを破棄可能な読み�
 
 ## 開発状況
 
-正式設計・実装計画と**49作業Issue + 親ロードマップ**を整備しました。コード実装はまだ開始していません。
+正式設計・実装計画を整備し、Issue全件監査とportable Rust基盤の実装を開始しました。Windows driver・実機安全性の実証はまだありません。最新の受入状態は[バックログ](docs/backlog.md)と[証拠](docs/evidence/F01.md)を確認してください。
 
 [ロードマップと課題一覧](https://github.com/H4M4CHi-ttr/win-ssd-hdd-cache/issues/1) を起点にしてください。[正式設計と関連文書](docs/README.md)・[貢献ルール](CONTRIBUTING.md)を参照してください。
 
-This project is in the **design phase**: a discardable, clean SSD read cache for selected Windows data HDDs. No production driver or verified hardware support is available yet.
+This project is in the **design and portable-host implementation phase**: a discardable, clean SSD read cache for selected Windows data HDDs. No production driver or verified hardware support is available yet.
 
 ## 最初に進めるIssue
 
@@ -33,3 +33,4 @@ GUIはTauriを用いますが、CLI/serviceと安全なdata pathの契約を先�
 ## ライセンスと公開
 
 オープンソースとしての公開を目指しますが、ライセンスの採択と公開範囲の変更は、所有者の明示的な決定をリリース前ゲートとします。通常のCargo/npmパッケージ依存はlicense・hashを確認して利用できます。第三者ソースのvendoringや外部contributionの受付はGOV01の方針採択後とし、通知を保持します。現時点でライセンスが付与済みの完成OSSであるとは表示しません。
+

@@ -52,7 +52,7 @@ D02/D07が次の区別を固定し、F06で実装する。
 | T17 | service crash/GUI crash | data pathがservice待ちで停止しない | C04,U02,Q01 |
 | T18 | malformed/unauthorized control | 拒否、write権限昇格/情報漏洩なし | C06,Q01 |
 | T19 | no target configured / unsupported disk | 意図しないcache化/boot障害なし | W01,W07,Q02 |
-| T20 | old driver/config upgrade/rollback/uninstall | 原本保持、無効化/回復手順成立 | C07,Q02 |
+| T20 | old driver/config upgrade/rollback/uninstall | 原本保持、無効化/回復手順成立 | C08,Q02 |
 | T21 | FFI invalid enum/len/panic/callback order | UBや二重freeにせず契約どおり処理 | D04,W02,Q01 |
 | T22 | unknown BypassIO path | supportを偽らず診断可能なveto/bypass | D01,W06 |
 
@@ -62,13 +62,15 @@ D01が捕捉できない経路を見つけたら、試験を消さずサポー�
 
 ### G1 — 設計/モデルの凍結
 
-D01〜D09の出力（ADR、trace、所有権、ABI、oracle）が相互整合。F01〜F08の必要試験とF09のengine対照試験が合格。意図的にstale-fill、early ACK、late slot再利用の故障modelを作ると、必ず対応試験がFAILする。安全契約INV-01〜12がIssue/試験へ対応。後続kernel作業へ渡すheader/schema/limitsに未決の「都合よく決める」箇所がない。
+D01〜D10の出力（ADR、trace、所有権、ABI、portable oracleとWindows mapping）が相互整合。B03の初期資源上限が承認済み。F01〜F08の必要試験とF09のengine対照試験が合格。意図的にstale-fill、early ACK、late slot再利用の故障modelを作ると、必ず対応試験がFAILする。安全契約INV-01〜12がIssue/試験へ対応。後続kernel作業へ渡すheader/schema/limitsに未決の「都合よく決める」箇所がない。
 
 D03のOCF採否とD09のkernel Rust採否は別判定。No-Goなら代替ADRと後続Issueを更新し、勝手に既存Issueを実装しない。
 
+Pre-G1のD01/D09 probeとD03 feasibility spikeはexperiments配下の隔離実験で、W01製品driverではない。D01/D09のWindows probeはcache hit/fill/raw cache writeを実装しない。D03のhost spikeは模擬cacheの動作だけを検証できる。compile/資料/模擬/実Windows証拠を分ける。install、mutation生成trace、Verifier、VM/実機実行は別の明示lab承認が必要。B03はhost測定と保守的仮定で初期上限を決め、後段のW03/W09実測を先取りの完了条件にしない。D08のgovernance/配布実現性gateは意図的に維持し、未決承認でW01を解禁しない。
+
 ### G2 — Passthrough / Shadow
 
-W01〜W08のうちshadowまで、C04〜C06が使い捨てWindows環境で動作。cacheからアプリへデータを返さず、原本baselineとの結果・error・順序を比較。比較は同じ世代のデータのみ。同時writeで内容が変わる正当な差を誤検出しない。
+W01〜W08のうちshadowまで、W10のdriver側control認可、C04〜C06が使い捨てWindows環境で動作。cacheからアプリへデータを返さず、原本baselineとの結果・error・順序を比較。比較は同じ世代のデータのみ。同時writeで内容が変わる正当な差を誤検出しない。
 
 no-target boot、cache消失、service停止、拒否構成、管理操作failureで原本を壊さず回復する。基礎traceやDriver Verifier計画がそろっていなければ、cache hitを有効にするbranchへ進めない。
 
@@ -80,7 +82,7 @@ B03で先に承認したmemory/inflight/queue上限と許容overheadを満たす
 
 ### G4 — 限定betaの可否
 
-Q01〜Q04、D08、GOV01、C07が完了し、独立した人間のWindowsストレージ専門家が証拠をレビュー。対応build・WDK・firmware・sector pair・stack・既知非対応を明示。署名/HLK・HVCI・Secure Boot・更新/rollback/uninstallの証拠と利用者向け警告を添付。
+Q01〜Q03、D08、GOV01、C08（C07を含む）が完了し、独立した人間のWindowsストレージ専門家が証拠をレビュー。Q04がこのG4判定を記録する（Q04自身の完了を事前条件にしない）。対応build・WDK・firmware・sector pair・stack・既知非対応を明示。署名/HLK・HVCI・Secure Boot・更新/rollback/uninstallの証拠と利用者向け警告を添付。
 
 ライセンス/通知、脆弱性受付、責任者、署名主体、公開承認が未決なら公開しない。issueにAIレビュー済みとあるだけで人間レビューを完了扱いしない。
 
@@ -107,3 +109,4 @@ Q01〜Q04、D08、GOV01、C07が完了し、独立した人間のWindowsスト�
 PR CIはhost Rust tests / fmt / clippy / schema & docs consistencyだけ、contents:read、秘密なし。driverのbuildは独立job。self-hosted lab、Verifier、実機の障害注入、signingはtrusted maintainerの別workflow/手順とし、fork PRから起動しない。
 
 Driver VerifierはOSを停止させることがある。driver開発専用VM/実機だけで使う。HLKの正確なplaylist/要件は対象Windows releaseごとに再確認する。
+

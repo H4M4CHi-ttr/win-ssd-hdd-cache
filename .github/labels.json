@@ -104,6 +104,15 @@
     {
       "name": "decision:owner",
       "description": "ライセンス/公開/費用/実機等の所有者判断が必要。"
+    },
+    {
+      "name": "status:done",
+      "description": "成果物・受入証拠・独立reviewが揃って受入完了。製品の安全認証ではない。"
+    },
+    {
+      "name": "status:cancelled",
+      "description": "実施しないと決定。依存課題の受入完了には数えない。"
     }
   ]
 }
+
