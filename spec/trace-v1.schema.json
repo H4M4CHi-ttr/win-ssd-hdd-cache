@@ -1,0 +1,609 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Portable cache trace v1 (structural subset)",
+  "description": "Normative token, duplicate-key, aggregate-limit and static-reference rules are in docs/contracts/trace-v1.md. JSON Schema integer is not integer-token validation.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "seed",
+    "capacity",
+    "line_size",
+    "slot_count",
+    "counter_limit",
+    "initial_hex",
+    "events"
+  ],
+  "properties": {
+    "schema_version": {
+      "type": "integer",
+      "const": 1
+    },
+    "seed": {
+      "$ref": "#/$defs/u64"
+    },
+    "capacity": {
+      "$ref": "#/$defs/u64"
+    },
+    "line_size": {
+      "type": "integer",
+      "enum": [
+        4096,
+        8192,
+        16384,
+        32768,
+        65536
+      ]
+    },
+    "slot_count": {
+      "type": "integer",
+      "minimum": 1,
+      "maximum": 256
+    },
+    "counter_limit": {
+      "$ref": "#/$defs/id"
+    },
+    "initial_hex": {
+      "$ref": "#/$defs/hex"
+    },
+    "events": {
+      "type": "array",
+      "maxItems": 10000,
+      "items": {
+        "oneOf": [
+          {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "event",
+              "request",
+              "offset",
+              "length"
+            ],
+            "properties": {
+              "event": {
+                "const": "read_submit"
+              },
+              "request": {
+                "$ref": "#/$defs/id"
+              },
+              "offset": {
+                "$ref": "#/$defs/u64"
+              },
+              "length": {
+                "$ref": "#/$defs/u64"
+              }
+            }
+          },
+          {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "event",
+              "request",
+              "offset",
+              "data",
+              "fua"
+            ],
+            "properties": {
+              "event": {
+                "const": "write_submit"
+              },
+              "request": {
+                "$ref": "#/$defs/id"
+              },
+              "offset": {
+                "$ref": "#/$defs/u64"
+              },
+              "data": {
+                "$ref": "#/$defs/hex"
+              },
+              "fua": {
+                "type": "boolean"
+              }
+            }
+          },
+          {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "event",
+              "request",
+              "offset",
+              "length"
+            ],
+            "properties": {
+              "event": {
+                "const": "discard_submit"
+              },
+              "request": {
+                "$ref": "#/$defs/id"
+              },
+              "offset": {
+                "$ref": "#/$defs/u64"
+              },
+              "length": {
+                "$ref": "#/$defs/u64"
+              }
+            }
+          },
+          {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "event",
+              "request"
+            ],
+            "properties": {
+              "event": {
+                "const": "flush_submit"
+              },
+              "request": {
+                "$ref": "#/$defs/id"
+              }
+            }
+          },
+          {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "event",
+              "request",
+              "line"
+            ],
+            "properties": {
+              "event": {
+                "const": "fill_begin"
+              },
+              "request": {
+                "$ref": "#/$defs/id"
+              },
+              "line": {
+                "$ref": "#/$defs/u64"
+              }
+            }
+          },
+          {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "event",
+              "io",
+              "request",
+              "target",
+              "slot",
+              "source"
+            ],
+            "properties": {
+              "event": {
+                "const": "io_submit"
+              },
+              "io": {
+                "$ref": "#/$defs/id"
+              },
+              "request": {
+                "$ref": "#/$defs/id"
+              },
+              "target": {
+                "enum": [
+                  "origin_read",
+                  "origin_write",
+                  "origin_discard",
+                  "origin_flush",
+                  "cache_read",
+                  "cache_write"
+                ]
+              },
+              "slot": {
+                "anyOf": [
+                  {
+                    "$ref": "#/$defs/u64"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ]
+              },
+              "source": {
+                "anyOf": [
+                  {
+                    "$ref": "#/$defs/id"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ]
+              }
+            }
+          },
+          {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "event",
+              "io",
+              "offset",
+              "length"
+            ],
+            "properties": {
+              "event": {
+                "const": "io_transfer"
+              },
+              "io": {
+                "$ref": "#/$defs/id"
+              },
+              "offset": {
+                "$ref": "#/$defs/u64"
+              },
+              "length": {
+                "$ref": "#/$defs/u64"
+              }
+            }
+          },
+          {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "event",
+              "io",
+              "status",
+              "reported"
+            ],
+            "properties": {
+              "event": {
+                "const": "io_complete"
+              },
+              "io": {
+                "$ref": "#/$defs/id"
+              },
+              "status": {
+                "enum": [
+                  "ok",
+                  "io_error",
+                  "cancelled"
+                ]
+              },
+              "reported": {
+                "$ref": "#/$defs/u64"
+              }
+            }
+          },
+          {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "event",
+              "request"
+            ],
+            "properties": {
+              "event": {
+                "const": "cancel_request"
+              },
+              "request": {
+                "$ref": "#/$defs/id"
+              }
+            }
+          },
+          {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "event",
+              "io"
+            ],
+            "properties": {
+              "event": {
+                "const": "cancel_io"
+              },
+              "io": {
+                "$ref": "#/$defs/id"
+              }
+            }
+          },
+          {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "event",
+            "request"
+          ],
+          "properties": {
+            "event": {
+              "const": "retire_request"
+            },
+            "request": {
+              "$ref": "#/$defs/id"
+            }
+          }
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "event",
+              "io"
+            ],
+            "properties": {
+              "event": {
+                "const": "cache_publish"
+              },
+              "io": {
+                "$ref": "#/$defs/id"
+              }
+            }
+          },
+          {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "event",
+              "request",
+              "io"
+            ],
+            "properties": {
+              "event": {
+                "const": "read_commit"
+              },
+              "request": {
+                "$ref": "#/$defs/id"
+              },
+              "io": {
+                "$ref": "#/$defs/id"
+              }
+            }
+          },
+          {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "event",
+              "request",
+              "io"
+            ],
+            "properties": {
+              "event": {
+                "const": "mutation_commit"
+              },
+              "request": {
+                "$ref": "#/$defs/id"
+              },
+              "io": {
+                "$ref": "#/$defs/id"
+              }
+            }
+          },
+          {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "event",
+              "reason"
+            ],
+            "properties": {
+              "event": {
+                "const": "epoch_invalidate"
+              },
+              "reason": {
+                "enum": [
+                  "disable",
+                  "suspend",
+                  "target_change",
+                  "fault"
+                ]
+              }
+            }
+          },
+          {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "event",
+              "slot",
+              "line"
+            ],
+            "properties": {
+              "event": {
+                "const": "slot_bind"
+              },
+              "slot": {
+                "$ref": "#/$defs/u64"
+              },
+              "line": {
+                "$ref": "#/$defs/u64"
+              }
+            }
+          },
+          {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "event"
+            ],
+            "properties": {
+              "event": {
+                "const": "resume_cache"
+              }
+            }
+          },
+          {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "event",
+              "io",
+              "offset",
+              "length"
+            ],
+            "properties": {
+              "event": {
+                "const": "origin_persist"
+              },
+              "io": {
+                "$ref": "#/$defs/id"
+              },
+              "offset": {
+                "$ref": "#/$defs/u64"
+              },
+              "length": {
+                "$ref": "#/$defs/u64"
+              }
+            }
+          },
+          {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "event"
+            ],
+            "properties": {
+              "event": {
+                "const": "power_loss"
+              }
+            }
+          },
+          {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "event",
+              "request",
+              "data",
+              "known"
+            ],
+            "properties": {
+              "event": {
+                "const": "assert_read"
+              },
+              "request": {
+                "$ref": "#/$defs/id"
+              },
+              "data": {
+                "$ref": "#/$defs/hex"
+              },
+              "known": {
+                "type": "string",
+                "pattern": "^[01]*$",
+                "maxLength": 1048576
+              }
+            }
+          },
+          {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "event",
+              "request",
+              "status",
+              "reported"
+            ],
+            "properties": {
+              "event": {
+                "const": "assert_result"
+              },
+              "request": {
+                "$ref": "#/$defs/id"
+              },
+              "status": {
+                "enum": [
+                  "ok",
+                  "io_error",
+                  "cancelled"
+                ]
+              },
+              "reported": {
+                "$ref": "#/$defs/u64"
+              }
+            }
+          },
+          {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "event",
+              "slot",
+              "valid"
+            ],
+            "properties": {
+              "event": {
+                "const": "assert_cache"
+              },
+              "slot": {
+                "$ref": "#/$defs/u64"
+              },
+              "valid": {
+                "type": "boolean"
+              }
+            }
+          },
+          {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "event",
+              "index",
+              "decision"
+            ],
+            "properties": {
+              "event": {
+                "const": "assert_decision"
+              },
+              "index": {
+                "$ref": "#/$defs/u64"
+              },
+              "decision": {
+                "enum": [
+                  "accepted",
+                  "rejected",
+                  "pending"
+                ]
+              }
+            }
+          },
+          {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "event",
+              "offset",
+              "data",
+              "known"
+            ],
+            "properties": {
+              "event": {
+                "const": "assert_origin"
+              },
+              "offset": {
+                "$ref": "#/$defs/u64"
+              },
+              "data": {
+                "$ref": "#/$defs/hex"
+              },
+              "known": {
+                "type": "string",
+                "pattern": "^[01]*$",
+                "maxLength": 1048576
+              }
+            }
+          }
+        ]
+      }
+    }
+  },
+  "$defs": {
+    "u64": {
+      "type": "string",
+      "pattern": "^(0|[1-9][0-9]*)$",
+      "maxLength": 20
+    },
+    "id": {
+      "type": "string",
+      "pattern": "^[1-9][0-9]*$",
+      "maxLength": 20
+    },
+    "hex": {
+      "type": "string",
+      "pattern": "^([0-9a-f]{2})*$",
+      "maxLength": 2097152
+    }
+  }
+}
