@@ -89,7 +89,7 @@ try {
     $km = Join-Path $kit "Include\$($pins.kitVersion)\km"
     $shared = Join-Path $kit "Include\$($pins.kitVersion)\shared"
     $lib = Join-Path $kit "Lib\$($pins.kitVersion)\km\x64"
-    Invoke-Native 'cl.exe' @('/nologo', '/c', '/std:c17', '/kernel', '/GS', '/Zl', '/W4', '/O2', '/D_AMD64_', '/DAMD64', '/D_KERNEL_MODE', '/D_WIN32_WINNT=0x0A00', "/I$km", "/I$km\crt", "/I$shared", '/Ic', 'c/entry.c', "/Fo:$out\c-entry.obj")
+    Invoke-Native 'cl.exe' @('/nologo', '/c', '/std:c17', '/kernel', '/GS', '/Zl', '/W4', '/WX', '/showIncludes', '/O2', '/D_AMD64_', '/DAMD64', '/D_WIN32_WINNT=0x0A00', "/I$km", "/I$km\crt", "/I$shared", '/Ic', 'c/entry.c', "/Fo:$out\c-entry.obj")
     # /GS stays enabled: use the WDK's GsDriverEntry/security-cookie wrapper.
     Invoke-Native 'link.exe' @('/NOLOGO', '/DRIVER', '/SUBSYSTEM:NATIVE', '/KERNEL', '/NODEFAULTLIB', '/MACHINE:X64', '/ENTRY:GsDriverEntry', '/NXCOMPAT', '/DYNAMICBASE', '/INTEGRITYCHECK', '/MANIFEST:NO', '/OPT:REF,ICF', '/IGNORE:4257', "/OUT:$out\c-shim.sys", "/MAP:$evidence\c-shim.map", "$out\c-entry.obj", $abi, "/LIBPATH:$lib", 'BufferOverflowK.lib', 'ntoskrnl.lib', 'hal.lib', 'libcntpr.lib')
     # Stock Rust-WDM path is evaluated separately; do not silently substitute C.
