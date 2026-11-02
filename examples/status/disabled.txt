@@ -1,0 +1,8 @@
+state: disabled
+mode: read_cache_wi
+read_hits: unavailable
+read_misses: unavailable
+origin_read_bytes: unavailable
+cache_written_bytes: unavailable
+error_code: none
+error_description: none
