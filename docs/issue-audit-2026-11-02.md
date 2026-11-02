@@ -17,6 +17,8 @@
 | Luna表示/report課題のAPI/出力/欠落nullが未凍結 | [host契約](contracts/host-formats-v1.md)に固定 | raw error/secret/path非反射、公開型の不正構築も拒否 |
 | F01→F02→F10なのに二OS実行をF01前提とも読める | portable artifact受入とF10二OSgateを分離 | Windows未実行を合格にしない |
 | T20担当がC07、GUIをG5別RFCとも記載 | C08へ訂正、U01〜U03は任意後段と明記 | CLI/lab安全条件は不変 |
+| B01実装がC01のprivate strict JSON adapterを使用 | B01のC01依存をbacklog/plan/Issueへ明記 | レビュー済みadapterの共用を隠れた前提にしない |
+| F02のschema/path/link/資源上限とerror細部が未固定 | [checker契約](contracts/planning-checker-v1.md)を追加し実装前に独立review | owner承認・受入判定をcheckerが代行しない |
 
 ## あえて維持した停止条件
 
@@ -24,6 +26,10 @@ D08をgovernance/配布実現性のG1前gateとして維持した。現時点で
 
 ## 実装とcloseの意味
 
-root/ProがLuna分類の課題を実装しても難度ラベルは保持する。作者と別のreviewが必要。F01/F03のportable成果物はLinuxのRED→GREEN・fmt/clippy・独立SOL reviewで受入済み。PR/merge、Issue本文・snapshotの最終同期、後続の二OS実行はそれぞれ証拠を残す。未実施のWindows/実機試験や「破損ゼロ」を主張しない。
+root/ProがLuna分類の課題を実装しても難度ラベルは保持する。作者と別のreviewが必要。現在は10件のhost成果物が独立reviewとLinux/Windows Server試験で受入済み。[実装・PR・実行記録](evidence/2026-11-02-host-foundation.md)を参照。PR/merge、Issue本文・snapshotの同期はそれぞれ証拠を残す。main未統合の間はIssueをcloseせず、acceptedはPR上のartifact受入と明記する。Windows 11 driver/実機安全性や「破損ゼロ」を主張しない。
 
 この監査で追加した作業はAUD01/D10/W10で、総作業数は52、親を含め53 Issues（PRは別）になった。最終検査結果・commit/PR・実装完了数は各Issueおよび[バックログ](backlog.md)を正本とする。
+
+## 監査の受入
+
+全53Issueの同期とreadbackを行い、本文・title・適用label・open状態の不一致0を確認してAUD01をdone/acceptedへ遷移する。実施時点と検証範囲は[同期・受入記録](evidence/2026-11-02-host-foundation.md)を参照。host実装10件と監査成果物1件を区別し、owner pending・main未merge・GitHub Issue openを維持する。

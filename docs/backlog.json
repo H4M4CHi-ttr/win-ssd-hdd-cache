@@ -360,7 +360,7 @@
       "title": "ラベルとバックログの静的整合性を検査するxtaskを作る",
       "agent": "luna",
       "review": "sol",
-      "status": "ready",
+      "status": "done",
       "priority": "p0",
       "type": "task",
       "area": "tooling",
@@ -374,7 +374,12 @@
         "xtask/src/labels.rs",
         "xtask/src/backlog.rs",
         "xtask/tests/repository_contract.rs",
-        ".cargo/config.toml"
+        ".cargo/config.toml",
+        "xtask/src/lib.rs",
+        "xtask/src/json.rs",
+        "xtask/src/links.rs",
+        "xtask/src/repository.rs",
+        "docs/contracts/planning-checker-v1.md"
       ],
       "output": "validate_label_manifestとcargo xtask check-planning。labels.json、docs/backlog.jsonのID/依存DAG/label/ready条件/相対doc linkを読み取り専用で検査。",
       "acceptance": [
@@ -386,7 +391,7 @@
       "escalation": "taxonomyやready判定契約を変えないと通らない場合、fixture/期待値を緩めずSOLへ。",
       "issue_number": 10,
       "issue_url": "https://github.com/H4M4CHi-ttr/win-ssd-hdd-cache/issues/10",
-      "completion": "pending",
+      "completion": "accepted",
       "owner_approval": "not-required",
       "approval_evidence": []
     },
@@ -427,7 +432,7 @@
       "title": "discardをunknownとして扱うin-memory originを実装する",
       "agent": "luna",
       "review": "sol",
-      "status": "ready",
+      "status": "done",
       "priority": "p0",
       "type": "task",
       "area": "model",
@@ -449,7 +454,7 @@
       "escalation": "並行性/永続化の期待値が必要ならD02/D07へ。仕様にないsector atomicityを仮定しない。",
       "issue_number": 12,
       "issue_url": "https://github.com/H4M4CHi-ttr/win-ssd-hdd-cache/issues/12",
-      "completion": "pending",
+      "completion": "accepted",
       "owner_approval": "not-required",
       "approval_evidence": []
     },
@@ -668,7 +673,7 @@
       "title": "秘密・管理者操作なしのRust host CIを構成する",
       "agent": "luna",
       "review": "sol",
-      "status": "blocked",
+      "status": "done",
       "priority": "p0",
       "type": "task",
       "area": "tooling",
@@ -679,7 +684,10 @@
       "files": [
         ".github/workflows/host-tests.yml",
         "docs/development.md",
-        "xtask/tests/workflow_policy.rs"
+        "xtask/tests/workflow_policy.rs",
+        ".gitattributes",
+        "xtask/src/workflow.rs",
+        "xtask/src/lib.rs"
       ],
       "output": "Linux/Windows hostのfmt/clippy/tests/planning検査。Cargo default-membersはportable hostのみ。trusted kernel/lab/signingとは分離。",
       "acceptance": [
@@ -690,7 +698,7 @@
       "escalation": "WDK/HLK/管理者/署名鍵が必要なら別trusted pipelineとしてSOLへ。PR jobへ権限を足さない。",
       "issue_number": 13,
       "issue_url": "https://github.com/H4M4CHi-ttr/win-ssd-hdd-cache/issues/13",
-      "completion": "pending",
+      "completion": "accepted",
       "owner_approval": "not-required",
       "approval_evidence": []
     },
@@ -1028,7 +1036,7 @@
       "title": "offline status v1のRust型とstrict JSON codecを実装する",
       "agent": "luna",
       "review": "sol",
-      "status": "ready",
+      "status": "done",
       "priority": "p1",
       "type": "task",
       "area": "control",
@@ -1039,7 +1047,8 @@
       "files": [
         "crates/cache-types/src/status.rs",
         "crates/cache-types/tests/status_format.rs",
-        "tests/fixtures/status/"
+        "tests/fixtures/status/",
+        "crates/cache-types/src/wire.rs"
       ],
       "output": "docs/contracts.md §6のStatusSnapshot/StatusError、parse_status。counterはJSONではdecimal string/null、Rust内部u64/Option、固定state/mode/errorcode。",
       "acceptance": [
@@ -1051,7 +1060,7 @@
       "escalation": "新state/writebackmode/livecontrolの追加が必要ならD06/SOLへ。ここでkernel ABIを発明しない。",
       "issue_number": 16,
       "issue_url": "https://github.com/H4M4CHi-ttr/win-ssd-hdd-cache/issues/16",
-      "completion": "pending",
+      "completion": "accepted",
       "owner_approval": "not-required",
       "approval_evidence": []
     },
@@ -1060,7 +1069,7 @@
       "title": "offline statusを表示するRust CLIを作る",
       "agent": "luna",
       "review": "sol",
-      "status": "blocked",
+      "status": "done",
       "priority": "p1",
       "type": "task",
       "area": "control",
@@ -1073,7 +1082,10 @@
         "crates/cache-cli/src/main.rs",
         "crates/cache-cli/src/status.rs",
         "crates/cache-cli/tests/status_cli.rs",
-        "examples/status/"
+        "examples/status/",
+        "crates/cache-cli/src/input.rs",
+        "crates/cache-cli/tests/common/mod.rs",
+        "crates/cache-types/src/status.rs"
       ],
       "output": "cache-cli status --input <file> --format json|text。render_status、状態/counter/固定error説明の表示だけ。service/driverへ接続しない。",
       "acceptance": [
@@ -1085,7 +1097,7 @@
       "escalation": "live接続・権限変更・state遷移を表示taskへ追加しない。D06/C04へ分離する。",
       "issue_number": 22,
       "issue_url": "https://github.com/H4M4CHi-ttr/win-ssd-hdd-cache/issues/22",
-      "completion": "pending",
+      "completion": "accepted",
       "owner_approval": "not-required",
       "approval_evidence": []
     },
@@ -1094,7 +1106,7 @@
       "title": "診断情報をallowlistだけで出力するRust関数を実装する",
       "agent": "luna",
       "review": "astra",
-      "status": "blocked",
+      "status": "done",
       "priority": "p1",
       "type": "task",
       "area": "security",
@@ -1115,7 +1127,7 @@
       "escalation": "復旧診断に識別子追加が必要ならD06でprivacy/権限/保存期間を再設計。",
       "issue_number": 21,
       "issue_url": "https://github.com/H4M4CHi-ttr/win-ssd-hdd-cache/issues/21",
-      "completion": "pending",
+      "completion": "accepted",
       "owner_approval": "not-required",
       "approval_evidence": []
     },
@@ -1293,13 +1305,14 @@
       "title": "Rustでlatency統計とstrict benchmark v1 codecを実装する",
       "agent": "luna",
       "review": "sol",
-      "status": "ready",
+      "status": "done",
       "priority": "p1",
       "type": "task",
       "area": "performance",
       "owner_decision": false,
       "dependencies": [
-        "F01"
+        "F01",
+        "C01"
       ],
       "files": [
         "crates/cache-types/src/benchmark/statistics.rs",
@@ -1317,7 +1330,7 @@
       "escalation": "比較条件や統計的有意性を追加する判断はB03/SOLへ。",
       "issue_number": 18,
       "issue_url": "https://github.com/H4M4CHi-ttr/win-ssd-hdd-cache/issues/18",
-      "completion": "pending",
+      "completion": "accepted",
       "owner_approval": "not-required",
       "approval_evidence": []
     },
@@ -1326,7 +1339,7 @@
       "title": "条件が一致するベンチだけを比較するRustレポートを作る",
       "agent": "luna",
       "review": "sol",
-      "status": "blocked",
+      "status": "done",
       "priority": "p1",
       "type": "task",
       "area": "performance",
@@ -1338,7 +1351,8 @@
       "files": [
         "crates/cache-cli/src/benchmark.rs",
         "crates/cache-cli/tests/benchmark_report.rs",
-        "examples/benchmarks/"
+        "examples/benchmarks/",
+        "crates/cache-types/src/benchmark/compare.rs"
       ],
       "output": "compare_runsとcache-cli benchmark-report。契約で一致必須の条件が揃う時だけspeedup/p95/p99を表示し処置条件も併記。",
       "acceptance": [
@@ -1350,7 +1364,7 @@
       "escalation": "比較対象の採用/除外ルールを変えたくなったらB03へ。",
       "issue_number": 28,
       "issue_url": "https://github.com/H4M4CHi-ttr/win-ssd-hdd-cache/issues/28",
-      "completion": "pending",
+      "completion": "accepted",
       "owner_approval": "not-required",
       "approval_evidence": []
     },
@@ -1695,7 +1709,7 @@
       "title": "全Issue監査で見つかった契約・依存・承認状態の不備を修正する",
       "agent": "astra",
       "review": "astra",
-      "status": "ready",
+      "status": "done",
       "priority": "p0",
       "type": "design",
       "area": "planning",
@@ -1709,7 +1723,8 @@
         "docs/contracts/host-formats-v1.md",
         "docs/backlog.json",
         "docs/backlog.md",
-        "docs/superpowers/plans/2026-11-02-win-ssd-hdd-cache-plan.md"
+        "docs/superpowers/plans/2026-11-02-win-ssd-hdd-cache-plan.md",
+        "docs/evidence/2026-11-02-host-foundation.md"
       ],
       "output": "既存49作業Issueと親を全件監査し、承認状態/契約/責任分担/依存/受入の不備を是正。安全なWindows/owner gateは維持する。",
       "acceptance": [
@@ -1720,7 +1735,7 @@
       "escalation": "承認や実証の不足をcloseで隠さない。ライセンス・署名・lab・公開は所有者へ。",
       "issue_number": 51,
       "issue_url": "https://github.com/H4M4CHi-ttr/win-ssd-hdd-cache/issues/51",
-      "completion": "pending"
+      "completion": "accepted"
     }
   ]
 }
