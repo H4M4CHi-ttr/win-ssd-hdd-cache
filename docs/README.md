@@ -7,6 +7,7 @@
 | [正式設計](superpowers/specs/2026-11-02-win-ssd-hdd-cache-design.md) | 目的、非目標、選択肢、段階構成、安全契約 |
 | [インターフェース契約](contracts.md) | 先行して固定するオフライン形式と純粋関数、後続ABIの凍結条件 |
 | [host表示・CLI契約](contracts/host-formats-v1.md) | strict JSON、明示null、具体型、固定出力と終了code |
+| [計画checker契約](contracts/planning-checker-v1.md) | schema/approval/DAG/label/相対リンクのread-only検査 |
 | [全Issue監査](issue-audit-2026-11-02.md) | 依存・承認状態・担当欠落の是正と未解決gate |
 | [検証とリリースゲート](validation.md) | 整合性オラクル、障害注入、性能、証拠、公開の条件 |
 | [セキュリティ・配布設計](security-and-distribution.md) | 特権境界、署名、HVCI、供給網、回復 |
