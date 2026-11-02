@@ -4,7 +4,7 @@ This checkout contains pure Rust host models, codecs and offline tools. It does 
 
 ## Local commands
 
-Install a standard Rust development environment for your OS; Windows builds need the ordinary MSVC linker/build prerequisites, not a WDK or administrator-run tests. The workflow-policy regressions also execute a tiny fixed Bash/grep check (Git Bash on Windows; no WSL required); have `bash`, `grep` and `cat` on PATH. The repository pins Rust **1.99.1**, edition 2024, rustfmt and clippy. Use Cargo.lock; do not update dependencies merely to get a green result.
+Install a standard Rust development environment for your OS; Windows builds need the ordinary MSVC linker/build prerequisites, not a WDK or administrator-run tests. The workflow-policy regressions also execute a tiny fixed Bash/grep check (Git Bash on Windows; no WSL required). On Windows they select `%ProgramFiles%/Git/bin/bash.exe` explicitly, never a PATH lookup that could select the WSL launcher. Set `WIN_CACHE_TEST_BASH` to an absolute Git Bash executable path for a nonstandard installation. On Unix, `bash`, `grep` and `cat` must be on PATH. The repository pins Rust **1.99.1**, edition 2024, rustfmt and clippy. Use Cargo.lock; do not update dependencies merely to get a green result.
 
 ```sh
 cargo fmt --all -- --check

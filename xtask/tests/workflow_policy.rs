@@ -1,6 +1,59 @@
 use serde_json::{Value, json};
 use xtask::validate_host_workflow;
 
+fn shell_program(
+    windows: bool,
+    override_path: Option<std::ffi::OsString>,
+    program_files: Option<std::ffi::OsString>,
+) -> std::ffi::OsString {
+    if let Some(path) = override_path {
+        return path;
+    }
+    if windows {
+        std::path::PathBuf::from(
+            program_files
+                .expect("Set WIN_CACHE_TEST_BASH to Git Bash when ProgramFiles is unavailable"),
+        )
+        .join("Git")
+        .join("bin")
+        .join("bash.exe")
+        .into_os_string()
+    } else {
+        "bash".into()
+    }
+}
+fn test_bash() -> std::process::Command {
+    let program = shell_program(
+        cfg!(windows),
+        std::env::var_os("WIN_CACHE_TEST_BASH"),
+        std::env::var_os("ProgramFiles"),
+    );
+    let mut command = std::process::Command::new(program);
+    command
+        .args(["--noprofile", "--norc"])
+        .env_remove("BASH_ENV")
+        .env_remove("ENV");
+    command
+}
+
+#[test]
+fn windows_shell_selection_does_not_search_for_the_wsl_launcher() {
+    use std::{ffi::OsString, path::PathBuf};
+    assert_eq!(shell_program(false, None, None), OsString::from("bash"));
+    assert_eq!(
+        shell_program(true, None, Some("C:/Program Files".into())),
+        PathBuf::from("C:/Program Files")
+            .join("Git")
+            .join("bin")
+            .join("bash.exe")
+            .into_os_string()
+    );
+    assert_eq!(
+        shell_program(true, Some("E:/PortableGit/bin/bash.exe".into()), None),
+        OsString::from("E:/PortableGit/bin/bash.exe")
+    );
+}
+
 const WORKFLOW: &str = include_str!("../../.github/workflows/host-tests.yml");
 fn fixture() -> Value {
     serde_json::from_str(WORKFLOW).unwrap()
@@ -184,10 +237,7 @@ fn raw_syntax_duplicates_and_resource_bounds_are_strict() {
 
 #[test]
 fn actual_result_guard_rejects_zero_and_all_ignored_tests() {
-    use std::{
-        io::Write,
-        process::{Command, Stdio},
-    };
+    use std::{io::Write, process::Stdio};
     let workflow = fixture();
     let test_command = workflow["jobs"]["host"]["steps"][6]["run"]
         .as_str()
@@ -225,7 +275,7 @@ fn actual_result_guard_rejects_zero_and_all_ignored_tests() {
             false,
         ),
     ] {
-        let mut child = Command::new("bash")
+        let mut child = test_bash()
             .args(["-c", stdin_guard])
             .stdin(Stdio::piped())
             .stdout(Stdio::null())
@@ -248,7 +298,6 @@ fn actual_result_guard_rejects_zero_and_all_ignored_tests() {
 
 #[test]
 fn actual_result_pipeline_cannot_hide_a_failed_test_command() {
-    use std::process::Command;
     let workflow = fixture();
     let run = workflow["jobs"]["host"]["steps"][6]["run"]
         .as_str()
@@ -257,9 +306,13 @@ fn actual_result_pipeline_cannot_hide_a_failed_test_command() {
     assert!(run.contains("cargo test --locked | tee "));
     // Exercise the actual shell failure-propagation mechanism, without running
     // recursive Cargo or any input-derived command.
-    let status = Command::new("bash")
+    assert_eq!(
+        test_bash().args(["-c", "exit 0"]).status().unwrap().code(),
+        Some(0)
+    );
+    let status = test_bash()
         .args(["-c", "set -euo pipefail\nfalse | cat\nexit 0"])
         .status()
         .unwrap();
-    assert!(!status.success());
+    assert_eq!(status.code(), Some(1));
 }
