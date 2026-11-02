@@ -18,7 +18,7 @@
 | decoded payload | initial_hex・全write data・全assert dataの合計16,777,216 bytes |
 | individual payload / range | capacity以内、加算前に`length <= capacity-offset` |
 | live parent / child I/O | 各1,024。拒否は原本へforwardする前。既存childを捨てない |
-| owned in-flight buffer bytes | 合計16,777,216。原本状態・bounded履歴とは別に計上 |
+| owned data cells（予約を含む） | 合計16,777,216。in-flight buffer、retained result、source snapshot、mutation historyを含む。詳細は§4 |
 | counter_limit | 1〜u64::MAX。小さい値はexhaustion反例用で製品設定ではない |
 
 JSON Schemaは[trace-v1.schema.json](../../spec/trace-v1.schema.json)。JSON Schemaだけでは重複key・integer **token**・u64文字列上限・reference/phaseを保証できないためRust parser/replayの規則も必須。入力String自体はcallerが既に所有している。上限を全allocationがゼロという意味にしない。
@@ -37,7 +37,9 @@ line extentは `[line*line_size, min(capacity,(line+1)*line_size))`。最終shor
 - hitは一つのline内のrequestだけ（cross-line readはoriginへ）。metadata検証時にread leaseとtokenを取得し、child専用bufferへ読む。最終検証とimmutable caller resultのcommitを一つのtransitionにする。
 - commit後の実通知までにwriterが来ても、既にcommitしたsnapshotを変えない。origin-readのfragment sampleは各eventで観測した値を返せ、後のwrite完了時のoriginに合わせない。
 - cache read leaseはshared、fill write leaseはexclusive。実転送が終わるactual completionまでslot再bind禁止。metadata invalidationはleaseを解放しない。
+- **cache_writeのaccepted admissionごとに**、同じlineへの同じslotでも、物理転送より前にslotのvisibilityを失効し、incarnationをchecked増分する。この新incarnationとchild IO IDをcontent provenanceとして記録する。exclusive lease取得・失効・provenance更新は一つのtransition。枯渇時はslotをretireしてrejectし、転送しない。
 - publishはsource full-known coverage、physical full-write coverage、success/full count、epoch/generation一致、writer=0、active、slot/line/incarnation/直近fill provenance一致をすべて必要とする。completionからpublishの間のslot再bindも検出する。
+- publish時のprovenanceはそのcache_write admissionの値と完全一致し、slotにactive write leaseがないことを要する。後発writeが失敗/短転送になっても旧visibilityを復元しない。古いfillのpublishを拒否するだけでは、既に上書きされた別fillのvalid metadataは救えない。
 - generation枯渇はline permanently uncacheable、incarnation枯渇はslot retired、epoch枯渇はsession cache-disabled。counterをwrapしない。まだ転送していないrequestの資源不足は拒否し、既存I/Oの追跡を削らない。
 
 metadata transitionは抽象的にatomic。実装にspinlockを保持したままI/O待ちを要求しているのではない。対応する実際のlock/IRQL/ownershipはD04/D10未完了。
@@ -81,13 +83,49 @@ metadata transitionは抽象的にatomic。実装にspinlockを保持したま�
 
 origin targetはslot/sourceともnull。cache_readはbound slotとsource=null。cache_writeはbound slotと、同一fill親の完了済みorigin_read IOをsourceにする。origin_read IO rangeは親range、fillは完全line extent。cache_read rangeは親のline内部分、cache_writeはfull line extent。
 
-cache admission条件やlease/resource不足によりio_submit/slot_bind/fill_begin/cache_publish/read_commit/resume_cacheがrejected/pendingになることは**正常なmodel decision**。そのrequest/io IDは消費済みとして保存し、再利用しない。拒否された子へtransfer/completeするのはsemantic error。拒否した親への子submitもsemantic error。
+cache admission条件やlease/resource不足によるrejected/pendingは**正常なmodel decision**（§4.2）。parent/childのdeclaration eventが拒否/pendingでもIDは消費済みで再利用しない。未admit親への子submit、未accepted childへのtransfer/completeはsemantic error。retryは新declaration IDを用いる。IDを宣言しないpending eventは同じ対象への再実行を許す。
 
 各request/childは独立したterminal flagとbuffer ownerを持つ。parentが完了してもlate cache childのbuffer/leaseは残り、cache child完了でcallerへ二度通知しない。caller resultはimmutable copy（または同等のexclusive ownership移転）とする。
 
-retire_requestは全accepted childがactual completeした後だけbufferを解放する。read/write/discard/flush親はcaller commit済みを必要とする。fill親はcaller resultを持たず、全child完了後に放棄/終了できる。pending childが残ればpending decision、leaseは保持。成功retire後の追加I/O/publish/commitは禁止。ID・固定result・宣言はtombstoneとしてtrace終端まで残し、assertは可能。公開済みcache entryは親bufferを参照せず、slot上のdataと独立したmetadataを所有する。
+retire_requestは全accepted childがactual completeした後だけ解放可能なbufferを解放する。admit済みread/write/discard/flush親はcaller commit済みを必要とする。**未admitのrejected親は例外**で、accepted childがなくwriterも登録していないためcommitなしでretireできる。fill親はcaller resultを持たず、全child完了後に放棄/終了できる。pending childまたは必要commitが残ればpending decision、leaseは保持。成功retire後の追加I/O/publish/commit/cancelは禁止。ID・固定result・宣言はtombstoneとしてtrace終端まで残し、assertは可能。公開済みcache entryは親bufferを参照せず、slot上のdataと独立したmetadataを所有する。
 
 原本mutationのadmissionではforwardに必要な最小bookkeeping/child枠を予約する。未forwardのorigin submitが遅れてもwriter countを消さず、資源不足を理由に既存writerを見失わない。拒否された親をretireする場合は未forwardであることを検査し、登録していないwriterを減算しない。
+
+### 4.1. retained data / budget
+
+owned data cellは「1 byteの値と、そのknownness/versionに必要な付帯情報」の論理単位。16,777,216 cellsは実RSSが16 MiBという意味ではない。packed array等を用い、1cellにつき最大16 bytes、管理recordはevents/live数の既定上限内とする。cellごとのheap allocationをしない。
+
+- childのread/sample buffer、fill source、caller result、mutationのapplied-byte history、これらの**将来用予約**を合算する。同一cellのownership移転は二重計上しないが、copyを二つ保持すれば二つ数える。
+- 読み親のadmission時にcaller resultの最大要求長を予約する。write/discard親のadmission時にそのIOの全要求長分のmutation historyを予約する。各childはforward前にread/source等のbufferを予約する。sourceをborrowする場合はそのownerをretireできるまで保持する。
+- `retire_request`でもcaller resultとmutation historyは解放しない。後の`assert_read`と`origin_persist`が参照できる。後者はretire済みIOについても、実際に適用されたbytes/known mask/apply-versionだけを使う。未転送部分をpersistしない。
+- parent admissionの予算不足はrejected、child admission時の不足はpending。予約できなければI/Oをforwardしない。commit/complete時に突然追加予算が必要にならないよう事前予約する。不要となった予約だけ解放し、結果/historyを暗黙に捨てない。
+- 固定のvolatile/durable origin array（各capacity）、slot array（slot_count×line_size以下）、入力TraceV1 payloadはこのowned budgetとは別だが、各上限を持つ。history/結果をここへ移して予算を回避しない。
+
+たとえば1MiBのreadをcommit/retireしてもresultの1MiB分は残る。後続のadmissionが上限に達したら拒否/pendingとなり、10,000件のtraceから無制限に結果を蓄積しない。
+
+### 4.2. decision / lifecycle table
+
+assert以外の全eventは正常実行時に一つのdecisionを残す。表の例外以外はaccepted。構造不正・存在しないphase・重複terminalはdecisionではなくsemantic errorでreplayを停止する。assert系はdecisionを生成せず、`assert_decision`がassert系を指す入力はF05のINVALID_REFERENCE。
+
+| event / 条件 | 一意な結果と効果 |
+|---|---|
+| read/write/discard/flush_submit | 予算/live親枠不足ならrejected（未admit tombstone）。それ以外accepted。cache disabledでも原本requestを拒否しない |
+| fill_begin | 上記資源不足、cache disabled、uncacheable line、writer>0ならrejected。otherwise acceptedでsource token固定 |
+| io_submit origin系 | accepted親の正しいtargetで資源があればaccepted。child枠/buffer不足、flush frontier未完ならpending。declined childは未forwardで枠を消費しない |
+| io_submit cache_read | disabled、invalid/unbound/別line/retired slot、writer>0、cross-line hitならrejected。これらを先に評価し、残るlease競合/live child/buffer不足はpending。acceptedだけread leaseと現在のtokenを取る |
+| io_submit cache_write | disabled、unbound/別line/retired slotならrejected。sourceが未completeならpending、complete後の失敗/短転送/unknownならrejected。残るlease競合/live child/buffer不足はpending。incarnation枯渇はslotをretireしrejected。acceptedだけexclusive lease・visibility/provenanceを更新。sourceの古いgenerationはここでは拒否せずpublishで検査する（下記参照） |
+| slot_bind | retired/exhaustedならrejected。physical lease中ならpending。それ以外acceptedでvisibility失効・incarnation増分。同じlineへのbindもno-opにしない |
+| cache_publish | 未completeならpending。complete後に§2条件が一つでも不成立ならrejected、成立ならaccepted。一度accepted publish済みの同一IOの再publishはsemantic error（失効を取り消さない） |
+| read_commit / mutation_commit | 子が未completeならpending。完了cache childの最終検査失敗はrejected。完了origin childはそのままaccepted。一度commit済み親の再commitはsemantic error |
+| cancel_request / cancel_io | 未retire対象にflagを立てaccepted。反復、actual complete後、caller commit後もaccepted no-op。I/O完了・writer/lease解放・caller通知を生成しない |
+| retire_request | §4のdrain/commitが足りなければpending。成立時accepted。一度retire済みならsemantic error |
+| resume_cache | 既にactiveならaccepted no-op（purge/resumeをやり直さない）。epoch枯渇ならrejected。disabled中にold child/writerが残ればpending。それ以外accepted cold-start |
+| epoch_invalidate | accepted。counter上限ならdisabled固定、wrapしない。既存ownershipは変えない |
+| io_transfer / io_complete / origin_persist / power_loss | 各規則を満たす場合accepted。phase/coverage/durability違反はsemantic/oracle errorでありrejectedへ丸めない |
+
+commit済み親に新childをsubmitすること、retire済み親への制御、既にaccepted済みの同targetのchild追加はsemantic error。既存late childのtransfer/actual completeとその安全なdrainだけはcaller commit後も許す。power_loss後はassertだけを許す。
+
+v1はsource freshnessによるcache_writeの早期省略を行わない。これにより「既に古いsourceが物理slotへ到着しても、旧visibilityを残さず、publishを拒否する」という防御を明示的に試す。製品側の早期チェックは追加の最適化になり得るが、write admission時の失効/provenance更新やpublish時の最終検証を代替しない。
 
 ## 5. transfer / completion / commitment
 
@@ -111,7 +149,7 @@ retire_requestは全accepted childがactual completeした後だけbufferを解�
 
 各origin mutation fragmentに単調なapply-versionを付け、volatile状態とは別のdurable byte historyを持つ。ordinary completionはpersistではない。`origin_persist`は指定mutation IOの適用済みfragmentだけをdurableへ反映する。byteごとのdurable versionを後退させない。より新しいversionが既にdurableなら古いpersistはno-op。write/discard errorの適用済み効果もpersistし得る。
 
-flush_submitは、それより前にadmitされたwrite/discard parent集合をfrontierとして保持する。このportable referenceは、frontierの全origin childがactual completeするまでorigin_flush submitをpending/refusedにし、forward前の順序を保守的に直列化する。後続mutationはfrontierに加えない。flush childの成功completeにはfrontierの全applied effectsをdurableがcoverすることを必要とする。FUA writeの成功completeにもreported prefixのapplied versionsのdurable coverageを必要とする。ハードウェアがこの約束を破った入力はD07のbackend-contract violationでありcacheの成功ではない。
+flush_submitは、それより前にadmitされたwrite/discard parent集合をfrontierとして保持する。このportable referenceは、frontierの全origin childがactual completeするまでorigin_flush submitをpendingにし、forward前の順序を保守的に直列化する。後続mutationはfrontierに加えない。flush childの成功completeにはfrontierの全applied effectsをdurableがcoverすることを必要とする。FUA writeの成功completeにもreported prefixのapplied versionsのdurable coverageを必要とする。ハードウェアがこの約束を破った入力はD07のbackend-contract violationでありcacheの成功ではない。
 
 epoch_invalidateはadmission停止・全entry失効・checked epoch増分のみ。pending request/child/lease/writer countは保持。origin passthroughは継続できる。resume_cacheは全old childがactual completeし、全writerが0、counter未枯渇のときだけcold開始。identity再検証はこのportable abstractionの外の必須条件（D05）；このeventだけで実activation可とはしない。
 
@@ -119,7 +157,7 @@ power_lossは**whole-sessionの終端**。volatileをdurableへ戻し、cacheを
 
 ## 7. parser / replay / oracleの責務
 
-F05: strict shape/token/limits、rangeとgeometry、全IDの一意性と先行参照、parent/target対応、slot/sourceの型と同一親、static child-range、assert data/mask長、assert indexが先行eventであることを検査する。coherence、actual completion phase、accepted attempt枠、lease成功判定、assertの真偽は実行しない。
+F05: strict shape/token/limits、rangeとgeometry、全IDの一意性と先行参照、parent/target対応、slot/sourceの型と同一親、static child-range、assert data/mask長、assert indexが先行する非assert eventであることを検査する。coherence、actual completion phase、accepted attempt枠、lease成功判定、assertの真偽は実行しない。
 
 F06: phase/order、disjoint fragment、rundown/coverage、model decisionsとassertを実行する。duplicate terminal/未知phaseを固定semantic errorにする。入力の不正とcacheの安全違反は別の結果で、両方ともqualificationはFAIL。D07はcandidateのgeneration/valid bitを信用しない独立したorigin history/ownership/result oracleを定義する。
 
@@ -142,10 +180,10 @@ assert_read/resultはcommit済み親だけ、assert_cacheは現在のvisibility�
 ]
 ```
 
-各variantの正常fragmentは§3。不正例は`request:1`、`length:"01"`、`offset:"-1"`、`slot:false`、`status:"timeout"`、`known:"2"`、未知event/余分key/重複key、未declaration参照でF05拒否。`io_complete`を二回、complete後transfer、未完了mutation_commit、pending leaseで強制成功したrebind、stale publishを正しい結果としてassertする等はreplay/oracle側のFAILであり、入力parserにcoherence判断を押し付けない。
+各variantの正常fragmentは§3。不正例は`request:1`、`length:"01"`、`offset:"-1"`、`slot:false`、`status:"timeout"`、`known:"2"`、未知event/余分key/重複key、未declaration参照でF05拒否。`io_complete`を二回、complete後transfer、未完了mutation_commitのpendingをacceptedとassert、pending leaseで強制成功したrebind、stale publishを正しい結果としてassertする等はreplay/oracle側のFAILであり、入力parserにcoherence判断を押し付けない。
 
 ## 9. 反例と限界
 
-[有限checker](../../experiments/coherence/README.md)にstale-fill、late-token、two writers、partial/failed write、short/unknown fill、hit race、counter wrap、epoch/cancelでのlease早期解放、late二重completionを残す。正常モデルが境界内で全探索され、意図的故障が具体的witnessを生むことを要求する。
+[有限checker](../../experiments/coherence/README.md)にstale-fill、late-token、two writers、partial write effects、short/unknown fill、hit race、counter wrap、epoch/cancelでのlease早期解放、late二重completion、二つのfillによる物理上書き/provenance反例を残す。partial effectsと最終error statusの伝播は別で、後者の実装検証はD07/F06。正常モデルが境界内で全探索され、意図的故障が具体的witnessを生むことを要求する。
 
 cache media corruption、暗号化、実IRP/MDL/DMA、hardware持続hang、実flush耐久性はこのcheckerでは未実証。epoch/generationはbit rotのchecksumではない。trace/reference modelと製品engineが一致しただけで独立oracleの代わりにしない。

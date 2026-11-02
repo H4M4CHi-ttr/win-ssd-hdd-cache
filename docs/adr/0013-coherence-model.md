@@ -20,11 +20,13 @@ cache-readはowned bufferへ取得し、最終validationとcaller result commitm
 
 metadata失効とphysical I/Oの停止は別。cache readのshared lease、cache writeのexclusive leaseはactual completionまで保持する。parent timeout/cancel/completeでは解除しない。slot再bindはlease=0かつincarnationのchecked incrementが必要。完了済みfillのpublish前に再bindされた場合も古いincarnationで拒否する。
 
+同じbindingへのcache writeでも、admission時にvisibility失効とincarnation更新を行い、そのchild IDを現在のcontent provenanceにする。後発writeがslotを上書きした後、先行fillのmetadataだけを公開してはいけない。publish失敗で以前のvalid bitを復活させない。独立レビューで発見したこの二つのfillの穴を、別の反例で検証する。
+
 counterはwrapしない。generation枯渇ならそのlineをsession中uncacheable、epoch枯渇ならcache admissionを停止、slot incarnation枯渇ならそのslotをretireする。原本変更の失効を省略してcacheを続けない。再有効化や新sessionの具体的なidentity/rundown条件はD04/D05/D10が追加する。
 
 ## Evidence
 
-[有限checker](../../experiments/coherence/README.md)は2byteセル、2writer、1fill/hit/slotを上限に、明示順序の全interleavingを探索する。12個のcase/fault組で反例を要求する。これはcacheの製品実装、全状態の数学的証明、Windows IRP/DMA試験ではない。
+[有限checker](../../experiments/coherence/README.md)は2byteセル、2writer、2fill、1hit/slotを上限に、明示順序の全interleavingを探索する（二つのfillの追加caseは固定順序）。14個のcase/fault組で反例を要求する。これはcacheの製品実装、全状態の数学的証明、Windows IRP/DMA試験ではない。
 
 ## Consequences / Rejected alternatives
 

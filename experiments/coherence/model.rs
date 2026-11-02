@@ -16,10 +16,12 @@ pub enum Case {
     LateSlotRead,
     CancelledIo,
     LateCallerCompletion,
+    StaleOverwrite,
+    SupersededPublish,
 }
 
 impl Case {
-    pub const ALL: [Self; 11] = [
+    pub const ALL: [Self; 13] = [
         Self::StaleFill,
         Self::TwoWriters,
         Self::PartialWrite,
@@ -31,6 +33,8 @@ impl Case {
         Self::LateSlotRead,
         Self::CancelledIo,
         Self::LateCallerCompletion,
+        Self::StaleOverwrite,
+        Self::SupersededPublish,
     ];
 }
 
@@ -47,6 +51,8 @@ pub enum Fault {
     ReleaseOnEpoch,
     ReleaseOnCancel,
     CompleteParentTwice,
+    KeepVisibilityOnCacheWrite,
+    IgnoreContentProvenance,
 }
 
 #[derive(Clone, Copy, Debug, Eq, PartialEq)]
@@ -82,6 +88,11 @@ pub enum Action {
     OriginComplete,
     OriginCommit,
     LateCacheComplete,
+    SecondCapture,
+    SecondSubmit,
+    SecondTransfer(u8),
+    SecondComplete,
+    SecondPublish,
 }
 
 #[derive(Debug)]
@@ -107,6 +118,7 @@ struct State {
     slot: [u8; 2],
     fill_began: bool,
     fill_generation: u8,
+    fill_incarnation: u8,
     source: [u8; 2],
     sampled: u8,
     source_known: u8,
@@ -126,6 +138,11 @@ struct State {
     fallback_phase: u8,
     cache_pending: bool,
     caller_completions: u8,
+    second_source: [u8; 2],
+    second_generation: u8,
+    second_incarnation: u8,
+    second_transferred: u8,
+    second_complete: bool,
 }
 
 impl State {
@@ -150,6 +167,7 @@ impl State {
             },
             fill_began: false,
             fill_generation: 0,
+            fill_incarnation: 0,
             source: [0; 2],
             sampled: 0,
             source_known: 0,
@@ -169,6 +187,11 @@ impl State {
             fallback_phase: 0,
             cache_pending: false,
             caller_completions: 0,
+            second_source: [0; 2],
+            second_generation: 0,
+            second_incarnation: 0,
+            second_transferred: 0,
+            second_complete: false,
         }
     }
 
@@ -195,6 +218,14 @@ impl State {
             }
             FillSubmit if self.fill_began && self.sampled == 3 => {
                 self.fill_submitted = true;
+                if fault != Fault::KeepVisibilityOnCacheWrite {
+                    self.valid = false;
+                }
+                // A new physical write changes content identity even when
+                // the slot is still bound to the same line.
+                self.incarnation += 1;
+                self.fill_incarnation = self.incarnation;
+                self.physical_io = true;
                 if fault == Fault::CaptureTokenAtSubmit {
                     self.fill_generation = self.generation;
                 }
@@ -205,6 +236,7 @@ impl State {
             }
             FillComplete(bytes) if self.fill_submitted => {
                 self.fill_complete = Some(bytes);
+                self.physical_io = false;
             }
             Publish if self.fill_complete.is_some() => {
                 let fresh =
@@ -212,7 +244,15 @@ impl State {
                 let complete = (self.fill_complete == Some(2) && self.transferred == 3)
                     || fault == Fault::PublishShortFill;
                 let known = self.source_known == 3 || fault == Fault::PublishUnknownFill;
-                if self.active && self.tracked_writers == 0 && fresh && complete && known {
+                let current_content =
+                    self.fill_incarnation == self.incarnation && !self.physical_io;
+                if self.active
+                    && self.tracked_writers == 0
+                    && fresh
+                    && complete
+                    && known
+                    && current_content
+                {
                     self.valid = true;
                     // Independent ground truth uses admitted physical mutations,
                     // bytes/knownness/coverage, NOT the candidate's generation or count.
@@ -335,12 +375,51 @@ impl State {
                     self.caller_completions += 1;
                 }
             }
+            SecondCapture => {
+                // Fixed two-fill witnesses capture the second source only
+                // after the origin mutation has fully completed.
+                self.second_source = self.origin;
+                self.second_generation = self.generation;
+            }
+            SecondSubmit => {
+                self.valid = false;
+                self.incarnation += 1;
+                self.second_incarnation = self.incarnation;
+                self.physical_io = true;
+            }
+            SecondTransfer(byte) => {
+                self.slot[usize::from(byte)] = self.second_source[usize::from(byte)];
+                self.second_transferred |= 1 << byte;
+            }
+            SecondComplete => {
+                self.second_complete = true;
+                self.physical_io = false;
+            }
+            SecondPublish => {
+                let current_content = (self.second_incarnation == self.incarnation
+                    && !self.physical_io)
+                    || fault == Fault::IgnoreContentProvenance;
+                if self.second_complete
+                    && self.second_transferred == 3
+                    && current_content
+                    && self.second_generation == self.generation
+                    && self.active
+                    && self.tracked_writers == 0
+                {
+                    self.valid = true;
+                }
+            }
             _ => {} // Continuation of an unadmitted transaction is a skipped step.
         }
         if self.caller_completions > 1 {
             return Some("double-caller-completion");
         }
-        if self.valid && self.active && self.actual_writers() == 0 && self.slot != self.origin {
+        if self.valid
+            && self.active
+            && !self.physical_io
+            && self.actual_writers() == 0
+            && self.slot != self.origin
+        {
             return Some("visible-cache-differs-from-origin");
         }
         None
@@ -414,12 +493,40 @@ fn chains(case: Case) -> [Vec<Action>; 3] {
             vec![LateCacheComplete],
             vec![],
         ],
+        Case::StaleOverwrite | Case::SupersededPublish => {
+            let mut sequence = vec![FillBegin, Sample(0), Sample(1)];
+            sequence.extend(writer(0));
+            sequence.extend([
+                SecondCapture,
+                SecondSubmit,
+                SecondTransfer(0),
+                SecondTransfer(1),
+                SecondComplete,
+            ]);
+            if case == Case::StaleOverwrite {
+                sequence.push(SecondPublish);
+            }
+            sequence.extend([
+                FillSubmit,
+                Transfer(0),
+                Transfer(1),
+                FillComplete(2),
+                Publish,
+            ]);
+            if case == Case::SupersededPublish {
+                sequence.push(SecondPublish);
+            }
+            [sequence, vec![], vec![]]
+        }
     }
 }
 
 /// Breadth-first enumeration, deduplicating complete state + chain positions.
-/// Fixed finite programs contain at most 16 steps, two writers, two byte cells,
-/// one fill/hit/slot and one fallback. CounterExhaustion uses counter_limit=2.
+/// Fixed finite programs contain at most 18 steps, two writers, two byte cells,
+/// two fills, one hit/slot and one fallback. CounterExhaustion uses counter_limit=2.
+/// Two-fill witnesses fix program order and explore neither arbitrary fill
+/// counts nor concurrent write leases. Incarnation is bounded to at most 3 here;
+/// exhaustive content-counter overflow is a later replay obligation.
 /// A max_states cutoff is explicitly inconclusive; no timer/random scheduler.
 pub fn explore(case: Case, fault: Fault, max_states: usize) -> Exploration {
     let programs = chains(case);
