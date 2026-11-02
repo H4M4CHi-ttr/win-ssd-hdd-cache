@@ -32,11 +32,12 @@ Files: `docs/adr/0013-coherence-model.md`, `docs/contracts/trace-v1.md`, `spec/t
 
 Produces: event fields/limits、tokens/linearization/lease rules、`explore(Fault) -> Exploration`（bounded states/transitions/witness）、checked nonwrapping counter rules。これは製品engineではない。
 
-- [ ] 反例を先に固定。correct modelの全探索がviolationなし、invalidate-only/late-token/boolean-writer/short-fill/early-reuse/cancel-release/late-hit-check/wrapのmutantにwitnessを要求するtestを書く。
-- [ ] `cargo test -p cache-model --test coherence_explorer --locked --offline` をREDとして確認。
-- [ ] 最小finite transition modelと完全なtrace v1 schema/順序契約を実装。
-- [ ] 同command、fmt/clippy/planning、二OS CIを実行し、states/transitions/探索境界を記録。
-- [ ] 独立Astra review、修正再検証、Issue/backlog更新、PR/merge。
+- [x] 反例を先に固定。correct modelの全探索がviolationなし、invalidate-only/late-token/boolean-writer/short-fill/early-reuse/cancel-release/late-hit-check/wrapのmutantにwitnessを要求するtestを書く。
+- [x] `cargo test -p cache-model --test coherence_explorer --locked --offline` をREDとして確認。
+- [x] 最小finite transition modelと完全なtrace v1 schema/順序契約を実装。
+- [x] 同command、fmt/clippy/planning、二OS CIを実行し、states/transitions/探索境界を記録。
+- [x] 独立Astra review、修正再検証、backlog受入反映、PR/merge。
+- [ ] Issue本文/label同期、closeとreadback。
 
 ## Task 2 — F05 (#14): strict parser
 

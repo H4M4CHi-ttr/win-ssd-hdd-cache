@@ -1,6 +1,6 @@
 # ADR-013: clean-cacheの可視性と物理I/O所有権を分離する
 
-状態: D02独立review待ち。2026-11-02。関連: [D02 #4](https://github.com/H4M4CHi-ttr/win-ssd-hdd-cache/issues/4)、INV-01〜09。
+状態: D02独立review受入済み、PR #67でmain統合済み。2026-11-02。関連: [D02 #4](https://github.com/H4M4CHi-ttr/win-ssd-hdd-cache/issues/4)、INV-01〜09。
 
 ## Context / Options
 
@@ -10,7 +10,7 @@
 |---|---|
 | validity flagだけ、cancel/epochで即解放 | 不採択。stale-fill、two-writer、late-I/O反例がある |
 | 全I/Oを一つのlockで物理完了まで直列化 | 不採択。非同期I/O待ちをlock内に置けず、hangが全原本I/Oを止める |
-| checked token + writer count + physical lease | 採用候補。短いmetadata transitionと、完了まで保持する別ownershipを分離 |
+| checked token + writer count + physical lease | 採択。短いmetadata transitionと、完了まで保持する別ownershipを分離 |
 
 ## Decision
 
@@ -38,4 +38,4 @@ counterはwrapしない。generation枯渇ならそのlineをsession中uncacheab
 
 ## Revisit trigger / Reviewer
 
-独立Astra reviewでcontract/checkerを確認してからD02をacceptedにする。D03 engine feasibility、D07のdurability契約、D04の実callback mappingで矛盾が出たらcontractを変更し、既存fixtureと後続Issueを同じ変更で更新する。未知のWindows保証を推測で埋めない。
+独立Astra reviewは修正後のlocal commit `8510ba284e5d273e72a71f2d135c23da6c70192c`を受入。同一source treeのremote commit `f73cc926b2d4b56343eeee1ec096532cc13a590b`をPR #67でmainへ統合した。[再現・二OS CI・受入範囲](../evidence/2026-11-02-main-integration.md)を参照。D03 engine feasibility、D07のdurability契約、D04の実callback mappingで矛盾が出たらcontractを変更し、既存fixtureと後続Issueを同じ変更で更新する。未知のWindows保証を推測で埋めない。

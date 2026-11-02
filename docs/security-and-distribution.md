@@ -1,6 +1,6 @@
 # セキュリティ、署名、配布、運用
 
-状態: 設計。証明書購入、アカウント登録、公開、実機設定変更は本計画作成の権限に含めない。
+状態: 設計・portable host実装。所有者の判断でsource repositoryはpublic、通常のGitHub Actions検証も許可済み。証明書購入、アカウント登録、製品公開/配布、実機設定変更はその許可に含めない。
 
 ## 1. 脅威と境界
 
@@ -59,7 +59,7 @@ Microsoftの一次資料を2026-11-02に確認した時点:
 
 GOV01でライセンスを明示決定する。提案はRustの慣例との親和性を考えMIT OR Apache-2.0（original code）だが、採択前にLICENSEを作成して権利付与済みとしない。通常のCargo/npmパッケージ依存はlicense/hash確認とlockfile管理の下で利用できる。本repoへ第三者ソースをvendoringする場合はGOV01の方針採択後、OCF等の各license/noticeを保持する。外部contributionの受付条件（DCO/CLA要否）も決める。
 
-私有repoを自動公開しない。公開時は、security reporting経路、maintainer、支援可能なWindows build、issue template、release policyを整える。脆弱性報告経路が未設定の間は、個人dataを含むdumpをpublic issueへ投稿させない。
+私有repoをモデル判断で自動公開しない。本repoは所有者の判断でpublicになったが、license採択や製品配布の承認ではない。security reporting経路と責任者は未確認であり、GitHub private reportingを有効化済みと推測しない。機密・攻撃詳細・個人dataを含むdumpをpublic issueへ投稿させず、非公開窓口の照会だけにする。支援可能なWindows build、release policy、製品公開条件はGOV01/D08/Q04で別途確認する。
 
 ## 7. 運用停止条件
 

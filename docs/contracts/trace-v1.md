@@ -1,6 +1,6 @@
 # Portable trace v1 — D02
 
-状態: D02 review待ち。これはin-memory schedulerの契約であり、kernel ABIでも実device trace decoderでもない。F05はこの版の受入後に実装する。
+状態: D02独立review受入済み、PR #67でmain統合済み。これはin-memory schedulerの契約であり、kernel ABIでも実device trace decoderでもない。F05はこの凍結版のstrict parserを実装する。受入範囲は[統合証拠](../evidence/2026-11-02-main-integration.md)を参照。
 
 ## 1. Envelope / 型 / 上限
 
