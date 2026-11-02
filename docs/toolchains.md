@@ -5,7 +5,7 @@
 | Component | Selection / provenance |
 |---|---|
 | Rust | 1.99.1, edition 2024; x86_64-pc-windows-msvc; panic=abort; no LTO in the experiment |
-| Windows runner | GitHub `windows-2025`; mutable runner image/version and exact MSVC binary versions/hashes must be recorded each run |
+| Windows runner | GitHub `windows-2022` for VS 2022; mutable runner image/version and exact MSVC binary versions/hashes must be recorded each run |
 | MSVC | VS 2022 major 17 selected with vswhere, x64 host/target; not claimed bit-for-bit compiler-pinned |
 | WDK, SDK neutral, SDK x64 NuGet | each 10.0.26100.6584; kit directory version 10.0.26100.0; all three exact archive digests in [pins.json](../experiments/rust-wdk/tools/pins.json) |
 | LLVM/libclang | 17.0.6 x64, digest checked, dedicated runner-temporary installation |
@@ -24,5 +24,8 @@ Normal registry dependency use with upstream licenses/checksums is permitted by 
 - [LLVM 17.0.6 release](https://github.com/llvm/llvm-project/releases/tag/llvmorg-17.0.6).
 - [Microsoft winget LLVM manifest](https://github.com/microsoft/winget-pkgs/blob/master/manifests/l/LLVM/LLVM/17.0.6/LLVM.LLVM.installer.yaml): x64 installer digest cross-check, not a floating download selection.
 - [GitHub Windows 2025 runner manifest](https://github.com/actions/runner-images/blob/main/images/windows/Windows2025-Readme.md): run-time image/compiler versions are logged rather than inferred from this mutable page.
+- [GitHub Windows 2022 runner manifest](https://github.com/actions/runner-images/blob/main/images/windows/Windows2022-Readme.md): selected VS 2022 build environment after the first run below.
+
+The first [WDK run 41466549825](https://github.com/H4M4CHi-ttr/win-ssd-hdd-cache/actions/runs/41466549825) failed before any compiler/package operation: `windows-2025` actually selected `windows-2025-vs2026` image 20261021.278.1, so the deliberately constrained VS 17 lookup returned no installation. The old Windows2025 README still described VS 17 and was insufficient evidence of label resolution. The workflow now requests `windows-2022`, whose manifest contains VS 2022, and records the actual inventory. The VS major constraint and SDK pins are unchanged; no silent compiler-generation fallback is allowed. This does not change the product target to Windows Server 2022.
 
 Upgrade any pin in a separate reviewed change with fresh debug/release core, ABI, compile/link, PE and future lab evidence. A new Rust compiler or runner image passing this experiment does not silently expand the supported OS matrix.

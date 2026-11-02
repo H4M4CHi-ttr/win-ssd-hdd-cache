@@ -5,7 +5,9 @@ use core::panic::PanicInfo;
 use wdk_probe_core::{RangeReply, checked_range};
 
 // SAFETY: Unique experiment-only symbol, fixed C ABI scalars/fully initialized
-// repr(C) value. No pointers, callbacks, aliases, retention or unwind.
+// repr(C) value. The x64 ABI supplies caller-owned hidden return storage for
+// this 24-byte value; it is not retained. No explicit application pointers,
+// callbacks, shared aliases, retention or unwind.
 #[unsafe(no_mangle)]
 pub extern "C" fn win_cache_probe_range(offset: u64, length: u64, capacity: u64) -> RangeReply {
     checked_range(offset, length, capacity)

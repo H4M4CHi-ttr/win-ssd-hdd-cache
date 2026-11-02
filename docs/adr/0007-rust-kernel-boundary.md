@@ -17,7 +17,7 @@ The owner prefers Rust, Tauri for UI, and narrow justified language/SDK exceptio
 
 Keep the portable model/core, service/CLI and future GUI backend in Rust. Compare both **build-only** routes in [the isolated experiment](../../experiments/rust-wdk/README.md). Do not select the production entry/async glue until the actual D01/D04/D10 contracts exist. A successful Rust-WDM build supports keeping Rust as first candidate; C fallback is limited to documented OS/WDK glue and cannot grow into policy/ownership code without review.
 
-The experiment's all-integer, pointer-free descriptor and panic hooks are specified in its README. Safe core forbids unsafe; exports/panic hook/OS entry are small separate crates. Both entries inspect pointer nullness only, never dereference/retain them, never register callbacks, and always return failure. Async ownership, `Send/Sync`, allocation/Drop at IRQL, and storage I/O are absent, not magically safe.
+The experiment's all-integer descriptor has no explicit application pointer; Windows x64 supplies a synchronous caller-owned hidden return buffer for the 24-byte struct, as documented in its README. Safe core forbids unsafe; exports/panic hook/OS entry are small separate crates. Both entries inspect their explicit OS pointer nullness only, never dereference/retain them, never register callbacks, and always return failure. Async ownership, `Send/Sync`, allocation/Drop at IRQL, and storage I/O are absent, not magically safe.
 
 ## Evidence
 

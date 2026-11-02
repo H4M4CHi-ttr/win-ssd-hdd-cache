@@ -26,6 +26,8 @@ Push-Location $root
 try {
     $pins = Get-Content -LiteralPath (Join-Path $PSScriptRoot 'pins.json') -Raw | ConvertFrom-Json
     $vswhere = Join-Path ${env:ProgramFiles(x86)} 'Microsoft Visual Studio\Installer\vswhere.exe'
+    # Safe compiler inventory, not a full process environment dump.
+    Invoke-Native $vswhere @('-all', '-products', '*', '-format', 'json', '-utf8')
     $vs = & $vswhere -latest -version '[17.0,18.0)' -products '*' -requires Microsoft.VisualStudio.Component.VC.Tools.x86.x64 -property installationPath
     if ($LASTEXITCODE -ne 0 -or -not $vs) { throw 'D09_VS2022_MISSING' }
     # Compiler environment only, never print the captured environment or secrets.

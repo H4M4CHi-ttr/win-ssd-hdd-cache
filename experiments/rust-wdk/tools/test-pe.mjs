@@ -20,6 +20,8 @@ for(const mutate of [
   b=>b.writeUInt32LE(512,184), b=>b.writeUInt32LE(0,168),
   b=>b.writeUInt32LE(0xfffffff0,60), b=>b.writeUInt16LE(65535,134),
   b=>b.writeUInt32LE(512,296), b=>b.writeUInt32LE(0x1100,272),
+  b=>b.writeUInt32LE(0x1000,368), b=>b.writeUInt32LE(32,372),
+  b=>{ b.writeUInt32LE(0x1000,368); b.writeUInt32LE(32,372); },
 ]) { const b=fixture(); mutate(b); assert.throws(()=>inspectPe(b)); ++count; }
 for (const length of [0,63,151,391,431,600]) { assert.throws(()=>inspectPe(fixture().subarray(0,length))); ++count; }
 // Real import directory: IMAGE_IMPORT_DESCRIPTOR name RVA at +12, then terminator.

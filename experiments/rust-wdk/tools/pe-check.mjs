@@ -17,6 +17,9 @@ export function inspectPe(b) {
   if((u16(opt+70)&0x1c0)!==0x1c0||u32(opt+108)!==16) fail();
   // Un-signed research images only; no certificate directory.
   if(u32(opt+112+4*8)!==0||u32(opt+116+4*8)!==0) fail();
+  // This probe never uses delayed imports. Reject both mismatched and complete
+  // descriptors rather than let a second import path bypass the allowlist.
+  if(u32(opt+112+13*8)!==0||u32(opt+116+13*8)!==0) fail();
   const sections=[];
   for(let i=0;i<count;i++) {
     const p=opt+size+40*i; need(p,40);
