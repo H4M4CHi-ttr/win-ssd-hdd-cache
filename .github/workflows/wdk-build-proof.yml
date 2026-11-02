@@ -1,0 +1,26 @@
+{
+  "name": "D09 build-only WDK proof",
+  "on": {
+    "pull_request": { "paths": ["experiments/rust-wdk/**", ".github/workflows/wdk-build-proof.yml"] },
+    "push": { "branches": ["main"], "paths": ["experiments/rust-wdk/**", ".github/workflows/wdk-build-proof.yml"] }
+  },
+  "permissions": { "contents": "read" },
+  "jobs": {
+    "wdk-proof": {
+      "runs-on": "windows-2025",
+      "timeout-minutes": 35,
+      "defaults": { "run": { "shell": "pwsh" } },
+      "steps": [
+        { "name": "Checkout", "uses": "actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1", "with": { "persist-credentials": false } },
+        { "name": "Pinned Rust", "run": "rustup toolchain install 1.99.1 --profile minimal --component rustfmt --no-self-update\nif ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }" },
+        { "name": "Build and host ABI proof (never install/load)", "run": "& ./experiments/rust-wdk/tools/build.ps1" },
+        {
+          "name": "Upload diagnostic evidence only",
+          "if": "always()",
+          "uses": "actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02",
+          "with": { "name": "d09-build-only-evidence", "path": "experiments/rust-wdk/out/evidence/", "if-no-files-found": "error", "retention-days": 14 }
+        }
+      ]
+    }
+  }
+}
