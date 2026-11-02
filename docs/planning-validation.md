@@ -1,5 +1,7 @@
 # 設計・Issue整備の検査記録
 
+このページは**初期設計を起票した時点の履歴**です。継続依頼で実施した全Issue監査・10件のhost実装・二OS実行は[2026-11-02 host基盤の検証記録](evidence/2026-11-02-host-foundation.md)を参照してください。以下の「未実施」をその後の実行結果に混同しないでください。
+
 日付: 2026-11-02 JST  
 対象: 設計文書、Issue、ラベル、依存計画。**製品の機能/安全性試験ではありません。**
 
@@ -48,3 +50,4 @@ AIレビューは人間のWindowsストレージ専門家の出荷レビュー�
 [親ロードマップ](https://github.com/H4M4CHi-ttr/win-ssd-hdd-cache/issues/1)、
 [バックログ](backlog.md)、
 [ラベル/担当規則](agent-routing.md)を参照。進捗や契約が変わったら、live Issueとsnapshotを更新してください。
+

@@ -2,7 +2,7 @@
 
 Windows向けに、既存のHDDを正本に保ち、SSDを破棄可能な読み取りキャッシュとして利用するOSSを設計・開発するプロジェクトです。
 
-**現在は設計段階です。実用ドライバー、インストーラー、対応を保証するWindowsビルドはまだありません。実データを接続して試用できる状態ではありません。**
+**現在は設計とportable Rust基盤の実装段階です。実用ドライバー、インストーラー、対応を保証するWindowsビルドはまだありません。実データを接続して試用できる状態ではありません。**
 
 ## 方針
 
@@ -15,15 +15,15 @@ Windows向けに、既存のHDDを正本に保ち、SSDを破棄可能な読み�
 
 ## 開発状況
 
-正式設計・実装計画を整備し、Issue全件監査とportable Rust基盤の実装を開始しました。Windows driver・実機安全性の実証はまだありません。最新の受入状態は[バックログ](docs/backlog.md)と[証拠](docs/evidence/F01.md)を確認してください。
+Issue全件監査後、portable Rust基盤・strict codec・offline CLI・計画checker・host CIの10課題を実装しました。Linux 97件、Windows Server 95件のhost試験が成功しています。main統合・製品driver・実機安全性とは別の受入です。[実装・PR・検証記録](docs/evidence/2026-11-02-host-foundation.md)、[開発手順](docs/development.md)、[バックログ](docs/backlog.md)を確認してください。
 
 [ロードマップと課題一覧](https://github.com/H4M4CHi-ttr/win-ssd-hdd-cache/issues/1) を起点にしてください。[正式設計と関連文書](docs/README.md)・[貢献ルール](CONTRIBUTING.md)を参照してください。
 
 This project is in the **design and portable-host implementation phase**: a discardable, clean SSD read cache for selected Windows data HDDs. No production driver or verified hardware support is available yet.
 
-## 最初に進めるIssue
+## 次に進める主要Issue
 
-- [F01 #5: Rust workspaceと範囲計算](https://github.com/H4M4CHi-ttr/win-ssd-hdd-cache/issues/5) — Luna向けの最初の着手点。
+- F01〜F04などのhost基盤は受入済みPR上にあります。未mergeのmainに存在すると仮定せず、[PR順序](docs/evidence/2026-11-02-host-foundation.md)を確認してください。
 - [D01 #3: I/O捕捉位置](https://github.com/H4M4CHi-ttr/win-ssd-hdd-cache/issues/3) / [D02 #4: 整合性モデル](https://github.com/H4M4CHi-ttr/win-ssd-hdd-cache/issues/4) — Astraの設計判断。
 - [D09 #6: Rust/WDK境界](https://github.com/H4M4CHi-ttr/win-ssd-hdd-cache/issues/6) — SOL実証 + Astraレビュー。
 - [全Issueと依存関係](docs/backlog.md) / [モデル担当とreview規則](docs/agent-routing.md)。

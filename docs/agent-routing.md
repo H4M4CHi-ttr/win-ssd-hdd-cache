@@ -35,7 +35,7 @@
 4. 一つのbranch/PRで一つの独立受入単位を扱う。共有manifestの追加は短い統合順で直列化する。
 5. 下位依存にないscopeを発見したら、関連Issueを追加/更新してレビューする。隠れた前提を作らない。
 
-製品driverは未実装。portable host課題の現在地はbacklogを確認する。F01後はF02/F03/B01/C01、F03後はF04を進められる。設計D01/D02/D09は独立に進められる。二OS host試験はF10の受入gate、Windows/実機未実施は必ず明記する。
+製品driverは未実装。portable host課題の現在地はbacklogを確認する。F01後はF02/F03/C01、C01後はB01、F03後はF04を進められる。設計D01/D02/D09は独立に進められる。二OS host試験はF10の受入gate、Windows/実機未実施は必ず明記する。
 
 ## 3. Luna課題の標準完了条件
 
@@ -45,6 +45,7 @@
 - cargo lock/toolchain変更を説明。unsafe、Windows API、network、raw diskを指示なしに追加しない。
 - 想定結果を実装都合で変更しない。
 - 独立review後にmergeし、Issueへcommit/PR/test結果/残制約を記録。
+- accepted/doneは指定artifactの受入状態。PR未mergeならGitHub Issueはopenのまま統合待ちと明記する。後続作業は受入artifactを含むbranchを使い、mainに存在すると推測しない。
 - 未実行のWindows/実機試験を「PASS」と書かない。
 
 ## 4. エスカレーション
