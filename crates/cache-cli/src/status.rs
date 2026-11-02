@@ -31,19 +31,23 @@ pub(super) fn execute(mut args: impl Iterator<Item = OsString>) -> Result<String
         ReadError::Io => CliError {
             exit: 3,
             code: "INPUT_IO",
+            context: None,
         },
         ReadError::TooLarge => CliError {
             exit: 2,
             code: "INPUT_TOO_LARGE",
+            context: None,
         },
         ReadError::Utf8 => CliError {
             exit: 2,
             code: "INVALID_JSON",
+            context: None,
         },
     })?;
     let snapshot = parse_status(&source).map_err(|e| CliError {
         exit: 2,
         code: e.code(),
+        context: None,
     })?;
     Ok(render_status(&snapshot, format))
 }
