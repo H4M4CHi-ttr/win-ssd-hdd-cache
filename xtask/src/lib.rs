@@ -4,10 +4,12 @@ mod json;
 mod labels;
 mod links;
 mod repository;
+mod workflow;
 pub use backlog::validate_backlog;
 pub use labels::validate_label_manifest;
 pub use links::validate_markdown_links;
 pub use repository::check_repository;
+pub use workflow::validate_host_workflow;
 
 #[derive(Debug, Clone, PartialEq, Eq, PartialOrd, Ord)]
 pub struct ManifestViolation {
