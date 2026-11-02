@@ -6,6 +6,39 @@ use std::fmt;
 pub const STATUS_MAX_BYTES: usize = 65_536;
 
 #[derive(Debug, Clone, Copy, PartialEq, Eq)]
+pub enum OutputFormat {
+    Json,
+    Text,
+}
+
+pub fn render_status(snapshot: &StatusSnapshot, format: OutputFormat) -> String {
+    if format == OutputFormat::Json {
+        return encode_status(snapshot);
+    }
+    let counter = |v: Option<u64>| v.map_or_else(|| "unavailable".to_owned(), |n| n.to_string());
+    let code = snapshot.error_code.map_or("none", StatusErrorCode::as_str);
+    let description = match snapshot.error_code {
+        None => "none",
+        Some(StatusErrorCode::CacheIo) => "Cache I/O failed.",
+        Some(StatusErrorCode::CacheCorrupt) => "Cache data failed validation.",
+        Some(StatusErrorCode::TargetChanged) => "Target identity changed.",
+        Some(StatusErrorCode::Unsupported) => "Configuration is unsupported.",
+        Some(StatusErrorCode::ResourceLimit) => "A resource limit was reached.",
+        Some(StatusErrorCode::QuiescePending) => "Cache shutdown is still pending.",
+    };
+    let c = &snapshot.counters;
+    format!(
+        "state: {}\nmode: {}\nread_hits: {}\nread_misses: {}\norigin_read_bytes: {}\ncache_written_bytes: {}\nerror_code: {code}\nerror_description: {description}\n",
+        snapshot.state.as_str(),
+        snapshot.mode.as_str(),
+        counter(c.read_hits),
+        counter(c.read_misses),
+        counter(c.origin_read_bytes),
+        counter(c.cache_written_bytes)
+    )
+}
+
+#[derive(Debug, Clone, Copy, PartialEq, Eq)]
 pub enum StatusState {
     Disabled,
     Validating,
