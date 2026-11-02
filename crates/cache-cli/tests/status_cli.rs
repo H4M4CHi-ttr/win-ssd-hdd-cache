@@ -1,9 +1,18 @@
 mod common;
 use cache_types::status::{OutputFormat, parse_status, render_status};
-use common::{TempInput, assert_error, run, status};
+use common::{TempInput, assert_error, run};
 use std::ffi::OsStr;
 const BASE: &str = include_str!("../../../examples/status/disabled.json");
 const TEXT: &str = include_str!("../../../examples/status/disabled.txt");
+fn status(path: &std::path::Path, format: &str) -> std::process::Output {
+    run(&[
+        OsStr::new("status"),
+        OsStr::new("--input"),
+        path.as_os_str(),
+        OsStr::new("--format"),
+        OsStr::new(format),
+    ])
+}
 
 #[test]
 fn all_states_have_exact_json_and_text_with_lf_only() {

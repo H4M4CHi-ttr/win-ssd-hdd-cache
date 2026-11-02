@@ -1,0 +1,1 @@
+{"schema_version":1,"workload_id":"git-status","environment_id":"lab-A","toolchain_id":"rust-1.99.1","working_set_bytes":"1048576","os_cache":"cold","cache_mode":"active","ssd_cache":"warm","duration_ns":"800000000","latency_ns":["1","2","3","4","80"],"cpu_time_ns":null,"peak_nonpaged_bytes":null,"ssd_written_bytes":null,"repetitions":5}

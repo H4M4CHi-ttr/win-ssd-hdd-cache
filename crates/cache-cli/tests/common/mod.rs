@@ -49,15 +49,6 @@ pub fn run(args: &[&OsStr]) -> Output {
         .output()
         .unwrap()
 }
-pub fn status(path: &Path, format: &str) -> Output {
-    run(&[
-        OsStr::new("status"),
-        OsStr::new("--input"),
-        path.as_os_str(),
-        OsStr::new("--format"),
-        OsStr::new(format),
-    ])
-}
 pub fn assert_error(output: Output, exit: i32, error: &str) {
     assert_eq!(output.status.code(), Some(exit));
     assert!(output.stdout.is_empty());

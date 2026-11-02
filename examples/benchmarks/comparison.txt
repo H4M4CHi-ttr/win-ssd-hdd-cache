@@ -1,0 +1,11 @@
+base.cache_mode: off
+base.ssd_cache: none
+base.duration_ns: 1000000000
+base.p95_ns: 100
+base.p99_ns: 100
+candidate.cache_mode: active
+candidate.ssd_cache: warm
+candidate.duration_ns: 800000000
+candidate.p95_ns: 80
+candidate.p99_ns: 80
+speedup: 1.250000

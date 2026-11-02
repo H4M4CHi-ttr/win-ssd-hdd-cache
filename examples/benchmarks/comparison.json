@@ -1,0 +1,1 @@
+{"schema_version":1,"base":{"cache_mode":"off","ssd_cache":"none","duration_ns":"1000000000","p95_ns":"100","p99_ns":"100"},"candidate":{"cache_mode":"active","ssd_cache":"warm","duration_ns":"800000000","p95_ns":"80","p99_ns":"80"},"speedup":"1.250000"}
