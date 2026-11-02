@@ -36,7 +36,7 @@
 [contracts.md §1](../../contracts.md)のworkspace構成に従う。各IssueのFilesはplanned path。C/WDK採否が未決のpathは、D09が決定してIssue本文を更新するまで実装しない。
 
 - 最初にF01。D01/D02/D09の調査は並行可能。GOV01は所有者判断。
-- F01後、F02/F03/B01/C01等を進める。cache-model新設はF03、F04はその後。同じCargo.toml/lib.rs追加は短い統合順で調整する。
+- F01後、F02/F03/C01を進める。B01はshared codecを持つC01の後。cache-model新設はF03、F04はその後。同じCargo.toml/lib.rs追加は短い統合順で調整する。
 - D02→F05、portable D07→F06/F07、D04/D10→F08、D03と必要trace→F09。G01はB03/D10も要求し、G1前にkernel本実装を始めない。
 - W01 passthrough → W02〜W07局所実装 → W08 shadow → G2。
 - W09 lab hit-serving → Q01/G3 → Q02/Q03 → Q04/G4。

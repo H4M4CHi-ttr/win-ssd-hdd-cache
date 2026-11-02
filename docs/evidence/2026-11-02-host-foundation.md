@@ -59,7 +59,9 @@ cargo xtask check-planning
 
 ## 再現性と書き込み範囲
 
-local環境はremote Git履歴を持たないAPI snapshotだったため、GitHub Git-data APIで既存remote parent/treeにIssue単位のcommitを作成した。force pushは使っていない。変更ファイルをblob SHAでlocal reviewed sourceと照合し、未変更ファイルはremote baseのblobを維持した。初期local snapshotの22文書にはそれぞれ余分な末尾LFが一つあったことを全件比較で確認し、無関係な10ファイルはremoteの元byteを保持した。
+local環境はremote Git履歴を持たないAPI snapshotだったため、GitHub Git-data APIで既存remote parent/treeにIssue単位のcommitを作成した。force pushは使っていない。変更ファイルをblob SHAでlocal reviewed sourceと照合し、未変更ファイルはremote baseのblobを維持した。初期local snapshotの22文書にはそれぞれ余分な末尾LFが一つあったことを全件比較で確認した。
+
+最初のF10統合時点では93ファイルのうち変更83・原本byte保持10を確認。metadata closeoutのremote `7dc87bbecdd2a30f243c031def8d6f0f92362f4e` は94ファイルのうち変更85・原本byte保持9で、全blobの期待値と一致した。`planning-validation.md`を履歴と明記する変更が加わったため、原本保持の件数が一つ減っている。snapshot由来の末尾LFを理由に無関係なファイルを更新していない。
 
 [依存inventory](../dependencies.md)は14 registry archivesとCargo.lock checksumを照合済み。これは完全な法務/脆弱性監査ではなく、project license採択でもない。host workflowはconfigured secretsなし、read-only job token、credential非保持、GitHub-hosted runnerのみ。静的recipe検査は任意Rust/dependency/build scriptの安全sandboxではない。
 
