@@ -1709,7 +1709,7 @@
       "title": "全Issue監査で見つかった契約・依存・承認状態の不備を修正する",
       "agent": "astra",
       "review": "astra",
-      "status": "ready",
+      "status": "done",
       "priority": "p0",
       "type": "design",
       "area": "planning",
@@ -1735,7 +1735,7 @@
       "escalation": "承認や実証の不足をcloseで隠さない。ライセンス・署名・lab・公開は所有者へ。",
       "issue_number": 51,
       "issue_url": "https://github.com/H4M4CHi-ttr/win-ssd-hdd-cache/issues/51",
-      "completion": "pending"
+      "completion": "accepted"
     }
   ]
 }

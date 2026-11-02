@@ -26,7 +26,7 @@
 | B02 | [#28](https://github.com/H4M4CHi-ttr/win-ssd-hdd-cache/issues/28) | [#63](https://github.com/H4M4CHi-ttr/win-ssd-hdd-cache/pull/63) | SOL | `8eb54ef7620b` |
 | F10 | [#13](https://github.com/H4M4CHi-ttr/win-ssd-hdd-cache/issues/13) | [#64](https://github.com/H4M4CHi-ttr/win-ssd-hdd-cache/pull/64) | SOL | `f5c73ebcd13b` |
 
-GitHubのReviewイベントによる人間の承認と、上表のAI独立レビューは区別する。人間のWindowsストレージ専門レビューが必要な後段ゲートをAIが代替したわけではない。後続のmetadata-only PRはAUD01に属する。
+GitHubのReviewイベントによる人間の承認と、上表のAI独立レビューは区別する。人間のWindowsストレージ専門レビューが必要な後段ゲートをAIが代替したわけではない。metadata-only closeoutは[AUD01 PR #65](https://github.com/H4M4CHi-ttr/win-ssd-hdd-cache/pull/65)に属する。
 
 ## 実行した検証
 
@@ -74,4 +74,18 @@ local環境はremote Git履歴を持たないAPI snapshotだったため、GitHu
 - GOV01/D08/Q02/Q04のowner approvalはすべてpending。URL、AIレビュー、CI成功から承認を推測しない。
 
 個別evidence文書のtest件数やNOT RUNはその実装時点の履歴。上記のrunは今回の統合host基盤の結果であり、それ以前の失敗をなかったことにしない。最終的なbacklog/Issue readbackはAUD01のcloseoutレビューで確認する。
+
+
+## AUD01同期・受入記録
+
+独立Astraがlocal `5c9d8ada20d2f2bd6ef19d33a4836b4d6467d750` と53件のIssue同期案を確認し、条件付きでなく同期してよいとのレビューを完了した。rootはremote `6a7ecf2d8980ccca02a635ed5478d7be278d2309` に対応する全53Issueの本文・title・labelを更新後、GitHubから読み戻した。
+
+- 53件すべて本文・title・適用labelが提案と一致。不足・重複・不一致0。
+- 53件すべてopen。assignees/milestoneと既存の管理外labelは保持。
+- その読み戻し時点のAUD01はready/pending。監査の完了を先取りせず、照合後に今回のmetadata更新でdone/acceptedへ遷移する。
+- 受入済みはhost実装10件＋監査AUD01の1件。合計done 11 / ready 3 / blocked 37 / needs-decision 1。主要なreadyはD01/D02/D09。
+- GOV01/D08/Q02/Q04はowner approval pendingのまま、approval evidenceも空。main未mergeとIssue未closeを維持。
+- metadata head `6a7ecf2d8980ccca02a635ed5478d7be278d2309` の[run 41417783724](https://github.com/H4M4CHi-ttr/win-ssd-hdd-cache/actions/runs/41417783724)もsuccess。実装の二OS件数は上記F10実行証拠を参照。
+
+この受入遷移とsource参照をIssue #51・親・他Issueへ再同期し、最終remote headの読み戻し結果は[AUD01 #51](https://github.com/H4M4CHi-ttr/win-ssd-hdd-cache/issues/51)の完了記録に残す。これはmainの統合完了を意味しない。
 

@@ -316,9 +316,9 @@ F01後に使えるhost commands: `cargo fmt --all -- --check`、`cargo clippy --
 - Windows/Linux hostで再現可能なcommandとtoolchain/MSRVを記録。未使用crate、driver、C/FFI、networkを追加しない
 - portable artifactは実行済みhost証拠と独立reviewで受け入れ、Windows実行はF10の二OSゲートに記録する。未実行をPASSにしない
 
-- [ ] 先行契約・具体的期待値・禁止範囲を確認し、test-firstまたは設計の反例と証拠を作る。
-- [ ] 実行したcommand/環境/件数/結果・未実行事項を記録する。
-- [ ] 独立reviewを受け、Issue/PRとsnapshotへ受入根拠を残す。owner承認は推測しない。
+- [x] 先行契約・具体的期待値・禁止範囲を確認し、test-firstまたは設計の反例と証拠を作る。
+- [x] 実行したcommand/環境/件数/結果・未実行事項を記録する。
+- [x] 独立reviewを受け、Issue/PRとsnapshotへ受入根拠を残す。owner承認は推測しない。
 
 **Escalation:** sector alignmentや製品I/O semanticsをhelperへ加える必要があればSOLへ。共有Cargo manifestの同時変更は調整する。
 
@@ -341,9 +341,9 @@ F01後に使えるhost commands: `cargo fmt --all -- --check`、`cargo clippy --
 - cargo test -p xtask / cargo xtask check-planning がPASS。GitHub API・token・自動修正/label削除を一切使わない
 - schema v2のowner_approval/evidence、done/acceptedとcancelled/not-planned対応を含め検証する。承認URLの存在だけでowner承認済みと判断しない
 
-- [ ] 先行契約・具体的期待値・禁止範囲を確認し、test-firstまたは設計の反例と証拠を作る。
-- [ ] 実行したcommand/環境/件数/結果・未実行事項を記録する。
-- [ ] 独立reviewを受け、Issue/PRとsnapshotへ受入根拠を残す。owner承認は推測しない。
+- [x] 先行契約・具体的期待値・禁止範囲を確認し、test-firstまたは設計の反例と証拠を作る。
+- [x] 実行したcommand/環境/件数/結果・未実行事項を記録する。
+- [x] 独立reviewを受け、Issue/PRとsnapshotへ受入根拠を残す。owner承認は推測しない。
 
 **Escalation:** taxonomyやready判定契約を変えないと通らない場合、fixture/期待値を緩めずSOLへ。
 
@@ -365,9 +365,9 @@ F01後に使えるhost commands: `cargo fmt --all -- --check`、`cargo clippy --
 - 二重deliver/未知token拒否、cancel冪等、token非再利用、pending1024/payload1MiB/total16MiBの上限を不変条件付きで検査
 - cargo test -p cache-model --test completion_contract がPASS。cancelをrequest解放/完了として扱わない
 
-- [ ] 先行契約・具体的期待値・禁止範囲を確認し、test-firstまたは設計の反例と証拠を作る。
-- [ ] 実行したcommand/環境/件数/結果・未実行事項を記録する。
-- [ ] 独立reviewを受け、Issue/PRとsnapshotへ受入根拠を残す。owner承認は推測しない。
+- [x] 先行契約・具体的期待値・禁止範囲を確認し、test-firstまたは設計の反例と証拠を作る。
+- [x] 実行したcommand/環境/件数/結果・未実行事項を記録する。
+- [x] 独立reviewを受け、Issue/PRとsnapshotへ受入根拠を残す。owner承認は推測しない。
 
 **Escalation:** Windows DMA/MDLやIoCancelIrpをこのhost queueに導入しない。実機安全性と混同しそうならSOLへ。
 
@@ -389,9 +389,9 @@ F01後に使えるhost commands: `cargo fmt --all -- --check`、`cargo clippy --
 - discardをゼロにせずUnknownRange。部分再writeでその部分だけknownへ戻る。zero lengthは成功
 - cargo test -p cache-model --test origin_contract がPASS。flush、threads、disk、durabilityを追加しない
 
-- [ ] 先行契約・具体的期待値・禁止範囲を確認し、test-firstまたは設計の反例と証拠を作る。
-- [ ] 実行したcommand/環境/件数/結果・未実行事項を記録する。
-- [ ] 独立reviewを受け、Issue/PRとsnapshotへ受入根拠を残す。owner承認は推測しない。
+- [x] 先行契約・具体的期待値・禁止範囲を確認し、test-firstまたは設計の反例と証拠を作る。
+- [x] 実行したcommand/環境/件数/結果・未実行事項を記録する。
+- [x] 独立reviewを受け、Issue/PRとsnapshotへ受入根拠を残す。owner承認は推測しない。
 
 **Escalation:** 並行性/永続化の期待値が必要ならD02/D07へ。仕様にないsector atomicityを仮定しない。
 
@@ -557,9 +557,9 @@ F01後に使えるhost commands: `cargo fmt --all -- --check`、`cargo clippy --
 - actionsは確認したimmutable SHA、Rustはrepo exact toolchain、Cargo.lockを使う。test0件や失敗をcontinue-on-errorで通さない
 - cargo fmt --all -- --check / cargo clippy --all-targets --locked -- -D warnings / cargo test --locked / cargo xtask check-planning を両hostで実行し記録
 
-- [ ] 先行契約・具体的期待値・禁止範囲を確認し、test-firstまたは設計の反例と証拠を作る。
-- [ ] 実行したcommand/環境/件数/結果・未実行事項を記録する。
-- [ ] 独立reviewを受け、Issue/PRとsnapshotへ受入根拠を残す。owner承認は推測しない。
+- [x] 先行契約・具体的期待値・禁止範囲を確認し、test-firstまたは設計の反例と証拠を作る。
+- [x] 実行したcommand/環境/件数/結果・未実行事項を記録する。
+- [x] 独立reviewを受け、Issue/PRとsnapshotへ受入根拠を残す。owner承認は推測しない。
 
 **Escalation:** WDK/HLK/管理者/署名鍵が必要なら別trusted pipelineとしてSOLへ。PR jobへ権限を足さない。
 
@@ -825,9 +825,9 @@ F01後に使えるhost commands: `cargo fmt --all -- --check`、`cargo clippy --
 - cargo test -p cache-types --test status_format がPASS。serdeの生errorや入力値を公開diagnosticsへ出さない
 - docs/contracts/host-formats-v1.mdの明示null/欠落、integer token、fixed error、object-only契約を守り、render roundtrip用encode_statusを実装する
 
-- [ ] 先行契約・具体的期待値・禁止範囲を確認し、test-firstまたは設計の反例と証拠を作る。
-- [ ] 実行したcommand/環境/件数/結果・未実行事項を記録する。
-- [ ] 独立reviewを受け、Issue/PRとsnapshotへ受入根拠を残す。owner承認は推測しない。
+- [x] 先行契約・具体的期待値・禁止範囲を確認し、test-firstまたは設計の反例と証拠を作る。
+- [x] 実行したcommand/環境/件数/結果・未実行事項を記録する。
+- [x] 独立reviewを受け、Issue/PRとsnapshotへ受入根拠を残す。owner承認は推測しない。
 
 **Escalation:** 新state/writebackmode/livecontrolの追加が必要ならD06/SOLへ。ここでkernel ABIを発明しない。
 
@@ -850,9 +850,9 @@ F01後に使えるhost commands: `cargo fmt --all -- --check`、`cargo clippy --
 - cargo test -p cache-cli --test status_cli がPASS。network/admin/disk APIなし
 - docs/contracts/host-formats-v1.mdの固定JSON/text順序とLF、引数/exit/error、bounded file readerを正本として検証する
 
-- [ ] 先行契約・具体的期待値・禁止範囲を確認し、test-firstまたは設計の反例と証拠を作る。
-- [ ] 実行したcommand/環境/件数/結果・未実行事項を記録する。
-- [ ] 独立reviewを受け、Issue/PRとsnapshotへ受入根拠を残す。owner承認は推測しない。
+- [x] 先行契約・具体的期待値・禁止範囲を確認し、test-firstまたは設計の反例と証拠を作る。
+- [x] 実行したcommand/環境/件数/結果・未実行事項を記録する。
+- [x] 独立reviewを受け、Issue/PRとsnapshotへ受入根拠を残す。owner承認は推測しない。
 
 **Escalation:** live接続・権限変更・state遷移を表示taskへ追加しない。D06/C04へ分離する。
 
@@ -874,9 +874,9 @@ F01後に使えるhost commands: `cargo fmt --all -- --check`、`cargo clippy --
 - allowlist正常fixtureだけ成功し、型違いをstringifyして漏らさない
 - cargo test -p cache-types --test diagnostics_allowlist がPASS。regexで任意textを洗う方式に置換しない
 
-- [ ] 先行契約・具体的期待値・禁止範囲を確認し、test-firstまたは設計の反例と証拠を作る。
-- [ ] 実行したcommand/環境/件数/結果・未実行事項を記録する。
-- [ ] 独立reviewを受け、Issue/PRとsnapshotへ受入根拠を残す。owner承認は推測しない。
+- [x] 先行契約・具体的期待値・禁止範囲を確認し、test-firstまたは設計の反例と証拠を作る。
+- [x] 実行したcommand/環境/件数/結果・未実行事項を記録する。
+- [x] 独立reviewを受け、Issue/PRとsnapshotへ受入根拠を残す。owner承認は推測しない。
 
 **Escalation:** 復旧診断に識別子追加が必要ならD06でprivacy/権限/保存期間を再設計。
 
@@ -1020,9 +1020,9 @@ F01後に使えるhost commands: `cargo fmt --all -- --check`、`cargo clippy --
 - cargo test -p cache-types --test benchmark_contract がPASS。外れ値除去/欠測補完/実機測定はしない
 - docs/contracts/host-formats-v1.mdの具体型/parse_benchmark/encode_benchmark、strict object、integer token、明示null契約を固定golden fixtureで検証する
 
-- [ ] 先行契約・具体的期待値・禁止範囲を確認し、test-firstまたは設計の反例と証拠を作る。
-- [ ] 実行したcommand/環境/件数/結果・未実行事項を記録する。
-- [ ] 独立reviewを受け、Issue/PRとsnapshotへ受入根拠を残す。owner承認は推測しない。
+- [x] 先行契約・具体的期待値・禁止範囲を確認し、test-firstまたは設計の反例と証拠を作る。
+- [x] 実行したcommand/環境/件数/結果・未実行事項を記録する。
+- [x] 独立reviewを受け、Issue/PRとsnapshotへ受入根拠を残す。owner承認は推測しない。
 
 **Escalation:** 比較条件や統計的有意性を追加する判断はB03/SOLへ。
 
@@ -1045,9 +1045,9 @@ F01後に使えるhost commands: `cargo fmt --all -- --check`、`cargo clippy --
 - cargo test -p cache-cli --test benchmark_report がPASS。stdoutに実機serialやfilepathsを含めない
 - docs/contracts/host-formats-v1.mdのCLI/result/errorを正本とし、公開型の不正な直接構築もcompare_runsで拒否してpanic/Infinityを出さない
 
-- [ ] 先行契約・具体的期待値・禁止範囲を確認し、test-firstまたは設計の反例と証拠を作る。
-- [ ] 実行したcommand/環境/件数/結果・未実行事項を記録する。
-- [ ] 独立reviewを受け、Issue/PRとsnapshotへ受入根拠を残す。owner承認は推測しない。
+- [x] 先行契約・具体的期待値・禁止範囲を確認し、test-firstまたは設計の反例と証拠を作る。
+- [x] 実行したcommand/環境/件数/結果・未実行事項を記録する。
+- [x] 独立reviewを受け、Issue/PRとsnapshotへ受入根拠を残す。owner承認は推測しない。
 
 **Escalation:** 比較対象の採用/除外ルールを変えたくなったらB03へ。
 
@@ -1298,7 +1298,8 @@ F01後に使えるhost commands: `cargo fmt --all -- --check`、`cargo clippy --
 ### [AUD01 #51](https://github.com/H4M4CHi-ttr/win-ssd-hdd-cache/issues/51): 全Issue監査で見つかった契約・依存・承認状態の不備を修正する
 
 **担当 / review:** ASTRA / ASTRA  
-**状態:** ready / pending  
+**状態:** done / accepted
+
 **Depends on:** なし  
 **Files (planned / implemented status in Issue):** `docs/issue-audit-2026-11-02.md`, `docs/contracts.md`, `docs/contracts/host-formats-v1.md`, `docs/backlog.json`, `docs/backlog.md`, `docs/superpowers/plans/2026-11-02-win-ssd-hdd-cache-plan.md`, `docs/evidence/2026-11-02-host-foundation.md`
 
@@ -1313,9 +1314,9 @@ F01後に使えるhost commands: `cargo fmt --all -- --check`、`cargo clippy --
 - backlog/計画/Issue本文とtaxonomyを照合し依存DAG・ready条件を検証する
 - 安全gateを削らず、独立Astraレビューを受ける
 
-- [ ] 先行契約・具体的期待値・禁止範囲を確認し、test-firstまたは設計の反例と証拠を作る。
-- [ ] 実行したcommand/環境/件数/結果・未実行事項を記録する。
-- [ ] 独立reviewを受け、Issue/PRとsnapshotへ受入根拠を残す。owner承認は推測しない。
+- [x] 先行契約・具体的期待値・禁止範囲を確認し、test-firstまたは設計の反例と証拠を作る。
+- [x] 実行したcommand/環境/件数/結果・未実行事項を記録する。
+- [x] 独立reviewを受け、Issue/PRとsnapshotへ受入根拠を残す。owner承認は推測しない。
 
 **Escalation:** 承認や実証の不足をcloseで隠さない。ライセンス・署名・lab・公開は所有者へ。
 
