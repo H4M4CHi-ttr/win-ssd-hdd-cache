@@ -20,10 +20,10 @@
         "CONTRIBUTING.md",
         "SECURITY.md"
       ],
-      "output": "MIT OR Apache-2.0を提案として比較し、original codeの採択・第三者通知・DCO/CLA要否・公開承認・private reporting責任者を所有者の決定として記録。採択前にLICENSEを追加しない。",
+      "output": "MIT OR Apache-2.0を提案として比較し、original codeの採択・第三者通知・DCO/CLA要否・公開承認・private reporting責任者を所有者の決定として記録。採択前にLICENSEを追加しない。 2026-11-02の所有者発言と現状によりsource repositoryのpublic化・通常のGitHub Actions利用は許可済み。ただしlicense・外部contribution・製品配布の採択ではなく、GOV01全体の承認はpending。",
       "acceptance": [
         "候補licenseとOCF BSD-3-Clause等の通知義務の対応表を作る",
-        "所有者が未決ならソースvendoring・外部contribution受付・公開をgateで止める。通常のCargo/npm依存はlicense/hash/lockfile確認の下で利用可能",
+        "所有者が未決ならソースvendoring・外部contribution受付・製品公開/配布をgateで止める。通常のCargo/npm依存はlicense/hash/lockfile確認の下で利用可能",
         "公開範囲変更や証明書購入はこのIssueを起票しただけで実行しない"
       ],
       "escalation": "権利帰属・license互換性・署名主体が不明なら所有者/適切な専門家へ。",
@@ -38,7 +38,7 @@
       "title": "WindowsのI/O捕捉位置と全変更経路の対応表を決める",
       "agent": "astra",
       "review": "astra",
-      "status": "ready",
+      "status": "blocked",
       "priority": "p0",
       "type": "design",
       "area": "architecture",
@@ -56,7 +56,7 @@
         "未知potential mutationをcache有効のまま通さない停止条件と、原本を変更しないattach経路を固定",
         "G1前のexperiments/stack-traceの独立probeはcache hit/fill/raw cache write/準備操作を持たない。資料/静的/compile/実Windows traceを区別し、実行/installは別の明示lab承認に限る"
       ],
-      "escalation": "捕捉できないmutationが1つでも残るならsupportedとしない。方式変更/対象縮小をADRで判断する。",
+      "escalation": "捕捉できないmutationが1つでも残るならsupportedとしない。方式変更/対象縮小をADRで判断する。 PR #66で資料・lab手順はmain統合済みだが、別途承認された使い捨てWindows labの実traceと独立受入は未完。D01全体はpendingのまま停止する。",
       "issue_number": 3,
       "issue_url": "https://github.com/H4M4CHi-ttr/win-ssd-hdd-cache/issues/3",
       "completion": "pending",
@@ -68,7 +68,7 @@
       "title": "clean-cacheの整合性モデル・世代・公開条件を反例付きで凍結する",
       "agent": "astra",
       "review": "astra",
-      "status": "ready",
+      "status": "done",
       "priority": "p0",
       "type": "design",
       "area": "architecture",
@@ -80,7 +80,7 @@
         "spec/trace-v1.schema.json",
         "experiments/coherence/README.md"
       ],
-      "output": "D02 state machine、read/write線形化条件、active-writer数・epoch・slot所有権、trace v1の型/イベント/期待値。有限状態モデルで反例を説明。",
+      "output": "D02 state machine、read/write線形化条件、active-writer数・epoch・slot所有権、trace v1の型/イベント/期待値。有限状態モデルで反例を説明。 PR #67でmain統合済み。trace v1、13 caseのbounded探索、14 case/fault組の反例、write admissionごとの失効/incarnation/provenance、保持bufferの予算を独立レビューで受入。証拠: docs/evidence/2026-11-02-main-integration.md。",
       "acceptance": [
         "read A→write B完了→late fill A、2 overlapping writers、partial overlap、failed writeで古いhitを禁止する公開条件を固定",
         "cache data writeとmetadata publish、cancelとcomplete、原本apply/completion/durabilityを別event化し全正常/異常JSON例を示す",
@@ -91,7 +91,7 @@
       "escalation": "Windowsが保証しないmulti-sector atomicityを仮定せず、許容する並行readの結果集合を明記する。",
       "issue_number": 4,
       "issue_url": "https://github.com/H4M4CHi-ttr/win-ssd-hdd-cache/issues/4",
-      "completion": "pending",
+      "completion": "accepted",
       "owner_approval": "not-required",
       "approval_evidence": []
     },
@@ -100,7 +100,7 @@
       "title": "OCF WIと最小Rust coreを比較しcache engineの採否を決める",
       "agent": "sol",
       "review": "astra",
-      "status": "blocked",
+      "status": "ready",
       "priority": "p0",
       "type": "design",
       "area": "architecture",
@@ -231,7 +231,7 @@
       "title": "portableな整合性・flush耐久性・故障oracleを定義する",
       "agent": "astra",
       "review": "astra",
-      "status": "blocked",
+      "status": "ready",
       "priority": "p0",
       "type": "design",
       "area": "model",
@@ -463,7 +463,7 @@
       "title": "凍結済みtrace v1のstrict Rust parserを実装する",
       "agent": "luna",
       "review": "sol",
-      "status": "blocked",
+      "status": "ready",
       "priority": "p0",
       "type": "task",
       "area": "model",
@@ -1739,4 +1739,3 @@
     }
   ]
 }
-

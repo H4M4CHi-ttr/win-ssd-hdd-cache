@@ -9,7 +9,10 @@
 | [host表示・CLI契約](contracts/host-formats-v1.md) | strict JSON、明示null、具体型、固定出力と終了code |
 | [計画checker契約](contracts/planning-checker-v1.md) | schema/approval/DAG/label/相対リンクのread-only検査 |
 | [全Issue監査](issue-audit-2026-11-02.md) | 依存・承認状態・担当欠落の是正と未解決gate |
-| [host基盤の実装・PR・検証](evidence/2026-11-02-host-foundation.md) | 今回の10実装、独立レビュー、Linux/Windows実行結果、統合状況 |
+| [最新のmain統合・D02受入](evidence/2026-11-02-main-integration.md) | PR54〜67、CI、公開範囲、残るlab/owner gate |
+| [host基盤の受入履歴](evidence/2026-11-02-host-foundation.md) | 統合前の10実装、独立レビュー、Linux/Windows実行結果 |
+| [D01捕捉境界](adr/0004-interception-boundary.md) | 資料調査と実trace待ちの境界 |
+| [D02整合性契約](adr/0013-coherence-model.md) | 受入済みportable traceと有限checkerの範囲 |
 | [開発手順](development.md) | exact Rust、CLI例、least-privilege host CIとその限界 |
 | [検証とリリースゲート](validation.md) | 整合性オラクル、障害注入、性能、証拠、公開の条件 |
 | [セキュリティ・配布設計](security-and-distribution.md) | 特権境界、署名、HVCI、供給網、回復 |
