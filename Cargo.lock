@@ -5,6 +5,9 @@ version = 4
 [[package]]
 name = "cache-model"
 version = "0.1.0"
+dependencies = [
+ "cache-types",
+]
 
 [[package]]
 name = "cache-types"
