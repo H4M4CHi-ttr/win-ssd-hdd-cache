@@ -1,6 +1,6 @@
 [workspace]
-members = ["crates/cache-types"]
-default-members = ["crates/cache-types"]
+members = ["crates/cache-types", "crates/cache-model"]
+default-members = ["crates/cache-types", "crates/cache-model"]
 resolver = "3"
 
 [workspace.package]
