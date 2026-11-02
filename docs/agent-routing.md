@@ -14,6 +14,8 @@
 | status:ready | 必要契約が本文にあり、依存課題/必要承認が完了して着手可能 |
 | status:blocked | 前提の契約/実装/検証が未完。実装を先行しない |
 | status:needs-decision | 所有者のライセンス/公開等の明示決定が必要 |
+| status:done | 指定成果物・証拠・独立reviewの受入完了。製品安全認証ではない |
+| status:cancelled | 実施しないと決定。依存の完了には数えない |
 | priority:p0 | 安全性・実装開始に必要 |
 | priority:p1 | MVP/lab実用化に必要 |
 | priority:p2 | GUI等の後段機能 |
@@ -23,6 +25,8 @@
 
 各作業Issueはagent・review・status・priority・typeをそれぞれ一つ持つ。areaは基本一つ。decision:ownerは追加ラベル。agent:luna + review:astraの併用を認める。固定traceを書くだけでも、その期待値が難しい場合がある。
 
+上位モデル/rootは下位難度の課題も実装できる。担当ラベルを「実装したモデル」に合わせて不必要に昇格しない。backlog v2のowner_approval/evidenceで承認待ちと承認済みを区別し、done=accepted/cancelled=not-plannedを守る。URLだけで承認を機械認定しない。
+
 ## 2. 着手前
 
 1. 本文のDepends onと設計契約を読む。closeだけでなく、必要artifactと承認がそろっているか確認する。
@@ -31,7 +35,7 @@
 4. 一つのbranch/PRで一つの独立受入単位を扱う。共有manifestの追加は短い統合順で直列化する。
 5. 下位依存にないscopeを発見したら、関連Issueを追加/更新してレビューする。隠れた前提を作らない。
 
-本計画時点では製品codeはない。初期のLuna着手点はF01。F01が完了すると、F02/F03/B01/C01等のpure Rust作業（F04はcache-model新設を担当するF03の後）を並列化できる。設計D01/D02/D09は独立に進められる。
+製品driverは未実装。portable host課題の現在地はbacklogを確認する。F01後はF02/F03/B01/C01、F03後はF04を進められる。設計D01/D02/D09は独立に進められる。二OS host試験はF10の受入gate、Windows/実機未実施は必ず明記する。
 
 ## 3. Luna課題の標準完了条件
 
@@ -66,3 +70,4 @@
 ## 6. 既存ラベルの扱い
 
 管理taxonomyは `.github/labels.json`。今回のIssueはそのprefixで統一。GitHubの既定ラベルや利用者が追加したラベルを一括削除しない。意味の重なる新ラベルを作る前にtaxonomyを更新してレビューする。色は管理せず、モデル/状態は名前と本文から識別できるようにする。
+

@@ -6,6 +6,8 @@
 |---|---|
 | [正式設計](superpowers/specs/2026-11-02-win-ssd-hdd-cache-design.md) | 目的、非目標、選択肢、段階構成、安全契約 |
 | [インターフェース契約](contracts.md) | 先行して固定するオフライン形式と純粋関数、後続ABIの凍結条件 |
+| [host表示・CLI契約](contracts/host-formats-v1.md) | strict JSON、明示null、具体型、固定出力と終了code |
+| [全Issue監査](issue-audit-2026-11-02.md) | 依存・承認状態・担当欠落の是正と未解決gate |
 | [検証とリリースゲート](validation.md) | 整合性オラクル、障害注入、性能、証拠、公開の条件 |
 | [セキュリティ・配布設計](security-and-distribution.md) | 特権境界、署名、HVCI、供給網、回復 |
 | [判断記録](decisions.md) | 採択済み方針と、実証待ちの選択を区別 |
@@ -25,3 +27,4 @@
 - **合格**: 指定した証拠、レビュー、環境の記録がそろった状態。Issueのcloseだけでは代用できません。
 
 通常のパッケージ依存利用と、ソースvendoring/外部contributionの受付は区別します。ライセンス、公開範囲、証明書購入・署名主体は所有者の判断事項です。本計画はそれらを勝手に変更しません。
+

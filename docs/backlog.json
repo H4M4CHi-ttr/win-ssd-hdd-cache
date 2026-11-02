@@ -1,5 +1,5 @@
 {
-  "schema_version": 1,
+  "schema_version": 2,
   "plan_date": "2026-11-02",
   "tasks": [
     {
@@ -29,7 +29,9 @@
       "escalation": "権利帰属・license互換性・署名主体が不明なら所有者/適切な専門家へ。",
       "issue_number": 2,
       "issue_url": "https://github.com/H4M4CHi-ttr/win-ssd-hdd-cache/issues/2",
-      "completion": "pending"
+      "completion": "pending",
+      "owner_approval": "pending",
+      "approval_evidence": []
     },
     {
       "id": "D01",
@@ -51,12 +53,15 @@
       "acceptance": [
         "通常/paging/mapped/raw physical write、DSM/TRIM、zero/offload、pass-through、resize/reformat、BypassIOの到達経路を一次資料と使い捨てlab traceで確認",
         "対象外OS disk、未設定状態、boot時のglobal registrationの影響を図と試験で説明",
-        "未知potential mutationをcache有効のまま通さない停止条件と、原本を変更しないattach経路を固定"
+        "未知potential mutationをcache有効のまま通さない停止条件と、原本を変更しないattach経路を固定",
+        "G1前のexperiments/stack-traceの独立probeはcache hit/fill/raw cache write/準備操作を持たない。資料/静的/compile/実Windows traceを区別し、実行/installは別の明示lab承認に限る"
       ],
       "escalation": "捕捉できないmutationが1つでも残るならsupportedとしない。方式変更/対象縮小をADRで判断する。",
       "issue_number": 3,
       "issue_url": "https://github.com/H4M4CHi-ttr/win-ssd-hdd-cache/issues/3",
-      "completion": "pending"
+      "completion": "pending",
+      "owner_approval": "not-required",
+      "approval_evidence": []
     },
     {
       "id": "D02",
@@ -79,12 +84,16 @@
       "acceptance": [
         "read A→write B完了→late fill A、2 overlapping writers、partial overlap、failed writeで古いhitを禁止する公開条件を固定",
         "cache data writeとmetadata publish、cancelとcomplete、原本apply/completion/durabilityを別event化し全正常/異常JSON例を示す",
-        "INV-03/04に対して単にinvalidate-before-write/epoch変更だけでは失敗する反例を残す"
+        "INV-03/04に対して単にinvalidate-before-write/epoch変更だけでは失敗する反例を残す",
+        "cache hitの論理観測点と完了前再検証、read/write双方のslot lease、partial/unknown/incomplete extentの公開禁止、epoch/generation/incarnationの非wrap枯渇時bypassを具体的状態規則/反例で固定",
+        "schemaのraw-input byte上限/型/全event/順序/参照/semantic validationを規定。有限状態checkerの探索境界/件数と故障variantでの検出を再現可能に残す（一般的証明やWindows実証と称さない）"
       ],
       "escalation": "Windowsが保証しないmulti-sector atomicityを仮定せず、許容する並行readの結果集合を明記する。",
       "issue_number": 4,
       "issue_url": "https://github.com/H4M4CHi-ttr/win-ssd-hdd-cache/issues/4",
-      "completion": "pending"
+      "completion": "pending",
+      "owner_approval": "not-required",
+      "approval_evidence": []
     },
     {
       "id": "D03",
@@ -108,12 +117,15 @@
       "acceptance": [
         "WIとWAを混同せずD02の反例をcandidate harnessで再現する",
         "cacheline/sector pair、nonpaged想定memory、async callback、cancel、allocator依存を列挙して未対応を明記",
-        "OCF No-Go時の代替、試験再利用、後続W02/F09契約更新をADRに記す。通常依存はlicense/hash確認、ソースvendoringはGOV01採択後"
+        "OCF No-Go時の代替、試験再利用、後続W02/F09契約更新をADRに記す。通常依存はlicense/hash確認、ソースvendoringはGOV01採択後",
+        "experiments/ocf-portabilityでD02のstale-fill/2-writer/partial-overlap反例を最小submit/complete/publish interfaceで検証する独立feasibility spikeを所有する。F06/F09完成を前提にせずspikeの自己modelを独立oracleと称さない"
       ],
       "escalation": "upstreamの動作を推測で包まない。C/Rust ownershipやlicenseが不明ならAstra/所有者判断まで止める。",
       "issue_number": 8,
       "issue_url": "https://github.com/H4M4CHi-ttr/win-ssd-hdd-cache/issues/8",
-      "completion": "pending"
+      "completion": "pending",
+      "owner_approval": "not-required",
+      "approval_evidence": []
     },
     {
       "id": "D04",
@@ -145,7 +157,9 @@
       "escalation": "Pin/Arc/RAIIをdevice completionの代用にしない。unbounded waitを有限回復として書かない。",
       "issue_number": 11,
       "issue_url": "https://github.com/H4M4CHi-ttr/win-ssd-hdd-cache/issues/11",
-      "completion": "pending"
+      "completion": "pending",
+      "owner_approval": "not-required",
+      "approval_evidence": []
     },
     {
       "id": "D05",
@@ -176,7 +190,9 @@
       "escalation": "必要属性が取得不能ならfalseとして許可せず非対応にする。曖昧なdisk消去/初期化は所有者へ。",
       "issue_number": 15,
       "issue_url": "https://github.com/H4M4CHi-ttr/win-ssd-hdd-cache/issues/15",
-      "completion": "pending"
+      "completion": "pending",
+      "owner_approval": "not-required",
+      "approval_evidence": []
     },
     {
       "id": "D06",
@@ -206,11 +222,13 @@
       "escalation": "frontendの確認だけに安全性を依存させない。暗号化層/権限の未確定はAstraへ。",
       "issue_number": 19,
       "issue_url": "https://github.com/H4M4CHi-ttr/win-ssd-hdd-cache/issues/19",
-      "completion": "pending"
+      "completion": "pending",
+      "owner_approval": "not-required",
+      "approval_evidence": []
     },
     {
       "id": "D07",
-      "title": "整合性・flush耐久性・故障注入のoracleを定義する",
+      "title": "portableな整合性・flush耐久性・故障oracleを定義する",
       "agent": "astra",
       "review": "astra",
       "status": "blocked",
@@ -219,24 +237,26 @@
       "area": "model",
       "owner_decision": false,
       "dependencies": [
-        "D02",
-        "D04"
+        "D02"
       ],
       "files": [
         "docs/contracts/oracle-v1.md",
         "spec/evidence-v1.schema.json",
         "docs/adr/0017-test-oracle.md"
       ],
-      "output": "completed/flushed/volatile write、TRIM unknown、許容read結果、seed replay、fault注入点、証拠schemaとバグ検出の対照条件。",
+      "output": "D02の抽象eventに対するaccepted/applied/completed/durable write、TRIM unknown、許容read結果、seed replay、portable fault/証拠schema。Windows所有権へのmappingはD10が別に担当する。",
       "acceptance": [
         "通常write completionをpower-loss durabilityと誤認しないoracleを小例で示す",
         "stale-fill/early ACK/late-slot overwriteの故障modelが各試験で必ず失敗する条件を定義",
-        "原本failureとcachefailure、同時変更中shadow比較、未観測をPASSにしないルールを定義"
+        "原本failureとcachefailure、同時変更中shadow比較、未観測をPASSにしないルールを定義",
+        "F06/F07がWindows/WDKなしで利用できる完全な抽象契約と正常/異常例を固定する。IRP/MDL/DMA実証は完了条件に混ぜない"
       ],
       "escalation": "oracleとengineが同じ誤ったロジックを共有しないよう独立review。証拠不足ならgateを閉じない。",
       "issue_number": 17,
       "issue_url": "https://github.com/H4M4CHi-ttr/win-ssd-hdd-cache/issues/17",
-      "completion": "pending"
+      "completion": "pending",
+      "owner_approval": "not-required",
+      "approval_evidence": []
     },
     {
       "id": "D08",
@@ -261,12 +281,15 @@
       "acceptance": [
         "その時点のMicrosoft一次資料で要件を再確認しURL/dateを記録",
         "attestationがload可能なことと製品配布条件を区別し、普通の利用者にHVCI/SecureBoot無効化を要求しない",
-        "証明書/主体/lab所有者/専門家reviewの未決はowner decisionとして残し、購入や鍵登録を勝手にしない"
+        "証明書/主体/lab所有者/専門家reviewの未決はowner decisionとして残し、購入や鍵登録を勝手にしない",
+        "G1前のgovernance/配布実現性gateを意図的に維持する。資料調査・承認済みlab方針と未決の署名主体/購入/公開を区別し、owner承認なしでcloseしない"
       ],
       "escalation": "アカウント資格/契約/費用の確定に新権限が必要なら調査成果を先に残して所有者判断を求める。",
       "issue_number": 9,
       "issue_url": "https://github.com/H4M4CHi-ttr/win-ssd-hdd-cache/issues/9",
-      "completion": "pending"
+      "completion": "pending",
+      "owner_approval": "pending",
+      "approval_evidence": []
     },
     {
       "id": "D09",
@@ -288,19 +311,22 @@
       "acceptance": [
         "windows-drivers-rs公式成熟度注意と実際の対応構成を確認し、compileだけでproduction可としない",
         "user-mode/service/modelはRustを維持し、kernel側の例外は理由/範囲/再検討条件をADR化",
-        "FFI unwind不可、allocation/DropのIRQL、C/Rust ABI/layout、toolchain再現性を小さなlab-only proofで確認"
+        "FFI unwind不可、allocation/DropのIRQL、C/Rust ABI/layout、toolchain再現性を小さなlab-only proofで確認",
+        "G1前のexperiments/rust-wdkの最小compile/ABI proofをW01製品driverと区別する。compile成功はruntime/IRQL安全性証拠ではなく、install/VM/Verifierは別承認"
       ],
       "escalation": "Rust優先と安全/WDK制約が衝突したら無理に全面Rust化せず、狭い代替をAstraレビューで決める。",
       "issue_number": 6,
       "issue_url": "https://github.com/H4M4CHi-ttr/win-ssd-hdd-cache/issues/6",
-      "completion": "pending"
+      "completion": "pending",
+      "owner_approval": "not-required",
+      "approval_evidence": []
     },
     {
       "id": "F01",
       "title": "Rust workspaceとchecked byte-range/line-spanを実装する",
       "agent": "luna",
       "review": "sol",
-      "status": "ready",
+      "status": "done",
       "priority": "p0",
       "type": "task",
       "area": "tooling",
@@ -319,19 +345,22 @@
       "acceptance": [
         "line_span(4095,2,8192,K4)=(0,2)、EOF zero-length成功、u64::MAX境界でwrapしない失敗テストを先に追加",
         "cargo test -p cache-types --test range_contract が1件以上を実行してPASS。cargo fmt --all -- --check / cargo clippy -p cache-types --all-targets -- -D warnings がPASS",
-        "Windows/Linux hostで再現可能なcommandとtoolchain/MSRVを記録。未使用crate、driver、C/FFI、networkを追加しない"
+        "Windows/Linux hostで再現可能なcommandとtoolchain/MSRVを記録。未使用crate、driver、C/FFI、networkを追加しない",
+        "portable artifactは実行済みhost証拠と独立reviewで受け入れ、Windows実行はF10の二OSゲートに記録する。未実行をPASSにしない"
       ],
       "escalation": "sector alignmentや製品I/O semanticsをhelperへ加える必要があればSOLへ。共有Cargo manifestの同時変更は調整する。",
       "issue_number": 5,
       "issue_url": "https://github.com/H4M4CHi-ttr/win-ssd-hdd-cache/issues/5",
-      "completion": "pending"
+      "completion": "accepted",
+      "owner_approval": "not-required",
+      "approval_evidence": []
     },
     {
       "id": "F02",
       "title": "ラベルとバックログの静的整合性を検査するxtaskを作る",
       "agent": "luna",
       "review": "sol",
-      "status": "blocked",
+      "status": "ready",
       "priority": "p0",
       "type": "task",
       "area": "tooling",
@@ -351,19 +380,22 @@
       "acceptance": [
         "正本manifest/backlogをPASS。duplicate name、unknownprefix、duplicateID、missingdep、cycle、依存未完readyのfixtureをFAIL",
         "違反は契約どおり(code,path)でstable sortし、同一入力には常に同じ順序で返す。配列の並べ替えでJSON Pointerのindexが変わることは許容する",
-        "cargo test -p xtask / cargo xtask check-planning がPASS。GitHub API・token・自動修正/label削除を一切使わない"
+        "cargo test -p xtask / cargo xtask check-planning がPASS。GitHub API・token・自動修正/label削除を一切使わない",
+        "schema v2のowner_approval/evidence、done/acceptedとcancelled/not-planned対応を含め検証する。承認URLの存在だけでowner承認済みと判断しない"
       ],
       "escalation": "taxonomyやready判定契約を変えないと通らない場合、fixture/期待値を緩めずSOLへ。",
       "issue_number": 10,
       "issue_url": "https://github.com/H4M4CHi-ttr/win-ssd-hdd-cache/issues/10",
-      "completion": "pending"
+      "completion": "pending",
+      "owner_approval": "not-required",
+      "approval_evidence": []
     },
     {
       "id": "F03",
       "title": "cancelとcompletionを分ける決定的fake-I/Oキューを実装する",
       "agent": "luna",
       "review": "sol",
-      "status": "blocked",
+      "status": "done",
       "priority": "p0",
       "type": "task",
       "area": "model",
@@ -386,14 +418,16 @@
       "escalation": "Windows DMA/MDLやIoCancelIrpをこのhost queueに導入しない。実機安全性と混同しそうならSOLへ。",
       "issue_number": 7,
       "issue_url": "https://github.com/H4M4CHi-ttr/win-ssd-hdd-cache/issues/7",
-      "completion": "pending"
+      "completion": "accepted",
+      "owner_approval": "not-required",
+      "approval_evidence": []
     },
     {
       "id": "F04",
       "title": "discardをunknownとして扱うin-memory originを実装する",
       "agent": "luna",
       "review": "sol",
-      "status": "blocked",
+      "status": "ready",
       "priority": "p0",
       "type": "task",
       "area": "model",
@@ -415,7 +449,9 @@
       "escalation": "並行性/永続化の期待値が必要ならD02/D07へ。仕様にないsector atomicityを仮定しない。",
       "issue_number": 12,
       "issue_url": "https://github.com/H4M4CHi-ttr/win-ssd-hdd-cache/issues/12",
-      "completion": "pending"
+      "completion": "pending",
+      "owner_approval": "not-required",
+      "approval_evidence": []
     },
     {
       "id": "F05",
@@ -445,7 +481,9 @@
       "escalation": "event意味論やexpected valueが未定義なら実装せずD02へ。JSON Value変換で重複keyを消さない。",
       "issue_number": 14,
       "issue_url": "https://github.com/H4M4CHi-ttr/win-ssd-hdd-cache/issues/14",
-      "completion": "pending"
+      "completion": "pending",
+      "owner_approval": "not-required",
+      "approval_evidence": []
     },
     {
       "id": "F06",
@@ -478,7 +516,9 @@
       "escalation": "D02/D07の矛盾をharness内で勝手に解決しない。期待結果集合の追加はAstraレビュー。",
       "issue_number": 20,
       "issue_url": "https://github.com/H4M4CHi-ttr/win-ssd-hdd-cache/issues/20",
-      "completion": "pending"
+      "completion": "pending",
+      "owner_approval": "not-required",
+      "approval_evidence": []
     },
     {
       "id": "F07",
@@ -506,7 +546,9 @@
       "escalation": "どのread結果が許容されるか迷ったらAstraへ。runnerの結果に合わせて期待値を書き換えない。",
       "issue_number": 23,
       "issue_url": "https://github.com/H4M4CHi-ttr/win-ssd-hdd-cache/issues/23",
-      "completion": "pending"
+      "completion": "pending",
+      "owner_approval": "not-required",
+      "approval_evidence": []
     },
     {
       "id": "F08",
@@ -520,7 +562,8 @@
       "owner_decision": false,
       "dependencies": [
         "F06",
-        "D04"
+        "D04",
+        "D10"
       ],
       "files": [
         "tests/fixtures/lifetime/",
@@ -536,7 +579,9 @@
       "escalation": "fake queueが実DMA停止を証明したと解釈しない。期待値や所有権が不明ならAstraへ。",
       "issue_number": 25,
       "issue_url": "https://github.com/H4M4CHi-ttr/win-ssd-hdd-cache/issues/25",
-      "completion": "pending"
+      "completion": "pending",
+      "owner_approval": "not-required",
+      "approval_evidence": []
     },
     {
       "id": "F09",
@@ -550,9 +595,7 @@
       "owner_decision": false,
       "dependencies": [
         "D03",
-        "D09",
         "F06",
-        "GOV01",
         "F07",
         "F08"
       ],
@@ -562,16 +605,18 @@
         "crates/cache-engine/tests/differential.rs",
         "docs/evidence/engine-selection.md"
       ],
-      "output": "D03選定engineのhost adapter。OCFならupstream pin/notice/最小FFI、独自Rustなら同じ公開contract。kernel I/Oなし。",
+      "output": "D03でoriginal Rustが採択された場合のhost-only adapterと独立oracle対照試験。kernel/WDK/Windows FFI、第三者source vendoringを導入しない。OCF等の経路はGOV01を含む明示review済みscope/依存変更後に限る。",
       "acceptance": [
         "F07/F08相当のtraceを独立oracleと比較し違反0、injectedbugで差分検出",
         "line/sector候補とmemory/CPU/fill量を計測して予算決定資料を残す",
-        "cargo test -p cache-engine --test differential とreplay commandsを記録。Cが必要な場合だけtoolchainを隔離"
+        "cargo test -p cache-engine --test differential とreplay commandsを記録。original Rust/許可済み通常依存だけを使い、kernel採択はW02/D09で別判定する"
       ],
       "escalation": "OCF GoとRust kernel Goを混同しない。hostで通ってもWindows適合完了にしない。",
       "issue_number": 27,
       "issue_url": "https://github.com/H4M4CHi-ttr/win-ssd-hdd-cache/issues/27",
-      "completion": "pending"
+      "completion": "pending",
+      "owner_approval": "not-required",
+      "approval_evidence": []
     },
     {
       "id": "G01",
@@ -596,7 +641,9 @@
         "F07",
         "F08",
         "F09",
-        "F10"
+        "F10",
+        "B03",
+        "D10"
       ],
       "files": [
         "docs/gates/g1-design-model.md",
@@ -612,7 +659,9 @@
       "escalation": "モデルで捕捉不能な物理/OS前提がある場合、kernel進行条件/非対応範囲を再設計する。",
       "issue_number": 29,
       "issue_url": "https://github.com/H4M4CHi-ttr/win-ssd-hdd-cache/issues/29",
-      "completion": "pending"
+      "completion": "pending",
+      "owner_approval": "not-required",
+      "approval_evidence": []
     },
     {
       "id": "F10",
@@ -641,7 +690,9 @@
       "escalation": "WDK/HLK/管理者/署名鍵が必要なら別trusted pipelineとしてSOLへ。PR jobへ権限を足さない。",
       "issue_number": 13,
       "issue_url": "https://github.com/H4M4CHi-ttr/win-ssd-hdd-cache/issues/13",
-      "completion": "pending"
+      "completion": "pending",
+      "owner_approval": "not-required",
+      "approval_evidence": []
     },
     {
       "id": "W01",
@@ -665,12 +716,15 @@
       "acceptance": [
         "固定WDK/toolchainでbuildしINF/static checksを通す。署名はlab-only手順",
         "disposable targetでbaselineと成功/error/bytes/orderを対照。targetなし/対象外OS diskをcache化しない",
-        "load/unload/install失敗時の回復、global registrationの影響を確認。実データには導入しない"
+        "load/unload/install失敗時の回復、global registrationの影響を確認。実データには導入しない",
+        "通常read/write/controlのpassthrough担当。custom privileged endpoint実装はW10に分離し、cache hit activationをここで有効化しない"
       ],
       "escalation": "対象外diskやbootへ影響したら直ちに止めD01/D05へ。C shim境界を無断拡大しない。",
       "issue_number": 31,
       "issue_url": "https://github.com/H4M4CHi-ttr/win-ssd-hdd-cache/issues/31",
-      "completion": "pending"
+      "completion": "pending",
+      "owner_approval": "not-required",
+      "approval_evidence": []
     },
     {
       "id": "W02",
@@ -703,7 +757,9 @@
       "escalation": "Rust安全wrapperが実際にはaliasing/IRQLを隠す場合はAstraへ。FFI越境panicを許容しない。",
       "issue_number": 34,
       "issue_url": "https://github.com/H4M4CHi-ttr/win-ssd-hdd-cache/issues/34",
-      "completion": "pending"
+      "completion": "pending",
+      "owner_approval": "not-required",
+      "approval_evidence": []
     },
     {
       "id": "W03",
@@ -732,7 +788,9 @@
       "escalation": "cancel/drainが確認不能ならbypass固定/参照維持の契約に戻り、強制freeで隠さない。",
       "issue_number": 32,
       "issue_url": "https://github.com/H4M4CHi-ttr/win-ssd-hdd-cache/issues/32",
-      "completion": "pending"
+      "completion": "pending",
+      "owner_approval": "not-required",
+      "approval_evidence": []
     },
     {
       "id": "W04",
@@ -756,12 +814,15 @@
       "acceptance": [
         "T07/T12: oldphysicalwrite未完slotを再利用しない。checksum mismatch/read/write/full/readonlyエラーでhit拒否",
         "origin/cache overlapと自己再帰を拒否し、partialsector/sectorpairはD05allowlist外なら拒否",
-        "所有者承認済みdisposable partitionとmockdeviceで検証。origin HDDへcachemetadataを書かない"
+        "所有者承認済みdisposable partitionとmockdeviceで検証。origin HDDへcachemetadataを書かない",
+        "実raw backend試験はC07完了または同等の承認済みmanual lab準備記録（partition identity/range/geometry/排他/直前再検証/書込範囲制限）がある場合だけ。fixture/mockは別証拠"
       ],
       "escalation": "devicehangからのquiesceを証明できなければ同一領域再開禁止。CRC一致でfreshnessを保証しない。",
       "issue_number": 36,
       "issue_url": "https://github.com/H4M4CHi-ttr/win-ssd-hdd-cache/issues/36",
-      "completion": "pending"
+      "completion": "pending",
+      "owner_approval": "not-required",
+      "approval_evidence": []
     },
     {
       "id": "W05",
@@ -791,7 +852,9 @@
       "escalation": "原本orderingとcachepublishの線形化点が合わないならAstraへ。性能優先でbarrierを省略しない。",
       "issue_number": 35,
       "issue_url": "https://github.com/H4M4CHi-ttr/win-ssd-hdd-cache/issues/35",
-      "completion": "pending"
+      "completion": "pending",
+      "owner_approval": "not-required",
+      "approval_evidence": []
     },
     {
       "id": "W06",
@@ -821,7 +884,9 @@
       "escalation": "captureできない経路を見つけたらD01のsupport条件を縮める/方式を改める。",
       "issue_number": 33,
       "issue_url": "https://github.com/H4M4CHi-ttr/win-ssd-hdd-cache/issues/33",
-      "completion": "pending"
+      "completion": "pending",
+      "owner_approval": "not-required",
+      "approval_evidence": []
     },
     {
       "id": "W07",
@@ -847,12 +912,15 @@
       "acceptance": [
         "T14/T15/T19/T20: sleep/hibernate/offlineonline/交換/resize/no-target/driver撤去で旧cache再利用なし",
         "epochだけでslotを再利用せず、旧I/O未完なら再開拒否。serviceにdata-pathの進行を依存させない",
-        "対象外boot、uninstall失敗、再起動必要状態とmanualrecoveryを専用labで記録"
+        "対象外boot、uninstall失敗、再起動必要状態とmanualrecoveryを専用labで記録",
+        "C04を待たず、承認済みlab設定/test hookとdriver内target検証で試験可能にする。caller descriptorを無検証で信用しない"
       ],
       "escalation": "対象誤認/未知powertransition/参照漏れはAstraへ。原本formatで回復しない。",
       "issue_number": 37,
       "issue_url": "https://github.com/H4M4CHi-ttr/win-ssd-hdd-cache/issues/37",
-      "completion": "pending"
+      "completion": "pending",
+      "owner_approval": "not-required",
+      "approval_evidence": []
     },
     {
       "id": "W08",
@@ -886,7 +954,9 @@
       "escalation": "shadowの比較根拠/同世代条件に未定義があればD02/D07へ。hit提供を先行しない。",
       "issue_number": 39,
       "issue_url": "https://github.com/H4M4CHi-ttr/win-ssd-hdd-cache/issues/39",
-      "completion": "pending"
+      "completion": "pending",
+      "owner_approval": "not-required",
+      "approval_evidence": []
     },
     {
       "id": "G02",
@@ -917,7 +987,9 @@
       "escalation": "証拠欠落を『たぶん安全』で埋めない。人間の実機承認は別に確保する。",
       "issue_number": 41,
       "issue_url": "https://github.com/H4M4CHi-ttr/win-ssd-hdd-cache/issues/41",
-      "completion": "pending"
+      "completion": "pending",
+      "owner_approval": "not-required",
+      "approval_evidence": []
     },
     {
       "id": "W09",
@@ -947,14 +1019,16 @@
       "escalation": "データ差異、UAF、origin/cache対象混同は即停止。性能のため安全条件を緩めない。",
       "issue_number": 43,
       "issue_url": "https://github.com/H4M4CHi-ttr/win-ssd-hdd-cache/issues/43",
-      "completion": "pending"
+      "completion": "pending",
+      "owner_approval": "not-required",
+      "approval_evidence": []
     },
     {
       "id": "C01",
       "title": "offline status v1のRust型とstrict JSON codecを実装する",
       "agent": "luna",
       "review": "sol",
-      "status": "blocked",
+      "status": "ready",
       "priority": "p1",
       "type": "task",
       "area": "control",
@@ -971,12 +1045,15 @@
       "acceptance": [
         "全7statesをroundtrip。nullと0、u64::MAXを精度損失なく区別する",
         "unknown/duplicatefield/version/state/mode、leadingzero/negative/float/boolのcounter、入力65536B超を拒否",
-        "cargo test -p cache-types --test status_format がPASS。serdeの生errorや入力値を公開diagnosticsへ出さない"
+        "cargo test -p cache-types --test status_format がPASS。serdeの生errorや入力値を公開diagnosticsへ出さない",
+        "docs/contracts/host-formats-v1.mdの明示null/欠落、integer token、fixed error、object-only契約を守り、render roundtrip用encode_statusを実装する"
       ],
       "escalation": "新state/writebackmode/livecontrolの追加が必要ならD06/SOLへ。ここでkernel ABIを発明しない。",
       "issue_number": 16,
       "issue_url": "https://github.com/H4M4CHi-ttr/win-ssd-hdd-cache/issues/16",
-      "completion": "pending"
+      "completion": "pending",
+      "owner_approval": "not-required",
+      "approval_evidence": []
     },
     {
       "id": "C02",
@@ -1002,12 +1079,15 @@
       "acceptance": [
         "全statesのgolden出力、未取得と0の区別、unknown version拒否",
         "正常0/schemaerror2/fileI/Oerror3。activeを『安全性保証済み』と表示しない",
-        "cargo test -p cache-cli --test status_cli がPASS。network/admin/disk APIなし"
+        "cargo test -p cache-cli --test status_cli がPASS。network/admin/disk APIなし",
+        "docs/contracts/host-formats-v1.mdの固定JSON/text順序とLF、引数/exit/error、bounded file readerを正本として検証する"
       ],
       "escalation": "live接続・権限変更・state遷移を表示taskへ追加しない。D06/C04へ分離する。",
       "issue_number": 22,
       "issue_url": "https://github.com/H4M4CHi-ttr/win-ssd-hdd-cache/issues/22",
-      "completion": "pending"
+      "completion": "pending",
+      "owner_approval": "not-required",
+      "approval_evidence": []
     },
     {
       "id": "C03",
@@ -1035,7 +1115,9 @@
       "escalation": "復旧診断に識別子追加が必要ならD06でprivacy/権限/保存期間を再設計。",
       "issue_number": 21,
       "issue_url": "https://github.com/H4M4CHi-ttr/win-ssd-hdd-cache/issues/21",
-      "completion": "pending"
+      "completion": "pending",
+      "owner_approval": "not-required",
+      "approval_evidence": []
     },
     {
       "id": "C04",
@@ -1051,7 +1133,8 @@
         "D06",
         "C01",
         "W01",
-        "C02"
+        "C02",
+        "W10"
       ],
       "files": [
         "crates/cache-service/Cargo.toml",
@@ -1064,12 +1147,15 @@
       "acceptance": [
         "非認可caller/偽peer/不正message/rate超過を拒否。statusと管理操作の権限を区別",
         "D05 descriptorの各重要属性の取得証拠を残し、不明をfalseとして許可しない",
-        "service crash/restart/hangでも原本I/O経路がservice待ちにならない。CLI live接続のmock/実lab試験を通す"
+        "service crash/restart/hangでも原本I/O経路がservice待ちにならない。CLI live接続のmock/実lab試験を通す",
+        "driver側の認可/ABI/state/target検証はW10の承認済みendpointを消費し、サービスの検証だけで代替しない"
       ],
       "escalation": "OS属性の信頼性、TOCTOU、privilege scopeが不明ならD05/D06へ。必要以上のrawIOを公開しない。",
       "issue_number": 38,
       "issue_url": "https://github.com/H4M4CHi-ttr/win-ssd-hdd-cache/issues/38",
-      "completion": "pending"
+      "completion": "pending",
+      "owner_approval": "not-required",
+      "approval_evidence": []
     },
     {
       "id": "C05",
@@ -1099,7 +1185,9 @@
       "escalation": "descriptorに判定に必要な情報がなければD05へ。存在しない情報を推測しない。",
       "issue_number": 26,
       "issue_url": "https://github.com/H4M4CHi-ttr/win-ssd-hdd-cache/issues/26",
-      "completion": "pending"
+      "completion": "pending",
+      "owner_approval": "not-required",
+      "approval_evidence": []
     },
     {
       "id": "C06",
@@ -1129,7 +1217,9 @@
       "escalation": "C/Rust structとwireが食い違う、互換変換が必要ならD06/Astraへ。",
       "issue_number": 24,
       "issue_url": "https://github.com/H4M4CHi-ttr/win-ssd-hdd-cache/issues/24",
-      "completion": "pending"
+      "completion": "pending",
+      "owner_approval": "not-required",
+      "approval_evidence": []
     },
     {
       "id": "C07",
@@ -1161,7 +1251,9 @@
       "escalation": "破壊対象や所有権が曖昧なら止める。Issue実装許可だけで利用者のSSDを初期化しない。",
       "issue_number": 40,
       "issue_url": "https://github.com/H4M4CHi-ttr/win-ssd-hdd-cache/issues/40",
-      "completion": "pending"
+      "completion": "pending",
+      "owner_approval": "not-required",
+      "approval_evidence": []
     },
     {
       "id": "C08",
@@ -1192,14 +1284,16 @@
       "escalation": "boot/filter残留や署名条件不明ならD05/D08へ。安全なdrainを強制freeで置換しない。",
       "issue_number": 42,
       "issue_url": "https://github.com/H4M4CHi-ttr/win-ssd-hdd-cache/issues/42",
-      "completion": "pending"
+      "completion": "pending",
+      "owner_approval": "not-required",
+      "approval_evidence": []
     },
     {
       "id": "B01",
       "title": "Rustでlatency統計とstrict benchmark v1 codecを実装する",
       "agent": "luna",
       "review": "sol",
-      "status": "blocked",
+      "status": "ready",
       "priority": "p1",
       "type": "task",
       "area": "performance",
@@ -1217,12 +1311,15 @@
       "acceptance": [
         "[1,2,3,4,100]でp50=3,p95/p99=100。単一要素/u64::MAX/input不変/emptyを確認",
         "正常roundtrip、unknown/duplicatefield、末尾document、負/float/bool/overflow/leadingzero、cachemode条件不整合を拒否",
-        "cargo test -p cache-types --test benchmark_contract がPASS。外れ値除去/欠測補完/実機測定はしない"
+        "cargo test -p cache-types --test benchmark_contract がPASS。外れ値除去/欠測補完/実機測定はしない",
+        "docs/contracts/host-formats-v1.mdの具体型/parse_benchmark/encode_benchmark、strict object、integer token、明示null契約を固定golden fixtureで検証する"
       ],
       "escalation": "比較条件や統計的有意性を追加する判断はB03/SOLへ。",
       "issue_number": 18,
       "issue_url": "https://github.com/H4M4CHi-ttr/win-ssd-hdd-cache/issues/18",
-      "completion": "pending"
+      "completion": "pending",
+      "owner_approval": "not-required",
+      "approval_evidence": []
     },
     {
       "id": "B02",
@@ -1247,12 +1344,15 @@
       "acceptance": [
         "1.0s→0.8sは1.25x。workload/environment/toolchain/working_set/OS cache/repetitions不一致は比較不可",
         "unknown OS cache/0duration/欠測からInfinity/架空改善率を出さない。mode/SSD coldwarmを隠さない",
-        "cargo test -p cache-cli --test benchmark_report がPASS。stdoutに実機serialやfilepathsを含めない"
+        "cargo test -p cache-cli --test benchmark_report がPASS。stdoutに実機serialやfilepathsを含めない",
+        "docs/contracts/host-formats-v1.mdのCLI/result/errorを正本とし、公開型の不正な直接構築もcompare_runsで拒否してpanic/Infinityを出さない"
       ],
       "escalation": "比較対象の採用/除外ルールを変えたくなったらB03へ。",
       "issue_number": 28,
       "issue_url": "https://github.com/H4M4CHi-ttr/win-ssd-hdd-cache/issues/28",
-      "completion": "pending"
+      "completion": "pending",
+      "owner_approval": "not-required",
+      "approval_evidence": []
     },
     {
       "id": "B03",
@@ -1279,12 +1379,15 @@
       "acceptance": [
         "128/256GB候補のmetadata量と計測値を区別し、予算超過はbypass/拒否でbounded",
         "OS RAM cache冷温/SSD冷温、RAMより小/大hotset、CPU/network律速の混入を制御",
-        "改善/overhead/p95p99/CPU/SSDwrite量の合否基準を結果を見る前に承認。未達時のNo-Go/直置き比較も書く"
+        "改善/overhead/p95p99/CPU/SSDwrite量の合否基準を結果を見る前に承認。未達時のNo-Go/直置き比較も書く",
+        "G1前はcandidate host測定と明記した保守的仮定で初期kernel上限を承認する。W03/W09実測を初期完了の前提にしない。後の実測は上限を検証し変更時は再review"
       ],
       "escalation": "性能を得るためINVを緩める必要があるならNo-Go。cachehit率だけで価値を主張しない。",
       "issue_number": 30,
       "issue_url": "https://github.com/H4M4CHi-ttr/win-ssd-hdd-cache/issues/30",
-      "completion": "pending"
+      "completion": "pending",
+      "owner_approval": "not-required",
+      "approval_evidence": []
     },
     {
       "id": "Q01",
@@ -1316,7 +1419,9 @@
       "escalation": "所有権/整合性の故障は直ちに停止してAstra。実disk使用は別途承認済みlabのみ。",
       "issue_number": 45,
       "issue_url": "https://github.com/H4M4CHi-ttr/win-ssd-hdd-cache/issues/45",
-      "completion": "pending"
+      "completion": "pending",
+      "owner_approval": "not-required",
+      "approval_evidence": []
     },
     {
       "id": "Q02",
@@ -1346,7 +1451,9 @@
       "escalation": "lab機器/電源操作/破壊的試験の所有者承認がなければ停止し、独立にできる証拠整理だけ進める。",
       "issue_number": 48,
       "issue_url": "https://github.com/H4M4CHi-ttr/win-ssd-hdd-cache/issues/48",
-      "completion": "pending"
+      "completion": "pending",
+      "owner_approval": "pending",
+      "approval_evidence": []
     },
     {
       "id": "Q03",
@@ -1377,7 +1484,9 @@
       "escalation": "閾値を結果に合わせて変えず、未達は再設計またはNo-Goとして報告する。",
       "issue_number": 46,
       "issue_url": "https://github.com/H4M4CHi-ttr/win-ssd-hdd-cache/issues/46",
-      "completion": "pending"
+      "completion": "pending",
+      "owner_approval": "not-required",
+      "approval_evidence": []
     },
     {
       "id": "Q04",
@@ -1411,7 +1520,9 @@
       "escalation": "資格・費用・専門家・証拠不足ならblocked/No-Goを正直に残す。",
       "issue_number": 50,
       "issue_url": "https://github.com/H4M4CHi-ttr/win-ssd-hdd-cache/issues/50",
-      "completion": "pending"
+      "completion": "pending",
+      "owner_approval": "pending",
+      "approval_evidence": []
     },
     {
       "id": "U01",
@@ -1444,7 +1555,9 @@
       "escalation": "UIから直接disk操作したくなる場合はD06へ。GUI都合でkernel/IPCを拡張しない。",
       "issue_number": 44,
       "issue_url": "https://github.com/H4M4CHi-ttr/win-ssd-hdd-cache/issues/44",
-      "completion": "pending"
+      "completion": "pending",
+      "owner_approval": "not-required",
+      "approval_evidence": []
     },
     {
       "id": "U02",
@@ -1473,7 +1586,9 @@
       "escalation": "API/画面契約が不明、state遷移やadmin権限が必要ならSOLへ。",
       "issue_number": 47,
       "issue_url": "https://github.com/H4M4CHi-ttr/win-ssd-hdd-cache/issues/47",
-      "completion": "pending"
+      "completion": "pending",
+      "owner_approval": "not-required",
+      "approval_evidence": []
     },
     {
       "id": "U03",
@@ -1504,7 +1619,109 @@
       "escalation": "UIUXの都合でdrain/再認証/対象確認を省略しない。Astraへ安全レビュー。",
       "issue_number": 49,
       "issue_url": "https://github.com/H4M4CHi-ttr/win-ssd-hdd-cache/issues/49",
+      "completion": "pending",
+      "owner_approval": "not-required",
+      "approval_evidence": []
+    },
+    {
+      "id": "D10",
+      "title": "Windows所有権契約へportable oracleと故障注入点を対応付ける",
+      "agent": "astra",
+      "review": "astra",
+      "status": "blocked",
+      "priority": "p0",
+      "type": "design",
+      "area": "model",
+      "owner_decision": false,
+      "dependencies": [
+        "D04",
+        "D07"
+      ],
+      "files": [
+        "docs/contracts/windows-fault-mapping.md",
+        "docs/validation.md"
+      ],
+      "output": "D04のIRP/MDL/buffer/slot/IRQL/rundownとD07のportable oracleを対応付ける規範表。D10はmapping契約であり実DMA/Windows試験の実行証拠ではない。",
+      "acceptance": [
+        "D07のsubmit/apply/complete/durable結果を変えず、各Windows callback/取消/timeout/removeへの対応と観測できないケースを明示する",
+        "cache read/writeのslot lease、late completion、resource exhaustion、短いI/OをF08/W03/W04/Q01へ具体的なexpected result付きで割り当てる",
+        "portable仮定とWindows証拠が衝突したらD02/D07を再openする手順を定義し、期待値を実装に合わせて変更しない",
+        "実機/VM/driver/Verifierを実行せず、未実証と独立Astraレビューの根拠を記録する"
+      ],
+      "escalation": "Windowsの実際の所有権や完了意味論が不明ならD04へ戻す。mapping文書を実機合格とは扱わない。",
+      "issue_number": 52,
+      "issue_url": "https://github.com/H4M4CHi-ttr/win-ssd-hdd-cache/issues/52",
+      "completion": "pending",
+      "owner_approval": "not-required",
+      "approval_evidence": []
+    },
+    {
+      "id": "W10",
+      "title": "認可・ABI検証を行うkernel control endpointを実装する",
+      "agent": "sol",
+      "review": "astra",
+      "status": "blocked",
+      "priority": "p0",
+      "type": "task",
+      "area": "driver",
+      "owner_decision": false,
+      "dependencies": [
+        "G01",
+        "C06",
+        "W07"
+      ],
+      "files": [
+        "drivers/windows/src/control.rs",
+        "drivers/windows/tests/control_dispatch.rs",
+        "docs/contracts/control-abi.md"
+      ],
+      "output": "D06で凍結したcustom control endpointをdriver側で実装。C04サービスはこの境界を消費する。言語/pathはD09の採択に合わせIssueで明示更新する。",
+      "acceptance": [
+        "device endpointのACL/access policy、version/length/opcode/reserved/range検証をD06どおりdriver内で強制する",
+        "read-only statusとmutation権限を分離し、任意pointer/raw-disk/任意IOCTL転送を公開しない",
+        "state/lifecycle/targetをmutation直前に再検証し、不正・未認可入力で状態を変えない。C06 vectorsを実dispatch decoderに通す",
+        "outstanding control要求のremove/rundownを検証し、通常HDD I/Oをservice待ちにしない。cache hit activationはG02前に公開しない",
+        "既存VM/lab承認の範囲でのみ実行し、Windows未実施をPASSにしない。独立Astra reviewとexact toolchain/commandsを残す"
+      ],
+      "escalation": "新opcode、権限、lifecycle、kernel所有権の未定義はD06/D04/D05へ戻す。準備とdriver installには別の明示lab承認が必要。",
+      "issue_number": 53,
+      "issue_url": "https://github.com/H4M4CHi-ttr/win-ssd-hdd-cache/issues/53",
+      "completion": "pending",
+      "owner_approval": "not-required",
+      "approval_evidence": []
+    },
+    {
+      "id": "AUD01",
+      "title": "全Issue監査で見つかった契約・依存・承認状態の不備を修正する",
+      "agent": "astra",
+      "review": "astra",
+      "status": "ready",
+      "priority": "p0",
+      "type": "design",
+      "area": "planning",
+      "owner_decision": false,
+      "owner_approval": "not-required",
+      "approval_evidence": [],
+      "dependencies": [],
+      "files": [
+        "docs/issue-audit-2026-11-02.md",
+        "docs/contracts.md",
+        "docs/contracts/host-formats-v1.md",
+        "docs/backlog.json",
+        "docs/backlog.md",
+        "docs/superpowers/plans/2026-11-02-win-ssd-hdd-cache-plan.md"
+      ],
+      "output": "既存49作業Issueと親を全件監査し、承認状態/契約/責任分担/依存/受入の不備を是正。安全なWindows/owner gateは維持する。",
+      "acceptance": [
+        "全件監査の対象・根拠・是正一覧を記録する",
+        "backlog/計画/Issue本文とtaxonomyを照合し依存DAG・ready条件を検証する",
+        "安全gateを削らず、独立Astraレビューを受ける"
+      ],
+      "escalation": "承認や実証の不足をcloseで隠さない。ライセンス・署名・lab・公開は所有者へ。",
+      "issue_number": 51,
+      "issue_url": "https://github.com/H4M4CHi-ttr/win-ssd-hdd-cache/issues/51",
       "completion": "pending"
     }
   ]
 }
+

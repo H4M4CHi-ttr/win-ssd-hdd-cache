@@ -1,6 +1,6 @@
-# インターフェース契約 v0.1
+# インターフェース契約 v0.2
 
-状態: 設計。以下のRust APIとpathは**これから実装する契約**。kernel ABIを推測して実装しない。
+状態: 設計契約とportable host実装の受入を並行中。API/pathの実装状況はbacklogと各Issueの証拠で確認する。kernel ABIを推測して実装しない。
 
 ## 1. Workspaceと依存
 
@@ -19,7 +19,7 @@ planned crates:
 | `xtask` | repo整合性検査などの開発補助 | 禁止 |
 | `apps/gui` | Tauri + Vue/TypeScriptの非特権UI | raw I/O禁止 |
 
-host testsにWDK、管理者権限、実disk、network、署名鍵を要求しない。host crateはWindows/Linuxの両方で試験。最初のF01ではcache-typesのrangeとworkspaceだけを作り、未使用crateの空殻を大量に作らない。依存crateは必要なtaskで追加する。各taskのFilesは主要pathを列挙しており、そのtaskに必要なworkspace登録/Cargo.lock/lib.rs export/test登録は付随変更として許可する。無関係な依存更新は行わず、共有ファイルの統合順を調整する。
+host testsにWDK、管理者権限、実disk、network、署名鍵を要求しない。host crateはWindows/Linuxの両方で試験する方針とし、実際の二OS実行をF10の受入gateにする。F01等のportable artifactは実行したhost・独立review・未実行項目を記録して受入できる（F01→F02→F10の循環を作らない）。Windows未実行をPASSと表示しない。最初のF01ではcache-typesのrangeとworkspaceだけを作り、未使用crateの空殻を大量に作らない。依存crateは必要なtaskで追加する。各taskのFilesは主要pathを列挙しており、そのtaskに必要なworkspace登録/Cargo.lock/lib.rs export/test登録は付随変更として許可する。無関係な依存更新は行わず、共有ファイルの統合順を調整する。
 
 serde/serde_json等は用途とlicenseを記録してpin。unsafeな自作JSON parserや勝手なJSON Valueへのroundtripで重複キーを消す処理は避ける。GUIのexact Tauri/Node/package versionsはU01でpinし、kernel toolchainとは独立に管理する。
 
@@ -88,6 +88,8 @@ ManifestViolationは `{ code: String, path: String }`。codeはINVALID_JSON/UNKN
 
 これはGUI/CLIの表示テスト用schemaであり、kernel IOCTLのABIではない。
 
+具体的な型、明示null/欠落の区別、object-only、integer token、固定error、canonical出力は[host表示・CLI契約](contracts/host-formats-v1.md)を正本とする。
+
 ```json
 {
   "schema_version": 1,
@@ -115,6 +117,8 @@ ManifestViolationは `{ code: String, path: String }`。codeはINVALID_JSON/UNKN
 
 ## 7. 固定契約: benchmark v1（B01/B02）
 
+具体的なRust型、parse/encode/比較の検証、CLI/exit/outputは[host表示・CLI契約](contracts/host-formats-v1.md)で固定する。公開型を直接構築した不正入力もcompare_runsが拒否する。
+
 JSON objectの全必須field:
 
 - schema_version=1
@@ -139,13 +143,14 @@ unknown field/duplicate key/oversized input（16 MiB超）を拒否。比較はw
 | 契約 | owner | 必須出力 | 後続 |
 |---|---|---|---|
 | trace schema / linearization | D02 | event enum、必須field、request/epoch/slot ID、上限、全正常/異常例 | F05,F06,F07 |
-| durability/fault oracle | D07 | accepted/completed/flushed writes、TRIM unknown、seed replay、mutation-test反例 | F06,F08,Q01 |
+| portable durability/fault oracle | D07 | accepted/applied/completed/durable writes、TRIM unknown、seed replay、mutation-test反例 | F06,F07 |
+| Windows fault mapping | D10 | D04所有権/callback/IRQLとD07 oracleの対応、未観測の扱い | F08,G01,Q01 |
 | engine/FFI | D03,D04 | opaque handles、repr(C)固定幅型、error/result、buffer owner、callback IRQL、allocator | W02 |
 | target descriptor | D05 | 三値属性yes/no/unknown、identity、geometry、拒否code、TOCTOU再検証 | C05 |
 | IOCTL / service IPC | D06 | byte layout/version/length/opcode、ACL/authz、rate/size limits、golden vectors | C04,C06,U01 |
-| resource budgets | D04,B03 | max inflight/queue/cache size/nonpaged memory、overflow/low-memory動作 | W03,W07 |
+| resource budgets | D04,B03（G01前） | max inflight/queue/cache size/nonpaged memory、overflow/low-memory動作 | G01,W03,W07 |
 
-D02がtraceを凍結する際、origin-write submit/apply/complete、read snapshot/completion、cache-fill submit/complete/publish、cancel request、epoch change、slot reuse、flush、discardを表現できること。cancelとcomplete、cache data writeとmetadata publishを別eventにする。最低反例: stale-fill、2 writers、partial overlap、late DMA、late physical slot write。容量上限1 MiB、event数上限10,000、payload総量16 MiB。seedはtraceに記録し、OS時刻やthread schedulerに依存しない。
+D02がtraceを凍結する際、origin-write submit/apply/complete、read snapshot/completion、cache-fill submit/complete/publish、cancel request、epoch change、slot reuse、flush、discardを表現できること。cancelとcomplete、cache data writeとmetadata publishを別eventにする。read/write双方のin-flight slot lease、hit観測点と完了前再検証、partial/unknown extent、短いcache I/O、非wrap ID枯渇を規定する。最低反例: stale-fill、2 writers、partial overlap、late DMA、late physical slot write/read。容量上限1 MiB、event数上限10,000、payload総量16 MiB、raw JSON byte上限はD02が明記して凍結する。seedはtraceに記録し、OS時刻やthread schedulerに依存しない。
 
 ## 9. Rust / FFI境界
 
@@ -185,13 +190,16 @@ cancelはpending flagだけを立て、pending中は冪等成功。完了や解�
 
 ## 11. バックログのmachine-readable契約（F02）
 
-`docs/backlog.json`: schema_version=1、plan_date（YYYY-MM-DD）、tasks配列。各taskの必須キーはid/title/agent/review/status/priority/type/area/owner_decision/dependencies/files/output/acceptance/escalation/issue_number/issue_url/completion。
+`docs/backlog.json`: schema_version=2、plan_date（実在するYYYY-MM-DD）、tasks配列。各taskの必須キーはid/title/agent/review/status/priority/type/area/owner_decision/owner_approval/approval_evidence/dependencies/files/output/acceptance/escalation/issue_number/issue_url/completion。未知/重複JSONキーを拒否する。
 
 - idはGOV01、D01等の大文字英数stable ID、一意。
-- agent=luna/sol/astra、review=sol/astra、status=ready/blocked/needs-decision、priority=p0/p1/p2、type=design/task/gate、areaはlabels.jsonに定義したarea suffix。
+- agent=luna/sol/astra、review=sol/astra、status=ready/blocked/needs-decision/done/cancelled、priority=p0/p1/p2、type=design/task/gate、areaはlabels.jsonに定義したarea suffix。各値のlabelがmanifestにあること。
 - owner_decisionはbool。dependenciesは他task IDの重複なし配列、DAGであること。self-reference禁止。
 - issue_numberは正整数、issue_urlはこのrepoの対応URL。初回起票中のみnullを許容するが、完成したbaselineではnullなし。
-- completion=pending/accepted/not-planned。初回は全件pending。acceptedへ変える際はIssueのreview/test証拠へのリンクを本文/計画へ残す。
-- readyは全dependenciesがacceptedで、owner_decision=falseの時だけ許可。needs-decisionはowner_decision=true。blockedは未解決前提を本文に示す。
+- completion=pending/accepted/not-planned。done iff accepted、cancelled iff not-planned。cancelledは先行課題の受入として数えない。acceptedへ変える際はIssueのreview/test証拠へのリンクを本文/計画へ残す。
+- owner_decision=falseならowner_approval=not-requiredかつapproval_evidence=[]。trueならpendingまたはapproved。pendingのevidenceは空、approvedはこのrepoのIssue/PRのHTTPS URLを1件以上（承認scopeの記録）とする。既存owner課題はpendingのまま移行し、推測で承認済みにしない。
+- ready/acceptedは全dependenciesがacceptedで、owner承認がnot-requiredまたはapprovedの場合のみ許可。needs-decisionはowner_decision=trueかつowner_approval=pending。blockedは未解決前提を本文に示す。
+- 承認URLの存在は承認内容の証明ではない。人間/担当reviewerが承認者・対象・操作・条件を検査する。範囲変更/撤回時は関連taskと依存readyを再評価する。decision:ownerは承認必要性を保持するラベルであり承認済みを意味しない。
 - filesは予定path配列であり、codeが現存するという判定には使わない。相対Markdownリンクは現存docのみを解決し、code span内のplanned pathは欠落と誤認しない。
 - これは計画時点のsnapshot。GitHubのlive進捗と自動同期されるとは主張しない。契約変更/依存変更/受入完了時にsnapshotもPRで更新する。
+
