@@ -60,10 +60,25 @@ struct RawRecord {
     information: NullableString,
 }
 
+#[derive(Debug, Clone, Copy, PartialEq, Eq)]
+enum CaptureVersion {
+    V1,
+    V2,
+}
+
+impl CaptureVersion {
+    const fn number(self) -> u8 {
+        match self {
+            Self::V1 => 1,
+            Self::V2 => 2,
+        }
+    }
+}
+
 #[derive(Debug)]
 enum Phase {
     Submit { unknown_range: bool, other: bool },
-    Complete,
+    Complete { unknown_information: bool },
 }
 
 struct Record {
@@ -74,7 +89,7 @@ struct Record {
 }
 
 // These positions are the contract's canonical report order, never event order.
-const REASONS: [&str; 14] = [
+const REASONS: [&str; 15] = [
     "EMPTY_CAPTURE",
     "NOT_FINALIZED",
     "UNKNOWN_COUNTERS",
@@ -89,12 +104,14 @@ const REASONS: [&str; 14] = [
     "UNKNOWN_RANGE",
     "UNCLASSIFIED_OPERATION",
     "MISSING_PROVENANCE",
+    "UNKNOWN_INFORMATION",
 ];
 
 /// Only the audit can construct a verdict. No source IDs or free text escape in
 /// the report, and every authenticity/authorization/qualification flag is false.
 #[derive(Debug, Clone, PartialEq, Eq)]
 pub struct CaptureAudit {
+    version: CaptureVersion,
     evidence_kind: &'static str,
     observation_point: &'static str,
     records: u64,
@@ -103,7 +120,7 @@ pub struct CaptureAudit {
     paired_requests: u64,
     pending_requests: u64,
     orphan_completions: u64,
-    reasons: [bool; 14],
+    reasons: [bool; 15],
 }
 
 impl CaptureAudit {
@@ -127,7 +144,8 @@ impl CaptureAudit {
         // All string substitutions are closed static vocabularies; source text
         // is never interpolated. Counts are bounded by the accepted record cap.
         format!(
-            "{{\"schema_version\":1,\"evidence_kind\":\"{}\",\"observation_point\":\"{}\",\"verdict\":\"{}\",\"records\":\"{}\",\"submits\":\"{}\",\"completions\":\"{}\",\"paired_requests\":\"{}\",\"pending_requests\":\"{}\",\"orphan_completions\":\"{}\",\"reasons\":[{}],\"producer_verified\":false,\"authorization_verified\":false,\"coverage_verified\":false,\"kernel_runtime_qualified\":false}}\n",
+            "{{\"schema_version\":{},\"evidence_kind\":\"{}\",\"observation_point\":\"{}\",\"verdict\":\"{}\",\"records\":\"{}\",\"submits\":\"{}\",\"completions\":\"{}\",\"paired_requests\":\"{}\",\"pending_requests\":\"{}\",\"orphan_completions\":\"{}\",\"reasons\":[{}],\"producer_verified\":false,\"authorization_verified\":false,\"coverage_verified\":false,\"kernel_runtime_qualified\":false}}\n",
+            self.version.number(),
             self.evidence_kind,
             self.observation_point,
             verdict,
@@ -186,7 +204,7 @@ fn check_version(value: &NullableString) -> Result<(), CaptureError> {
     Ok(())
 }
 
-fn record(raw: RawRecord) -> Result<Record, CaptureError> {
+fn record(raw: RawRecord, version: CaptureVersion) -> Result<Record, CaptureError> {
     let seq = decimal(&raw.seq)?;
     if raw.phase != "submit" && raw.phase != "complete" {
         return Err(CaptureError::InvalidValue);
@@ -225,13 +243,15 @@ fn record(raw: RawRecord) -> Result<Record, CaptureError> {
             || offset.is_some()
             || length.is_some()
             || !status.is_some_and(|n| u32::try_from(n).is_ok())
-            || information.is_none()
+            || (version == CaptureVersion::V1 && information.is_none())
         {
             return Err(CaptureError::InvalidValue);
         }
         // Completion status/information are observations, not a portable I/O
         // success/transfer rule. Validate their representation, never normalize.
-        Phase::Complete
+        Phase::Complete {
+            unknown_information: information.is_none(),
+        }
     };
     Ok(Record {
         seq,
@@ -256,9 +276,11 @@ pub fn audit_capture(input: &str) -> Result<CaptureAudit, CaptureError> {
     // through serde_json::Value, which would erase duplicate names.
     let Object(raw): Object<RawCapture> =
         serde_json::from_str(input).map_err(|_| CaptureError::InvalidCapture)?;
-    if raw.schema_version.0 != 1 {
-        return Err(CaptureError::UnsupportedVersion);
-    }
+    let version = match raw.schema_version.0 {
+        1 => CaptureVersion::V1,
+        2 => CaptureVersion::V2,
+        _ => return Err(CaptureError::UnsupportedVersion),
+    };
     if raw.records.len() > CAPTURE_MAX_RECORDS {
         return Err(CaptureError::TooManyRecords);
     }
@@ -287,10 +309,11 @@ pub fn audit_capture(input: &str) -> Result<CaptureAudit, CaptureError> {
     let records: Vec<_> = raw
         .records
         .into_iter()
-        .map(|Object(r)| record(r))
+        .map(|Object(r)| record(r, version))
         .collect::<Result<_, _>>()?;
     // Only validated, bounded records reach correlation-state allocation.
     let mut result = CaptureAudit {
+        version,
         evidence_kind,
         observation_point,
         records: records.len() as u64,
@@ -299,7 +322,7 @@ pub fn audit_capture(input: &str) -> Result<CaptureAudit, CaptureError> {
         paired_requests: 0,
         pending_requests: 0,
         orphan_completions: 0,
-        reasons: [false; 14],
+        reasons: [false; 15],
     };
     result.reasons[0] = records.is_empty();
     result.reasons[1] = !raw.capture_finalized;
@@ -341,8 +364,13 @@ pub fn audit_capture(input: &str) -> Result<CaptureAudit, CaptureError> {
                     }
                 }
             }
-            Phase::Complete => {
+            Phase::Complete {
+                unknown_information,
+            } => {
                 result.completions += 1;
+                // Every supplied completion carries its own uncertainty, even
+                // when a duplicate cannot participate in correlation again.
+                result.reasons[14] |= unknown_information;
                 // Reserve first occurrence, including an orphan/mismatch. A
                 // duplicate is never a repair or a second successful pair.
                 if !completions.insert(r.request_id) {
