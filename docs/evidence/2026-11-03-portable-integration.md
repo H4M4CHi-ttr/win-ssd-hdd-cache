@@ -74,3 +74,24 @@ is not a blanket prohibition on source/build preparation. Conversely, no existin
 blocked product task can simply be relabeled ready: D01/D04/D10/F08/F09/G1 and
 lab/owner gates remain. A coherent callback/lifetime/transport contract, rather
 than more unrelated fixtures or a mock GUI, must establish the next source scope.
+
+## P03 actual source acceptance
+
+The P03 planning checkpoint was published in PR87 and its implementation then
+accepted in [PR88](https://github.com/H4M4CHi-ttr/win-ssd-hdd-cache/pull/88).
+Published heade2a7b1c84f16627b47f936cb300736d7b24a30ea and tree
+bff25e6a702e69f30b4f5848903e63bb494193fa passed actual host run41582572440:
+Windows296/Linux299 named tests, zero failed/ignored, planning28/56/68/220.
+The16 new format/CLI tests executed on each OS. Independent source review
+accepted local3b19b97 and the final documentation delta7857a4b. Root normally
+merged at17edb16ba14f6f4029c6485cb0cb652fc7cd4bd5 and verified main's exact tree.
+[P03 evidence](P03.md) retains the real RED, compatibility witnesses and source
+boundaries. Only this offline format was accepted; no actual collector/driver
+or Windows runtime qualification was inferred.
+
+P04 is being specified as a complete but never-loaded capture-only upper-candidate
+probe and Rust collector. Its limited C/WDK lifecycle exception, exact framing,
+finite recorder and same-source host DDI harness need independent acceptance
+before source work. This does not change D01/D04/D10/F08/F09/G1 or any existing
+owner approval. Public repository and ordinary Actions authorization are still
+distinct from permission to attach/install/load or publish a product binary.
