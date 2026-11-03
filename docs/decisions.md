@@ -8,9 +8,9 @@
 | ADR-002 | 採択 | cold reset、初期persistent cacheなし | offline mutation/reboot freshnessの難題を初期版から外す |
 | ADR-003 | 採択 | 専用data HDD + 別SSD専有partition、明示opt-in | 再帰I/O、原本format、対象誤認を避ける |
 | [ADR-004](adr/0004-interception-boundary.md) | D01資料統合済み・受入未完 | storage/block filter候補、位置は未採択 | raw/control pathと対象外bootへの影響は別承認labのtrace待ち |
-| ADR-005 | 設計ゲート D03 | OCF WI vs 最小clean-cache core | porting負債、C/Rust境界、memory、整合性の実証で選択 |
+| [ADR-005](adr/0005-cache-engine.md) | D03 host方針受入・main統合済み | original Rustを後続host qualificationへ採択、今回のOCF移植は見送り | OCF実行比較・F09・製品engine受入は未実施。Windows境界とは別 |
 | ADR-006 | 採択 | 主実装Rust、必要なGUIはTauri | 所有者の明示要件。kernelだけ必要に応じC/WDK等を局所採用 |
-| ADR-007 | 設計ゲート D09 | kernel Rust / no_std / WDK shimの責任分割 | runtime/panic/alloc/IRQL、toolchain/HLK、保守性を実証。Rust採用を安全証明としない |
+| [ADR-007](adr/0007-rust-kernel-boundary.md) | D09 build-only受入・main統合済み | Rust-firstと最小C/WDK fallbackのビルド・ABI比較 | production entry/glueは未選定。IRQL/MDL/DMA/HVCI/HLK・driver loadの証拠ではない |
 | ADR-008 | 採択 | CLI/serviceを先に、非特権Tauri UIは後段 | UIとkernelの危険な依存を切り、安全条件を再利用 |
 | ADR-009 | 採択 | unsafe境界・ABI・同時実行は上位担当/独立review | Lunaに未定義の安全契約を決めさせない |
 | ADR-010 | 設計ゲート D08 | 一般公開はWHCP/HLK条件確認を基本 | attestation/test trustと製品公開条件を混同しない |

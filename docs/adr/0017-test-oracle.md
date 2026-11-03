@@ -1,6 +1,6 @@
 # ADR-017: Independent lower-history oracle
 
-Status: D07 specification independently accepted at `cefd96ea936e664c648ba67437a233261a58a92b`; remote publication/integration pending. 2026-11-02. Issue [#17](https://github.com/H4M4CHi-ttr/win-ssd-hdd-cache/issues/17).
+Status: D07 specification independently accepted at `cefd96ea936e664c648ba67437a233261a58a92b` and merged in PR #71; see the integration update below. Updated 2026-11-03 JST. Issue [#17](https://github.com/H4M4CHi-ttr/win-ssd-hdd-cache/issues/17). This specification's examples are not themselves executed Windows evidence.
 
 ## Reviewed decision
 
