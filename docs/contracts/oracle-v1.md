@@ -1,6 +1,6 @@
 # Portable independent oracle v1 — D07
 
-状態: specificationは独立Astra review受入済み（`cefd96ea936e664c648ba67437a233261a58a92b`）、remote公開・統合は未確認。2026-11-02。[D02 trace-v1](trace-v1.md) の意味を変更せず、F06/F07が使う独立判定と証拠を定義する。[受入範囲](../adr/0017-test-oracle.md)を参照。Windows/WDK/IRP/MDL/DMAの実証ではない。candidateが返すgeneration、valid、successをそのまま正解として扱わない。
+状態: specificationは独立Astra review受入済み（`cefd96ea936e664c648ba67437a233261a58a92b`）、PR #71でmain統合済み（2026-11-03）。[D02 trace-v1](trace-v1.md) の意味を変更せず、F06/F07が使う独立判定と証拠を定義する。[受入範囲](../adr/0017-test-oracle.md)を参照。Windows/WDK/IRP/MDL/DMAの実証ではない。candidateが返すgeneration、valid、successをそのまま正解として扱わない。
 
 ## 1. 分離する責務
 

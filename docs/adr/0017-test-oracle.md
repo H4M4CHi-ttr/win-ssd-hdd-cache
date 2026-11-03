@@ -31,3 +31,7 @@ An independent Astra reviewer accepted immutable specification commit `cefd96ea9
 O01–O18 are hand-derived contract examples, **not executed tests**. The evidence schema was checked for JSON syntax; no claim of full JSON-Schema validation is made. The schema is shape-only and requires the runtime semantic checks specified in the contract. Local planning validation passed (28 labels, 52 tasks, 42 documents, 99 relative links) before this acceptance record. No F06/F07 implementation, Windows execution or hardware test was performed in D07.
 
 GitHub publication is unconfirmed after interrupted commit-creation calls. This document does not imply main contains the specification or that #17 was closed. Keep the repository's integration snapshot unchanged until the accepted artifact is actually published and integrated. F06 also requires F05's outstanding Windows host CI and acceptance.
+
+## 2026-11-03 公開・統合の追記
+
+[Phase 2統合記録](../evidence/2026-11-03-phase2-integration.md)にmain統合、今回のCIと受入を記録。上記のlocal/未公開という記述は当時の履歴であり、今回解消した。runtime/実機・製品受入の未実施は変わらない。

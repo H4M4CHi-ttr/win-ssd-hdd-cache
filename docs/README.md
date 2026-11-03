@@ -1,6 +1,6 @@
 # 設計文書の入口
 
-更新: 2026-11-02（日本時間）。設計文書と実装証拠を区別します。host試験の成功は製品driver・実機安全性の証拠ではありません。
+更新: 2026-11-03（日本時間）。設計文書と実装証拠を区別します。host試験の成功は製品driver・実機安全性の証拠ではありません。
 
 | 文書 | 目的 |
 |---|---|
@@ -9,7 +9,8 @@
 | [host表示・CLI契約](contracts/host-formats-v1.md) | strict JSON、明示null、具体型、固定出力と終了code |
 | [計画checker契約](contracts/planning-checker-v1.md) | schema/approval/DAG/label/相対リンクのread-only検査 |
 | [全Issue監査](issue-audit-2026-11-02.md) | 依存・承認状態・担当欠落の是正と未解決gate |
-| [最新のmain統合・D02受入](evidence/2026-11-02-main-integration.md) | PR54〜67、CI、公開範囲、残るlab/owner gate |
+| [Phase 2統合・F06着手条件](evidence/2026-11-03-phase2-integration.md) | PR68/70/71/72、二OS CI、16課題受入と残るlab gate |
+| [main統合・D02受入履歴](evidence/2026-11-02-main-integration.md) | PR54〜67、CI、公開範囲、残るlab/owner gate |
 | [host基盤の受入履歴](evidence/2026-11-02-host-foundation.md) | 統合前の10実装、独立レビュー、Linux/Windows実行結果 |
 | [D01捕捉境界](adr/0004-interception-boundary.md) | 資料調査と実trace待ちの境界 |
 | [D02整合性契約](adr/0013-coherence-model.md) | 受入済みportable traceと有限checkerの範囲 |

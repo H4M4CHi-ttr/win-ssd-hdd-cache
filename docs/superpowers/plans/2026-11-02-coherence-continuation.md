@@ -46,8 +46,8 @@ Files: `crates/cache-types/src/trace.rs`, `crates/cache-types/tests/trace_format
 Consumes: accepted D02 schema。Produces: `parse_trace(&str) -> Result<TraceV1, TraceError>`、event index/codeのみの固定error。coherenceを実行せず、型/上限/static参照を検査する。
 
 - [x] valid events、unknown/duplicate、noncanonical numbers、exact/+1 limits、typed object-only、dangling referencesのRED tests。
-- [x] 型付けparserを実装し、`cargo test -p cache-types --test trace_format --locked --offline`をGREEN（28 tests）。
-- [ ] 二OS CI・独立SOL以上review・受入/merge。
+- [x] 型付けparserを実装し、`cargo test -p cache-types --test trace_format --locked --offline`をGREEN（初回28、review修正後29 tests）。
+- [x] 二OS CI・独立SOL以上review・受入/merge（PR #70、Windows129/Linux131、parser29件）。
 
 ## Task 3 — D07 (#17): independent oracle contract
 
@@ -55,9 +55,9 @@ Files: `docs/contracts/oracle-v1.md`, `spec/evidence-v1.schema.json`, `docs/adr/
 
 Consumes: accepted D02。Produces: applied-byte history、known masks、volatile/durable、flush/FUA frontier、exactly-once result、reference/mutant evidence契約。
 
-- [ ] ordinary write後のpower-loss、failed partial mutation、discard、flush追越し、cache error/origin errorの小例を固定。
-- [ ] candidateのgeneration/valid bitを信用しないoracleとevidence判定を定義。
-- [ ] 独立Astra reviewを通し、未観測のPASS化がないことを確認して受入/merge。
+- [x] ordinary write後のpower-loss、failed partial mutation、discard、flush追越し、cache error/origin errorの小例を固定（手導出、未実行）。
+- [x] candidateのgeneration/valid bitを信用しないoracleとevidence判定を定義。
+- [x] 独立Astra reviewを通し、未観測のPASS化がないことを確認して仕様受入/merge（PR #71）。O01〜O18は手導出例で、F06の実行試験ではない。
 
 ## Task 4 — F06 (#20) / F07 (#23): replayと固定trace
 
