@@ -51,3 +51,26 @@ edges,132 had explicit state annotations; stale W05 #35→D02 and W06 #33→D01
 annotations were corrected and read back, leaving zero annotated-state mismatches.
 No owner gate or live machine was changed. [P02](P02.md) is the next separately
 reviewed preparation task, not a claim that all useful cloud work had ended.
+
+## P02 accepted; P03 bounded format correction
+
+The historical snapshots above are superseded by the [P02 final evidence](P02.md):
+PR85 normal merge bcc0dc1cfd0eee1c108956c0157be89fc41bd365, reviewed source tree
+7f95922668770a0258cdfb167b0a7125f9057156. Actual host run41580740303 passed
+Windows280/Linux283 tests; proof run41580740357 passed WDK object compilation,
+17 path cases,56 C cases,20 checker cases and32 optimized Rust tests per OS.
+Failed build hypotheses and the exact optional SDK-data amendment remain recorded.
+
+The next reviewed unit is [P03](P03.md), explicit offline capture v2 for unknown
+completion Information. This metadata checkpoint records56 tasks:
+done21/ready1/blocked33/decision1 and Luna18/SOL30/Astra8. Only P02 acceptance
+and the new P03 record change; no pre-existing dependency/owner approval changes.
+P03 is a schema correction, not the live producer/collector. Its source work
+waits for this reviewed contract checkpoint's publication.
+
+An independent backlog audit found that a future capture-only upper-candidate
+probe integration contract is useful pre-G1 work worth investigating. Inventory
+is not a blanket prohibition on source/build preparation. Conversely, no existing
+blocked product task can simply be relabeled ready: D01/D04/D10/F08/F09/G1 and
+lab/owner gates remain. A coherent callback/lifetime/transport contract, rather
+than more unrelated fixtures or a mock GUI, must establish the next source scope.
