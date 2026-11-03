@@ -5,14 +5,32 @@
 #include <stdint.h>
 #include <string.h>
 #include "platform.h"
+/* MSVC's ordinary C runtime already provides SAL. Keep it when present;
+ * portable hosts need only these no-op declaration annotations. */
+#ifndef _In_
 #define _In_
+#endif
+#ifndef _In_opt_
 #define _In_opt_
+#endif
+#ifndef _Out_
 #define _Out_
+#endif
+#ifndef _Out_opt_
 #define _Out_opt_
+#endif
+#ifndef _Inout_
 #define _Inout_
+#endif
+#ifndef _Use_decl_annotations_
 #define _Use_decl_annotations_
+#endif
+#ifndef _IRQL_requires_max_
 #define _IRQL_requires_max_(value)
+#endif
+#ifndef _IRQL_requires_
 #define _IRQL_requires_(value)
+#endif
 #define UNREFERENCED_PARAMETER(value) ((void)(value))
 #define RtlZeroMemory(pointer, bytes) ((void)memset((pointer), 0, (bytes)))
 #define RtlCopyMemory(to, from, bytes) ((void)memcpy((to), (from), (bytes)))
