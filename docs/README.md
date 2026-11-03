@@ -12,7 +12,7 @@
 | [Phase 2統合・F06着手条件](evidence/2026-11-03-phase2-integration.md) | PR68/70/71/72、二OS CI、16課題受入と残るlab gate |
 | [F06 host replay](evidence/F06.md) | 独立oracle、故障model、bounded CLI、検査の範囲と受入証拠 |
 | [F07 coherence](evidence/F07.md) / [F11 lifetime/error](evidence/F11.md) | 合計13固定traceと17テスト、手導出期待値・独立review・二OS CI |
-| [P01 capture envelope](contracts/capture-envelope-v1.md) | 収集後の相関・欠落検査。Windows coverage/producer/権限の認定ではない |
+| [P01 capture envelope](contracts/capture-envelope-v1.md) / [実装証拠](evidence/P01.md) | 収集後の相関・欠落検査。Windows coverage/producer/権限の認定ではない |
 | [portable継続境界の監査](portable-boundary-audit-2026-11-03.md) | F11の限定scopeと、解除しないWindows/lab gate |
 | [portable受入・次の観測準備](evidence/2026-11-03-portable-integration.md) | F07/F11 main統合とP01の限定scope・契約review |
 | [main統合・D02受入履歴](evidence/2026-11-02-main-integration.md) | PR54〜67、CI、公開範囲、残るlab/owner gate |

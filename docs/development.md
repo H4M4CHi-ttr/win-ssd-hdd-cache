@@ -23,6 +23,16 @@ cargo run --locked -p cache-model --example replay -- --trace tests/fixtures/rep
 
 It accepts only an explicit bounded ordinary file and outputs payload-free evidence. Exit0 means the trace passed observed checks; exit2 is inconclusive, exit3 is a detected model failure and exit1 is input/usage/IO failure. `--fault early_ack` on `tests/fixtures/replay/early-ack.json` is deliberately exit3, not a passing candidate. `--bin cache-replay` is the same CLI used by process tests. Reports currently carry null provenance and cannot be used as release-gate proof. No device or Windows APIs are involved.
 
+## Offline capture projection audit
+
+[P01 evidence](evidence/P01.md) and the [capture contract](contracts/capture-envelope-v1.md) describe a separate post-collection checker:
+
+```sh
+cargo run --locked -p cache-cli --bin cache-capture-audit -- --input tests/fixtures/capture-audit/complete-synthetic.json
+```
+
+Only an explicit ordinary file is read (1 MiB/4,096-record bounds). Exit0 means **internally complete supplied records**, not truthful capture, authorization, mutation coverage or D01 PASS; all verification flags remain false. Exit4 is incomplete evidence with JSON reasons, exit2 is usage/format/value/UTF-8/limit failure and exit3 is ordinary-file I/O failure. Errors are fixed codes, not source text. Do not run elevated. There is no kernel collector or live device source, and the existing `cargo run -p cache-cli -- status ...` default remains unchanged.
+
 ## Host CI policy
 
 The [workflow](../.github/workflows/host-tests.yml) is intentionally written in the JSON subset of YAML. Its [closed policy](../xtask/src/workflow.rs) rejects any unreviewed key, command, action, event, runner or condition. [Mutation tests](../xtask/tests/workflow_policy.rs) validate the real file and reject duplicate JSON keys, privilege/trigger/credential expansion, missing OS/checks, masked failures, altered commands and zero-test guard removal. This is not a general-purpose YAML validator.
