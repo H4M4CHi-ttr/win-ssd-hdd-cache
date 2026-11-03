@@ -114,7 +114,8 @@ static void fifo_wrap(void) {
 }
 #define RUN(fn,name) do { fn(); puts("P04_CASE_PASS " name); ++cases; } while(0)
 int main(void) {
-    unsigned int cases=0; CHECK(sizeof r <= 40960);
+    unsigned int cases=0;
+    _Static_assert(sizeof r <= 40960, "bounded recorder size");
     RUN(contexts,"producer_65th_submit"); RUN(ring_drop,"producer_ring_drop_pair"); RUN(late,"producer_stop_late_completion");
     RUN(duplicate,"producer_duplicate_token"); RUN(invalid_snapshot,"producer_invalid_snapshot_retirement"); RUN(pop_not_retire,"producer_pop_not_context_retirement");
     RUN(counter_overflow,"producer_counter_overflow"); RUN(last_ordinal,"producer_last_ordinal_once"); RUN(last_identity,"producer_last_id_once");

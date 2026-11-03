@@ -10,10 +10,10 @@ static const unsigned char begin_bytes[48] = {
 };
 static void lengths(void) {
     WinCacheP04Request r;
-    CHECK(WIN_CACHE_P04_REQUEST_BYTES == 48 && WIN_CACHE_P04_HEADER_BYTES == 144);
-    CHECK(WIN_CACHE_P04_RECORD_BYTES == 96 && WIN_CACHE_P04_DRAIN_BYTES == 1680);
-    CHECK(WIN_CACHE_P04_IOCTL_BEGIN == 0x8337e000u && WIN_CACHE_P04_IOCTL_STATUS == 0x8337e004u);
-    CHECK(WIN_CACHE_P04_IOCTL_DRAIN == 0x8337e008u && WIN_CACHE_P04_IOCTL_STOP == 0x8337e00cu);
+    _Static_assert(WIN_CACHE_P04_REQUEST_BYTES == 48 && WIN_CACHE_P04_HEADER_BYTES == 144, "request/header wire lengths");
+    _Static_assert(WIN_CACHE_P04_RECORD_BYTES == 96 && WIN_CACHE_P04_DRAIN_BYTES == 1680, "record/drain wire lengths");
+    _Static_assert(WIN_CACHE_P04_IOCTL_BEGIN == 0x8337e000u && WIN_CACHE_P04_IOCTL_STATUS == 0x8337e004u, "begin/status IOCTL values");
+    _Static_assert(WIN_CACHE_P04_IOCTL_DRAIN == 0x8337e008u && WIN_CACHE_P04_IOCTL_STOP == 0x8337e00cu, "drain/stop IOCTL values");
     CHECK(win_cache_p04_decode_request(0x8337e000u, begin_bytes, 48, 144, &r) == 0);
     CHECK(r.command == 1 && r.session_id == 7 && r.target_id == 1 && r.call_id == 1 && r.max_records == 0);
 }
