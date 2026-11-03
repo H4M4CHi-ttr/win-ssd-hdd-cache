@@ -1,6 +1,6 @@
 # D01: Codex向け観測実験の引き継ぎ
 
-**runnable probe driver・collectorは未実装、未install・未実行、trace未取得。** このdirectoryには実験計画とP02の限定source/build準備を置きます。G1前の観測実験は製品W01ではない。資料/compile/host model/実Windows traceを混同しない。
+**実機で検証済みのprobe driver・collectorはありません。未install・未loadで、実traceも未取得です。** このdirectoryには実験計画、P02の限定source/buildと[P04候補source](probe/README.md)を置きます。P04のsource review/host試験/実WDK buildの実施状況は[証拠](../../docs/evidence/P04.md)を参照してください。G1前の観測実験は製品W01ではない。資料/compile/host model/実Windows traceを混同しない。
 
 2026-11-03追記: [P01のoffline capture audit](../../docs/evidence/P01.md)はPR #81で実装・受入済みですが、producer/collectorを実装したわけではありません。[次のWindows工程とCodexプロンプト](../../docs/handoff/2026-11-03-windows-next-step.md)はread-only inventoryから始まります。
 

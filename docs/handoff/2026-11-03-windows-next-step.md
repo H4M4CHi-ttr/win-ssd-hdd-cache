@@ -11,7 +11,7 @@
 | [D09 proof](../evidence/D09.md) | 小さいRust coreとRust/C-WDK imageのcompile/link・host ABI | driver load、実callback・IRQL・rundown、HVCI適合 |
 | [P02 bounded producer](../evidence/P02.md) | Rust core32testsとC scalar56cases、実WDK object-only buildまで受入済み | live callback・transport・rundown・実machine mapping |
 | [P03 capture v2](../evidence/P03.md) | PR88で実装・受入済み。Windows296/Linux299のhost CI | producerの診断・実boundaryを自動投影しない |
-| [P04観測probe/collector](../contracts/upper-candidate-probe-v1.md) | 限定契約・計画を独立review済み。source/buildは次工程で、現時点では未実装 | D09 entryやP02 snapshotを観測probeと扱わない。P04成功も実機安全性ではない |
+| [P04観測probe/collector](../contracts/upper-candidate-probe-v1.md) | 候補sourceと固定host試験を実装し、Rust/C独立source review受入。実WDK・Windows CI待ち | D09 entryやP02 snapshot単体を観測probeと扱わない。P04 source/build成功も実機安全性ではない |
 | 製品driver・installer・service・Tauri GUI | **未実装**。依存gate待ち | build成功やIssue closeを製品の安全認定にしない |
 | 実Windows11 capture・実機性能・電源/撤去試験 | **未実施** | hosted Windows Serverのhost testsでは代替できない |
 
@@ -48,7 +48,7 @@ source/build準備をG1前に行うこと自体は禁止していません。た
 H4M4CHi-ttr/win-ssd-hdd-cache の D01 #3 のため、指定されたWindows環境のread-only inventoryを行ってください。
 まず最新main、AGENTS.md、docs/handoff/2026-11-03-windows-next-step.md、experiments/stack-trace/README.md、ADR-004、io-coverage.md、D09/P01の証拠と未完gateを確認してください。既存のdirty worktreeを保存してください。
 
-目的は実stackの事実と不明点を返すことだけです。観測probe/製品driverはまだありません。D09 imageをloadせず、P01のinternally_completeをD01 PASSにしないでください。
+目的は実stackの事実と不明点を返すことだけです。P04の観測candidate sourceはありますが実機qualificationは未完で、製品driverは未実装です。D09/P04 imageをloadせず、P01のinternally_completeやP04のterminal/reconciliationをD01 PASSにしないでください。
 
 1. 対象Windowsの正確なbuild/revision・architecture、Git/Rust/VS/SDK/WDKの導入状態を、既存のread-only queryで確認する。新たなインストールはしない。
 2. Microsoftの当該build向けPnPUtil構文と pnputil /? を確認し、許可された権限の範囲でdisk deviceのstack/services/driversを照会する。必要なら以下のenum queryだけを使う:

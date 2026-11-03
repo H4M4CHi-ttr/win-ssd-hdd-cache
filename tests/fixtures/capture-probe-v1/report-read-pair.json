@@ -1,0 +1,1 @@
+{"schema_version":1,"format":"p04-native-audit","verdict":"unqualified","frame_count":"3","record_count":"2","terminal_received":true,"retained_records_reconciled":true,"reasons":["UNVERIFIED_BOUNDARIES","UNVERIFIED_PROVENANCE"],"producer_verified":false,"authorization_verified":false,"coverage_verified":false,"kernel_runtime_qualified":false}
