@@ -15,6 +15,7 @@
 | `wdk/upper_snapshot.c` | WDKの公開型から許可されたスカラーだけをコピーする普通の関数。entry/callback/forward/register/attachなし |
 | `tools/check-object.mjs` / `tools/test-object.mjs` | bounded AMD64 COFFのsymbol構造チェック。memory access・relocation・runtime安全性の証明ではない |
 | `tools/build.ps1` | ephemeral Windows Actionsでhost試験とWDK object-onlyコンパイル。kernel imageをlinkせず、LLVMもdriverもinstallしない |
+| `tools/header-paths.ps1` / `tools/test-header-paths.ps1` | compilerの絶対working directoryを明示したincludeパス正規化と17件のWindows文字列試験。許可root外・prefixが似ただけの別directoryを拒否 |
 
 Windows側はown live/stable stackからforward前にsubmitを取り、completionは同じ要求のimmutable saved classificationを使う想定ですが、**その寿命・同期・IRQL・呼出し経路は未実装の統合前提**です。入力/outputのnonalias、resident memory、IRQL<=DISPATCH_LEVELを呼出し側が証明する必要があります。null checkは任意pointerを検証しません。戻り値0/1/2はsnapshotの結果でありNTSTATUSではありません。
 
@@ -30,6 +31,8 @@ node --test experiments/stack-trace/tools/test-object.mjs
 ```
 
 `capture-build-proof.yml`は通常のhosted runnerだけを使い、checkout/upload actionはcommit固定、permissionはcontents:readです。Windows jobはD09のMicrosoft NuGet package pin・SHA-256・signature verificationを再利用し、`/c /std:c17 /kernel /GS /Zl /W4 /WX /showIncludes /O2`でAMD64 `.obj`だけを作ります。host scalar executableは通常のuser-mode試験のためにlink/実行しますが、WDK objectはlink/loadしません。platform-default packingを変更せず、`_KERNEL_MODE`も手動定義しません。
+
+`/showIncludes`の相対パスは、compiler起動直前のPowerShell FileSystem locationをbaseにした`GetFullPath(path, basePath)`で解決します。process cwdへの暗黙依存は使いません。許可範囲は従来どおり当該runの検証済みkitと実験の`include/`配下だけです。先に17件のpath試験を実行し、成功件数をmanifestへ記録します。fixture pathは実在不要で、試験はdirectory作成やlocation変更を行いません。source/helperの存在だけではWindows実行済みとは扱いません。
 
 同じworkflowでRust1.99.1の`cache-capture-core --release`試験をUbuntu24.04/Windows2025 runnerの両方で実行し、名前付きの非zero passとignored=0を必須にします。既存host CIのdebug/fmt/clippyとは別にoptimized buildを検査するものです。C snapshot、Rust core、Cargo/lock/toolchain、P02契約の変更をいずれもpath filterに含め、layout/semantics変更時に再検査します。Windows runnerはclient実機の代理ではありません。
 

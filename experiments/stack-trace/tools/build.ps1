@@ -4,6 +4,7 @@ Set-StrictMode -Version Latest
 if ($env:GITHUB_ACTIONS -ne 'true' -or $env:RUNNER_OS -ne 'Windows') {
     throw 'P02_BUILD_REQUIRES_EPHEMERAL_WINDOWS_ACTIONS_RUNNER'
 }
+. (Join-Path $PSScriptRoot 'header-paths.ps1')
 
 $root = Split-Path $PSScriptRoot -Parent
 $repository = [System.IO.Path]::GetFullPath((Join-Path $root '../..'))
@@ -37,6 +38,11 @@ function Download-Checked([string]$Url, [string]$Path, [string]$Sha) {
 
 Push-Location $root
 try {
+    $headerPathResult = Invoke-Recorded 'pwsh' @('-NoLogo', '-NoProfile', '-NonInteractive', '-File', (Join-Path $PSScriptRoot 'test-header-paths.ps1')) 'header-path-tests.txt'
+    $headerPathMatches = [regex]::Matches(($headerPathResult.Lines -join "`n"), '(?m)^P02_HEADER_PATH_TESTS_PASSED cases=([0-9]+)\s*$')
+    if ($headerPathMatches.Count -ne 1) { throw 'P02_HEADER_PATH_PROOF_MISSING' }
+    $headerPathTestCount = [uint64]::Parse($headerPathMatches[0].Groups[1].Value, [System.Globalization.CultureInfo]::InvariantCulture)
+    if ($headerPathTestCount -eq 0) { throw 'P02_HEADER_PATH_PROOF_MISSING' }
     $pinsPath = Join-Path $repository 'experiments/rust-wdk/tools/pins.json'
     $pins = Get-Content -LiteralPath $pinsPath -Raw | ConvertFrom-Json
     $vswhere = Join-Path ${env:ProgramFiles(x86)} 'Microsoft Visual Studio\Installer\vswhere.exe'
@@ -105,6 +111,13 @@ try {
     $km = Join-Path $kit "Include\$($pins.kitVersion)\km"
     $shared = Join-Path $kit "Include\$($pins.kitVersion)\shared"
     $objectPath = Join-Path $out 'upper-snapshot.obj'
+    # Native commands use this runspace's FileSystem location, not necessarily
+    # [Environment]::CurrentDirectory. Preserve that exact base for showIncludes.
+    $compilerBase = (Get-Location).ProviderPath
+    if (-not [System.IO.Path]::IsPathFullyQualified($compilerBase) -or
+            -not [string]::Equals([System.IO.Path]::GetFullPath($compilerBase), [System.IO.Path]::GetFullPath($root), [System.StringComparison]::OrdinalIgnoreCase)) {
+        throw 'P02_COMPILER_BASE_MISMATCH'
+    }
     $kernelResult = Invoke-Recorded 'cl.exe' @('/nologo', '/c', '/std:c17', '/kernel', '/GS', '/Zl', '/W4', '/WX', '/showIncludes', '/O2', '/D_AMD64_', '/DAMD64', '/D_WIN32_WINNT=0x0A00', "/I$km", "/I$km\crt", "/I$shared", '/Iinclude', 'wdk/upper_snapshot.c', "/Fo:$objectPath") 'kernel-compile.txt'
 
     # Record every compiler-reported include and reject unintended host CRT
@@ -114,19 +127,10 @@ try {
         if ($_ -match '^\s*Note: including file:\s*(.+?)\s*$') { $Matches[1] }
     } | Sort-Object -Unique)
     if ($includedPaths.Count -eq 0) { throw 'P02_INCLUDE_PROOF_MISSING' }
-    $kitPrefix = [System.IO.Path]::GetFullPath($kit) + [System.IO.Path]::DirectorySeparatorChar
-    $includeRoot = [System.IO.Path]::GetFullPath((Join-Path $root 'include'))
-    $includePrefix = $includeRoot + [System.IO.Path]::DirectorySeparatorChar
+    $includeRoot = Join-Path $root 'include'
     foreach ($include in $includedPaths) {
-        $full = [System.IO.Path]::GetFullPath($include)
-        if ($full.StartsWith($kitPrefix, [System.StringComparison]::OrdinalIgnoreCase)) {
-            $relative = 'kit/' + [System.IO.Path]::GetRelativePath($kit, $full).Replace('\', '/')
-        } elseif ($full.StartsWith($includePrefix, [System.StringComparison]::OrdinalIgnoreCase)) {
-            $relative = 'experiment/include/' + [System.IO.Path]::GetRelativePath($includeRoot, $full).Replace('\', '/')
-        } else {
-            throw 'P02_UNEXPECTED_KERNEL_HEADER'
-        }
-        $headers.Add([ordered]@{ path = $relative; sha256 = (Get-FileHash -LiteralPath $full -Algorithm SHA256).Hash.ToLowerInvariant() })
+        $resolved = Resolve-P02KernelHeader -ReportedPath $include -CompilerBase $compilerBase -KitRoot $kit -IncludeRoot $includeRoot
+        $headers.Add([ordered]@{ path = $resolved.RelativePath; sha256 = (Get-FileHash -LiteralPath $resolved.FullPath -Algorithm SHA256).Hash.ToLowerInvariant() })
     }
     $headerJson = $headers.ToArray() | ConvertTo-Json -Depth 5
     $headerJson | Set-Content -LiteralPath (Join-Path $evidence 'headers.json') -Encoding utf8
@@ -141,6 +145,8 @@ try {
         'experiments/stack-trace/host/snapshot_vectors.c',
         'experiments/stack-trace/wdk/upper_snapshot.c',
         'experiments/stack-trace/tools/build.ps1',
+        'experiments/stack-trace/tools/header-paths.ps1',
+        'experiments/stack-trace/tools/test-header-paths.ps1',
         'experiments/stack-trace/tools/check-object.mjs',
         'experiments/stack-trace/tools/test-object.mjs',
         'experiments/rust-wdk/tools/pins.json',
@@ -173,6 +179,7 @@ try {
         objectBytes = (Get-Item -LiteralPath $objectPath).Length
         hostFixedVectors = 20
         hostStrictCases = 36
+        headerPathTests = $headerPathTestCount
         checkerTests = $checkerCounts['tests']
         objectCheckerScope = 'bounded-AMD64-COFF-symbol-structure-only'
         hostExecutableLinked = $true
