@@ -136,9 +136,10 @@ try {
     $headerJson | Set-Content -LiteralPath (Join-Path $evidence 'headers.json') -Encoding utf8
     Write-Host 'P02_PUBLIC_HEADER_HASHES:'
     Write-Host $headerJson
+    # Preserve compiler evidence even when the independent bounded checker fails.
+    $null = Invoke-Recorded 'dumpbin.exe' @('/headers', '/symbols', '/directives', '/disasm', $objectPath) 'upper-snapshot-object.txt'
     $objectCheck = Invoke-Recorded 'node' @('tools/check-object.mjs', $objectPath) 'object-check.json'
     $null = ($objectCheck.Lines -join "`n") | ConvertFrom-Json
-    $null = Invoke-Recorded 'dumpbin.exe' @('/headers', '/symbols', '/directives', '/disasm', $objectPath) 'upper-snapshot-object.txt'
 
     $sourcePaths = @(
         'experiments/stack-trace/include/p02_snapshot.h',
