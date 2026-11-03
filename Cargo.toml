@@ -1,6 +1,6 @@
 [workspace]
-members = ["crates/cache-types", "crates/cache-model", "crates/cache-cli", "xtask"]
-default-members = ["crates/cache-types", "crates/cache-model", "crates/cache-cli", "xtask"]
+members = ["crates/cache-types", "crates/cache-model", "crates/cache-cli", "crates/cache-capture-core", "xtask"]
+default-members = ["crates/cache-types", "crates/cache-model", "crates/cache-cli", "crates/cache-capture-core", "xtask"]
 resolver = "3"
 
 [workspace.package]

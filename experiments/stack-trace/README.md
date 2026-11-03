@@ -1,8 +1,46 @@
 # D01: Codex向け観測実験の引き継ぎ
 
-**実験計画のみ。probe driver未実装・未install・未実行、trace未取得。** G1前の観測実験は製品W01ではない。資料/compile/host model/実Windows traceを混同しない。
+**runnable probe driver・collectorは未実装、未install・未実行、trace未取得。** このdirectoryには実験計画とP02の限定source/build準備を置きます。G1前の観測実験は製品W01ではない。資料/compile/host model/実Windows traceを混同しない。
 
 2026-11-03追記: [P01のoffline capture audit](../../docs/evidence/P01.md)はPR #81で実装・受入済みですが、producer/collectorを実装したわけではありません。[次のWindows工程とCodexプロンプト](../../docs/handoff/2026-11-03-windows-next-step.md)はread-only inventoryから始まります。
+
+## P02: source/buildだけを準備する部分
+
+[P02契約](../../docs/contracts/capture-producer-v1.md)に従う小さいscalar snapshotです。製品の捕捉位置は未採択であり、実際のdispatch/completion callbackへ接続していません。
+
+| ファイル | 限定した責務 |
+|---|---|
+| `include/p02_snapshot.h` | Rustと同じ整数layout、strict validation、host scalar constructor。submit48/8・completion24/8を自然配置で検査 |
+| `host/snapshot_vectors.c` | 手導出20ベクトルと36 strict case。実IRPや偽WDK構造体を動かす試験ではない |
+| `wdk/upper_snapshot.c` | WDKの公開型から許可されたスカラーだけをコピーする普通の関数。entry/callback/forward/register/attachなし |
+| `tools/check-object.mjs` / `tools/test-object.mjs` | bounded AMD64 COFFのsymbol構造チェック。memory access・relocation・runtime安全性の証明ではない |
+| `tools/build.ps1` | ephemeral Windows Actionsでhost試験とWDK object-onlyコンパイル。kernel imageをlinkせず、LLVMもdriverもinstallしない |
+| `tools/header-paths.ps1` / `tools/test-header-paths.ps1` | compilerの絶対working directoryを明示したincludeパス正規化と17件のWindows文字列試験。許可root外・prefixが似ただけの別directoryを拒否 |
+
+Windows側はown live/stable stackからforward前にsubmitを取り、completionは同じ要求のimmutable saved classificationを使う想定ですが、**その寿命・同期・IRQL・呼出し経路は未実装の統合前提**です。入力/outputのnonalias、resident memory、IRQL<=DISPATCH_LEVELを呼出し側が証明する必要があります。null checkは任意pointerを検証しません。戻り値0/1/2はsnapshotの結果でありNTSTATUSではありません。
+
+Read/Writeのminor0だけを普通のtransferとみなし、負のoffsetはunknownとします。成功のInformationを読めるのはsaved ordinary Read/Writeかつstatus bitsが厳密に0の場合だけです。rangeがunknownでもこの分類は維持します。PnP、flush、public/internal control、special minor、非zero statusではInformationを**引数評価より前に避け**、presence=0・storage=0にします。unknownは観測された0ではありません。major0x0fはinternal/SCSI aliasなのでpublic IOCTLのunionを読まず、payloadやpointerを保存しません。
+
+Linuxで実行できるのはhost scalar試験とsynthetic COFF checkerです。
+
+```sh
+mkdir -p experiments/stack-trace/out
+cc -std=c17 -Wall -Wextra -Werror -O2 -Iexperiments/stack-trace/include experiments/stack-trace/host/snapshot_vectors.c -o experiments/stack-trace/out/snapshot-vectors
+experiments/stack-trace/out/snapshot-vectors
+node --test experiments/stack-trace/tools/test-object.mjs
+```
+
+`capture-build-proof.yml`は通常のhosted runnerだけを使い、checkout/upload actionはcommit固定、permissionはcontents:readです。Windows jobはD09のMicrosoft NuGet package pin・SHA-256・signature verificationを再利用し、`/c /std:c17 /kernel /GS /Zl /W4 /WX /showIncludes /O2`でAMD64 `.obj`だけを作ります。host scalar executableは通常のuser-mode試験のためにlink/実行しますが、WDK objectはlink/loadしません。platform-default packingを変更せず、`_KERNEL_MODE`も手動定義しません。
+
+実CIでpinned WDK由来のselect-any dataが残ることを確認しました。`/Zc:inline`でも除去されなかったため元のコマンドに戻し、独立reviewした限定契約に従って、正確な名前・scalar role・1byte BSS・section auxiliary・section内symbol順序が一致するdataを最大1個だけ許可します。二つの必須関数と五つの許可未定義symbolは維持し、dataは`header_data`に分けて報告します。一般的なCOMDAT許可や、名前だけによるSDK由来・runtime安全性の認定ではありません。
+
+`/showIncludes`の相対パスは、compiler起動直前のPowerShell FileSystem locationをbaseにした`GetFullPath(path, basePath)`で解決します。process cwdへの暗黙依存は使いません。許可範囲は従来どおり当該runの検証済みkitと実験の`include/`配下だけです。先に17件のpath試験を実行し、成功件数をmanifestへ記録します。fixture pathは実在不要で、試験はdirectory作成やlocation変更を行いません。source/helperの存在だけではWindows実行済みとは扱いません。
+
+同じworkflowでRust1.99.1の`cache-capture-core --release`試験をUbuntu24.04/Windows2025 runnerの両方で実行し、名前付きの非zero passとignored=0を必須にします。既存host CIのdebug/fmt/clippyとは別にoptimized buildを検査するものです。C snapshot、Rust core、Cargo/lock/toolchain、P02契約の変更をいずれもpath filterに含め、layout/semantics変更時に再検査します。Windows runnerはclient実機の代理ではありません。
+
+公開artifactは`out/evidence/`のtext/JSONだけです。exact source/tree・source/header/compiler/object hash、commandsと各native出力、実case数、symbolチェック結果、runtime未実施のfalse flagを残します。同じ公開build manifestとheader hash JSONは通常のjob logにも表示し、artifactが取得できない場合も照合できます。環境変数や秘密情報の一括表示はしません。`.exe`・`.obj`・`.sys`や実機データはuploadしません。VS17 selectionはcompiler binary自体のpinではないため、各runのversion/hashを記録します。actual Windows compile・独立review・受入状況は[P02証拠](../../docs/evidence/P02.md)を参照し、sourceが存在するだけで成功扱いしないでください。
+
+P02からP01 JSONへの自動変換、driver/collectorの実装、boot/署名設定変更、install/実機操作、D01/D04/D10/F08/F09/G1のgate解除は含みません。以下のlab計画はそのまま別の承認・reviewが必要です。
 
 ## 開始前のstop条件
 
