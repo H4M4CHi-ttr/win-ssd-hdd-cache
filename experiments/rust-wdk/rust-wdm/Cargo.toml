@@ -1,0 +1,23 @@
+[package]
+name = "wdk-probe-rust"
+version.workspace = true
+edition.workspace = true
+rust-version.workspace = true
+publish.workspace = true
+
+[lib]
+crate-type = ["cdylib"]
+test = false
+doctest = false
+
+[package.metadata.wdk.driver-model]
+driver-type = "WDM"
+
+[build-dependencies]
+wdk-build = "=0.6.0"
+
+[dependencies]
+wdk-probe-core = { path = "../range-core" }
+wdk-sys = "=0.5.2"
+wdk-panic = "=0.5.0"
+

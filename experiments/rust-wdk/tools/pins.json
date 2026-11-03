@@ -1,0 +1,13 @@
+{
+  "kitVersion": "10.0.26100.0",
+  "packageVersion": "10.0.26100.6584",
+  "packages": [
+    {"id":"microsoft.windows.wdk.x64", "sha256":"c393d03dfb640b5c92f546b32f6770ef68cd3aaf691956e7d66d8e2c28a1b55e"},
+    {"id":"microsoft.windows.sdk.cpp", "sha256":"5d31b38205bdd9ac761b4cb39fbbc6b7209b01c11194324afc674d7d119483a0"},
+    {"id":"microsoft.windows.sdk.cpp.x64", "sha256":"c29ce7a4641cb37ee32ebb8078cc65cfbabc7025076bcfba869039204b1e960d"}
+  ],
+  "llvm": {
+    "url":"https://github.com/llvm/llvm-project/releases/download/llvmorg-17.0.6/LLVM-17.0.6-win64.exe",
+    "sha256":"89dc351af8e8fa1cafc6b48411e608aa9457c930a10f984aad5d21ab020165b2"
+  }
+}
