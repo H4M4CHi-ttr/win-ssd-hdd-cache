@@ -1780,7 +1780,7 @@
       "title": "D01観測ログの欠落・相関を検査するoffline capture auditを実装する",
       "agent": "sol",
       "review": "astra",
-      "status": "ready",
+      "status": "done",
       "priority": "p0",
       "type": "task",
       "area": "tooling",
@@ -1799,7 +1799,7 @@
         "tests/fixtures/capture-audit/",
         "docs/evidence/P01.md"
       ],
-      "output": "post-collection envelopeのbounded strict decoder、loss/correlation completeness判定、payload-free reportとordinary-file CLI。内部整合性だけを検査しproducer・coverage・権限・Windows安全性を認定しない。kernel ABI/transport/live capture/F06変換はscope外。contract46f2cd8を独立Astra reviewで受入、source実装は未完。",
+      "output": "post-collection envelopeのbounded strict decoder、loss/correlation completeness判定、payload-free reportとordinary-file CLI。内部整合性だけを検査しproducer・coverage・権限・Windows安全性を認定しない。kernel ABI/transport/live capture/F06変換はscope外。独立Astra source/expectation review、core17/CLI9Windows・10Linux、全Windows248/Linux251 host CIを確認しPR81でmain統合。",
       "acceptance": [
         "capture-envelope-v1でstrict shape/bounds、匿名ID、sequence/counters、correlation、fixed reasons/order/report/CLI exitsを独立reviewで固定する",
         "手書きfixtureで完全/欠落/drop/unknown/未finalized、duplicate/order/target不一致、overflow、required null、escaped duplicate、byte/record上限を検査",
@@ -1810,7 +1810,7 @@
       "escalation": "probe source/IRQL/context/rundown/attach/transportは別の限定契約reviewが必要。D01/D04/D10/F08/F09/G1とlab/owner gateを解除しない。",
       "issue_number": 79,
       "issue_url": "https://github.com/H4M4CHi-ttr/win-ssd-hdd-cache/issues/79",
-      "completion": "pending"
+      "completion": "accepted"
     }
   ]
 }

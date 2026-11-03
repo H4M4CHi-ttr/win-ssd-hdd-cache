@@ -4,17 +4,19 @@
 
 ## 状態と着手
 
-F07/F11はそれぞれPR #77/#78で独立受入・main統合済み。現在のreadyは追加の[P01 #79](https://github.com/H4M4CHi-ttr/win-ssd-hdd-cache/issues/79)。D01向けのoffline capture auditで、契約46f2cd8は独立Astra review済み、source実装は未完です。[capture契約](contracts/capture-envelope-v1.md)と[portable境界監査](portable-boundary-audit-2026-11-03.md)を参照。Windows/lab gateの代替にはしません。
+F07/F11/P01はそれぞれPR #77/#78/#81で独立受入・main統合済み。現在のreadyは0件です。[P01 #79](https://github.com/H4M4CHi-ttr/win-ssd-hdd-cache/issues/79)はD01向けのoffline capture auditで、実producerやWindows/lab gateの代替ではありません。[capture契約](contracts/capture-envelope-v1.md)、[portable境界監査](portable-boundary-audit-2026-11-03.md)、[次のWindows工程](handoff/2026-11-03-windows-next-step.md)を参照してください。
+
+追加のaccepted: [F07 #23](https://github.com/H4M4CHi-ttr/win-ssd-hdd-cache/issues/23)、[F11 #75](https://github.com/H4M4CHi-ttr/win-ssd-hdd-cache/issues/75)、[P01 #79](https://github.com/H4M4CHi-ttr/win-ssd-hdd-cache/issues/79)。以下の先行17件と合わせて20件です。
 
 accepted: [F06 #20](https://github.com/H4M4CHi-ttr/win-ssd-hdd-cache/issues/20)、[F05 #14](https://github.com/H4M4CHi-ttr/win-ssd-hdd-cache/issues/14)、[D07 #17](https://github.com/H4M4CHi-ttr/win-ssd-hdd-cache/issues/17)、[D03 #8](https://github.com/H4M4CHi-ttr/win-ssd-hdd-cache/issues/8)、[D09 #6](https://github.com/H4M4CHi-ttr/win-ssd-hdd-cache/issues/6)、[D02 #4](https://github.com/H4M4CHi-ttr/win-ssd-hdd-cache/issues/4)、[F01 #5](https://github.com/H4M4CHi-ttr/win-ssd-hdd-cache/issues/5)、[F02 #10](https://github.com/H4M4CHi-ttr/win-ssd-hdd-cache/issues/10)、[F03 #7](https://github.com/H4M4CHi-ttr/win-ssd-hdd-cache/issues/7)、[F04 #12](https://github.com/H4M4CHi-ttr/win-ssd-hdd-cache/issues/12)、[F10 #13](https://github.com/H4M4CHi-ttr/win-ssd-hdd-cache/issues/13)、[C01 #16](https://github.com/H4M4CHi-ttr/win-ssd-hdd-cache/issues/16)、[C02 #22](https://github.com/H4M4CHi-ttr/win-ssd-hdd-cache/issues/22)、[C03 #21](https://github.com/H4M4CHi-ttr/win-ssd-hdd-cache/issues/21)、[B01 #18](https://github.com/H4M4CHi-ttr/win-ssd-hdd-cache/issues/18)、[B02 #28](https://github.com/H4M4CHi-ttr/win-ssd-hdd-cache/issues/28)、[AUD01 #51](https://github.com/H4M4CHi-ttr/win-ssd-hdd-cache/issues/51)。
 
 host 10課題とAUD01（PR #54〜#65）、D02（PR #67）は独立受入後にmainへ統合済み。D01は資料のみPR #66で統合済み、実Windows traceと受入は未完。[統合・検証記録](evidence/2026-11-02-main-integration.md)を確認してください。D02 CIのLinux 102件・Windows Server 100件はhost試験であり、Windows 11 driverや実機安全性の証拠ではありません。Issueのcloseは本文・証拠の同期後に別途読み戻して確認します。
 
-状態集計: done 19 / ready 1 / blocked 33 / needs-decision 1（計54作業）。
+状態集計: done 20 / ready 0 / blocked 33 / needs-decision 1（計54作業）。
 
 owner_approvalがpendingの課題を推測でready/acceptedにしない。承認URLは承認者・scope・条件を人が確認するための参照。元のagentラベルは最低難度でありroot/上位モデルも処理できる。accepted依存を用いる場合は、その成果物を含むPR/branch上で作業し、未mergeのmainに存在すると仮定しない。
 
-追加4課題はPR #68/#70/#71/#72でmainへ統合済み。[Phase 2統合記録](evidence/2026-11-03-phase2-integration.md)を参照。F06も[PR #74の証拠](evidence/F06.md)により受入済み。[F07](evidence/F07.md)の8 fixture/10 testsと[F11](evidence/F11.md)の5 fixture/7 testsも独立受入・二OS CI・main統合済み。最新host CIはWindows221/Linux224。F08/F09とD01の実Windows trace待ちは維持します。
+追加4課題はPR #68/#70/#71/#72でmainへ統合済み。[Phase 2統合記録](evidence/2026-11-03-phase2-integration.md)を参照。F06も[PR #74の証拠](evidence/F06.md)により受入済み。[F07](evidence/F07.md)の8 fixture/10 testsと[F11](evidence/F11.md)の5 fixture/7 tests、[P01](evidence/P01.md)のoffline auditも独立受入・二OS CI・main統合済み。最新host CIはWindows248/Linux251。F08/F09とD01の実Windows trace待ちは維持します。
 
 ## 担当別
 
@@ -81,5 +83,5 @@ owner_approvalがpendingの課題を推測でready/acceptedにしない。承認
 | [D10 #52](https://github.com/H4M4CHi-ttr/win-ssd-hdd-cache/issues/52) | Windows所有権契約へportable oracleと故障注入点を対応付ける | astra → astra | blocked / pending | [D04 #11](https://github.com/H4M4CHi-ttr/win-ssd-hdd-cache/issues/11), [D07 #17](https://github.com/H4M4CHi-ttr/win-ssd-hdd-cache/issues/17) |
 | [W10 #53](https://github.com/H4M4CHi-ttr/win-ssd-hdd-cache/issues/53) | 認可・ABI検証を行うkernel control endpointを実装する | sol → astra | blocked / pending | [G01 #29](https://github.com/H4M4CHi-ttr/win-ssd-hdd-cache/issues/29), [C06 #24](https://github.com/H4M4CHi-ttr/win-ssd-hdd-cache/issues/24), [W07 #37](https://github.com/H4M4CHi-ttr/win-ssd-hdd-cache/issues/37) |
 | [AUD01 #51](https://github.com/H4M4CHi-ttr/win-ssd-hdd-cache/issues/51) | 全Issue監査で見つかった契約・依存・承認状態の不備を修正する | astra → astra | done / accepted | なし |
-| [P01 #79](https://github.com/H4M4CHi-ttr/win-ssd-hdd-cache/issues/79) | D01観測ログの欠落・相関を検査するoffline capture auditを実装する | sol → astra | ready / pending | [F01 #5](https://github.com/H4M4CHi-ttr/win-ssd-hdd-cache/issues/5), [D09 #6](https://github.com/H4M4CHi-ttr/win-ssd-hdd-cache/issues/6) |
+| [P01 #79](https://github.com/H4M4CHi-ttr/win-ssd-hdd-cache/issues/79) | D01観測ログの欠落・相関を検査するoffline capture auditを実装する | sol → astra | done / accepted | [F01 #5](https://github.com/H4M4CHi-ttr/win-ssd-hdd-cache/issues/5), [D09 #6](https://github.com/H4M4CHi-ttr/win-ssd-hdd-cache/issues/6) |
 

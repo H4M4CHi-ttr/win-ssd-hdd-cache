@@ -15,6 +15,7 @@
 | [P01 capture envelope](contracts/capture-envelope-v1.md) / [実装証拠](evidence/P01.md) | 収集後の相関・欠落検査。Windows coverage/producer/権限の認定ではない |
 | [portable継続境界の監査](portable-boundary-audit-2026-11-03.md) | F11の限定scopeと、解除しないWindows/lab gate |
 | [portable受入・次の観測準備](evidence/2026-11-03-portable-integration.md) | F07/F11 main統合とP01の限定scope・契約review |
+| [Windows工程への引き継ぎ](handoff/2026-11-03-windows-next-step.md) | 完成済み/未実装を区別し、read-only inventoryからprobe契約・build・別承認の観測へ進む |
 | [main統合・D02受入履歴](evidence/2026-11-02-main-integration.md) | PR54〜67、CI、公開範囲、残るlab/owner gate |
 | [host基盤の受入履歴](evidence/2026-11-02-host-foundation.md) | 統合前の10実装、独立レビュー、Linux/Windows実行結果 |
 | [D01捕捉境界](adr/0004-interception-boundary.md) | 資料調査と実trace待ちの境界 |
