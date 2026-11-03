@@ -18,6 +18,10 @@ Use separate `tests/fixtures/portable-lifetime/`, `crates/cache-model/tests/port
 
 New events/faults/allocator models, actual timer/timeout claims or changed expectations require separate contract review. Logical budget exhaustion is not real allocation-failure/OOM injection. The five cases introduce none of those. Qualification flags stay false, and null CLI provenance is not silently filled from a shell HEAD. Independent review and ordinary two-OS host CI are required before acceptance.
 
+### Metadata regression correction
+
+The first PR #76 host run, `41567714712`, failed two `xtask` tests on both OSes: their exact repository baseline still expected 52 tasks after F11 made the manifest contain 53. The standalone planning command had passed but did not execute those tests. The same two failures were reproduced locally before editing. Only those two fixed expectations were updated to 53; exact-count assertions, malformed-input tests, dependencies, approval validation and production checker logic were not relaxed. Full workspace tests must pass on the corrected snapshot before this metadata PR is accepted.
+
 ## Genuine remaining boundaries
 
 | Family | Missing prerequisite |
