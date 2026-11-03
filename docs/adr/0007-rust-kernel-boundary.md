@@ -1,6 +1,6 @@
 # ADR-007: Rust-first with a bounded WDK escape hatch
 
-Status: D09 build-only artifact independently accepted; final PR integration pending. Related: [D09 #6](https://github.com/H4M4CHi-ttr/win-ssd-hdd-cache/issues/6). 2026-11-02.
+Status: D09 build-only artifact independently accepted and merged in PR #68. Related: [D09 #6](https://github.com/H4M4CHi-ttr/win-ssd-hdd-cache/issues/6). Updated 2026-11-03 JST. Production entry/glue, runtime and Windows qualification are not accepted by this build result.
 
 ## Context and options
 
@@ -34,4 +34,8 @@ Local Linux: core tests pass in debug/release; PE checker tests pass. The separa
 
 ## Reviewer
 
+The following paragraph records the original local-review checkpoint; the later integration is identified below.
+
 Independent Astra review accepted immutable local source/evidence commit `56b184198bf43e3a595a1c80dbe32c19754e3b4d` for this build-only scope. Source code/workflow/pins are unchanged since the clean Windows proof. Final PR publication/merge and Issue close remain separate, unconfirmed operations; this record does not claim main integration.
+
+**Integration update, 2026-11-03:** [PR #68](https://github.com/H4M4CHi-ttr/win-ssd-hdd-cache/pull/68) merged as `5342a95a394d36e763077c5c7eb27f79645dc768`. Fresh [build-only run 41561687986](https://github.com/H4M4CHi-ttr/win-ssd-hdd-cache/actions/runs/41561687986) passed core debug3/release3, PE22 and C/Rust ABI8 checks; host CI passed Windows100/Linux102. See the [Phase 2 record](../evidence/2026-11-03-phase2-integration.md). No entry was installed/loaded; no real IRQL/MDL/DMA/HVCI/storage behavior was executed. The historical runner-image version discrepancy in D09 evidence remains unexplained, not silently resolved by this rerun.

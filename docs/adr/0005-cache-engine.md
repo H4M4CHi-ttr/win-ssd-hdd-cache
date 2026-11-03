@@ -1,6 +1,6 @@
 # ADR-005: Original Rust clean-cache feasibility before an OCF Windows port
 
-Status: code/design independently accepted; Windows host CI and integration pending. 2026-11-02. Issue [D03 #8](https://github.com/H4M4CHi-ttr/win-ssd-hdd-cache/issues/8).
+Status: D03 host-feasibility direction accepted and merged in PR #72, with Windows/Linux host CI. Updated 2026-11-03 JST. Issue [D03 #8](https://github.com/H4M4CHi-ttr/win-ssd-hdd-cache/issues/8). This is not candidate qualification, a production engine or a Windows runtime acceptance.
 
 ## Decision and its boundary
 
@@ -60,11 +60,15 @@ The design's hypothetical 32-byte entry illustrates the problem: 128 GiB / 4 KiB
 ## Required next work and reconsideration
 
 1. F09 uses the original Rust route and [engine contract](../contracts/engine.md), after all its existing dependencies are accepted. Preserve the four schedules and hand-derived expected outcomes, but drive a separate candidate against D07/F06 observations. Do not share freshness helpers with the oracle.
-2. F06/F07 must cover the omitted parent/child fallback, retirement, persistence, flush/FUA, replay and evidence semantics. D03's small experiment does not close those tasks. F08/D10 remain necessary for Windows-mapped faults; the existing DAG is not silently relaxed.
+2. F06/F07 and the separately scoped F11 provide the portable replay/oracle and fixed regression evidence; consult their own acceptance records, not this small experiment. F06's modeled persistence/flush/FUA observations do not enable persistent SSD-cache reuse or qualify real hardware durability. F08/D10 remain necessary for Windows-mapped faults; the existing DAG is not silently relaxed.
 3. W02 does not add an OCF FFI layer on the original Rust route. It still requires W01/D04/F09 and D09's reviewed boundary. If a narrow C/WDK shim is needed, it receives only the separately reviewed fixed ABI; this host experiment defines no kernel callback/IRQL guarantee.
 4. Reconsider OCF only when an exact pinned adapter can run D02's schedules on OCF itself (including partial-applied errors), preserve lower status/count, bound allocations/cancel/rundown, select WI and volatile metadata explicitly, and satisfy licensing plus applicable Windows gates. Use at least OCF's supported minimum cache geometry; compare equal workloads/capacities before making performance or memory claims.
 5. If original Rust fails the later independent oracle or exceeds the accepted memory budget, stop and revisit this choice. Passing a small author-written experiment is not sufficient reason to override a failing qualification result.
 
 ## Review / integration
 
+The following paragraph records the original local-review checkpoint; its publication blocker was later resolved as recorded below.
+
 Immutable executable source: `1d9833ce8ed7feaa6467fb56b48da4514ca090ad`. The earlier 12-test source `20115d499ad0b10ef3006c4561873db71a2f2f06` received independent Astra code review; two follow-up tests make its nonblocking coverage suggestions executable without changing the candidate implementation. The reviewer then accepted combined code/design commit `f0ff0e3d630ddb933f1419c231b4c4fa7d3a91a0`, rerunning 14 tests successfully. OCF factual research was separately crosschecked from pinned primary sources by SOL; the final Astra review did not claim a successful upstream refetch. GitHub commit creation for another task was interrupted; D03 has not been published or run in Windows CI. Do not mark D03 `done/accepted` or close #8 from this document alone.
+
+**Integration update, 2026-11-03:** [PR #72](https://github.com/H4M4CHi-ttr/win-ssd-hdd-cache/pull/72) merged as `11cd3be50703802145c7a63590e3bfcf770843c5`; the published reviewed tree passed Windows114/Linux116 named host tests. The [Phase 2 record](../evidence/2026-11-03-phase2-integration.md) identifies source/run/jobs. D03 is now accepted for the original-Rust **next host qualification** direction. F09, D01/D04/D10, W02 and all runtime/lab/owner gates remain separate; OCF execution or a like-for-like performance comparison was not performed.

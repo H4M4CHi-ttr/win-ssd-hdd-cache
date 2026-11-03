@@ -22,5 +22,5 @@ The first two exact traces must also detect `late_slot_reuse` as `safety_violati
 - [x] Add literal events and assertions from the fixed table; require GREEN for five references and two precise mutant detections.
 - [x] Record file hashes, clauses, actual counts, replay instructions, limits and any mismatch diagnosis.
 - [x] Run workspace/fmt/clippy/planning; independent Astra review of the fixed diff and hand expectations. Root workspace224; reviewer target7 (subset, not additive); five hashes match. Actual reference/mutant CLI exits0/3 inspected.
-- [ ] Publish bounded PR, verify exact tree, inspect Windows/Linux CI logs and merge normally.
+- [x] Publish bounded PR, verify exact tree, inspect Windows/Linux CI logs and merge normally: PR #78, Windows221/Linux224.
 - [ ] Synchronize acceptance, Issue #75 and parent roadmap with readback. No claim of F08 acceptance or actual DMA quiescence.

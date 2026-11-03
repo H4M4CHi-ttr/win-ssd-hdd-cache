@@ -35,3 +35,13 @@ The first PR #76 host run, `41567714712`, failed two `xtask` tests on both OSes:
 | GOV01/D08 | Owner license/contribution/signing/distribution decisions |
 
 Once F07 and F11 are complete, this finite portable continuation does not unlock the existing engine/Windows chain. D01 needs separately authorized disposable-lab correlation traces; its position is not selected. No live-disk or driver permission is inferred from the owner's ordinary Actions authorization. [Validation gates](validation.md) and [D01 ADR](adr/0004-interception-boundary.md) remain authoritative.
+
+## Follow-up: missing capture-preparation artifact
+
+F07/F11 were subsequently accepted and merged in PR #77/#78. A further independent Astra audit found that `experiments/stack-trace/` still contains only its plan: **there is no D01 capture producer, collector or install script**. D09's build-only entries always fail and are not observation probes. Thus the next handoff is not simply “run an existing driver in Codex.”
+
+The audit identified one bounded useful continuation before lab access: **P01 #79**, a [post-collection capture envelope and completeness checker](contracts/capture-envelope-v1.md). Missing records/correlations/loss counters must not be mistaken for full mutation coverage. It preserves unknowns and only reports internal completeness; producer/auth/coverage/kernel flags are always false. It does not invent real Windows timing, decode arbitrary IOCTL/SRB buffers, select attachment or define kernel transport/ABI.
+
+P01 contract checkpoint `dd9ef8f` received two must-fix review findings: duplicate submit target ownership and undefined range units. Both were fixed by specifying immutable first-submit identity and checked target-relative byte units (otherwise null), with three hand-derived correlation counterexamples. Independent Astra accepted `46f2cd8cb4c869a63a829d372e48c41997c48ce8` before implementation. P01 is a separate task, not a substitute dependency for D01/D04/D10/F08/F09/G1.
+
+The kernel producer still needs its own reviewed context/IRQL/forward/completion/rundown/attachment/loss-transport design. Pre-G1 source/build preparation is not inherently forbidden, but this envelope alone does not supply that design. Actual traces additionally need specified disposable Windows11 targets/build/stack, explicit operation permissions and rollback; a model or green CI cannot supply these facts. Read-only inventory on an authorized machine can inform that next slice; it is not mutation-coverage evidence.

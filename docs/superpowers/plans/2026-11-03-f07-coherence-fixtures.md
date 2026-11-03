@@ -26,6 +26,7 @@ All normal fixtures drain and finish passed, with explicit JSON assertions and n
 - [x] Run `cargo test -p cache-model --test coherence_traces --locked --offline` GREEN. Verify exact assertion counts, meaningful categories and all eight reference outcomes; directly inspect both mutant safety codes.
 - [x] Record fixture SHA-256 identities as external file evidence (not silently inserted into model report provenance), exact commands and results in `docs/evidence/F07.md`.
 - [x] Run full workspace tests, fmt, clippy and planning. Independent Astra review must confirm fixture expectations rather than merely reproducing implementation output.
-- [ ] Publish one bounded PR, inspect two-OS Actions logs, merge normally, then synchronize acceptance and Issue #23 with readback.
+- [x] Publish one bounded PR, inspect two-OS Actions logs and merge normally: PR #77, Windows214/Linux217, exact reviewed tree.
+- [ ] Synchronize acceptance and Issue #23 with readback in the separate metadata integration.
 
 F08/F09/D04/D10/G1 and all owner/lab gates remain blocked as applicable. F11's five portable-only lifetime fixtures are a different Issue/PR. No real disk/device access, driver installation, Windows API, network in tests, binary release, license or signing action.
