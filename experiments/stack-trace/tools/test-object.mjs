@@ -74,6 +74,32 @@ test('driver lifecycle and I/O externals are not accepted by name', () => {
   }
 });
 
+test('retained WDK select-any data is not an allowed snapshot external', () => {
+  // Independently constructed from the diagnostic run's observed shape, not
+  // bytes copied from its object. The same section without the external is a
+  // valid bounded fixture, so rejection cannot be explained by broken layout.
+  function withHeaderData(includeExternal) {
+    const auxiliary = Buffer.alloc(18);
+    auxiliary.writeUInt32LE(1, 0); // section length
+    auxiliary[14] = 2; // IMAGE_COMDAT_SELECT_ANY
+    const extra = [{ name: '.bss', section: 2, storage: 3, aux: [auxiliary] }];
+    if (includeExternal) extra.push({ name: 'ExPoolZeroingNativelySupported', section: 2 });
+    const original = fixture(extra);
+    const header = Buffer.alloc(108); // COFF + two sections + eight code bytes
+    original.copy(header, 0, 0, 60);
+    header.writeUInt16LE(2, 2);
+    header.writeUInt32LE(108, 8);
+    header.writeUInt32LE(100, 40);
+    header.write('.bss', 60);
+    header.writeUInt32LE(1, 76);
+    header.writeUInt32LE(0xc0101080, 96); // one-byte, uninitialized, select-any RW
+    original.copy(header, 100, 60, 68);
+    return Buffer.concat([header, original.subarray(68)]);
+  }
+  assert.equal(checkObject(withHeaderData(false)).sections, 2);
+  reject(withHeaderData(true));
+});
+
 test('PE and bigobj prefixes and foreign machine are rejected', () => {
   for (const machine of [0x5a4d, 0, 0x14c, 0xaa64]) {
     const b = fixture(); b.writeUInt16LE(machine); reject(b);

@@ -271,6 +271,15 @@ Keep the platform-default header packing; do not force /Zp8 or pragma pack to
 obtain alignment8. Assert natural layouts instead. /kernel defines _KERNEL_MODE;
 do not define it manually or mix host CRT typedefs into the WDK translation unit.
 
+The direct MSVC object command explicitly uses `/O2 /Zc:inline`, without `/Od`
+or `/GL`. This is the documented removal of unreferenced COMDAT code/data,
+normally enabled by the MSBuild property but not by a direct cl invocation.
+The pinned wdm.h defines unused select-any pool-support data merely when
+NTDDI_VERSION >= NTDDI_WIN2K. Do not edit that header, change target macros or
+allow extra external data just to suppress its structural rejection. Both
+required helpers must survive optimization and the unchanged symbol check.
+This option is a build choice, not a source-access or runtime-safety proof.
+
 The object checker accepts at most1MiB of ordinary AMD64 COFF: machine0x8664,
 1..96 sections, zero optional-header size, bounded section/symbol/string tables,
 valid auxiliary-symbol skipping and bounded external names. PE/bigobj variants
@@ -301,3 +310,4 @@ does not require inventing those deployment facts.
 - [Completion routine](https://learn.microsoft.com/en-us/windows-hardware/drivers/ddi/wdm/nc-wdm-io_completion_routine) / [dispatch IRQL](https://learn.microsoft.com/en-us/windows-hardware/drivers/kernel/dispatch-routines-and-irqls): residency and IRQL preconditions remain real integration obligations.
 - [IoCallDriver](https://learn.microsoft.com/en-us/windows-hardware/drivers/ddi/wdm/nf-wdm-iofcalldriver) / [IoCancelIrp](https://learn.microsoft.com/en-us/windows-hardware/drivers/ddi/wdm/nf-wdm-iocancelirp): handoff/access and cancel are not completion/lifetime proof.
 - [MSVC /kernel](https://learn.microsoft.com/en-us/cpp/build/reference/kernel-create-kernel-mode-binary?view=msvc-170), [C17](https://learn.microsoft.com/en-us/cpp/build/reference/std-specify-language-standard-version?view=msvc-170), [packing](https://learn.microsoft.com/en-us/cpp/build/reference/zp-struct-member-alignment?view=msvc-170): compiler-defined kernel mode, C scalar assertions and platform-default SDK alignment.
+- [MSVC /Zc:inline](https://learn.microsoft.com/en-us/cpp/build/reference/zc-inline-remove-unreferenced-comdat?view=msvc-170): unreferenced COMDAT code/data removal, command-line/MSBuild default difference and optimization restrictions.

@@ -30,7 +30,9 @@ experiments/stack-trace/out/snapshot-vectors
 node --test experiments/stack-trace/tools/test-object.mjs
 ```
 
-`capture-build-proof.yml`は通常のhosted runnerだけを使い、checkout/upload actionはcommit固定、permissionはcontents:readです。Windows jobはD09のMicrosoft NuGet package pin・SHA-256・signature verificationを再利用し、`/c /std:c17 /kernel /GS /Zl /W4 /WX /showIncludes /O2`でAMD64 `.obj`だけを作ります。host scalar executableは通常のuser-mode試験のためにlink/実行しますが、WDK objectはlink/loadしません。platform-default packingを変更せず、`_KERNEL_MODE`も手動定義しません。
+`capture-build-proof.yml`は通常のhosted runnerだけを使い、checkout/upload actionはcommit固定、permissionはcontents:readです。Windows jobはD09のMicrosoft NuGet package pin・SHA-256・signature verificationを再利用し、`/c /std:c17 /kernel /GS /Zl /W4 /WX /showIncludes /O2 /Zc:inline`でAMD64 `.obj`だけを作ります。host scalar executableは通常のuser-mode試験のためにlink/実行しますが、WDK objectはlink/loadしません。platform-default packingを変更せず、`_KERNEL_MODE`も手動定義しません。
+
+`/Zc:inline`はMSBuildと直接の`cl`実行で既定値が違う、未使用COMDATの除去設定です。pinned WDKが宣言する未使用dataを対象にし、SDK headerやtarget macroを書き換えません。二つの必須関数と五つの許可未定義symbolという検査条件は維持し、余分なheader dataが残れば引き続き拒否します。この設定もruntime安全性の保証ではありません。
 
 `/showIncludes`の相対パスは、compiler起動直前のPowerShell FileSystem locationをbaseにした`GetFullPath(path, basePath)`で解決します。process cwdへの暗黙依存は使いません。許可範囲は従来どおり当該runの検証済みkitと実験の`include/`配下だけです。先に17件のpath試験を実行し、成功件数をmanifestへ記録します。fixture pathは実在不要で、試験はdirectory作成やlocation変更を行いません。source/helperの存在だけではWindows実行済みとは扱いません。
 

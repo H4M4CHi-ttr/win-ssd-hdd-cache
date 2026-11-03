@@ -118,7 +118,9 @@ try {
             -not [string]::Equals([System.IO.Path]::GetFullPath($compilerBase), [System.IO.Path]::GetFullPath($root), [System.StringComparison]::OrdinalIgnoreCase)) {
         throw 'P02_COMPILER_BASE_MISMATCH'
     }
-    $kernelResult = Invoke-Recorded 'cl.exe' @('/nologo', '/c', '/std:c17', '/kernel', '/GS', '/Zl', '/W4', '/WX', '/showIncludes', '/O2', '/D_AMD64_', '/DAMD64', '/D_WIN32_WINNT=0x0A00', "/I$km", "/I$km\crt", "/I$shared", '/Iinclude', 'wdk/upper_snapshot.c', "/Fo:$objectPath") 'kernel-compile.txt'
+    # Direct cl defaults /Zc:inline off, unlike MSBuild. Remove unreferenced
+    # COMDAT header data while retaining the unchanged strict symbol allowlist.
+    $kernelResult = Invoke-Recorded 'cl.exe' @('/nologo', '/c', '/std:c17', '/kernel', '/GS', '/Zl', '/W4', '/WX', '/showIncludes', '/O2', '/Zc:inline', '/D_AMD64_', '/DAMD64', '/D_WIN32_WINNT=0x0A00', "/I$km", "/I$km\crt", "/I$shared", '/Iinclude', 'wdk/upper_snapshot.c', "/Fo:$objectPath") 'kernel-compile.txt'
 
     # Record every compiler-reported include and reject unintended host CRT
     # fallback. Platform-default packing is left unchanged.
