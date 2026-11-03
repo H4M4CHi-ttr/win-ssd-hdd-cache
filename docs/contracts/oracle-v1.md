@@ -98,11 +98,13 @@ cache childはsource/physical full coverageをpublish/hit条件として別に�
 |---|---|---|
 | input_error | F05のfixed parser code | typed traceを構成できない |
 | semantic_error | DUPLICATE_COMPLETION, TRANSFER_AFTER_COMPLETION, TRANSFER_OVERLAP, UNACCEPTED_IO, INVALID_PHASE, POST_POWER_LOSS | staticに整形式だがschedulerのphase/操作が不成立 |
-| backend_violation | READ_REPORTED_UNSAMPLED, WRITE_REPORTED_UNAPPLIED, FUA_NOT_DURABLE, FLUSH_NOT_DURABLE | 模擬下位装置の提示した成功/countが物理履歴と矛盾 |
+| backend_violation | READ_REPORTED_UNSAMPLED, WRITE_REPORTED_UNAPPLIED, FUA_NOT_DURABLE, FLUSH_NOT_DURABLE, DURABLE_HISTORY_MISMATCH | 模擬下位装置の提示した成功/count/耐久履歴が物理履歴と矛盾 |
 | safety_violation | STALE_PUBLICATION, STALE_CACHE_RESULT, EARLY_ACK, LOWER_RESULT_CHANGED, LIVE_LEASE_REUSED, RESULT_MUTATED, DUPLICATE_RESULT, INVALID_OWNERSHIP | candidateの危険なclaimを独立履歴が検出 |
 | assertion_failure | ASSERT_READ, ASSERT_RESULT, ASSERT_CACHE, ASSERT_DECISION, ASSERT_ORIGIN | 手書き期待値と観測が一致しない |
 
 具体codeはF06のenumで固定し、上表のcategoryを変更する追加はD07再review。入力の意味が不明なとき「安全のため何でもreject」で合格にしない。ordinary errorの正常伝播（たとえばio_error/report0をそのまま返す）はmodel FAILではない。
+
+F06で追加する`DURABLE_HISTORY_MISMATCH`は、合法な非zero persist後のlower durable state、または実mutation historyを持つpower loss後の復元結果が独立expected historyと不一致の場合に限定する。kindはbackend_violation、評価点はdurability。未適用範囲のpersistはsemantic errorのまま。これはfake lowerの抽象契約違反であり、実deviceの耐久性観測ではない。
 
 ## 8. 小さい固定例（実行結果ではなく規範）
 

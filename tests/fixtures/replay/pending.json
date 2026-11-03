@@ -1,0 +1,13 @@
+{
+  "schema_version": 1,
+  "seed": "44",
+  "capacity": "1",
+  "line_size": 4096,
+  "slot_count": 1,
+  "counter_limit": "18446744073709551615",
+  "initial_hex": "41",
+  "events": [
+    {"event":"read_submit","request":"1","offset":"0","length":"1"},
+    {"event":"io_submit","io":"1","request":"1","target":"origin_read","slot":null,"source":null}
+  ]
+}
