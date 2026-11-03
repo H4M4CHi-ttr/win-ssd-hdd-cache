@@ -292,7 +292,7 @@ fn version_tokens_and_numeric_string_lexemes_are_strict() {
         );
     }
     let mut input = base();
-    input["schema_version"] = json!(2);
+    input["schema_version"] = json!(3);
     assert_eq!(
         audit_capture(&input.to_string()).unwrap_err(),
         CaptureError::UnsupportedVersion
@@ -416,7 +416,7 @@ fn record_limit_exact_plus_one_remains_bounded_even_with_duplicate_ids() {
         audit_capture(&input.to_string()).unwrap_err(),
         CaptureError::TooManyRecords
     );
-    input["schema_version"] = json!(2);
+    input["schema_version"] = json!(3);
     assert_eq!(
         audit_capture(&input.to_string()).unwrap_err(),
         CaptureError::UnsupportedVersion

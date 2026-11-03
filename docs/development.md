@@ -33,6 +33,21 @@ cargo run --locked -p cache-cli --bin cache-capture-audit -- --input tests/fixtu
 
 Only an explicit ordinary file is read (1 MiB/4,096-record bounds). Exit0 means **internally complete supplied records**, not truthful capture, authorization, mutation coverage or D01 PASS; all verification flags remain false. Exit4 is incomplete evidence with JSON reasons, exit2 is usage/format/value/UTF-8/limit failure and exit3 is ordinary-file I/O failure. Errors are fixed codes, not source text. Do not run elevated. There is no kernel collector or live device source, and the existing `cargo run -p cache-cli -- status ...` default remains unchanged.
 
+[P03's explicit version2](contracts/capture-envelope-v2.md) additionally retains
+an observed completion whose numeric Information is unknown. The key is required
+but can be null; completion status must still be a nonnull u32 decimal string.
+Run the literal fixture below to get exit4 and `UNKNOWN_INFORMATION`, with a
+correctly paired request rather than an invented zero or a lost completion:
+
+```sh
+cargo run --locked -p cache-cli --bin cache-capture-audit -- --input tests/fixtures/capture-audit-v2/unknown-read.json
+```
+
+Version1 validation and golden bytes remain unchanged. The v2 report retains
+version2, original counters/order and all four false flags. This is still an
+offline supplied-evidence check, not a producer/collector or quiescence proof;
+see [P03 implementation evidence](evidence/P03.md) for actual acceptance status.
+
 ## Host CI policy
 
 The [workflow](../.github/workflows/host-tests.yml) is intentionally written in the JSON subset of YAML. Its [closed policy](../xtask/src/workflow.rs) rejects any unreviewed key, command, action, event, runner or condition. [Mutation tests](../xtask/tests/workflow_policy.rs) validate the real file and reject duplicate JSON keys, privilege/trigger/credential expansion, missing OS/checks, masked failures, altered commands and zero-test guard removal. This is not a general-purpose YAML validator.

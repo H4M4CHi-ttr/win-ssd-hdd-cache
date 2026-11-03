@@ -87,7 +87,7 @@ fn syntax_version_and_value_errors_have_fixed_nonreflecting_stderr() {
     for (source, code) in [
         (BASE.to_owned() + "PRIVATE-SENTINEL", "INVALID_CAPTURE"),
         (
-            BASE.replace("\"schema_version\":1", "\"schema_version\":2"),
+            BASE.replace("\"schema_version\":1", "\"schema_version\":3"),
             "UNSUPPORTED_CAPTURE_VERSION",
         ),
         (
