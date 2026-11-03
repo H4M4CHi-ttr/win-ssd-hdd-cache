@@ -163,6 +163,21 @@ F06: phase/order、disjoint fragment、rundown/coverage、model decisionsとasse
 
 public parser APIは `parse_trace(&str) -> Result<TraceV1, TraceError>`。TraceErrorは固定code（INPUT_TOO_LARGE/INVALID_JSON/INVALID_SCHEMA/INVALID_VALUE/LIMIT_EXCEEDED/INVALID_REFERENCE）と`event_index: Option<usize>`のみ。元payload/パス/serde messageを含めない。構造errorのindexはnullを許す。semantic errorは別のReplayResultで最初のevent index/codeを報告する。
 
+F05のstatic検査は次のように分類する。wire formatやruntimeのdecision条件を変更するものではない。
+
+| code | staticな検査対象 |
+|---|---|
+| INPUT_TOO_LARGE | parse前のraw UTF-8 byte上限 |
+| INVALID_JSON | JSON文法、BOM、末尾の別document |
+| INVALID_SCHEMA | object/field型、未知/重複/欠落field、未知event/enum、整数token、schema version |
+| INVALID_VALUE | canonical数値/hex/mask、geometry/range、slot/sourceのnullarity、unknown位置の非zero data |
+| LIMIT_EXCEEDED | capacity、event数、合計decoded payloadの上限 |
+| INVALID_REFERENCE | 未宣言/前方/重複ID、親子のkind/target不一致、異なるfillのsource、assert indexの参照先不正 |
+
+`io_transfer`と`origin_persist`のoffsetは**child-relative**。flushへのtransferは対象kind不一致でINVALID_REFERENCE。assert_readはread親だけを参照し、data/mask長は要求長以下を許す（実reported長と等しいかはreplayで判定）。fillにはcaller resultがないためassert_read/resultでは参照できない。
+
+parserはcache_readのcross-line、未bound slot、未完了source、同targetの別IO IDによるretry、duplicate completion、completion後transfer、power_loss後の操作をphase理由では拒否しない。これらをruntimeへ届け、モデルのrejected/pending/semantic errorを試す。IDの一意性はnamespaceごとで、単調性もcounter_limit以下も要求しない。validated `TraceV1`のfieldはprivate、getterはread-onlyとし、公開typed eventを直接構築できてもcontainerの検査を迂回して変更できない。
+
 assert_read/resultはcommit済み親だけ、assert_cacheは現在のvisibility、assert_decisionは指定eventの直後に得たdecision、assert_originは現在の原本bytes/maskを比較する。unknown maskは正確に一致させ、any-valueの逃げ道にしない。
 
 ## 8. 正常traceと異常の分類
