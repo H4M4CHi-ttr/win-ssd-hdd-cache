@@ -2,11 +2,11 @@
 
 **実機で検証済みのprobe driver・collectorはありません。未install・未loadで、実traceも未取得です。** このdirectoryには実験計画、P02の限定source/buildと[P04候補source](probe/README.md)を置きます。P04のsource review/host試験/実WDK buildの実施状況は[証拠](../../docs/evidence/P04.md)を参照してください。G1前の観測実験は製品W01ではない。資料/compile/host model/実Windows traceを混同しない。
 
-2026-11-03追記: [P01のoffline capture audit](../../docs/evidence/P01.md)はPR #81で実装・受入済みですが、producer/collectorを実装したわけではありません。[次のWindows工程とCodexプロンプト](../../docs/handoff/2026-11-03-windows-next-step.md)はread-only inventoryから始まります。
+2026-11-03追記: [P01のoffline capture audit](../../docs/evidence/P01.md)はPR #81で実装・受入済み。P01単体にはproducer/collectorはありませんが、後続[P04](../../docs/evidence/P04.md)の観測driverとRust collectorはPR #91でsource/build受入済みです。installerや実機観測は含みません。[次のWindows工程とCodexプロンプト](../../docs/handoff/2026-11-03-windows-next-step.md)はread-only inventoryから始まります。
 
 ## P02: source/buildだけを準備する部分
 
-[P02契約](../../docs/contracts/capture-producer-v1.md)に従う小さいscalar snapshotです。製品の捕捉位置は未採択であり、実際のdispatch/completion callbackへ接続していません。
+[P02契約](../../docs/contracts/capture-producer-v1.md)に従う小さいscalar snapshotです。P02単体にはdispatch/completion callbackはありません。別のP04候補sourceがこの関数を呼ぶ実験用wrapperを実装しましたが、製品の捕捉位置は未採択、実Windows runtimeは未検証です。
 
 | ファイル | 限定した責務 |
 |---|---|
@@ -17,7 +17,7 @@
 | `tools/build.ps1` | ephemeral Windows Actionsでhost試験とWDK object-onlyコンパイル。kernel imageをlinkせず、LLVMもdriverもinstallしない |
 | `tools/header-paths.ps1` / `tools/test-header-paths.ps1` | compilerの絶対working directoryを明示したincludeパス正規化と17件のWindows文字列試験。許可root外・prefixが似ただけの別directoryを拒否 |
 
-Windows側はown live/stable stackからforward前にsubmitを取り、completionは同じ要求のimmutable saved classificationを使う想定ですが、**その寿命・同期・IRQL・呼出し経路は未実装の統合前提**です。入力/outputのnonalias、resident memory、IRQL<=DISPATCH_LEVELを呼出し側が証明する必要があります。null checkは任意pointerを検証しません。戻り値0/1/2はsnapshotの結果でありNTSTATUSではありません。
+Windows側はown live/stable stackからforward前にsubmitを取り、completionは同じ要求のimmutable saved classificationを使う契約です。**P02単体では寿命・同期・IRQL・呼出し経路は呼出し側の義務**で、P04では独立review済みの実験用wrapperと同一sourceの疑似DDI試験を追加しました。入力/outputのnonalias、resident memory、IRQL<=DISPATCH_LEVELという実環境での義務はhost試験で証明されません。null checkは任意pointerを検証しません。戻り値0/1/2はsnapshotの結果でありNTSTATUSではありません。
 
 Read/Writeのminor0だけを普通のtransferとみなし、負のoffsetはunknownとします。成功のInformationを読めるのはsaved ordinary Read/Writeかつstatus bitsが厳密に0の場合だけです。rangeがunknownでもこの分類は維持します。PnP、flush、public/internal control、special minor、非zero statusではInformationを**引数評価より前に避け**、presence=0・storage=0にします。unknownは観測された0ではありません。major0x0fはinternal/SCSI aliasなのでpublic IOCTLのunionを読まず、payloadやpointerを保存しません。
 
@@ -40,7 +40,7 @@ node --test experiments/stack-trace/tools/test-object.mjs
 
 公開artifactは`out/evidence/`のtext/JSONだけです。exact source/tree・source/header/compiler/object hash、commandsと各native出力、実case数、symbolチェック結果、runtime未実施のfalse flagを残します。同じ公開build manifestとheader hash JSONは通常のjob logにも表示し、artifactが取得できない場合も照合できます。環境変数や秘密情報の一括表示はしません。`.exe`・`.obj`・`.sys`や実機データはuploadしません。VS17 selectionはcompiler binary自体のpinではないため、各runのversion/hashを記録します。actual Windows compile・独立review・受入状況は[P02証拠](../../docs/evidence/P02.md)を参照し、sourceが存在するだけで成功扱いしないでください。
 
-P02からP01 JSONへの自動変換、driver/collectorの実装、boot/署名設定変更、install/実機操作、D01/D04/D10/F08/F09/G1のgate解除は含みません。以下のlab計画はそのまま別の承認・reviewが必要です。
+P02単体にはP01 JSONへの自動変換やdriver/collectorの実装を含みません。後続P03/P04がunknown-preserving v2投影と限定observer/collectorを別の受入単位として追加しました。boot/署名設定変更、install/実機操作、D01/D04/D10/F08/F09/G1のgate解除はいずれにも含みません。以下のlab計画は引き続き別の承認・reviewが必要です。
 
 ## 開始前のstop条件
 

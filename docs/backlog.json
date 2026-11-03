@@ -1423,7 +1423,7 @@
         "B02"
       ],
       "files": [
-        "docs/adr/0018-resource-policy.md",
+        "docs/adr/0019-resource-policy.md",
         "docs/benchmarks/protocol.md",
         "docs/contracts/resource-budgets.md"
       ],
@@ -1890,7 +1890,7 @@
       "title": "capture-only upper-candidate probeとRust collectorのsource/buildを実装する",
       "agent": "sol",
       "review": "astra",
-      "status": "ready",
+      "status": "done",
       "priority": "p0",
       "type": "task",
       "area": "driver",
@@ -1923,7 +1923,7 @@
       "escalation": "未定義のIRP/IRQL/lock/lifetime/transport/projection semanticsは独立reviewへ。source/buildのみでD01/D04/D10/F08/F09/G1やlab/署名/配布/ライセンスを解除しない。登録/装着/ロード・raw disk・security setting操作は別承認。",
       "issue_number": 89,
       "issue_url": "https://github.com/H4M4CHi-ttr/win-ssd-hdd-cache/issues/89",
-      "completion": "pending"
+      "completion": "accepted"
     }
   ]
 }

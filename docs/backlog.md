@@ -4,19 +4,19 @@
 
 ## 状態と着手
 
-F07/F11/P01/P02/P03はそれぞれPR #77/#78/#81/#85/#88で独立受入・main統合済み。このcheckpointでreadyにするのは[P04 #89](https://github.com/H4M4CHi-ttr/win-ssd-hdd-cache/issues/89)の1件です。[P04契約](contracts/upper-candidate-probe-v1.md)・計画・C/WDK限定例外は独立review済み、公開/readiness同期後にsource/buildへ進みます。P04は観測専用candidateで、製品cacheやWindows/lab gateは採択しません。[portable境界監査](portable-boundary-audit-2026-11-03.md)、[次のWindows工程](handoff/2026-11-03-windows-next-step.md)も参照してください。
+F07/F11/P01/P02/P03はそれぞれPR #77/#78/#81/#85/#88で独立受入・main統合済み。[P04 #89](https://github.com/H4M4CHi-ttr/win-ssd-hdd-cache/issues/89)もPR #91でsource/buildを受入・main統合しました。[P04証拠](evidence/P04.md)に独立review、実WDK linkと二OS host CIを記録しています。readyは0件。次は指定Windowsのread-only inventoryと対象適合性・登録/回復手順のreviewです。P04は観測専用candidateで、製品cacheやWindows/lab gateは採択しません。[portable境界監査](portable-boundary-audit-2026-11-03.md)、[次のWindows工程](handoff/2026-11-03-windows-next-step.md)も参照してください。
 
-追加のaccepted: [F07 #23](https://github.com/H4M4CHi-ttr/win-ssd-hdd-cache/issues/23)、[F11 #75](https://github.com/H4M4CHi-ttr/win-ssd-hdd-cache/issues/75)、[P01 #79](https://github.com/H4M4CHi-ttr/win-ssd-hdd-cache/issues/79)、[P02 #83](https://github.com/H4M4CHi-ttr/win-ssd-hdd-cache/issues/83)、[P03 #86](https://github.com/H4M4CHi-ttr/win-ssd-hdd-cache/issues/86)。以下の先行17件と合わせて22件です。
+追加のaccepted: [F07 #23](https://github.com/H4M4CHi-ttr/win-ssd-hdd-cache/issues/23)、[F11 #75](https://github.com/H4M4CHi-ttr/win-ssd-hdd-cache/issues/75)、[P01 #79](https://github.com/H4M4CHi-ttr/win-ssd-hdd-cache/issues/79)、[P02 #83](https://github.com/H4M4CHi-ttr/win-ssd-hdd-cache/issues/83)、[P03 #86](https://github.com/H4M4CHi-ttr/win-ssd-hdd-cache/issues/86)、[P04 #89](https://github.com/H4M4CHi-ttr/win-ssd-hdd-cache/issues/89)。以下の先行17件と合わせて23件です。
 
 accepted: [F06 #20](https://github.com/H4M4CHi-ttr/win-ssd-hdd-cache/issues/20)、[F05 #14](https://github.com/H4M4CHi-ttr/win-ssd-hdd-cache/issues/14)、[D07 #17](https://github.com/H4M4CHi-ttr/win-ssd-hdd-cache/issues/17)、[D03 #8](https://github.com/H4M4CHi-ttr/win-ssd-hdd-cache/issues/8)、[D09 #6](https://github.com/H4M4CHi-ttr/win-ssd-hdd-cache/issues/6)、[D02 #4](https://github.com/H4M4CHi-ttr/win-ssd-hdd-cache/issues/4)、[F01 #5](https://github.com/H4M4CHi-ttr/win-ssd-hdd-cache/issues/5)、[F02 #10](https://github.com/H4M4CHi-ttr/win-ssd-hdd-cache/issues/10)、[F03 #7](https://github.com/H4M4CHi-ttr/win-ssd-hdd-cache/issues/7)、[F04 #12](https://github.com/H4M4CHi-ttr/win-ssd-hdd-cache/issues/12)、[F10 #13](https://github.com/H4M4CHi-ttr/win-ssd-hdd-cache/issues/13)、[C01 #16](https://github.com/H4M4CHi-ttr/win-ssd-hdd-cache/issues/16)、[C02 #22](https://github.com/H4M4CHi-ttr/win-ssd-hdd-cache/issues/22)、[C03 #21](https://github.com/H4M4CHi-ttr/win-ssd-hdd-cache/issues/21)、[B01 #18](https://github.com/H4M4CHi-ttr/win-ssd-hdd-cache/issues/18)、[B02 #28](https://github.com/H4M4CHi-ttr/win-ssd-hdd-cache/issues/28)、[AUD01 #51](https://github.com/H4M4CHi-ttr/win-ssd-hdd-cache/issues/51)。
 
 host 10課題とAUD01（PR #54〜#65）、D02（PR #67）は独立受入後にmainへ統合済み。D01は資料のみPR #66で統合済み、実Windows traceと受入は未完。[統合・検証記録](evidence/2026-11-02-main-integration.md)を確認してください。D02 CIのLinux 102件・Windows Server 100件はhost試験であり、Windows 11 driverや実機安全性の証拠ではありません。Issueのcloseは本文・証拠の同期後に別途読み戻して確認します。
 
-状態集計: done 22 / ready 1 / blocked 33 / needs-decision 1（計57作業）。
+状態集計: done 23 / ready 0 / blocked 33 / needs-decision 1（計57作業）。
 
 owner_approvalがpendingの課題を推測でready/acceptedにしない。承認URLは承認者・scope・条件を人が確認するための参照。元のagentラベルは最低難度でありroot/上位モデルも処理できる。accepted依存を用いる場合は、その成果物を含むPR/branch上で作業し、未mergeのmainに存在すると仮定しない。
 
-追加4課題はPR #68/#70/#71/#72でmainへ統合済み。[Phase 2統合記録](evidence/2026-11-03-phase2-integration.md)を参照。F06も[PR #74の証拠](evidence/F06.md)により受入済み。[F07](evidence/F07.md)の8 fixture/10 testsと[F11](evidence/F11.md)の5 fixture/7 tests、[P01](evidence/P01.md)のoffline auditも独立受入・二OS CI・main統合済み。最新P03 host CIはWindows296/Linux299。F08/F09とD01の実Windows trace待ちは維持します。
+追加4課題はPR #68/#70/#71/#72でmainへ統合済み。[Phase 2統合記録](evidence/2026-11-03-phase2-integration.md)を参照。F06も[PR #74の証拠](evidence/F06.md)により受入済み。[F07](evidence/F07.md)の8 fixture/10 testsと[F11](evidence/F11.md)の5 fixture/7 tests、[P01](evidence/P01.md)のoffline auditも独立受入・二OS CI・main統合済み。最新P04 host CIはWindows342/Linux344。F08/F09とD01の実Windows trace待ちは維持します。B03のplanned ADRは、P04の採択済みADR-018との番号衝突を避けて0019へ訂正しただけで、B03の契約・依存・blocked状態は変更していません。
 
 ## 担当別
 
@@ -86,5 +86,5 @@ owner_approvalがpendingの課題を推測でready/acceptedにしない。承認
 | [P01 #79](https://github.com/H4M4CHi-ttr/win-ssd-hdd-cache/issues/79) | D01観測ログの欠落・相関を検査するoffline capture auditを実装する | sol → astra | done / accepted | [F01 #5](https://github.com/H4M4CHi-ttr/win-ssd-hdd-cache/issues/5), [D09 #6](https://github.com/H4M4CHi-ttr/win-ssd-hdd-cache/issues/6) |
 | [P02 #83](https://github.com/H4M4CHi-ttr/win-ssd-hdd-cache/issues/83) | bounded capture producerとcompile-only upper snapshotを実装する | sol → astra | done / accepted | [F01 #5](https://github.com/H4M4CHi-ttr/win-ssd-hdd-cache/issues/5), [D09 #6](https://github.com/H4M4CHi-ttr/win-ssd-hdd-cache/issues/6), [P01 #79](https://github.com/H4M4CHi-ttr/win-ssd-hdd-cache/issues/79) |
 | [P03 #86](https://github.com/H4M4CHi-ttr/win-ssd-hdd-cache/issues/86) | completionの不明Informationを保持するoffline capture v2を実装する | luna → astra | done / accepted | [P01 #79](https://github.com/H4M4CHi-ttr/win-ssd-hdd-cache/issues/79), [P02 #83](https://github.com/H4M4CHi-ttr/win-ssd-hdd-cache/issues/83) |
-| [P04 #89](https://github.com/H4M4CHi-ttr/win-ssd-hdd-cache/issues/89) | capture-only upper-candidate probeとRust collectorのsource/buildを実装する | sol → astra | ready / pending | [D09 #6](https://github.com/H4M4CHi-ttr/win-ssd-hdd-cache/issues/6), [P02 #83](https://github.com/H4M4CHi-ttr/win-ssd-hdd-cache/issues/83), [P03 #86](https://github.com/H4M4CHi-ttr/win-ssd-hdd-cache/issues/86) |
+| [P04 #89](https://github.com/H4M4CHi-ttr/win-ssd-hdd-cache/issues/89) | capture-only upper-candidate probeとRust collectorのsource/buildを実装する | sol → astra | done / accepted | [D09 #6](https://github.com/H4M4CHi-ttr/win-ssd-hdd-cache/issues/6), [P02 #83](https://github.com/H4M4CHi-ttr/win-ssd-hdd-cache/issues/83), [P03 #86](https://github.com/H4M4CHi-ttr/win-ssd-hdd-cache/issues/86) |
 

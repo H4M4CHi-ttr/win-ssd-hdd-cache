@@ -31,7 +31,7 @@ It accepts only an explicit bounded ordinary file and outputs payload-free evide
 cargo run --locked -p cache-cli --bin cache-capture-audit -- --input tests/fixtures/capture-audit/complete-synthetic.json
 ```
 
-Only an explicit ordinary file is read (1 MiB/4,096-record bounds). Exit0 means **internally complete supplied records**, not truthful capture, authorization, mutation coverage or D01 PASS; all verification flags remain false. Exit4 is incomplete evidence with JSON reasons, exit2 is usage/format/value/UTF-8/limit failure and exit3 is ordinary-file I/O failure. Errors are fixed codes, not source text. Do not run elevated. There is no kernel collector or live device source, and the existing `cargo run -p cache-cli -- status ...` default remains unchanged.
+Only an explicit ordinary file is read (1 MiB/4,096-record bounds). Exit0 means **internally complete supplied records**, not truthful capture, authorization, mutation coverage or D01 PASS; all verification flags remain false. Exit4 is incomplete evidence with JSON reasons, exit2 is usage/format/value/UTF-8/limit failure and exit3 is ordinary-file I/O failure. Errors are fixed codes, not source text. Do not run elevated. This P01 CLI has no kernel collector or live device source, and the existing `cargo run -p cache-cli -- status ...` default remains unchanged. The separate [P04 observer/collector source](../experiments/stack-trace/probe/README.md) has passed its source/build milestone but has never been registered, loaded or used to observe a real device.
 
 [P03's explicit version2](contracts/capture-envelope-v2.md) additionally retains
 an observed completion whose numeric Information is unknown. The key is required

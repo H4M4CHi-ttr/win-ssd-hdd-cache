@@ -1058,7 +1058,7 @@ F01後に使えるhost commands: `cargo fmt --all -- --check`、`cargo clippy --
 **担当 / review:** SOL / ASTRA  
 **状態:** blocked / pending  
 **Depends on:** [D03 #8](https://github.com/H4M4CHi-ttr/win-ssd-hdd-cache/issues/8), [D04 #11](https://github.com/H4M4CHi-ttr/win-ssd-hdd-cache/issues/11), [F09 #27](https://github.com/H4M4CHi-ttr/win-ssd-hdd-cache/issues/27), [B02 #28](https://github.com/H4M4CHi-ttr/win-ssd-hdd-cache/issues/28)  
-**Files (planned / implemented status in Issue):** `docs/adr/0018-resource-policy.md`, `docs/benchmarks/protocol.md`, `docs/contracts/resource-budgets.md`
+**Files (planned / implemented status in Issue):** `docs/adr/0019-resource-policy.md`, `docs/benchmarks/protocol.md`, `docs/contracts/resource-budgets.md`
 
 **Interfaces**
 

@@ -56,3 +56,47 @@ the [bounded producer / scalar snapshot contract](contracts/capture-producer-v1.
 The55-task manifest adds only P02 ready/pending (SOL→Astra, F01/D09/P01 dependencies).
 All54 previous task records are unchanged. Real callback integration and the
 Windows/owner gates remain unresolved; P02 is not an installable probe.
+
+## Current continuation boundary after P04 source/build acceptance
+
+The snapshots above are historical. P02 and P03 were subsequently accepted, and
+P04's full capture-only observer/collector source/build merged through
+[PR91](https://github.com/H4M4CHi-ttr/win-ssd-hdd-cache/pull/91); see
+[P04 evidence](evidence/P04.md) for exact trees, independent source/CI review,
+host Windows342/Linux344, C69 on both OSes and genuine WDK/Win32 linking.
+No driver was registered, installed, attached or loaded.
+
+Independent read-only continuation review inspected all57 task contracts,
+implementations and dependencies, not merely the ready count. The current
+snapshot is23 done /0 ready /33 blocked /1 needs-decision. The unresolved graph's
+roots are D01's Windows facts and GOV01's owner decisions. P01–P04 now provide the
+finite metadata recorder, bounded transport, loss-preserving archive,
+conservative projection, gated collector and tested/built experimental lifecycle.
+The review found no further missing capture-preparation slice analogous to P01–P04
+that is needed before the actual target inventory.
+
+- D01 still needs real stack/target facts, eligibility/registration review,
+  separately authorized observation and mutation-coverage evidence. A compiled
+  observer is not an adopted product interception position.
+- D04/D10 need product caller/child IRP, MDL/private buffer, physical-slot and
+  originated cache/origin-I/O lifetime mapping. P04 originates no storage I/O and
+  cannot replace that contract. F08/F09/B03 retain their mapping/evidence gates.
+- D05/C05 and D06/C06/C04/W10 need frozen product target/control contracts, not a
+  fictional descriptor or P04's experiment-only endpoint. G1/W/G2 and U01–U03
+  remain unchanged; an offline mock GUI does not satisfy their live service scope.
+- Q/signing/hardware/release work retains its separate lab and human decisions.
+  Model labels are minimum review difficulty, not evidence that these gates passed.
+
+Thus the next useful **technical input** is the
+[designated Windows read-only inventory](handoff/2026-11-03-windows-next-step.md).
+This is not a claim that every conceivable cloud-only task is exhausted.
+GOV01 can still benefit from a proposed license/contribution/reporting decision
+brief, but only the owner may adopt policy; no LICENSE, contribution authorization
+or approval state is added by this checkpoint. Speculative lower-SRB probes,
+another model adapter or mock GUI are not substitutes for the next missing facts.
+
+The audit also corrected stale handoff/D01 wording that still described all
+observer/collector source as absent. Installer/registration and real observation
+remain absent. B03's planned resource-policy ADR moves from0018 to0019 to avoid
+collision with P04's accepted ADR018; B03 remains blocked/pending with exactly
+the same dependencies. No owner approval or other task status is inferred.
