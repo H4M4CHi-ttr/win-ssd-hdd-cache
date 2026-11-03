@@ -1,6 +1,6 @@
 {
   "schema_version": 2,
-  "plan_date": "2026-11-02",
+  "plan_date": "2026-11-03",
   "tasks": [
     {
       "id": "GOV01",
@@ -100,7 +100,7 @@
       "title": "OCF WIと最小Rust coreを比較しcache engineの採否を決める",
       "agent": "sol",
       "review": "astra",
-      "status": "ready",
+      "status": "done",
       "priority": "p0",
       "type": "design",
       "area": "architecture",
@@ -113,7 +113,7 @@
         "docs/contracts/engine.md",
         "experiments/ocf-portability/README.md"
       ],
-      "output": "OCF upstream commit/license、必要env wrapper、WI意味論、memory計測、RustとのFFI一覧、OCF vs 独自最小Rust clean-cacheのGo/No-Go。kernel言語採否はD09と分離。",
+      "output": "OCF upstream commit/license、必要env wrapper、WI意味論、memory計測、RustとのFFI一覧、OCF vs 独自最小Rust clean-cacheのGo/No-Go。kernel言語採否はD09と分離。 PR #72でmain統合済み。14 host spike testsと独立Astra review、Windows114/Linux116 host testsを受入。original Rustの後続host qualificationのみGo、OCF実行/比較測定・製品受入は未実施。証拠: docs/evidence/2026-11-03-phase2-integration.md。",
       "acceptance": [
         "WIとWAを混同せずD02の反例をcandidate harnessで再現する",
         "cacheline/sector pair、nonpaged想定memory、async callback、cancel、allocator依存を列挙して未対応を明記",
@@ -123,7 +123,7 @@
       "escalation": "upstreamの動作を推測で包まない。C/Rust ownershipやlicenseが不明ならAstra/所有者判断まで止める。",
       "issue_number": 8,
       "issue_url": "https://github.com/H4M4CHi-ttr/win-ssd-hdd-cache/issues/8",
-      "completion": "pending",
+      "completion": "accepted",
       "owner_approval": "not-required",
       "approval_evidence": []
     },
@@ -231,7 +231,7 @@
       "title": "portableな整合性・flush耐久性・故障oracleを定義する",
       "agent": "astra",
       "review": "astra",
-      "status": "ready",
+      "status": "done",
       "priority": "p0",
       "type": "design",
       "area": "model",
@@ -244,7 +244,7 @@
         "spec/evidence-v1.schema.json",
         "docs/adr/0017-test-oracle.md"
       ],
-      "output": "D02の抽象eventに対するaccepted/applied/completed/durable write、TRIM unknown、許容read結果、seed replay、portable fault/証拠schema。Windows所有権へのmappingはD10が別に担当する。",
+      "output": "D02の抽象eventに対するaccepted/applied/completed/durable write、TRIM unknown、許容read結果、seed replay、portable fault/証拠schema。Windows所有権へのmappingはD10が別に担当する。 PR #71でmain統合済み。独立Astra reviewでportable oracle/evidence契約を受入。O01–O18は手導出の規範例、実行済みtestsではない。証拠: docs/evidence/2026-11-03-phase2-integration.md。",
       "acceptance": [
         "通常write completionをpower-loss durabilityと誤認しないoracleを小例で示す",
         "stale-fill/early ACK/late-slot overwriteの故障modelが各試験で必ず失敗する条件を定義",
@@ -254,7 +254,7 @@
       "escalation": "oracleとengineが同じ誤ったロジックを共有しないよう独立review。証拠不足ならgateを閉じない。",
       "issue_number": 17,
       "issue_url": "https://github.com/H4M4CHi-ttr/win-ssd-hdd-cache/issues/17",
-      "completion": "pending",
+      "completion": "accepted",
       "owner_approval": "not-required",
       "approval_evidence": []
     },
@@ -296,7 +296,7 @@
       "title": "Rust kernel/WDKの適合性とC shimの最小境界を決める",
       "agent": "sol",
       "review": "astra",
-      "status": "ready",
+      "status": "done",
       "priority": "p0",
       "type": "design",
       "area": "architecture",
@@ -307,7 +307,7 @@
         "docs/toolchains.md",
         "experiments/rust-wdk/README.md"
       ],
-      "output": "Rust no_std/WDK候補の正確なversions、build/link/panic/allocator/IRQL/HVCI検証計画。必要な場合だけC17 WDK shimの責務とRust境界を採択。",
+      "output": "Rust no_std/WDK候補の正確なversions、build/link/panic/allocator/IRQL/HVCI検証計画。必要な場合だけC17 WDK shimの責務とRust境界を採択。 PR #68でmain統合済み。独立Astra review、再実行したWindows build-only/8-vector C ABI/22 PE cases、host二OS CIを受入。driver load/runtime/IRQL/HVCI資格の証拠ではない。証拠: docs/evidence/2026-11-03-phase2-integration.md。",
       "acceptance": [
         "windows-drivers-rs公式成熟度注意と実際の対応構成を確認し、compileだけでproduction可としない",
         "user-mode/service/modelはRustを維持し、kernel側の例外は理由/範囲/再検討条件をADR化",
@@ -317,7 +317,7 @@
       "escalation": "Rust優先と安全/WDK制約が衝突したら無理に全面Rust化せず、狭い代替をAstraレビューで決める。",
       "issue_number": 6,
       "issue_url": "https://github.com/H4M4CHi-ttr/win-ssd-hdd-cache/issues/6",
-      "completion": "pending",
+      "completion": "accepted",
       "owner_approval": "not-required",
       "approval_evidence": []
     },
@@ -463,7 +463,7 @@
       "title": "凍結済みtrace v1のstrict Rust parserを実装する",
       "agent": "luna",
       "review": "sol",
-      "status": "ready",
+      "status": "done",
       "priority": "p0",
       "type": "task",
       "area": "model",
@@ -477,7 +477,7 @@
         "crates/cache-types/tests/trace_format.rs",
         "tests/fixtures/trace-format/"
       ],
-      "output": "D02が確定したTraceV1/TraceErrorとparse_trace(&str)。typed serdeで解析するだけでeventを実行しない。",
+      "output": "D02が確定したTraceV1/TraceErrorとparse_trace(&str)。typed serdeで解析するだけでeventを実行しない。 PR #70でmain統合済み。修正版29 parser tests、独立SOL review、Windows129/Linux131 host testsを受入。証拠: docs/evidence/2026-11-03-phase2-integration.md。",
       "acceptance": [
         "D02の正常/異常golden JSONを再利用。unknownfield/version/event、duplicatekey、bool/float/negative整数欄、末尾別documentを拒否",
         "model1MiB/events10000/payload16MiBの境界ちょうどと+1を検査し、過大入力をallocation前に制限",
@@ -486,7 +486,7 @@
       "escalation": "event意味論やexpected valueが未定義なら実装せずD02へ。JSON Value変換で重複keyを消さない。",
       "issue_number": 14,
       "issue_url": "https://github.com/H4M4CHi-ttr/win-ssd-hdd-cache/issues/14",
-      "completion": "pending",
+      "completion": "accepted",
       "owner_approval": "not-required",
       "approval_evidence": []
     },
@@ -495,7 +495,7 @@
       "title": "traceを再生し独立oracleと照合するRust harnessを作る",
       "agent": "sol",
       "review": "astra",
-      "status": "blocked",
+      "status": "ready",
       "priority": "p0",
       "type": "task",
       "area": "model",
@@ -512,7 +512,7 @@
         "crates/cache-model/tests/replay_contract.rs",
         "crates/cache-model/examples/replay.rs"
       ],
-      "output": "D02/D07の凍結契約に従うReplayResult/run_trace。seed/replay order、known/unknown/allowed outcomes、completed vs flushedを記録するoffline CLI。",
+      "output": "D02/D07の凍結契約に従うReplayResult/run_trace。seed/replay order、known/unknown/allowed outcomes、completed vs flushedを記録するoffline CLI。 D07/F05の独立受入・PR #70/#71統合と二OS CIを確認してready。実装・受入は未完。",
       "acceptance": [
         "同じtrace/seedで結果・順序・errorが再現し、wall clock/thread schedulerに依存しない",
         "故障model stale-fill/early ACK/late-slot overwriteがそれぞれFAILし、正しいreference modelがPASS",

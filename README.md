@@ -15,16 +15,14 @@ Windows向けに、既存のHDDを正本に保ち、SSDを破棄可能な読み�
 
 ## 開発状況
 
-portable Rust基盤・strict codec・offline CLI・計画checker・host CIの10課題と監査課題AUD01をPR #54〜#65でmainへ統合しました。さらにD02の整合性契約・有限状態checkerを独立レビュー後にPR #67で統合しました。D02 CIはLinux 102件、Windows Server 100件のhost試験に成功しています。これは製品driver・実機安全性の受入ではありません。[最新の統合・検証記録](docs/evidence/2026-11-02-main-integration.md)、[統合前の試験履歴](docs/evidence/2026-11-02-host-foundation.md)、[開発手順](docs/development.md)、[バックログ](docs/backlog.md)を確認してください。
+portable host基盤・整合性契約・strict trace parser・独立oracle仕様・Rust engine feasibility・Rust/WDK build-only proofまで、**16課題を独立受入してmainへ統合**しました。これは製品driverの完成ではありません。Windows/Linuxのhost CIと、WDKのcompile/link・C ABI検証は実行済みですが、driver load・実機安全性・性能の検証は未実施です。[最新の統合記録](docs/evidence/2026-11-03-phase2-integration.md)、[開発手順](docs/development.md)、[全課題](docs/backlog.md)を参照してください。
 
-[ロードマップと課題一覧](https://github.com/H4M4CHi-ttr/win-ssd-hdd-cache/issues/1) を起点にしてください。[正式設計と関連文書](docs/README.md)・[貢献ルール](CONTRIBUTING.md)を参照してください。
-
-This project is in the **design and portable-host implementation phase**: a discardable, clean SSD read cache for selected Windows data HDDs. No production driver or verified hardware support is available yet.
+[ロードマップ #1](https://github.com/H4M4CHi-ttr/win-ssd-hdd-cache/issues/1)・[設計文書](docs/README.md)・[貢献ルール](CONTRIBUTING.md)。This is portable-host research and implementation, not a production driver.
 
 ## 次に進める主要Issue
 
-- [F05 #14: strict trace parser](https://github.com/H4M4CHi-ttr/win-ssd-hdd-cache/issues/14) / [D07 #17: 独立oracle契約](https://github.com/H4M4CHi-ttr/win-ssd-hdd-cache/issues/17) — 受入済みD02を使うportable検証。
-- [D03 #8: cache engine比較](https://github.com/H4M4CHi-ttr/win-ssd-hdd-cache/issues/8) / [D09 #6: Rust/WDK境界](https://github.com/H4M4CHi-ttr/win-ssd-hdd-cache/issues/6) — host実証・build-only proofと独立レビュー。
+- [F06 #20: deterministic replay / independent oracle](https://github.com/H4M4CHi-ttr/win-ssd-hdd-cache/issues/20) — 前提のF05/D07は受入・main統合済み。実装・故障model検出はこれから。
+- F07/F08/F09はF06等の後続。古いcache公開・早期ACK・late I/Oの検証を実装した上で次のgateを判定します。
 - [D01 #3: I/O捕捉位置](https://github.com/H4M4CHi-ttr/win-ssd-hdd-cache/issues/3) — 調査文書とlab手順は統合済み。位置は未採択で、別承認の使い捨てWindows labの実trace待ち。
 - [全Issueと依存関係](docs/backlog.md) / [モデル担当とreview規則](docs/agent-routing.md)。
 
