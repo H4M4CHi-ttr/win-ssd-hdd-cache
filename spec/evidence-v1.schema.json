@@ -1,0 +1,67 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/H4M4CHi-ttr/win-ssd-hdd-cache/spec/evidence-v1.schema.json",
+  "title": "Portable replay evidence v1; shape only, not qualification",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "trace_schema_version", "oracle_contract_version", "mode", "fault", "seed", "source_revision", "trace_digest", "events_total", "events_executed", "outcome", "terminal", "meaningful_observations", "assertions_checked", "pending_requests", "pending_ios", "abandoned_requests", "abandoned_ios", "violation", "checks", "kernel_runtime_tested", "production_qualified"],
+  "properties": {
+    "schema_version": {"const": 1},
+    "trace_schema_version": {"const": 1},
+    "oracle_contract_version": {"const": 1},
+    "mode": {"enum": ["reference", "mutant"]},
+    "fault": {"enum": ["none", "stale_fill", "early_ack", "late_slot_reuse"]},
+    "seed": {"$ref": "#/$defs/u64"},
+    "source_revision": {"type": ["string", "null"], "pattern": "^[0-9a-f]{40}$"},
+    "trace_digest": {"type": ["string", "null"], "pattern": "^[0-9a-f]{64}$"},
+    "events_total": {"$ref": "#/$defs/u64"},
+    "events_executed": {"$ref": "#/$defs/u64"},
+    "outcome": {"enum": ["passed", "failed", "inconclusive"]},
+    "terminal": {"enum": ["drained", "pending", "power_loss", "stopped"]},
+    "meaningful_observations": {"$ref": "#/$defs/u64"},
+    "assertions_checked": {"$ref": "#/$defs/u64"},
+    "pending_requests": {"$ref": "#/$defs/u64"},
+    "pending_ios": {"$ref": "#/$defs/u64"},
+    "abandoned_requests": {"$ref": "#/$defs/u64"},
+    "abandoned_ios": {"$ref": "#/$defs/u64"},
+    "violation": {"oneOf": [{"type": "null"}, {"$ref": "#/$defs/violation"}]},
+    "checks": {
+      "type": "object", "additionalProperties": false,
+      "required": ["origin_results", "cache_lineage", "ownership", "durability", "trace_assertions", "shadow"],
+      "properties": {
+        "origin_results": {"$ref": "#/$defs/check"},
+        "cache_lineage": {"$ref": "#/$defs/check"},
+        "ownership": {"$ref": "#/$defs/check"},
+        "durability": {"$ref": "#/$defs/check"},
+        "trace_assertions": {"$ref": "#/$defs/check"},
+        "shadow": {"$ref": "#/$defs/check"}
+      }
+    },
+    "kernel_runtime_tested": {"const": false},
+    "production_qualified": {"const": false}
+  },
+  "allOf": [
+    {"if": {"properties": {"mode": {"const": "reference"}}}, "then": {"properties": {"fault": {"const": "none"}}}},
+    {"if": {"properties": {"mode": {"const": "mutant"}}}, "then": {"properties": {"fault": {"enum": ["stale_fill", "early_ack", "late_slot_reuse"]}}}}
+  ],
+  "$defs": {
+    "u64": {"type": "string", "pattern": "^(0|[1-9][0-9]*)$", "maxLength": 20},
+    "check": {
+      "type": "object", "additionalProperties": false,
+      "required": ["status", "passed", "failed"],
+      "properties": {
+        "status": {"enum": ["passed", "failed", "not_observed", "not_applicable"]},
+        "passed": {"$ref": "#/$defs/u64"}, "failed": {"$ref": "#/$defs/u64"}
+      }
+    },
+    "violation": {
+      "type": "object", "additionalProperties": false,
+      "required": ["kind", "code", "event_index"],
+      "properties": {
+        "kind": {"enum": ["semantic_error", "backend_violation", "safety_violation", "assertion_failure"]},
+        "code": {"type": "string", "pattern": "^[A-Z][A-Z0-9_]{0,63}$"},
+        "event_index": {"oneOf": [{"type": "null"}, {"$ref": "#/$defs/u64"}]}
+      }
+    }
+  }
+}
