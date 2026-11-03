@@ -1,0 +1,16 @@
+[package]
+name = "cache-probe-collector"
+version.workspace = true
+edition.workspace = true
+rust-version.workspace = true
+publish.workspace = true
+
+[features]
+default = []
+experimental-live = []
+
+[dependencies]
+cache-probe-core = { path = "../cache-probe-core" }
+
+[lints.rust]
+unsafe_code = "deny"

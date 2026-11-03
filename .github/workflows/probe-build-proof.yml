@@ -1,0 +1,58 @@
+{
+  "name": "P04 observer source build-only proof",
+  "on": {
+    "pull_request": {
+      "paths": ["experiments/stack-trace/**", "experiments/rust-wdk/tools/**", "crates/cache-capture-core/**", "crates/cache-probe-core/**", "crates/cache-probe-collector/**", "crates/cache-types/**", "crates/cache-model/**", "tests/fixtures/capture-probe-v1/**", "Cargo.toml", "Cargo.lock", "rust-toolchain.toml", "docs/contracts/upper-candidate-probe-v1.md", ".github/workflows/probe-build-proof.yml"]
+    },
+    "push": {
+      "branches": ["main"],
+      "paths": ["experiments/stack-trace/**", "experiments/rust-wdk/tools/**", "crates/cache-capture-core/**", "crates/cache-probe-core/**", "crates/cache-probe-collector/**", "crates/cache-types/**", "crates/cache-model/**", "tests/fixtures/capture-probe-v1/**", "Cargo.toml", "Cargo.lock", "rust-toolchain.toml", "docs/contracts/upper-candidate-probe-v1.md", ".github/workflows/probe-build-proof.yml"]
+    }
+  },
+  "permissions": { "contents": "read" },
+  "concurrency": {
+    "group": "p04-probe-build-${{ github.ref }}",
+    "cancel-in-progress": true
+  },
+  "jobs": {
+    "host-linux": {
+      "runs-on": "ubuntu-24.04",
+      "timeout-minutes": 20,
+      "defaults": { "run": { "shell": "bash" } },
+      "steps": [
+        { "name": "Checkout", "uses": "actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1", "with": { "persist-credentials": false } },
+        { "name": "Install pinned Rust", "run": "rustup toolchain install 1.99.1 --profile minimal --no-self-update" },
+        { "name": "Record toolchain and source", "run": "rustc --version --verbose\ncargo --version\nnode --version\ncc --version\ngit rev-parse HEAD\ngit rev-parse 'HEAD^{tree}'" },
+        {
+          "name": "Test fixed build policy and same-source fake DDI schedules",
+          "run": "set -euo pipefail\nnode --test --test-reporter=tap experiments/stack-trace/probe/tools/test-build-contract.mjs | tee \"$RUNNER_TEMP/p04-build-tests.txt\"\nnode experiments/stack-trace/probe/tools/result-proof.mjs tap \"$RUNNER_TEMP/p04-build-tests.txt\"\nnode experiments/stack-trace/probe/tools/test-host.mjs --suite all\nnode experiments/rust-wdk/tools/test-pe.mjs"
+        },
+        {
+          "name": "Run optimized pure/native-parser and default-off collector tests",
+          "run": "set -euo pipefail\ncargo test -p cache-probe-core -p cache-probe-collector --release --locked | tee \"$RUNNER_TEMP/p04-rust-tests.txt\"\nnode experiments/stack-trace/probe/tools/result-proof.mjs rust \"$RUNNER_TEMP/p04-rust-tests.txt\""
+        }
+      ]
+    },
+    "wdk-source-proof": {
+      "runs-on": "windows-2022",
+      "timeout-minutes": 35,
+      "defaults": { "run": { "shell": "pwsh" } },
+      "steps": [
+        { "name": "Checkout", "uses": "actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1", "with": { "persist-credentials": false } },
+        { "name": "Install pinned Rust", "run": "rustup toolchain install 1.99.1 --profile minimal --no-self-update\nif ($LASTEXITCODE -ne 0) { throw 'P04_RUST_INSTALL_FAILED' }" },
+        { "name": "Run simulated DDI tests; link observer and gated collector without execution", "run": "& ./experiments/stack-trace/probe/tools/build.ps1" },
+        {
+          "name": "Upload text and JSON evidence only",
+          "if": "always()",
+          "uses": "actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02",
+          "with": {
+            "name": "p04-build-only-evidence",
+            "path": "experiments/stack-trace/probe/out/evidence/*.txt\nexperiments/stack-trace/probe/out/evidence/*.json",
+            "if-no-files-found": "error",
+            "retention-days": 14
+          }
+        }
+      ]
+    }
+  }
+}

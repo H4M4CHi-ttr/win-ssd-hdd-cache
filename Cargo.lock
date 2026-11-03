@@ -27,6 +27,23 @@ dependencies = [
 ]
 
 [[package]]
+name = "cache-probe-collector"
+version = "0.1.0"
+dependencies = [
+ "cache-probe-core",
+]
+
+[[package]]
+name = "cache-probe-core"
+version = "0.1.0"
+dependencies = [
+ "cache-capture-core",
+ "cache-types",
+ "serde",
+ "serde_json",
+]
+
+[[package]]
 name = "cache-types"
 version = "0.1.0"
 dependencies = [

@@ -21,7 +21,7 @@ portable host基盤・整合性契約・strict trace parser・独立oracle付き
 
 ## 次の工程と主要Issue
 
-- [P04 #89: 観測driverとRust collectorのsource/build](https://github.com/H4M4CHi-ttr/win-ssd-hdd-cache/issues/89) — 限定契約・計画・C/WDK例外を独立review済み。実装はこのcheckpoint公開後。実deviceへの登録・ロード・観測は含みません。
+- [P04 #89: 観測driverとRust collectorのsource/build](https://github.com/H4M4CHi-ttr/win-ssd-hdd-cache/issues/89) — [候補sourceとhost試験](experiments/stack-trace/probe/README.md)を実装し、Rust/Cの独立source reviewを受入済み。実WDK・Windows CI待ちです。実deviceへの登録・ロード・観測は含みません。
 - [P03 #86: 不明Informationを保持するcapture v2](https://github.com/H4M4CHi-ttr/win-ssd-hdd-cache/issues/86) — PR #88で実装・受入済み。未取得値をゼロやevent lossに置換せず、v1の互換性を保ちます。
 - [P02 #83: bounded producerとcompile-only snapshot](https://github.com/H4M4CHi-ttr/win-ssd-hdd-cache/issues/83) — PR #85でsource/build受入済み。固定64contexts/256recordsのRust coreとWDK scalar object。driver登録・装着・ロード・live transportは含みません。
 - [P01 #79: 観測ログのoffline完全性検査](https://github.com/H4M4CHi-ttr/win-ssd-hdd-cache/issues/79) — PR #81で実装・受入済み。欠落・相関・loss counterを検査しますが、実captureの真実性やdriver安全性は認定しません。
@@ -29,7 +29,7 @@ portable host基盤・整合性契約・strict trace parser・独立oracle付き
 - [D01 #3: I/O捕捉位置](https://github.com/H4M4CHi-ttr/win-ssd-hdd-cache/issues/3) — 調査文書とlab手順は統合済み。位置は未採択。capture-only probeの限定寿命契約・source/buildと、別承認の使い捨てWindows labでの実traceが必要です。D09 build-only entryは観測probeではありません。
 - [全Issueと依存関係](docs/backlog.md) / [モデル担当とreview規則](docs/agent-routing.md)。
 
-このcheckpointでreadyにするのはP04の1件です。[Windows inventory用Codex引き継ぎ](docs/handoff/2026-11-03-windows-next-step.md)と並行して、[review済みprobe契約](docs/contracts/upper-candidate-probe-v1.md)と[計画](docs/superpowers/plans/2026-11-03-p04-upper-probe.md)に沿うsource/buildを進めます。C17/WDKは実験用observerの限定境界、collection/auditはRustです。実装済み部品と将来のrunnable probe・別承認の観測を区別し、「完成driverの実機調整だけが残った」とは扱いません。
+現在のready課題はP04の1件です。[Windows inventory用Codex引き継ぎ](docs/handoff/2026-11-03-windows-next-step.md)と並行して、[review済みprobe契約](docs/contracts/upper-candidate-probe-v1.md)と[計画](docs/superpowers/plans/2026-11-03-p04-upper-probe.md)に沿うsource/buildを進めます。C17/WDKは実験用observerの限定境界、collection/auditはRustです。実装済み部品と別承認の実機観測を区別し、「完成driverの実機調整だけが残った」とは扱いません。
 
 GUIはTauriを用いますが、CLI/serviceと安全なdata pathの契約を先に固めます。
 
