@@ -98,6 +98,6 @@ correction; obtain independent contract acceptance before implementation.
 - [x] Run full workspace tests/fmt/clippy/planning, standalone C vectors and object checker; inspect nonzero named tests rather than repeated summary lines.
 - [x] Independent Astra expectation/code/workflow review, repair and re-review findings.
 - [x] Publish exact reviewed tree via normal PR; inspect Windows/Linux host and compile-only proof logs/artifacts. Never install/load the result.
-- [ ] Merge normally, update manifest/Issue/roadmap, read back roles/states/all dependency annotations. Do not turn D01/D04/D10/F08/F09/G1 ready.
+- [x] Merge normally, update manifest/Issue/roadmap, read back roles/states/all dependency annotations. Do not turn D01/D04/D10/F08/F09/G1 ready. PR85 source and PR87 metadata were normally merged; Issue83/86/parent1 were exactly read back.
 
 The next runtime slice still needs separately reviewed real context/callback/transport integration and the user-designated Windows inventory/lab authority. Completing this plan is not completion of a runnable probe.

@@ -1853,7 +1853,7 @@
       "title": "completionの不明Informationを保持するoffline capture v2を実装する",
       "agent": "luna",
       "review": "astra",
-      "status": "ready",
+      "status": "done",
       "priority": "p0",
       "type": "task",
       "area": "tooling",
@@ -1872,7 +1872,7 @@
         "tests/fixtures/capture-audit-v2/",
         "docs/evidence/P03.md"
       ],
-      "output": "explicit v2でrequired nullable completion Informationを保持し、UNKNOWN_INFORMATIONを既存14reasonの後に追加。未知値をゼロやevent lossとみなさず、相関・status・v1のgolden/strict parsingを維持する。実collector/exporter/Windows接続は含まない。",
+      "output": "explicit v2でrequired nullable completion Informationと15番目のUNKNOWN_INFORMATIONを保持。手書き6fixture・12core/4CLIのRED→GREEN、独立Astra review、実Windows296/Linux299 host CIを確認しPR88でmain統合。v1のgolden/strict parsing・相関・statusは維持。実collector/exporter/Windows接続は含まない。",
       "acceptance": [
         "契約・手導出counts/reasonsを独立review。P01/P02受入と契約公開後に着手する",
         "6literal fixtureと12core/4CLI testsを先に固定しREDを確認。v1のunsupported witness3件だけ2→3へ変更し、他の期待値を維持する",
@@ -1883,6 +1883,46 @@
       "escalation": "P02診断やsealを実captureのfinalized/boundaryへ投影しない。exporter/transport/target mappingや未知の安全意味論は別契約review。D01/D04/D10/F08/F09/G1とowner gateを維持する。",
       "issue_number": 86,
       "issue_url": "https://github.com/H4M4CHi-ttr/win-ssd-hdd-cache/issues/86",
+      "completion": "accepted"
+    },
+    {
+      "id": "P04",
+      "title": "capture-only upper-candidate probeとRust collectorのsource/buildを実装する",
+      "agent": "sol",
+      "review": "astra",
+      "status": "ready",
+      "priority": "p0",
+      "type": "task",
+      "area": "driver",
+      "owner_decision": false,
+      "owner_approval": "not-required",
+      "approval_evidence": [],
+      "dependencies": ["D09", "P02", "P03"],
+      "files": [
+        "docs/contracts/upper-candidate-probe-v1.md",
+        "docs/superpowers/plans/2026-11-03-p04-upper-probe.md",
+        "docs/adr/0018-capture-probe-language-boundary.md",
+        "crates/cache-probe-core/",
+        "crates/cache-probe-collector/",
+        "tests/fixtures/capture-probe-v1/",
+        "Cargo.toml",
+        "Cargo.lock",
+        "experiments/stack-trace/",
+        ".github/workflows/probe-build-proof.yml",
+        "docs/evidence/P04.md"
+      ],
+      "output": "never-loaded capture-only upper-candidateのC17/WDK lifecycleとbounded recorder、Rust collector/native archive/conservative v2 projection。実Cソースのhost DDI testsとactual WDK compile/linkを分離して検証する。製品cache driverやtarget適合性・実stack位置・runtimeを採択しない。",
+      "acceptance": [
+        "C/WDK限定例外ADR、exact selector、IRP/remove/control lifetime、PnP/power、wire/archive/projectionと固定期待値を独立reviewして公開する",
+        "actual C翻訳単位のhost DDI harnessとRust literal testsでRED→GREEN。context不足、inline/late completion、slot再利用、remove/control/cleanup競合とrollbackを検証",
+        "固定48/144/96/1680byte wire、64contexts/256records、strict bound、owner/call binding、drop/transport loss/unknownを保存し未確認値を補完しない",
+        "pure Rust coreはunsafe禁止。live Win32 FFIは限定レビューしdefault-off、固定endpoint、CIはlive収集を実行しない",
+        "非zero Windows/Linux host tests、pinned WDK compile/link、source/header/library/image hashと限定PE検査、text/JSON証拠のみupload",
+        "独立Astra source/workflow/期待値review、exact tree・normal merge・Issue/manifest/親readback。未実施runtimeとowner gateを維持"
+      ],
+      "escalation": "未定義のIRP/IRQL/lock/lifetime/transport/projection semanticsは独立reviewへ。source/buildのみでD01/D04/D10/F08/F09/G1やlab/署名/配布/ライセンスを解除しない。登録/装着/ロード・raw disk・security setting操作は別承認。",
+      "issue_number": 89,
+      "issue_url": "https://github.com/H4M4CHi-ttr/win-ssd-hdd-cache/issues/89",
       "completion": "pending"
     }
   ]

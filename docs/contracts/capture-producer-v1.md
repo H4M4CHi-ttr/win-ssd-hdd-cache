@@ -1,8 +1,8 @@
 # P02 — bounded capture producer and compile-only upper snapshot v1
 
 2026-11-03 JST. **Independent Astra accepted the contract/plan at44e7e84 and
-the diagnostic/WDK clarifications at4b474ce; implementation and runtime acceptance
-are still pending.**
+the diagnostic/WDK clarifications at4b474ce. Source/build was subsequently accepted
+in PR85; runtime acceptance remains pending.** See [P02 evidence](../evidence/P02.md).
 This is a source/build preparation artifact for D01, not the adopted product
 position, a loadable observation driver, a live collector, or D04's general
 Windows ownership contract. Existing D01/D04/D10/F08/F09/G1 and owner gates stay
