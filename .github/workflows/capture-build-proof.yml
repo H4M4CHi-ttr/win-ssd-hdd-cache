@@ -1,0 +1,74 @@
+{
+  "name": "P02 scalar capture build-only proof",
+  "on": {
+    "pull_request": {
+      "paths": ["experiments/stack-trace/**", "experiments/rust-wdk/tools/pins.json", "crates/cache-capture-core/**", "Cargo.toml", "Cargo.lock", "rust-toolchain.toml", "docs/contracts/capture-producer-v1.md", ".github/workflows/capture-build-proof.yml"]
+    },
+    "push": {
+      "branches": ["main"],
+      "paths": ["experiments/stack-trace/**", "experiments/rust-wdk/tools/pins.json", "crates/cache-capture-core/**", "Cargo.toml", "Cargo.lock", "rust-toolchain.toml", "docs/contracts/capture-producer-v1.md", ".github/workflows/capture-build-proof.yml"]
+    }
+  },
+  "permissions": { "contents": "read" },
+  "concurrency": {
+    "group": "p02-capture-build-${{ github.ref }}",
+    "cancel-in-progress": true
+  },
+  "jobs": {
+    "release-core": {
+      "name": "P02 release core (${{ matrix.os }})",
+      "runs-on": "${{ matrix.os }}",
+      "timeout-minutes": 20,
+      "strategy": {
+        "fail-fast": false,
+        "matrix": { "os": ["ubuntu-24.04", "windows-2025"] }
+      },
+      "defaults": { "run": { "shell": "bash" } },
+      "steps": [
+        { "name": "Checkout", "uses": "actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1", "with": { "persist-credentials": false } },
+        { "name": "Install pinned Rust", "run": "rustup toolchain install 1.99.1 --profile minimal --no-self-update" },
+        { "name": "Record toolchain and source", "run": "rustc --version --verbose\ncargo --version\ngit rev-parse HEAD\ngit rev-parse 'HEAD^{tree}'" },
+        {
+          "name": "Require nonzero core test list",
+          "run": "set -euo pipefail\ncargo test -p cache-capture-core --release --locked -- --list > \"$RUNNER_TEMP/p02-release-test-list.txt\"\ngrep -E ': test[[:space:]]*$' \"$RUNNER_TEMP/p02-release-test-list.txt\""
+        },
+        {
+          "name": "Run optimized host core (nonzero named passes, no ignored tests)",
+          "run": "set -euo pipefail\ncargo test -p cache-capture-core --release --locked | tee \"$RUNNER_TEMP/p02-release-test-results.txt\"\ngrep -E '^test .+ \\.\\.\\. ok[[:space:]]*$' \"$RUNNER_TEMP/p02-release-test-results.txt\"\ngrep -E '^test result: ok\\. [1-9][0-9]* passed; 0 failed; 0 ignored;' \"$RUNNER_TEMP/p02-release-test-results.txt\"\nif grep -E '^test result:.*; [1-9][0-9]* ignored;' \"$RUNNER_TEMP/p02-release-test-results.txt\"; then\n  exit 1\nfi"
+        }
+      ]
+    },
+    "scalar-host-linux": {
+      "runs-on": "ubuntu-24.04",
+      "timeout-minutes": 10,
+      "steps": [
+        { "name": "Checkout", "uses": "actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1", "with": { "persist-credentials": false } },
+        {
+          "name": "C17 scalar vectors and bounded COFF checker (no WDK execution)",
+          "shell": "bash",
+          "run": "set -euo pipefail\ncc --version\nnode --version\nmkdir -p experiments/stack-trace/out\ncc -std=c17 -Wall -Wextra -Werror -O2 -Iexperiments/stack-trace/include experiments/stack-trace/host/snapshot_vectors.c -o experiments/stack-trace/out/snapshot-vectors\nexperiments/stack-trace/out/snapshot-vectors\nnode --test --test-reporter=tap experiments/stack-trace/tools/test-object.mjs | tee \"$RUNNER_TEMP/p02-checker-tests.txt\"\nnode -e 'const fs=require(\"node:fs\"); function fail(){process.stderr.write(\"P02_ALL_PASS_CHECKER_PROOF_MISSING\\n\"); process.exit(1);} const input=fs.readFileSync(process.argv[1],\"utf8\"); const counts=Object.create(null); for(const row of input.matchAll(/^# (tests|pass|fail|cancelled|skipped|todo) ([0-9]+)\\s*$/gm)){if(row[1] in counts) fail(); const value=Number(row[2]); if(!Number.isSafeInteger(value)) fail(); counts[row[1]]=value;} if([\"tests\",\"pass\",\"fail\",\"cancelled\",\"skipped\",\"todo\"].some(name=>!(name in counts)) || counts.pass<=0 || counts.pass!==counts.tests || counts.fail!==0 || counts.cancelled!==0 || counts.skipped!==0 || counts.todo!==0) fail(); console.log(\"P02_CHECKER_ALL_PASS_PROOF tests=\"+counts.tests+\" pass=\"+counts.pass);' \"$RUNNER_TEMP/p02-checker-tests.txt\""
+        }
+      ]
+    },
+    "wdk-object-proof": {
+      "runs-on": "windows-2022",
+      "timeout-minutes": 35,
+      "defaults": { "run": { "shell": "pwsh" } },
+      "steps": [
+        { "name": "Checkout", "uses": "actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1", "with": { "persist-credentials": false } },
+        { "name": "Compile WDK object and run host scalar vectors (never install/load)", "run": "& ./experiments/stack-trace/tools/build.ps1" },
+        {
+          "name": "Upload text and JSON evidence only",
+          "if": "always()",
+          "uses": "actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02",
+          "with": {
+            "name": "p02-build-only-evidence",
+            "path": "experiments/stack-trace/out/evidence/*.txt\nexperiments/stack-trace/out/evidence/*.json",
+            "if-no-files-found": "error",
+            "retention-days": 14
+          }
+        }
+      ]
+    }
+  }
+}

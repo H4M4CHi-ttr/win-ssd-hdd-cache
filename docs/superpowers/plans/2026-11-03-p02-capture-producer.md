@@ -32,10 +32,10 @@ Files: create `crates/cache-capture-core/Cargo.toml`, `src/lib.rs`, `src/snapsho
 
 Interfaces: public repr(C) `SubmitSnapshot`/`CompletionSnapshot` fields exactly as spec; `decode_submit(SubmitSnapshot) -> Result<Submission, SnapshotError>` and `decode_completion(CompletionSnapshot, &Submission) -> Result<Completion, SnapshotError>`. Submission exposes read-only scalar accessors; Completion preserves u32 status and Option<u64> information. Single error is InvalidSnapshot.
 
-- [ ] Add literal layout/ordinary/unsupported/negative/unknown/cross-kind/boundary tests before implementation. Exact size48/24, align8, offsets from contract; saved PnP/Other cannot export pointer-like0xffff8123456789ab as known Information. A correctly classified successful ordinary read/write preserves any observed u64. Range validation uses checked u64 addition, not signed addition.
-- [ ] Run `cargo test -p cache-capture-core --test snapshot --locked`; observe missing exports as RED after package/lock setup (setup failure is not feature RED).
-- [ ] Implement strict scalar decoding, without unsafe/serde/Windows imports.
-- [ ] Re-run snapshot target and fmt/clippy; preserve first hand-derived expectations.
+- [x] Add literal layout/ordinary/unsupported/negative/unknown/cross-kind/boundary tests before implementation. Exact size48/24, align8, offsets from contract; saved PnP/Other cannot export pointer-like0xffff8123456789ab as known Information. A correctly classified successful ordinary read/write preserves any observed u64. Range validation uses checked u64 addition, not signed addition.
+- [x] Run `cargo test -p cache-capture-core --test snapshot --locked`; observe missing exports as RED after package/lock setup (setup failure is not feature RED).
+- [x] Implement strict scalar decoding, without unsafe/serde/Windows imports.
+- [x] Re-run snapshot target and fmt/clippy; preserve first hand-derived expectations.
 
 ## Task 2 — bounded serial producer
 
@@ -43,10 +43,10 @@ Files: create `src/producer.rs`, `tests/producer.rs`, `src/limits_tests.rs`; exp
 
 Interfaces: Producer::new(NonZeroU64,NonZeroU64); submit/complete/stop/seal/pop/stats, private-field Copy Ticket and the exact state/error/stat/record types in the contract. Lowest-free context reservation, nonreused request IDs, independent FIFO event lifetime.
 
-- [ ] Write public black-box schedules for every contract §7 row. Fix exact seq/request/status/unknown/order values and all count/flag assertions before coding. RED must name absent producer API.
-- [ ] Implement the minimum fixed-array state machine; no external callbacks and no implicit quiescence verdict.
-- [ ] Add private-state limit tests before adding checked-limit handling: u64::MAX request ID once, attempted overflow makes both counters None, tracked completion still retires. No public seed/reset API.
-- [ ] Run all core tests in debug/release; fmt and clippy. Assert object size<=40960 on x64. Review lifetime boundaries, not just happy-path counters.
+- [x] Write public black-box schedules for every contract §7 row. Fix exact seq/request/status/unknown/order values and all count/flag assertions before coding. RED must name absent producer API.
+- [x] Implement the minimum fixed-array state machine; no external callbacks and no implicit quiescence verdict.
+- [x] Add private-state limit tests before adding checked-limit handling: u64::MAX request ID once, attempted overflow makes both counters None, tracked completion still retires. No public seed/reset API.
+- [x] Run all core tests in debug/release; fmt and clippy. Assert object size<=40960 on x64. Review lifetime boundaries, not just happy-path counters.
 
 ## Task 3 — C scalar helpers and WDK object
 
@@ -54,10 +54,10 @@ Files: `experiments/stack-trace/include/p02_snapshot.h`, `host/snapshot_vectors.
 
 Interfaces: C layouts/static assertions match Rust. Scalar constructors/validators initialize all fields. WDK submission helper receives const IO_STACK_LOCATION/output; completion receives const IO_STATUS_BLOCK/saved submission/output. Result0/1/2 is metadata-only, never NTSTATUS. Unknown Information is not read on the WDK branch.
 
-- [ ] Write independent literal C vectors before header implementation; compile locally with C17 W4-equivalent flags and observe missing header/functions RED. Run exact values without WDK/device access.
-- [ ] Implement shared scalar header, then C helper; do not introduce pointers into exported snapshots or read unsupported union members.
-- [ ] Write structural checker tests RED: valid synthetic COFF/dumpbin evidence passes; PE image, wrong architecture, missing required helper, unknown external, DriverEntry and I/O/rundown symbols fail. State checker limitations.
-- [ ] Implement object checker and ephemeral build script using existing verified D09 pins; no LLVM/kernel-driver install. C host executable runs literal tests, `/c /kernel /W4 /WX` produces an object only; evidence contains source/compiler/header/object hashes and explicit false runtime flags.
+- [x] Write independent literal C vectors before header implementation; compile locally with C17 W4-equivalent flags and observe missing header/functions RED. Run exact values without WDK/device access. Final20+36 cases pass optimized/UBSan host runs.
+- [x] Implement shared scalar header, then C helper; do not introduce pointers into exported snapshots or read unsupported union members. Independent integration review remains below.
+- [x] Write structural checker tests RED: valid synthetic COFF passes; PE image, wrong architecture, missing required helper, unknown external, DriverEntry and I/O/rundown symbols fail. State checker limitations. All14 checker tests pass; actual WDK object/dumpbin evidence remains pending.
+- [x] Implement object checker and ephemeral build script using existing verified D09 pins; no LLVM/kernel-driver install. C host executable runs literal tests, `/c /kernel /W4 /WX` produces an object only; evidence contains source/compiler/header/object hashes and explicit false runtime flags. This checks source presence, not actual WDK build success.
 - [ ] Independent source review before publishing/running ordinary Actions. Actual WDK compile is pending until logs inspected; host vectors do not execute IRPs.
 
 ## Task 4 — integration and acceptance
