@@ -39,3 +39,15 @@ This final increment also fixes the accepted-list omission of F07/F11 and adds a
 The final metadata increment's own review, CI, merge and P01 Issue readback are subsequent operations, not pre-certified by this document. No real machine was accessed or modified in these portable acceptance steps.
 
 Root pre-review verification of this final metadata worktree: `cargo fmt --all --check`, `cargo clippy --workspace --all-targets --locked --offline -- -D warnings`, `cargo test --workspace --locked --offline`, `cargo xtask check-planning` and `git diff --check` all passed. Actual full test log contains251 named Linux passes,0 failures/ignored. Planning reports28 labels/54 tasks/62 documents/193 links. A structural manifest comparison found changes only to P01's status, output and completion; all other tasks and every dependency/approval field are unchanged.
+
+The final metadata was then independently accepted and normally merged in PR #82:
+head5a85b29f2d610846d89df950941f4b125c60a3e7, tree4aba16a2ede20f73b3440c57c2897df2bcbb198e,
+merge bdd85c070f2f22136b17a28d97f157e22c10a367. Run41573233276 passed actual
+Windows248/Linux251 named tests (jobs125710747443/125710747588), with zero
+failed/ignored. Root fetched main and verified the exact tree. P01 #79 was closed
+completed/done and exactly read back; parent #1 and D01 #3 were synchronized.
+The full54-task/55-Issue audit found no role/status/state mismatch. Of137 dependency
+edges,132 had explicit state annotations; stale W05 #35→D02 and W06 #33→D01
+annotations were corrected and read back, leaving zero annotated-state mismatches.
+No owner gate or live machine was changed. [P02](P02.md) is the next separately
+reviewed preparation task, not a claim that all useful cloud work had ended.

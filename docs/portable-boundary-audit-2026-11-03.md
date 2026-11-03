@@ -47,3 +47,12 @@ P01 contract checkpoint `dd9ef8f` received two must-fix review findings: duplica
 The kernel producer still needs its own reviewed context/IRQL/forward/completion/rundown/attachment/loss-transport design. Pre-G1 source/build preparation is not inherently forbidden, but this envelope alone does not supply that design. Actual traces additionally need specified disposable Windows11 targets/build/stack, explicit operation permissions and rollback; a model or green CI cannot supply these facts. Read-only inventory on an authorized machine can inform that next slice; it is not mutation-coverage evidence.
 
 P01 was subsequently accepted and merged in PR #81 with actual Windows248/Linux251 host tests; see [P01 evidence](evidence/P01.md). The54-task manifest now has20 accepted artifacts,0 ready tasks,33 blocked and1 owner decision. This is not a claim that every possible cloud-only preparation has been exhausted or that only hardware tuning remains. The next concrete input is the [specified Windows inventory](handoff/2026-11-03-windows-next-step.md), followed by separately reviewed probe source/build and separately authorized observation. The existing Windows/engine/GUI chain remains blocked, not silently replaced by an offline mock.
+
+## P02 continuation after that checkpoint
+
+Independent review identified useful source/build preparation that does not need
+the target inventory: [P02 #83](https://github.com/H4M4CHi-ttr/win-ssd-hdd-cache/issues/83),
+the [bounded producer / scalar snapshot contract](contracts/capture-producer-v1.md).
+The55-task manifest adds only P02 ready/pending (SOL→Astra, F01/D09/P01 dependencies).
+All54 previous task records are unchanged. Real callback integration and the
+Windows/owner gates remain unresolved; P02 is not an installable probe.

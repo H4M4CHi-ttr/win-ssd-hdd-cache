@@ -1,10 +1,10 @@
 # 実装バックログ
 
-更新: 2026-11-03 JST。作業54件 + [親ロードマップ #1](https://github.com/H4M4CHi-ttr/win-ssd-hdd-cache/issues/1)。製品driverは未実装。これはreview済みartifactのsnapshotでありGitHubから自動同期されない。
+更新: 2026-11-03 JST。作業55件 + [親ロードマップ #1](https://github.com/H4M4CHi-ttr/win-ssd-hdd-cache/issues/1)。製品driverは未実装。これはreview済みartifactのsnapshotでありGitHubから自動同期されない。
 
 ## 状態と着手
 
-F07/F11/P01はそれぞれPR #77/#78/#81で独立受入・main統合済み。現在のreadyは0件です。[P01 #79](https://github.com/H4M4CHi-ttr/win-ssd-hdd-cache/issues/79)はD01向けのoffline capture auditで、実producerやWindows/lab gateの代替ではありません。[capture契約](contracts/capture-envelope-v1.md)、[portable境界監査](portable-boundary-audit-2026-11-03.md)、[次のWindows工程](handoff/2026-11-03-windows-next-step.md)を参照してください。
+F07/F11/P01はそれぞれPR #77/#78/#81で独立受入・main統合済み。新しいreadyは[P02 #83](https://github.com/H4M4CHi-ttr/win-ssd-hdd-cache/issues/83)の1件です。[P02契約](contracts/capture-producer-v1.md)はbounded producerとcompile-only scalar snapshotに限定し、実producer接続やWindows/lab gateを採択しません。[P01 #79](https://github.com/H4M4CHi-ttr/win-ssd-hdd-cache/issues/79)は収集後のoffline auditです。[portable境界監査](portable-boundary-audit-2026-11-03.md)、[次のWindows工程](handoff/2026-11-03-windows-next-step.md)も参照してください。
 
 追加のaccepted: [F07 #23](https://github.com/H4M4CHi-ttr/win-ssd-hdd-cache/issues/23)、[F11 #75](https://github.com/H4M4CHi-ttr/win-ssd-hdd-cache/issues/75)、[P01 #79](https://github.com/H4M4CHi-ttr/win-ssd-hdd-cache/issues/79)。以下の先行17件と合わせて20件です。
 
@@ -12,7 +12,7 @@ accepted: [F06 #20](https://github.com/H4M4CHi-ttr/win-ssd-hdd-cache/issues/20)�
 
 host 10課題とAUD01（PR #54〜#65）、D02（PR #67）は独立受入後にmainへ統合済み。D01は資料のみPR #66で統合済み、実Windows traceと受入は未完。[統合・検証記録](evidence/2026-11-02-main-integration.md)を確認してください。D02 CIのLinux 102件・Windows Server 100件はhost試験であり、Windows 11 driverや実機安全性の証拠ではありません。Issueのcloseは本文・証拠の同期後に別途読み戻して確認します。
 
-状態集計: done 20 / ready 0 / blocked 33 / needs-decision 1（計54作業）。
+状態集計: done 20 / ready 1 / blocked 33 / needs-decision 1（計55作業）。
 
 owner_approvalがpendingの課題を推測でready/acceptedにしない。承認URLは承認者・scope・条件を人が確認するための参照。元のagentラベルは最低難度でありroot/上位モデルも処理できる。accepted依存を用いる場合は、その成果物を含むPR/branch上で作業し、未mergeのmainに存在すると仮定しない。
 
@@ -22,7 +22,7 @@ owner_approvalがpendingの課題を推測でready/acceptedにしない。承認
 
 | 最低担当 | 作業数 |
 |---|---:|
-| sol | 29 |
+| sol | 30 |
 | astra | 8 |
 | luna | 17 |
 
@@ -84,4 +84,5 @@ owner_approvalがpendingの課題を推測でready/acceptedにしない。承認
 | [W10 #53](https://github.com/H4M4CHi-ttr/win-ssd-hdd-cache/issues/53) | 認可・ABI検証を行うkernel control endpointを実装する | sol → astra | blocked / pending | [G01 #29](https://github.com/H4M4CHi-ttr/win-ssd-hdd-cache/issues/29), [C06 #24](https://github.com/H4M4CHi-ttr/win-ssd-hdd-cache/issues/24), [W07 #37](https://github.com/H4M4CHi-ttr/win-ssd-hdd-cache/issues/37) |
 | [AUD01 #51](https://github.com/H4M4CHi-ttr/win-ssd-hdd-cache/issues/51) | 全Issue監査で見つかった契約・依存・承認状態の不備を修正する | astra → astra | done / accepted | なし |
 | [P01 #79](https://github.com/H4M4CHi-ttr/win-ssd-hdd-cache/issues/79) | D01観測ログの欠落・相関を検査するoffline capture auditを実装する | sol → astra | done / accepted | [F01 #5](https://github.com/H4M4CHi-ttr/win-ssd-hdd-cache/issues/5), [D09 #6](https://github.com/H4M4CHi-ttr/win-ssd-hdd-cache/issues/6) |
+| [P02 #83](https://github.com/H4M4CHi-ttr/win-ssd-hdd-cache/issues/83) | bounded capture producerとcompile-only upper snapshotを実装する | sol → astra | ready / pending | [F01 #5](https://github.com/H4M4CHi-ttr/win-ssd-hdd-cache/issues/5), [D09 #6](https://github.com/H4M4CHi-ttr/win-ssd-hdd-cache/issues/6), [P01 #79](https://github.com/H4M4CHi-ttr/win-ssd-hdd-cache/issues/79) |
 

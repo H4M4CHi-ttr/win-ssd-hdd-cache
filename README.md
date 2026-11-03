@@ -21,12 +21,13 @@ portable host基盤・整合性契約・strict trace parser・独立oracle付き
 
 ## 次の工程と主要Issue
 
+- [P02 #83: bounded producerとcompile-only snapshot](https://github.com/H4M4CHi-ttr/win-ssd-hdd-cache/issues/83) — 契約の独立review済み、実装はこれからです。固定容量のログ・要求管理とWDK scalar objectを準備します。driver登録・装着・ロード・live transportは含めません。
 - [P01 #79: 観測ログのoffline完全性検査](https://github.com/H4M4CHi-ttr/win-ssd-hdd-cache/issues/79) — PR #81で実装・受入済み。欠落・相関・loss counterを検査しますが、実captureの真実性やdriver安全性は認定しません。
 - F07/F11は受入済み、F08/F09は未受入。Windows所有権mappingなどの前提を省略せず、D04/D10のgateを維持します。
 - [D01 #3: I/O捕捉位置](https://github.com/H4M4CHi-ttr/win-ssd-hdd-cache/issues/3) — 調査文書とlab手順は統合済み。位置は未採択。capture-only probeの限定寿命契約・source/buildと、別承認の使い捨てWindows labでの実traceが必要です。D09 build-only entryは観測probeではありません。
 - [全Issueと依存関係](docs/backlog.md) / [モデル担当とreview規則](docs/agent-routing.md)。
 
-現在、既存バックログのreadyは0件です。次の情報取得は[Windows inventory用Codex引き継ぎ](docs/handoff/2026-11-03-windows-next-step.md)。対象Windowsのread-only構成確認から始め、probe限定契約・source/buildと別承認の観測へ進みます。「完成driverの実機調整だけが残った」とは扱いません。
+現在のreadyはP02の1件です。[Windows inventory用Codex引き継ぎ](docs/handoff/2026-11-03-windows-next-step.md)と並行して、実機情報を仮定しない[P02の限定source/build準備](docs/contracts/capture-producer-v1.md)を進めます。実装済み部品と将来のrunnable probe・別承認の観測を区別し、「完成driverの実機調整だけが残った」とは扱いません。
 
 GUIはTauriを用いますが、CLI/serviceと安全なdata pathの契約を先に固めます。
 
