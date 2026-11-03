@@ -15,14 +15,15 @@ Windows向けに、既存のHDDを正本に保ち、SSDを破棄可能な読み�
 
 ## 開発状況
 
-portable host基盤・整合性契約・strict trace parser・独立oracle仕様・Rust engine feasibility・Rust/WDK build-only proofまで、**16課題を独立受入してmainへ統合**しました。これは製品driverの完成ではありません。Windows/Linuxのhost CIと、WDKのcompile/link・C ABI検証は実行済みですが、driver load・実機安全性・性能の検証は未実施です。[最新の統合記録](docs/evidence/2026-11-03-phase2-integration.md)、[開発手順](docs/development.md)、[全課題](docs/backlog.md)を参照してください。
+portable host基盤・整合性契約・strict trace parser・独立oracle付きreplay・Rust engine feasibility・Rust/WDK build-only proofまで、**17課題を独立受入してmainへ統合**しました。最新のF06はWindows204件・Linux207件のhost CIを通過しています。これは製品driverの完成ではなく、driver load・実機安全性・性能の検証は未実施です。[F06の実装・検証記録](docs/evidence/F06.md)、[前段の統合記録](docs/evidence/2026-11-03-phase2-integration.md)、[開発手順](docs/development.md)、[全課題](docs/backlog.md)を参照してください。
 
 [ロードマップ #1](https://github.com/H4M4CHi-ttr/win-ssd-hdd-cache/issues/1)・[設計文書](docs/README.md)・[貢献ルール](CONTRIBUTING.md)。This is portable-host research and implementation, not a production driver.
 
 ## 次に進める主要Issue
 
-- [F06 #20: deterministic replay / independent oracle](https://github.com/H4M4CHi-ttr/win-ssd-hdd-cache/issues/20) — 前提のF05/D07は受入・main統合済み。実装・故障model検出はこれから。
-- F07/F08/F09はF06等の後続。古いcache公開・早期ACK・late I/Oの検証を実装した上で次のgateを判定します。
+- [F07 #23: 固定coherence回帰trace](https://github.com/H4M4CHi-ttr/win-ssd-hdd-cache/issues/23) — 前提F06は受入・main統合済み。基本WI・partial write・複数writer・stale-fill・unknownnessの再利用可能なfixtureを追加します。
+- [F11 #75: portable lifetime/fault fixture](https://github.com/H4M4CHi-ttr/win-ssd-hdd-cache/issues/75) — 凍結済みモデルの5ケースを固定JSON化する追加課題。F08やWindows mappingの代替ではありません。
+- F08/F09は未受入。F06だけでWindows所有権mappingなどの前提を省略せず、D04/D10のgateを維持します。
 - [D01 #3: I/O捕捉位置](https://github.com/H4M4CHi-ttr/win-ssd-hdd-cache/issues/3) — 調査文書とlab手順は統合済み。位置は未採択で、別承認の使い捨てWindows labの実trace待ち。
 - [全Issueと依存関係](docs/backlog.md) / [モデル担当とreview規則](docs/agent-routing.md)。
 
