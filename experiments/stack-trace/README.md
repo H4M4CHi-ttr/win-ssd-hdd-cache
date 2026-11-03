@@ -2,6 +2,8 @@
 
 **実験計画のみ。probe driver未実装・未install・未実行、trace未取得。** G1前の観測実験は製品W01ではない。資料/compile/host model/実Windows traceを混同しない。
 
+2026-11-03追記: [P01のoffline capture audit](../../docs/evidence/P01.md)はPR #81で実装・受入済みですが、producer/collectorを実装したわけではありません。[次のWindows工程とCodexプロンプト](../../docs/handoff/2026-11-03-windows-next-step.md)はread-only inventoryから始まります。
+
 ## 開始前のstop条件
 
 - 所有者から別途、使い捨てVM/実機、対象fingerprintと許可操作（install、署名mode、mutation、回復）が承認されていること。
@@ -20,6 +22,8 @@ pnputil /enum-devices /class DiskDrive /stack /services /drivers
 ```
 
 Microsoftの[PnPUtil構文](https://learn.microsoft.com/en-us/windows-hardware/drivers/devtest/pnputil-command-syntax)でbuildごとのflagを確認する。結果にはdevice instance等の識別情報が含まれ得るため、原本はlocalに置き、公開用に匿名化する。追加query候補はIOCTL_STORAGE_QUERY_PROPERTY（StorageAdapterPropertyのSrbType含む）、IOCTL_VOLUME_GET_VOLUME_DISK_EXTENTS。これはdevice query実装済みという意味ではない。
+
+公式資料は管理者command promptを案内している。read-only queryだから非昇格でも必ず成功するとは仮定しない。権限不足では自動昇格せず、必要な限定queryと理由を示して所有者に確認する。
 
 **[FSCTL_LOCK_VOLUME](https://learn.microsoft.com/en-us/windows/win32/api/winioctl/ni-winioctl-fsctl_lock_volume)はread-only inventoryではない。** cache flushと状態変更を伴う。lock/dismount/offline、BypassIO enable、test-signing/Verifierは別の操作として承認を確認する。
 

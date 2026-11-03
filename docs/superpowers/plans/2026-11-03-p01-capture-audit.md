@@ -22,6 +22,7 @@ All counters and order are literal and hand-derived. Three duplicate-target/orph
 - [x] Add process tests RED, then separate CLI reusing bounded file input; inspect0/4/2/3 and nonreflection.
 - [x] Run full workspace/fmt/clippy/planning; record exact nonzero counts and external fixture hashes.
 - [x] Independent Astra code/expectation review; reproduce and fix findings before re-review.
-- [ ] Publish exact reviewed tree, inspect two-OS CI logs, normal merge and Issue/roadmap readback.
+- [x] Publish exact reviewed tree, inspect two-OS CI logs and merge normally: PR #81, Windows248/Linux251, merge4cffcbc2a9a5480f1c2ff5740673c307a52d7231.
+- [ ] Synchronize acceptance/Issue/roadmap and verify readback in the separate final metadata increment.
 
 Root's pre-review checks: full Linux workspace251 named tests,0 failed/ignored; fmt/clippy `-D warnings` and planning28 labels/54 tasks/60 documents/172 links pass. Core target17 tests; CLI target10 Linux tests. The extra Windows namespace process case and reused reader's Windows unit case are not locally executed. Seven literal files were hashed with sha256sum. [Detailed evidence](../../evidence/P01.md) records the source checkpoint and independent review; this does not pre-accept the pending publication/CI/Issue gates.
