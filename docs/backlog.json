@@ -1811,6 +1811,42 @@
       "issue_number": 79,
       "issue_url": "https://github.com/H4M4CHi-ttr/win-ssd-hdd-cache/issues/79",
       "completion": "accepted"
+    },
+    {
+      "id": "P02",
+      "title": "bounded capture producerとcompile-only upper snapshotを実装する",
+      "agent": "sol",
+      "review": "astra",
+      "status": "ready",
+      "priority": "p0",
+      "type": "task",
+      "area": "driver",
+      "owner_decision": false,
+      "owner_approval": "not-required",
+      "approval_evidence": [],
+      "dependencies": ["F01", "D09", "P01"],
+      "files": [
+        "docs/contracts/capture-producer-v1.md",
+        "docs/superpowers/plans/2026-11-03-p02-capture-producer.md",
+        "crates/cache-capture-core/",
+        "Cargo.toml",
+        "Cargo.lock",
+        "experiments/stack-trace/",
+        ".github/workflows/capture-build-proof.yml",
+        "docs/evidence/P02.md"
+      ],
+      "output": "64contexts/256FIFOのpure Rust no_std producerと、allowlist scalarだけを読むC/WDK object。capture-producer-v1で範囲・unknown・寿命・loss/overflow・build境界を独立review。実callback/FFI pointer bridge/transport/entry/attach/loadは実装しない。P01 JSONへの偽の既知値投影も行わない。",
+      "acceptance": [
+        "契約と手導出scheduleを独立reviewし、invalid/late/stale/closed/NoContext/overflow/identity exhaustionの順序と診断を固定する",
+        "Rust literal tests RED→GREEN、debug/release、固定48/8・24/8 scalar layoutと40KiB host size budgetを検査する。unsafe/新dependency/OS/networkなし",
+        "C literal vectorsとWDK field accessを検証。Informationはsaved ordinary read/write minor0かつexact STATUS_SUCCESS以外では読まない。unknownはゼロ実測値ではない",
+        "bounded COFF negative tests、D09-pinned hash/signature確認、AMD64 C17 /kernel /W4 /WX object-only CI。entry/registration/attachment/image link/install/binary uploadなし",
+        "独立Astra code/期待値/workflow review、非zero二OS host CIと実job logs、exact tree、normal merge、Issue/manifest/親readback"
+      ],
+      "escalation": "実callback/forward/pending/rundown/IRQL同期/transport/target mappingが必要なら別契約review。D01/D04/D10/F08/F09/G1とlab/owner gateを解除しない。source/buildのみの受入をrunnable probeやWindows qualificationと扱わない。",
+      "issue_number": 83,
+      "issue_url": "https://github.com/H4M4CHi-ttr/win-ssd-hdd-cache/issues/83",
+      "completion": "pending"
     }
   ]
 }
