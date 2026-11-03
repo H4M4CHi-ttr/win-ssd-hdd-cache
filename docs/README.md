@@ -14,6 +14,7 @@
 | [F07 coherence](evidence/F07.md) / [F11 lifetime/error](evidence/F11.md) | 合計13固定traceと17テスト、手導出期待値・独立review・二OS CI |
 | [P01 capture envelope](contracts/capture-envelope-v1.md) / [実装証拠](evidence/P01.md) | 収集後の相関・欠落検査。Windows coverage/producer/権限の認定ではない |
 | [P02 bounded producer契約](contracts/capture-producer-v1.md) / [計画・証拠](evidence/P02.md) | 固定容量のRust coreとcompile-only WDK snapshot。実callback・装着・transportなし |
+| [P03 capture v2契約](contracts/capture-envelope-v2.md) / [計画・証拠](evidence/P03.md) | 不明Informationを保持するoffline形式拡張。契約review済み、実装は次工程 |
 | [portable継続境界の監査](portable-boundary-audit-2026-11-03.md) | F11の限定scopeと、解除しないWindows/lab gate |
 | [portable受入・次の観測準備](evidence/2026-11-03-portable-integration.md) | F07/F11 main統合とP01の限定scope・契約review |
 | [Windows工程への引き継ぎ](handoff/2026-11-03-windows-next-step.md) | 完成済み/未実装を区別し、read-only inventoryからprobe契約・build・別承認の観測へ進む |

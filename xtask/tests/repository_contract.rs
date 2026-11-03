@@ -51,7 +51,7 @@ fn baseline_labels_backlog_and_real_repository_pass_nonzero_checks() {
         .to_owned();
     let summary = check_repository(&root).unwrap();
     assert_eq!(summary.labels, 28);
-    assert_eq!(summary.tasks, 55);
+    assert_eq!(summary.tasks, 56);
     assert!(summary.documents > 10);
     assert!(summary.relative_links > 10);
 }
@@ -469,7 +469,7 @@ fn checker_command_is_cwd_independent_and_rejects_extra_arguments() {
     assert!(
         String::from_utf8(output.stdout)
             .unwrap()
-            .starts_with("planning: ok (labels=28, tasks=55, documents=")
+            .starts_with("planning: ok (labels=28, tasks=56, documents=")
     );
     for args in [vec![], vec!["unknown"], vec!["check-planning", "extra"]] {
         let output = Command::new(env!("CARGO_BIN_EXE_xtask"))

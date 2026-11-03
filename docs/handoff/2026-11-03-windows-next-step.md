@@ -9,8 +9,9 @@
 | [F06 replay](../evidence/F06.md)、[F07](../evidence/F07.md)、[F11](../evidence/F11.md) | 純粋Rustの独立oracle、13固定trace、順序・寿命・error回帰 | 実IRP/MDL/DMA、全mutation捕捉、driverの動作 |
 | [P01 audit](../evidence/P01.md) | 収集後のログの欠落・相関・counterを検査するRust CLI | producerの正直さ、取得権限、対象mapping、Windows coverage |
 | [D09 proof](../evidence/D09.md) | 小さいRust coreとRust/C-WDK imageのcompile/link・host ABI | driver load、実callback・IRQL・rundown、HVCI適合 |
-| [P02 bounded producer](../contracts/capture-producer-v1.md) | 契約の独立review済み、source/buildは未完 | live callback・transport・rundown・実machine mapping |
-| D01観測producer/collector | **未実装**。`experiments/stack-trace/`は計画のみ | D09のfailure-return entryを観測probeと扱わない |
+| [P02 bounded producer](../evidence/P02.md) | Rust core32testsとC scalar56cases、実WDK object-only buildまで受入済み | live callback・transport・rundown・実machine mapping |
+| [P03 v2契約](../contracts/capture-envelope-v2.md) | 不明Informationを保持するoffline形式を独立review済み。実装は次工程 | producerの診断・実boundaryを自動投影しない |
+| D01 live観測producer/collector | **未実装**。`experiments/stack-trace/`にはP02の非loadable部品がある | D09 entryやP02 snapshotを観測probeと扱わない |
 | 製品driver・installer・service・Tauri GUI | **未実装**。依存gate待ち | build成功やIssue closeを製品の安全認定にしない |
 | 実Windows11 capture・実機性能・電源/撤去試験 | **未実施** | hosted Windows Serverのhost testsでは代替できない |
 
@@ -23,7 +24,7 @@
 3. **レビュー済みprobeのsource/build。** 小さい実装・negative tests・ordinary build CIを行い、source/compiler/WDK/image digestを固定する。P01はJSON投影の契約であってkernel ABI/transportではない。先にABIを勝手に固定しない。
 4. **別承認の使い捨てlabで観測。** 対象、install/load、信頼設定、許可workload、rollbackを明示してから実行する。[coverage matrix](../contracts/io-coverage.md)と相関logを照合し、独立review後にD01の採否を判断する。
 
-この順序は、すべてのsource/build準備がinventory完了を待つという意味ではありません。[P02 #83](https://github.com/H4M4CHi-ttr/win-ssd-hdd-cache/issues/83)は独立reviewした例外的な小単位で、対象機械を仮定せずにbounded producerと非loadable snapshot objectを用意します。実callback登録・forward・rundown・transportは含みません。
+この順序は、すべてのsource/build準備がinventory完了を待つという意味ではありません。[P02 #83](https://github.com/H4M4CHi-ttr/win-ssd-hdd-cache/issues/83)は独立review後、対象機械を仮定せずbounded producerと非loadable snapshot objectを用意しました。実callback登録・forward・rundown・transportは含みません。次の候補は単なるmock GUIや追加toy fixtureではなく、これらを扱う観測probeの限定統合契約とsource/buildです。未確認の機械情報を仮定せず契約を固定できるかを先にレビューします。
 
 source/build準備をG1前に行うこと自体は禁止していません。ただし、実stackの未確認事項を都合のよい仮定で埋め、既存のD01/D04/D10/F08/F09/G1を解除しません。新しい小作業は依存・scope・受入条件を独立reviewしたうえでIssue化します。単にready件数を増やすためにgateを消しません。
 

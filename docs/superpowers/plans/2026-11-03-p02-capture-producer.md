@@ -58,7 +58,7 @@ Interfaces: C layouts/static assertions match Rust. Scalar constructors/validato
 - [x] Implement shared scalar header, then C helper; do not introduce pointers into exported snapshots or read unsupported union members. Independent integration review remains below.
 - [x] Write structural checker tests RED: valid synthetic COFF passes; PE image, wrong architecture, missing required helper, unknown external, DriverEntry and I/O/rundown symbols fail. State checker limitations. All14 checker tests pass; actual WDK object/dumpbin evidence remains pending.
 - [x] Implement object checker and ephemeral build script using existing verified D09 pins; no LLVM/kernel-driver install. C host executable runs literal tests, `/c /kernel /W4 /WX` produces an object only; evidence contains source/compiler/header/object hashes and explicit false runtime flags. This checks source presence, not actual WDK build success.
-- [ ] Independent source review before publishing/running ordinary Actions. Actual WDK compile is pending until logs inspected; host vectors do not execute IRPs.
+- [x] Independent source review before publishing/running ordinary Actions. Actual WDK compile/object inspection accepted in PR85; host vectors do not execute IRPs. See final P02 evidence for the failed and successful runs.
 
 ## Task 4 — integration and acceptance
 
@@ -69,35 +69,35 @@ definition. Actual `/Zc:inline` experimentation did not remove it. The contract'
 precise optional header-data role, not another compiler guess, is the bounded
 correction; obtain independent contract acceptance before implementation.
 
-- [ ] Preserve the diagnostic run and unsuccessful flag experiment. Revert only
+- [x] Preserve the diagnostic run and unsuccessful flag experiment. Revert only
   the attempted `/Zc:inline` flag; do not change SDK files, target macros or C code.
-- [ ] Extend the original hand-constructed two-section fixture, not generated
+- [x] Extend the original hand-constructed two-section fixture, not generated
   compiler bytes. Before changing the checker, observe RED for accepting the
   contract's exact one-byte BSS/header-data form. Document the intentional change
   from the previous blanket extra-data rejection and add `header_data` to the
   exact successful report witness. Other legacy expectations stay unchanged.
-- [ ] Reject wrong name/type/storage/value/aux, duplicate header-data, missing
+- [x] Reject wrong name/type/storage/value/aux, duplicate header-data, missing
   mandatory functions, near-miss section size/name/address/flags/pointers/counts,
   absent/duplicate/wrong static section definition, wrong auxiliary
   length/counts/checksum/selection, and unrelated external functions/data.
-- [ ] Reject the external before its section definition and any other primary
+- [x] Reject the external before its section definition and any other primary
   symbol referencing that section before the definition or between definition
   and external. Accept unrelated symbols from other sections interspersed, and
   nonzero uninterpreted association/reserved auxiliary fields; do not invent
   extra constraints or require globally adjacent records.
-- [ ] Implement only the optional data role and selected section-aux validation;
+- [x] Implement only the optional data role and selected section-aux validation;
   keep all bounds and other defined/undefined symbol policies. Do not interpret
   unrelated static metadata or claim relocation/runtime verification.
-- [ ] Run the complete checker suite with no ignored/skipped tests; independent
+- [x] Run the complete checker suite with no ignored/skipped tests; independent
   review must examine contract, synthetic geometry and negative coverage.
-- [ ] Require fresh actual Windows C56/path17/checker tests, WDK compile and
+- [x] Require fresh actual Windows C56/path17/checker tests, WDK compile and
   object check with separate `header_data`, exact manifest and all false runtime
   flags. A synthetic PASS alone cannot accept the actual build.
 
-- [ ] Record TDD checkpoints, literal vector counts, exact local commands, unknowns and independent review in `docs/evidence/P02.md`.
-- [ ] Run full workspace tests/fmt/clippy/planning, standalone C vectors and object checker; inspect nonzero named tests rather than repeated summary lines.
-- [ ] Independent Astra expectation/code/workflow review, repair and re-review findings.
-- [ ] Publish exact reviewed tree via normal PR; inspect Windows/Linux host and compile-only proof logs/artifacts. Never install/load the result.
+- [x] Record TDD checkpoints, literal vector counts, exact local commands, unknowns and independent review in `docs/evidence/P02.md`.
+- [x] Run full workspace tests/fmt/clippy/planning, standalone C vectors and object checker; inspect nonzero named tests rather than repeated summary lines.
+- [x] Independent Astra expectation/code/workflow review, repair and re-review findings.
+- [x] Publish exact reviewed tree via normal PR; inspect Windows/Linux host and compile-only proof logs/artifacts. Never install/load the result.
 - [ ] Merge normally, update manifest/Issue/roadmap, read back roles/states/all dependency annotations. Do not turn D01/D04/D10/F08/F09/G1 ready.
 
 The next runtime slice still needs separately reviewed real context/callback/transport integration and the user-designated Windows inventory/lab authority. Completing this plan is not completion of a runnable probe.

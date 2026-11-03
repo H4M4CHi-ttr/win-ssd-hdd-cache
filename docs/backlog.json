@@ -1817,7 +1817,7 @@
       "title": "bounded capture producerとcompile-only upper snapshotを実装する",
       "agent": "sol",
       "review": "astra",
-      "status": "ready",
+      "status": "done",
       "priority": "p0",
       "type": "task",
       "area": "driver",
@@ -1835,7 +1835,7 @@
         ".github/workflows/capture-build-proof.yml",
         "docs/evidence/P02.md"
       ],
-      "output": "64contexts/256FIFOのpure Rust no_std producerと、allowlist scalarだけを読むC/WDK object。capture-producer-v1で範囲・unknown・寿命・loss/overflow・build境界を独立review。実callback/FFI pointer bridge/transport/entry/attach/loadは実装しない。P01 JSONへの偽の既知値投影も行わない。",
+      "output": "64contexts/256FIFOのpure Rust no_std producerとallowlist scalarのC/WDK objectをPR85で独立受入・main統合。Windows280/Linux283 host、各OS release32、C56/path17/checker20と実WDK object proofを確認。実callback/FFI pointer bridge/transport/entry/attach/loadなし。P01 JSONへの偽の既知値投影も行わない。",
       "acceptance": [
         "契約と手導出scheduleを独立reviewし、invalid/late/stale/closed/NoContext/overflow/identity exhaustionの順序と診断を固定する",
         "Rust literal tests RED→GREEN、debug/release、固定48/8・24/8 scalar layoutと40KiB host size budgetを検査する。unsafe/新dependency/OS/networkなし",
@@ -1846,6 +1846,43 @@
       "escalation": "実callback/forward/pending/rundown/IRQL同期/transport/target mappingが必要なら別契約review。D01/D04/D10/F08/F09/G1とlab/owner gateを解除しない。source/buildのみの受入をrunnable probeやWindows qualificationと扱わない。",
       "issue_number": 83,
       "issue_url": "https://github.com/H4M4CHi-ttr/win-ssd-hdd-cache/issues/83",
+      "completion": "accepted"
+    },
+    {
+      "id": "P03",
+      "title": "completionの不明Informationを保持するoffline capture v2を実装する",
+      "agent": "luna",
+      "review": "astra",
+      "status": "ready",
+      "priority": "p0",
+      "type": "task",
+      "area": "tooling",
+      "owner_decision": false,
+      "owner_approval": "not-required",
+      "approval_evidence": [],
+      "dependencies": ["P01", "P02"],
+      "files": [
+        "docs/contracts/capture-envelope-v2.md",
+        "docs/superpowers/plans/2026-11-03-p03-capture-v2.md",
+        "crates/cache-types/src/capture.rs",
+        "crates/cache-types/tests/capture_audit_v2.rs",
+        "crates/cache-types/tests/capture_audit.rs",
+        "crates/cache-cli/tests/capture_audit_v2_cli.rs",
+        "crates/cache-cli/tests/capture_audit_cli.rs",
+        "tests/fixtures/capture-audit-v2/",
+        "docs/evidence/P03.md"
+      ],
+      "output": "explicit v2でrequired nullable completion Informationを保持し、UNKNOWN_INFORMATIONを既存14reasonの後に追加。未知値をゼロやevent lossとみなさず、相関・status・v1のgolden/strict parsingを維持する。実collector/exporter/Windows接続は含まない。",
+      "acceptance": [
+        "契約・手導出counts/reasonsを独立review。P01/P02受入と契約公開後に着手する",
+        "6literal fixtureと12core/4CLI testsを先に固定しREDを確認。v1のunsupported witness3件だけ2→3へ変更し、他の期待値を維持する",
+        "single strict typed parseとrequired nullable fields、1MiB/4096record上限、version/error precedence、duplicate/orphan/mismatch時のunknownを検査する",
+        "最小private version/phase/report変更、新dependency/unsafe/CLI production変更なし。targeted/full/release/fmt/clippy/planningを検証する",
+        "独立Astra code/期待値reviewと実Windows/Linux host CI、exact tree、normal merge、Issue/manifest/親readback"
+      ],
+      "escalation": "P02診断やsealを実captureのfinalized/boundaryへ投影しない。exporter/transport/target mappingや未知の安全意味論は別契約review。D01/D04/D10/F08/F09/G1とowner gateを維持する。",
+      "issue_number": 86,
+      "issue_url": "https://github.com/H4M4CHi-ttr/win-ssd-hdd-cache/issues/86",
       "completion": "pending"
     }
   ]
