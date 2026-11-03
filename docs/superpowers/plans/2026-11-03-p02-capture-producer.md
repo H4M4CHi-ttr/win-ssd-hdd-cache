@@ -62,6 +62,38 @@ Interfaces: C layouts/static assertions match Rust. Scalar constructors/validato
 
 ## Task 4 — integration and acceptance
 
+### Reviewed object-model correction after actual SDK evidence
+
+The original object expectation omitted a pinned WDK header's select-any BOOLEAN
+definition. Actual `/Zc:inline` experimentation did not remove it. The contract's
+precise optional header-data role, not another compiler guess, is the bounded
+correction; obtain independent contract acceptance before implementation.
+
+- [ ] Preserve the diagnostic run and unsuccessful flag experiment. Revert only
+  the attempted `/Zc:inline` flag; do not change SDK files, target macros or C code.
+- [ ] Extend the original hand-constructed two-section fixture, not generated
+  compiler bytes. Before changing the checker, observe RED for accepting the
+  contract's exact one-byte BSS/header-data form. Document the intentional change
+  from the previous blanket extra-data rejection and add `header_data` to the
+  exact successful report witness. Other legacy expectations stay unchanged.
+- [ ] Reject wrong name/type/storage/value/aux, duplicate header-data, missing
+  mandatory functions, near-miss section size/name/address/flags/pointers/counts,
+  absent/duplicate/wrong static section definition, wrong auxiliary
+  length/counts/checksum/selection, and unrelated external functions/data.
+- [ ] Reject the external before its section definition and any other primary
+  symbol referencing that section before the definition or between definition
+  and external. Accept unrelated symbols from other sections interspersed, and
+  nonzero uninterpreted association/reserved auxiliary fields; do not invent
+  extra constraints or require globally adjacent records.
+- [ ] Implement only the optional data role and selected section-aux validation;
+  keep all bounds and other defined/undefined symbol policies. Do not interpret
+  unrelated static metadata or claim relocation/runtime verification.
+- [ ] Run the complete checker suite with no ignored/skipped tests; independent
+  review must examine contract, synthetic geometry and negative coverage.
+- [ ] Require fresh actual Windows C56/path17/checker tests, WDK compile and
+  object check with separate `header_data`, exact manifest and all false runtime
+  flags. A synthetic PASS alone cannot accept the actual build.
+
 - [ ] Record TDD checkpoints, literal vector counts, exact local commands, unknowns and independent review in `docs/evidence/P02.md`.
 - [ ] Run full workspace tests/fmt/clippy/planning, standalone C vectors and object checker; inspect nonzero named tests rather than repeated summary lines.
 - [ ] Independent Astra expectation/code/workflow review, repair and re-review findings.

@@ -9,6 +9,7 @@ import { checkObject } from './check-object.mjs';
 
 const helpers = ['win_cache_p02_snapshot_submit', 'win_cache_p02_snapshot_complete'];
 const allowed = ['__security_cookie', '__security_check_cookie', '__chkstk', 'memcpy', 'memset'];
+const headerDataName = 'ExPoolZeroingNativelySupported';
 
 // Original literal COFF fixture, not compiler output or a driver image.
 function fixture(extra = [], replace = null) {
@@ -53,11 +54,37 @@ function reject(buffer) {
   assert.throws(() => checkObject(buffer), { message: 'OBJECT_INVALID' });
 }
 
+function sectionDefinition(overrides = {}) {
+  const auxiliary = Buffer.alloc(18);
+  auxiliary.writeUInt32LE(1, 0);
+  auxiliary[14] = 2; // IMAGE_COMDAT_SELECT_ANY
+  return { name: '.bss', section: 2, storage: 3, aux: [auxiliary], ...overrides };
+}
+
+function headerExternal(overrides = {}) {
+  return { name: headerDataName, section: 2, ...overrides };
+}
+
+// Original two-section fixture, not bytes copied from the diagnostic object.
+function headerDataFixture(symbols = [sectionDefinition(), headerExternal()], functions = null) {
+  const original = functions === null ? fixture(symbols) : fixture([], [...functions, ...symbols]);
+  const header = Buffer.alloc(108); // COFF + two sections + eight code bytes
+  original.copy(header, 0, 0, 60);
+  header.writeUInt16LE(2, 2);
+  header.writeUInt32LE(108, 8);
+  header.writeUInt32LE(100, 40);
+  header.write('.bss', 60);
+  header.writeUInt32LE(1, 76);
+  header.writeUInt32LE(0xc0101080, 96);
+  original.copy(header, 100, 60, 68);
+  return Buffer.concat([header, original.subarray(68)]);
+}
+
 test('two literal functions form a bounded object, never a runtime verdict', () => {
   assert.deepEqual(checkObject(fixture()), {
     schema_version: 1, verdict: 'expected_snapshot_object', machine: 'amd64',
     sections: 1, symbol_entries: 2,
-    defined: [...helpers].sort(), undefined: [],
+    defined: [...helpers].sort(), header_data: [], undefined: [],
     image_linked: false, driver_loaded: false, runtime_verified: false,
   });
 });
@@ -74,30 +101,81 @@ test('driver lifecycle and I/O externals are not accepted by name', () => {
   }
 });
 
-test('retained WDK select-any data is not an allowed snapshot external', () => {
-  // Independently constructed from the diagnostic run's observed shape, not
-  // bytes copied from its object. The same section without the external is a
-  // valid bounded fixture, so rejection cannot be explained by broken layout.
-  function withHeaderData(includeExternal) {
-    const auxiliary = Buffer.alloc(18);
-    auxiliary.writeUInt32LE(1, 0); // section length
-    auxiliary[14] = 2; // IMAGE_COMDAT_SELECT_ANY
-    const extra = [{ name: '.bss', section: 2, storage: 3, aux: [auxiliary] }];
-    if (includeExternal) extra.push({ name: 'ExPoolZeroingNativelySupported', section: 2 });
-    const original = fixture(extra);
-    const header = Buffer.alloc(108); // COFF + two sections + eight code bytes
-    original.copy(header, 0, 0, 60);
-    header.writeUInt16LE(2, 2);
-    header.writeUInt32LE(108, 8);
-    header.writeUInt32LE(100, 40);
-    header.write('.bss', 60);
-    header.writeUInt32LE(1, 76);
-    header.writeUInt32LE(0xc0101080, 96); // one-byte, uninitialized, select-any RW
-    original.copy(header, 100, 60, 68);
-    return Buffer.concat([header, original.subarray(68)]);
+test('only the exact optional header data role is reported separately', () => {
+  // Intentional pre-acceptance contract correction: the previous blanket
+  // rejection omitted a definition in the unchanged, hash-verified SDK header.
+  assert.deepEqual(checkObject(headerDataFixture()), {
+    schema_version: 1, verdict: 'expected_snapshot_object', machine: 'amd64',
+    sections: 2, symbol_entries: 5,
+    defined: [...helpers].sort(), header_data: [headerDataName], undefined: [],
+    image_linked: false, driver_loaded: false, runtime_verified: false,
+  });
+  assert.deepEqual(checkObject(headerDataFixture([sectionDefinition()])).header_data, []);
+  const definition = sectionDefinition();
+  for (const offset of [12, 13, 15, 16, 17]) definition.aux[0][offset] = 0xff;
+  const unrelated = { name: 'local', section: 1, storage: 3 };
+  const bounded = headerDataFixture([definition, unrelated, headerExternal()]);
+  assert.deepEqual(checkObject(bounded).header_data, [headerDataName]);
+});
+
+test('header data cannot change its name role or cardinality', () => {
+  for (const change of [
+    { name: headerDataName.toLowerCase() }, { name: 'unexpected_data' },
+    { type: 0x20 }, { value: 1 }, { section: 0 }, { section: -1 }, { section: 3 },
+    { storage: 105 }, { storage: 5 }, { aux: [Buffer.alloc(18)] },
+  ]) reject(headerDataFixture([sectionDefinition(), headerExternal(change)]));
+  reject(headerDataFixture([sectionDefinition(), headerExternal(), headerExternal()]));
+  // A non-external lookalike is metadata, never the allowed external data role.
+  assert.deepEqual(checkObject(headerDataFixture([
+    sectionDefinition(), headerExternal({ storage: 3 }),
+  ])).header_data, []);
+});
+
+test('header data does not replace either mandatory function', () => {
+  reject(headerDataFixture(undefined, []));
+  reject(headerDataFixture(undefined, [{ name: helpers[0], section: 1, type: 0x20 }]));
+  reject(headerDataFixture([sectionDefinition(), headerExternal(), { name: 'memcpy', section: 1, type: 0x20 }]));
+  reject(headerDataFixture([sectionDefinition(), headerExternal(), { name: 'other', section: 1, type: 0x20 }]));
+});
+
+test('header data requires the exact one-byte nonexecutable BSS section', () => {
+  for (const [offset, value, width] of [
+    [68, 1, 4], [72, 1, 4], [76, 0, 4], [76, 2, 4], [80, 100, 4],
+    [84, 1, 4], [88, 1, 4], [92, 1, 2], [94, 1, 2],
+    [96, 0xc0100080, 4], [96, 0xe0101080, 4], [96, 0xc0201080, 4],
+  ]) {
+    const b = headerDataFixture();
+    if (width === 2) b.writeUInt16LE(value, offset); else b.writeUInt32LE(value, offset);
+    reject(b);
   }
-  assert.equal(checkObject(withHeaderData(false)).sections, 2);
-  reject(withHeaderData(true));
+  const name = headerDataFixture(); name.fill(0, 60, 68); name.write('.data', 60); reject(name);
+  const suffix = headerDataFixture(); suffix[65] = 0x41; reject(suffix);
+});
+
+test('header data requires one matching bounded static section auxiliary', () => {
+  reject(headerDataFixture([headerExternal()]));
+  reject(headerDataFixture([sectionDefinition(), headerExternal(), sectionDefinition()]));
+  for (const change of [
+    { name: 'other' }, { type: 0x20 }, { value: 1 }, { section: 1 },
+    { storage: 6 }, { aux: [] }, { aux: [Buffer.alloc(18), Buffer.alloc(18)] },
+  ]) reject(headerDataFixture([sectionDefinition(change), headerExternal()]));
+  for (const [offset, value, width] of [
+    [0, 0, 4], [0, 2, 4], [4, 1, 2], [6, 1, 2], [8, 1, 4],
+    [14, 0, 1], [14, 1, 1], [14, 5, 1],
+  ]) {
+    const definition = sectionDefinition();
+    if (width === 4) definition.aux[0].writeUInt32LE(value, offset);
+    else if (width === 2) definition.aux[0].writeUInt16LE(value, offset);
+    else definition.aux[0][offset] = value;
+    reject(headerDataFixture([definition, headerExternal()]));
+  }
+});
+
+test('header COMDAT uses section-local definition then external ordering', () => {
+  const label = { name: 'local', section: 2, storage: 6 };
+  reject(headerDataFixture([headerExternal(), sectionDefinition()]));
+  reject(headerDataFixture([label, sectionDefinition(), headerExternal()]));
+  reject(headerDataFixture([sectionDefinition(), label, headerExternal()]));
 });
 
 test('PE and bigobj prefixes and foreign machine are rejected', () => {

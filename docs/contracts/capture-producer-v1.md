@@ -271,27 +271,55 @@ Keep the platform-default header packing; do not force /Zp8 or pragma pack to
 obtain alignment8. Assert natural layouts instead. /kernel defines _KERNEL_MODE;
 do not define it manually or mix host CRT typedefs into the WDK translation unit.
 
-The direct MSVC object command explicitly uses `/O2 /Zc:inline`, without `/Od`
-or `/GL`. This is the documented removal of unreferenced COMDAT code/data,
-normally enabled by the MSBuild property but not by a direct cl invocation.
-The pinned wdm.h defines unused select-any pool-support data merely when
-NTDDI_VERSION >= NTDDI_WIN2K. Do not edit that header, change target macros or
-allow extra external data just to suppress its structural rejection. Both
-required helpers must survive optimization and the unchanged symbol check.
-This option is a build choice, not a source-access or runtime-safety proof.
+The pinned wdm.h defines select-any pool-support data merely when NTDDI_VERSION
+>= NTDDI_WIN2K. An actual C17 /kernel experiment with documented `/Zc:inline`
+still emitted this data. Restore the original `/O2` command rather than stack
+further flags or manipulate the SDK/target definitions. The specific header-data
+role below is a reviewed correction to the overly narrow initial object model,
+not a general exception for unfamiliar external symbols. Its diagnostic evidence
+and failed flag experiment remain in [P02 evidence](../evidence/P02.md).
 
 The object checker accepts at most1MiB of ordinary AMD64 COFF: machine0x8664,
 1..96 sections, zero optional-header size, bounded section/symbol/string tables,
 valid auxiliary-symbol skipping and bounded external names. PE/bigobj variants
-are outside this check. Required defined external symbols are exactly
+are outside this check. Required defined external **function** symbols are exactly
 `win_cache_p02_snapshot_submit` and `win_cache_p02_snapshot_complete`; they must
 be function symbols in real sections. Permitted undefined externals are only
 `__security_cookie`, `__security_check_cookie`, `__chkstk`, `memcpy`, `memset`.
-Reject weak externals, common externals and any other external name or role.
-Non-external compiler metadata is not interpreted as executable semantics.
+Reject weak externals, common externals and any other external name or role,
+except for zero or one precisely shaped header-data definition:
+
+| Element | Required shape |
+|---|---|
+| External data symbol | Exact name `ExPoolZeroingNativelySupported`, storage class2, type0 (not a function), value0, no auxiliary record, positive bounded section index |
+| Its section | Exact short name `.bss`, size1, raw pointer0, physical/virtual address0, relocation and line pointers/counts0; characteristics exactly0xc0101080 (uninitialized, select-any COMDAT, one-byte alignment, read/write, not executable) |
+| Section definition | Exactly one static class3 symbol in that section, name `.bss`, type0/value0, exactly one bounded auxiliary record |
+| Section auxiliary | Length1, relocation/line counts0, checksum0, selection2 (IMAGE_COMDAT_SELECT_ANY). Association/reserved fields are not interpreted; select-any is not an associative COMDAT. |
+
+For that optional section, the first non-auxiliary symbol referencing it must be
+the unique static section definition above. The next non-auxiliary symbol
+referencing it must be the permitted data external. Auxiliary records do not
+count in this section-local order; unrelated symbols referencing other sections
+may appear between them. This identifies the external's COMDAT role without
+requiring global adjacency or hardcoding a compiler-selected section index.
+
+The optional data name cannot substitute for either required function or appear
+twice, as an undefined/weak/common/function symbol, or in another section shape.
+No extra undefined runtime calls are admitted. The report retains `defined` for
+the two functions and adds `header_data: []` or the single exact name, separately
+from `undefined`. This is an explicit pre-acceptance checker-report amendment;
+it does not change either snapshot layout or a public runtime ABI. Synthetic
+fixtures must accept the observed bounded form and reject near-miss roles,
+sections, duplicate/missing definitions, wrong section-local order and auxiliary
+metadata. Positive cases also retain unrelated interspersed symbols and nonzero
+uninterpreted association/reserved auxiliary fields. No existing
+other rejection expectation is relaxed. Unrelated non-external compiler metadata
+is still not interpreted as executable semantics.
 The checker does not certify relocations, memory accesses, general COFF validity,
-loadability, ABI calls or runtime safety. Changing the allowlist needs review,
-not an automatic response to a failed build.
+loadability, ABI calls, header provenance or runtime safety. Name/shape alone
+does not authenticate origin; independent source review and pinned package/header
+hashes establish the present build evidence. Further allowlist changes need
+review, not an automatic response to a failed build.
 
 Still required before any runnable probe: specified Windows11 inventory/target,
 actual stack/order and registration effects, approved disposable lab/operations,

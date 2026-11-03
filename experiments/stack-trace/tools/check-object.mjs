@@ -7,6 +7,7 @@ import { pathToFileURL } from 'node:url';
 const MAX_BYTES = 1024 * 1024;
 const REQUIRED = new Set(['win_cache_p02_snapshot_submit', 'win_cache_p02_snapshot_complete']);
 const UNDEFINED = new Set(['__security_cookie', '__security_check_cookie', '__chkstk', 'memcpy', 'memset']);
+const HEADER_DATA = 'ExPoolZeroingNativelySupported';
 const invalid = () => { throw new Error('OBJECT_INVALID'); };
 
 export function checkObject(bytes) {
@@ -43,7 +44,7 @@ export function checkObject(bytes) {
     const characteristics = bytes.readUInt32LE(p + 36);
     const uninitialized = offset === 0 && (characteristics & 0x80) !== 0;
     if (!uninitialized) addSpan(offset, size);
-    raw.push({ size, offset, uninitialized });
+    raw.push({ p, size, offset, uninitialized });
     addSpan(bytes.readUInt32LE(p + 24), bytes.readUInt16LE(p + 32) * 10);
     addSpan(bytes.readUInt32LE(p + 28), bytes.readUInt16LE(p + 34) * 6);
   }
@@ -66,6 +67,7 @@ export function checkObject(bytes) {
 
   const defined = new Set();
   const undefinedNames = new Set();
+  let headerData = null;
   for (let index = 0; index < count;) {
     const p = symbolStart + index * 18;
     const storage = bytes[p + 16];
@@ -78,12 +80,18 @@ export function checkObject(bytes) {
       const section = bytes.readInt16LE(p + 12);
       const value = bytes.readUInt32LE(p + 8);
       const type = bytes.readUInt16LE(p + 14);
-      if (defined.has(name) || undefinedNames.has(name)) invalid();
+      if (defined.has(name) || undefinedNames.has(name) || (headerData && name === HEADER_DATA)) invalid();
       if (section > 0) {
-        if (!REQUIRED.has(name) || type !== 0x20 || section > sections) invalid();
-        const data = raw[section - 1];
-        if (data.uninitialized || data.offset === 0 || value >= data.size) invalid();
-        defined.add(name);
+        if (section > sections) invalid();
+        if (name === HEADER_DATA) {
+          if (type !== 0 || value !== 0 || auxiliary !== 0) invalid();
+          headerData = { section, p };
+        } else {
+          if (!REQUIRED.has(name) || type !== 0x20) invalid();
+          const data = raw[section - 1];
+          if (data.uninitialized || data.offset === 0 || value >= data.size) invalid();
+          defined.add(name);
+        }
       } else {
         if (section !== 0 || value !== 0 || auxiliary !== 0 ||
             !UNDEFINED.has(name) || (type !== 0 && type !== 0x20)) invalid();
@@ -94,10 +102,49 @@ export function checkObject(bytes) {
     index += 1 + auxiliary;
   }
   if (defined.size !== REQUIRED.size) invalid();
+
+  if (headerData) {
+    // One reviewed SDK data role, not a general COMDAT or external exception.
+    const { p } = raw[headerData.section - 1];
+    if (!bytes.subarray(p, p + 8).equals(Buffer.from('.bss\0\0\0\0')) ||
+        bytes.readUInt32LE(p + 8) !== 0 || bytes.readUInt32LE(p + 12) !== 0 ||
+        bytes.readUInt32LE(p + 16) !== 1 || bytes.readUInt32LE(p + 20) !== 0 ||
+        bytes.readUInt32LE(p + 24) !== 0 || bytes.readUInt32LE(p + 28) !== 0 ||
+        bytes.readUInt16LE(p + 32) !== 0 || bytes.readUInt16LE(p + 34) !== 0 ||
+        bytes.readUInt32LE(p + 36) !== 0xc0101080) invalid();
+
+    let sectionSymbols = 0;
+    let definitions = 0;
+    // The first pass bounded every primary/aux record. Inspect only this
+    // section's role/order; unrelated static compiler metadata stays opaque.
+    for (let index = 0; index < count;) {
+      const s = symbolStart + index * 18;
+      const auxiliary = bytes[s + 17];
+      if (bytes.readInt16LE(s + 12) === headerData.section) {
+        const storage = bytes[s + 16];
+        if (sectionSymbols === 0 && storage !== 3) invalid();
+        if (sectionSymbols === 1 && s !== headerData.p) invalid();
+        if (storage === 3) {
+          if (++definitions !== 1 || nameAt(s) !== '.bss' || auxiliary !== 1 ||
+              bytes.readUInt32LE(s + 8) !== 0 || bytes.readUInt16LE(s + 14) !== 0) invalid();
+          const a = s + 18;
+          if (bytes.readUInt32LE(a) !== 1 || bytes.readUInt16LE(a + 4) !== 0 ||
+              bytes.readUInt16LE(a + 6) !== 0 || bytes.readUInt32LE(a + 8) !== 0 ||
+              bytes[a + 14] !== 2) invalid();
+          // Number (12..13) is meaningful for associative selection5, not2;
+          // 15..17 are unused. They remain bounded but uninterpreted.
+        }
+        ++sectionSymbols;
+      }
+      index += 1 + auxiliary;
+    }
+    if (definitions !== 1 || sectionSymbols < 2) invalid();
+  }
   return {
     schema_version: 1, verdict: 'expected_snapshot_object', machine: 'amd64',
     sections, symbol_entries: count,
-    defined: [...defined].sort(), undefined: [...undefinedNames].sort(),
+    defined: [...defined].sort(), header_data: headerData ? [HEADER_DATA] : [],
+    undefined: [...undefinedNames].sort(),
     image_linked: false, driver_loaded: false, runtime_verified: false,
   };
 }
