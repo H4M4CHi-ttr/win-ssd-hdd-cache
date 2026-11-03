@@ -37,7 +37,7 @@ Produces: event fields/limits、tokens/linearization/lease rules、`explore(Faul
 - [x] 最小finite transition modelと完全なtrace v1 schema/順序契約を実装。
 - [x] 同command、fmt/clippy/planning、二OS CIを実行し、states/transitions/探索境界を記録。
 - [x] 独立Astra review、修正再検証、backlog受入反映、PR/merge。
-- [ ] Issue本文/label同期、closeとreadback。
+- [x] Issue本文/label同期、closeとreadback（PR #69後、22件の同期payload・body/labels/state等のreadback不一致0）。
 
 ## Task 2 — F05 (#14): strict parser
 
@@ -45,8 +45,8 @@ Files: `crates/cache-types/src/trace.rs`, `crates/cache-types/tests/trace_format
 
 Consumes: accepted D02 schema。Produces: `parse_trace(&str) -> Result<TraceV1, TraceError>`、event index/codeのみの固定error。coherenceを実行せず、型/上限/static参照を検査する。
 
-- [ ] valid events、unknown/duplicate、noncanonical numbers、exact/+1 limits、typed object-only、dangling referencesのRED tests。
-- [ ] 型付けparserを実装し、`cargo test -p cache-types --test trace_format --locked --offline`をGREEN。
+- [x] valid events、unknown/duplicate、noncanonical numbers、exact/+1 limits、typed object-only、dangling referencesのRED tests。
+- [x] 型付けparserを実装し、`cargo test -p cache-types --test trace_format --locked --offline`をGREEN（28 tests）。
 - [ ] 二OS CI・独立SOL以上review・受入/merge。
 
 ## Task 3 — D07 (#17): independent oracle contract
