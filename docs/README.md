@@ -13,6 +13,7 @@
 | [host基盤の受入履歴](evidence/2026-11-02-host-foundation.md) | 統合前の10実装、独立レビュー、Linux/Windows実行結果 |
 | [D01捕捉境界](adr/0004-interception-boundary.md) | 資料調査と実trace待ちの境界 |
 | [D02整合性契約](adr/0013-coherence-model.md) | 受入済みportable traceと有限checkerの範囲 |
+| [D03 engine比較](adr/0005-cache-engine.md) / [境界](contracts/engine.md) / [実測](evidence/D03.md) | OCF source調査とoriginal Rust host spike。Windows/製品受入とは別 |
 | [開発手順](development.md) | exact Rust、CLI例、least-privilege host CIとその限界 |
 | [検証とリリースゲート](validation.md) | 整合性オラクル、障害注入、性能、証拠、公開の条件 |
 | [セキュリティ・配布設計](security-and-distribution.md) | 特権境界、署名、HVCI、供給網、回復 |
