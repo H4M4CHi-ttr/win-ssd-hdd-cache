@@ -42,6 +42,8 @@
 - W09 lab hit-serving → Q01/G3 → Q02/Q03 → Q04/G4。
 - U01〜U03は管理API安定後の独立branch。GUI未完成はCLIのlab検証を妨げない。
 
+現在地（2026-11-02）: host 10課題とAUD01はPR #54〜#65、D02はPR #67でmain統合済み。D01は資料のみPR #66で統合済み、実Windows trace待ち。次の独立作業はD03/D07/D09/F05。リポジトリは所有者の判断でpublic、ライセンス・製品配布・実機操作の承認は別。[統合証拠](../../evidence/2026-11-02-main-integration.md)。
+
 ## 検証コマンドの約束
 
 F01後に使えるhost commands: `cargo fmt --all -- --check`、`cargo clippy --all-targets --locked -- -D warnings`、`cargo test --locked`。個別test targetは下記とIssue本文に記載。WDK/HLK/GUI commandはそれぞれD09/D08/U01がpinした環境で具体化する。存在しないcommandを実行済みと書かない。
@@ -60,12 +62,12 @@ F01後に使えるhost commands: `cargo fmt --all -- --check`、`cargo clippy --
 **Interfaces**
 
 - Consumes: 固定済みbaseline契約。
-- Produces: MIT OR Apache-2.0を提案として比較し、original codeの採択・第三者通知・DCO/CLA要否・公開承認・private reporting責任者を所有者の決定として記録。採択前にLICENSEを追加しない。
+- Produces: MIT OR Apache-2.0を提案として比較し、original codeの採択・第三者通知・DCO/CLA要否・公開承認・private reporting責任者を所有者の決定として記録。採択前にLICENSEを追加しない。 2026-11-02の所有者発言と現状によりsource repositoryのpublic化・通常のGitHub Actions利用は許可済み。ただしlicense・外部contribution・製品配布の採択ではなく、GOV01全体の承認はpending。
 
 **受入条件**
 
 - 候補licenseとOCF BSD-3-Clause等の通知義務の対応表を作る
-- 所有者が未決ならソースvendoring・外部contribution受付・公開をgateで止める。通常のCargo/npm依存はlicense/hash/lockfile確認の下で利用可能
+- 所有者が未決ならソースvendoring・外部contribution受付・製品公開/配布をgateで止める。通常のCargo/npm依存はlicense/hash/lockfile確認の下で利用可能
 - 公開範囲変更や証明書購入はこのIssueを起票しただけで実行しない
 
 - [ ] 先行契約・具体的期待値・禁止範囲を確認し、test-firstまたは設計の反例と証拠を作る。
@@ -77,7 +79,7 @@ F01後に使えるhost commands: `cargo fmt --all -- --check`、`cargo clippy --
 ### [D01 #3](https://github.com/H4M4CHi-ttr/win-ssd-hdd-cache/issues/3): WindowsのI/O捕捉位置と全変更経路の対応表を決める
 
 **担当 / review:** ASTRA / ASTRA  
-**状態:** ready / pending  
+**状態:** blocked / pending
 **Depends on:** なし  
 **Files (planned / implemented status in Issue):** `docs/adr/0004-interception-boundary.md`, `docs/contracts/io-coverage.md`, `experiments/stack-trace/README.md`
 
@@ -97,19 +99,19 @@ F01後に使えるhost commands: `cargo fmt --all -- --check`、`cargo clippy --
 - [ ] 実行したcommand/環境/件数/結果・未実行事項を記録する。
 - [ ] 独立reviewを受け、Issue/PRとsnapshotへ受入根拠を残す。owner承認は推測しない。
 
-**Escalation:** 捕捉できないmutationが1つでも残るならsupportedとしない。方式変更/対象縮小をADRで判断する。
+**Escalation:** 捕捉できないmutationが1つでも残るならsupportedとしない。方式変更/対象縮小をADRで判断する。 PR #66で資料・lab手順はmain統合済みだが、別途承認された使い捨てWindows labの実traceと独立受入は未完。D01全体はpendingのまま停止する。
 
 ### [D02 #4](https://github.com/H4M4CHi-ttr/win-ssd-hdd-cache/issues/4): clean-cacheの整合性モデル・世代・公開条件を反例付きで凍結する
 
 **担当 / review:** ASTRA / ASTRA  
-**状態:** ready / pending  
+**状態:** done / accepted
 **Depends on:** なし  
 **Files (planned / implemented status in Issue):** `docs/adr/0013-coherence-model.md`, `docs/contracts/trace-v1.md`, `spec/trace-v1.schema.json`, `experiments/coherence/README.md`
 
 **Interfaces**
 
 - Consumes: 固定済みbaseline契約。
-- Produces: D02 state machine、read/write線形化条件、active-writer数・epoch・slot所有権、trace v1の型/イベント/期待値。有限状態モデルで反例を説明。
+- Produces: D02 state machine、read/write線形化条件、active-writer数・epoch・slot所有権、trace v1の型/イベント/期待値。有限状態モデルで反例を説明。 PR #67でmain統合済み。trace v1、13 caseのbounded探索、14 case/fault組の反例、write admissionごとの失効/incarnation/provenance、保持bufferの予算を独立レビューで受入。証拠: docs/evidence/2026-11-02-main-integration.md。
 
 **受入条件**
 
@@ -119,16 +121,16 @@ F01後に使えるhost commands: `cargo fmt --all -- --check`、`cargo clippy --
 - cache hitの論理観測点と完了前再検証、read/write双方のslot lease、partial/unknown/incomplete extentの公開禁止、epoch/generation/incarnationの非wrap枯渇時bypassを具体的状態規則/反例で固定
 - schemaのraw-input byte上限/型/全event/順序/参照/semantic validationを規定。有限状態checkerの探索境界/件数と故障variantでの検出を再現可能に残す（一般的証明やWindows実証と称さない）
 
-- [ ] 先行契約・具体的期待値・禁止範囲を確認し、test-firstまたは設計の反例と証拠を作る。
-- [ ] 実行したcommand/環境/件数/結果・未実行事項を記録する。
-- [ ] 独立reviewを受け、Issue/PRとsnapshotへ受入根拠を残す。owner承認は推測しない。
+- [x] 先行契約・具体的期待値・禁止範囲を確認し、test-firstまたは設計の反例と証拠を作る。
+- [x] 実行したcommand/環境/件数/結果・未実行事項を記録する。
+- [x] 独立reviewを受け、Issue/PRとsnapshotへ受入根拠を残す。owner承認は推測しない。
 
 **Escalation:** Windowsが保証しないmulti-sector atomicityを仮定せず、許容する並行readの結果集合を明記する。
 
 ### [D03 #8](https://github.com/H4M4CHi-ttr/win-ssd-hdd-cache/issues/8): OCF WIと最小Rust coreを比較しcache engineの採否を決める
 
 **担当 / review:** SOL / ASTRA  
-**状態:** blocked / pending  
+**状態:** ready / pending
 **Depends on:** [D02 #4](https://github.com/H4M4CHi-ttr/win-ssd-hdd-cache/issues/4)  
 **Files (planned / implemented status in Issue):** `docs/adr/0005-cache-engine.md`, `docs/contracts/engine.md`, `experiments/ocf-portability/README.md`
 
@@ -225,7 +227,7 @@ F01後に使えるhost commands: `cargo fmt --all -- --check`、`cargo clippy --
 ### [D07 #17](https://github.com/H4M4CHi-ttr/win-ssd-hdd-cache/issues/17): portableな整合性・flush耐久性・故障oracleを定義する
 
 **担当 / review:** ASTRA / ASTRA  
-**状態:** blocked / pending  
+**状態:** ready / pending
 **Depends on:** [D02 #4](https://github.com/H4M4CHi-ttr/win-ssd-hdd-cache/issues/4)  
 **Files (planned / implemented status in Issue):** `docs/contracts/oracle-v1.md`, `spec/evidence-v1.schema.json`, `docs/adr/0017-test-oracle.md`
 
@@ -398,7 +400,7 @@ F01後に使えるhost commands: `cargo fmt --all -- --check`、`cargo clippy --
 ### [F05 #14](https://github.com/H4M4CHi-ttr/win-ssd-hdd-cache/issues/14): 凍結済みtrace v1のstrict Rust parserを実装する
 
 **担当 / review:** LUNA / SOL  
-**状態:** blocked / pending  
+**状態:** ready / pending
 **Depends on:** [F01 #5](https://github.com/H4M4CHi-ttr/win-ssd-hdd-cache/issues/5), [D02 #4](https://github.com/H4M4CHi-ttr/win-ssd-hdd-cache/issues/4)  
 **Files (planned / implemented status in Issue):** `crates/cache-types/src/trace.rs`, `crates/cache-types/tests/trace_format.rs`, `tests/fixtures/trace-format/`
 

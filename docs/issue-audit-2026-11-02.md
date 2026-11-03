@@ -1,5 +1,7 @@
 # 全Issue監査と是正 — 2026-11-02
 
+> 履歴注記（2026-11-02）: 以下はmain統合前の監査・受入・試験記録です。当時のprivate/未merge/試験件数は書き換えていません。現在の状態は[main統合記録](evidence/2026-11-02-main-integration.md)を参照してください。
+
 対象: baseline 67c09a5526bd5ed812af6acab3223e2c9a608379 の49作業Issue (#2〜#50) と親 #1。rootと独立SOL/Astraが、本文・契約・計画・全依存・ラベル・受入条件を照合した。本文とsnapshotの単純な不一致や明示DAG cycleはなかった。一方、次の実装停止/契約欠落を是正した。作業記録は[AUD01 #51](https://github.com/H4M4CHi-ttr/win-ssd-hdd-cache/issues/51)。
 
 | 問題 | 是正 | 安全条件 |

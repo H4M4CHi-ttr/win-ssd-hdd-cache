@@ -1,6 +1,6 @@
 # ADR-007: Rust-first with a bounded WDK escape hatch
 
-Status: D09 build proof and independent review pending. Related: [D09 #6](https://github.com/H4M4CHi-ttr/win-ssd-hdd-cache/issues/6). 2026-11-02.
+Status: D09 build-only artifact independently accepted; final PR integration pending. Related: [D09 #6](https://github.com/H4M4CHi-ttr/win-ssd-hdd-cache/issues/6). 2026-11-02.
 
 ## Context and options
 
@@ -21,7 +21,7 @@ The experiment's all-integer descriptor has no explicit application pointer; Win
 
 ## Evidence
 
-Local Linux: core tests pass in debug/release; PE checker tests pass. Exact command counts and the missing-export/test-module RED results are in the experiment README. Windows C/Rust ABI execution, both native image builds, signature checks and static image checks remain pending until actual Actions evidence. A green ordinary host workflow is not a substitute for the separate WDK job.
+Local Linux: core tests pass in debug/release; PE checker tests pass. The separate Windows [WDK run 41469142668](https://github.com/H4M4CHi-ttr/win-ssd-hdd-cache/actions/runs/41469142668) passes both image builds, C/Rust ABI 8 vectors, core debug 3/release 3, PE 22 cases and three package signature checks. Kernel C uses `/WX`; no C compiler warnings remain. [D09 evidence](../evidence/D09.md) records exact source/tree/checkout/artifact identities, toolchain hashes, failed runs and the unresolved difference between two runner image-version fields. Ordinary host CI is additional evidence, not a replacement for this job.
 
 ## Consequences and revisit
 
@@ -34,4 +34,4 @@ Local Linux: core tests pass in debug/release; PE checker tests pass. Exact comm
 
 ## Reviewer
 
-Independent Astra acceptance pending for the final immutable source and Windows evidence. This ADR does not close D09 yet.
+Independent Astra review accepted immutable local source/evidence commit `56b184198bf43e3a595a1c80dbe32c19754e3b4d` for this build-only scope. Source code/workflow/pins are unchanged since the clean Windows proof. Final PR publication/merge and Issue close remain separate, unconfirmed operations; this record does not claim main integration.
