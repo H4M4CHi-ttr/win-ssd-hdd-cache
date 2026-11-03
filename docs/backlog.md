@@ -1,20 +1,20 @@
 # 実装バックログ
 
-更新: 2026-11-03 JST。作業52件 + [親ロードマップ #1](https://github.com/H4M4CHi-ttr/win-ssd-hdd-cache/issues/1)。製品driverは未実装。これはreview済みartifactのsnapshotでありGitHubから自動同期されない。
+更新: 2026-11-03 JST。作業53件 + [親ロードマップ #1](https://github.com/H4M4CHi-ttr/win-ssd-hdd-cache/issues/1)。製品driverは未実装。これはreview済みartifactのsnapshotでありGitHubから自動同期されない。
 
 ## 状態と着手
 
-現在のready: [F06 #20](https://github.com/H4M4CHi-ttr/win-ssd-hdd-cache/issues/20)。
+現在のready: [F07 #23](https://github.com/H4M4CHi-ttr/win-ssd-hdd-cache/issues/23)、[F11 #75](https://github.com/H4M4CHi-ttr/win-ssd-hdd-cache/issues/75)。F11の追加根拠と変更しないgateは[portable境界監査](portable-boundary-audit-2026-11-03.md)を参照。
 
-accepted: [F05 #14](https://github.com/H4M4CHi-ttr/win-ssd-hdd-cache/issues/14)、[D07 #17](https://github.com/H4M4CHi-ttr/win-ssd-hdd-cache/issues/17)、[D03 #8](https://github.com/H4M4CHi-ttr/win-ssd-hdd-cache/issues/8)、[D09 #6](https://github.com/H4M4CHi-ttr/win-ssd-hdd-cache/issues/6)、[D02 #4](https://github.com/H4M4CHi-ttr/win-ssd-hdd-cache/issues/4)、[F01 #5](https://github.com/H4M4CHi-ttr/win-ssd-hdd-cache/issues/5)、[F02 #10](https://github.com/H4M4CHi-ttr/win-ssd-hdd-cache/issues/10)、[F03 #7](https://github.com/H4M4CHi-ttr/win-ssd-hdd-cache/issues/7)、[F04 #12](https://github.com/H4M4CHi-ttr/win-ssd-hdd-cache/issues/12)、[F10 #13](https://github.com/H4M4CHi-ttr/win-ssd-hdd-cache/issues/13)、[C01 #16](https://github.com/H4M4CHi-ttr/win-ssd-hdd-cache/issues/16)、[C02 #22](https://github.com/H4M4CHi-ttr/win-ssd-hdd-cache/issues/22)、[C03 #21](https://github.com/H4M4CHi-ttr/win-ssd-hdd-cache/issues/21)、[B01 #18](https://github.com/H4M4CHi-ttr/win-ssd-hdd-cache/issues/18)、[B02 #28](https://github.com/H4M4CHi-ttr/win-ssd-hdd-cache/issues/28)、[AUD01 #51](https://github.com/H4M4CHi-ttr/win-ssd-hdd-cache/issues/51)。
+accepted: [F06 #20](https://github.com/H4M4CHi-ttr/win-ssd-hdd-cache/issues/20)、[F05 #14](https://github.com/H4M4CHi-ttr/win-ssd-hdd-cache/issues/14)、[D07 #17](https://github.com/H4M4CHi-ttr/win-ssd-hdd-cache/issues/17)、[D03 #8](https://github.com/H4M4CHi-ttr/win-ssd-hdd-cache/issues/8)、[D09 #6](https://github.com/H4M4CHi-ttr/win-ssd-hdd-cache/issues/6)、[D02 #4](https://github.com/H4M4CHi-ttr/win-ssd-hdd-cache/issues/4)、[F01 #5](https://github.com/H4M4CHi-ttr/win-ssd-hdd-cache/issues/5)、[F02 #10](https://github.com/H4M4CHi-ttr/win-ssd-hdd-cache/issues/10)、[F03 #7](https://github.com/H4M4CHi-ttr/win-ssd-hdd-cache/issues/7)、[F04 #12](https://github.com/H4M4CHi-ttr/win-ssd-hdd-cache/issues/12)、[F10 #13](https://github.com/H4M4CHi-ttr/win-ssd-hdd-cache/issues/13)、[C01 #16](https://github.com/H4M4CHi-ttr/win-ssd-hdd-cache/issues/16)、[C02 #22](https://github.com/H4M4CHi-ttr/win-ssd-hdd-cache/issues/22)、[C03 #21](https://github.com/H4M4CHi-ttr/win-ssd-hdd-cache/issues/21)、[B01 #18](https://github.com/H4M4CHi-ttr/win-ssd-hdd-cache/issues/18)、[B02 #28](https://github.com/H4M4CHi-ttr/win-ssd-hdd-cache/issues/28)、[AUD01 #51](https://github.com/H4M4CHi-ttr/win-ssd-hdd-cache/issues/51)。
 
 host 10課題とAUD01（PR #54〜#65）、D02（PR #67）は独立受入後にmainへ統合済み。D01は資料のみPR #66で統合済み、実Windows traceと受入は未完。[統合・検証記録](evidence/2026-11-02-main-integration.md)を確認してください。D02 CIのLinux 102件・Windows Server 100件はhost試験であり、Windows 11 driverや実機安全性の証拠ではありません。Issueのcloseは本文・証拠の同期後に別途読み戻して確認します。
 
-状態集計: done 16 / ready 1 / blocked 34 / needs-decision 1（計52作業）。
+状態集計: done 17 / ready 2 / blocked 33 / needs-decision 1（計53作業）。
 
 owner_approvalがpendingの課題を推測でready/acceptedにしない。承認URLは承認者・scope・条件を人が確認するための参照。元のagentラベルは最低難度でありroot/上位モデルも処理できる。accepted依存を用いる場合は、その成果物を含むPR/branch上で作業し、未mergeのmainに存在すると仮定しない。
 
-追加4課題はPR #68/#70/#71/#72でmainへ統合済み。[Phase 2統合記録](evidence/2026-11-03-phase2-integration.md)に公開commit、CI job、実行件数と未実施事項を記録します。F06および後続のF07/F08/F09は未実装・未受入であり、D01の実Windows trace待ちも変わりません。
+追加4課題はPR #68/#70/#71/#72でmainへ統合済み。[Phase 2統合記録](evidence/2026-11-03-phase2-integration.md)を参照。F06も[PR #74の証拠](evidence/F06.md)により独立受入・二OS CI・main統合済み。F07/F11はreadyだが未受入、F08/F09とD01の実Windows trace待ちは維持します。
 
 ## 担当別
 
@@ -22,7 +22,7 @@ owner_approvalがpendingの課題を推測でready/acceptedにしない。承認
 |---|---:|
 | sol | 28 |
 | astra | 8 |
-| luna | 16 |
+| luna | 17 |
 
 ## 全作業
 
@@ -43,8 +43,9 @@ owner_approvalがpendingの課題を推測でready/acceptedにしない。承認
 | [F03 #7](https://github.com/H4M4CHi-ttr/win-ssd-hdd-cache/issues/7) | cancelとcompletionを分ける決定的fake-I/Oキューを実装する | luna → sol | done / accepted | [F01 #5](https://github.com/H4M4CHi-ttr/win-ssd-hdd-cache/issues/5) |
 | [F04 #12](https://github.com/H4M4CHi-ttr/win-ssd-hdd-cache/issues/12) | discardをunknownとして扱うin-memory originを実装する | luna → sol | done / accepted | [F01 #5](https://github.com/H4M4CHi-ttr/win-ssd-hdd-cache/issues/5), [F03 #7](https://github.com/H4M4CHi-ttr/win-ssd-hdd-cache/issues/7) |
 | [F05 #14](https://github.com/H4M4CHi-ttr/win-ssd-hdd-cache/issues/14) | 凍結済みtrace v1のstrict Rust parserを実装する | luna → sol | done / accepted | [F01 #5](https://github.com/H4M4CHi-ttr/win-ssd-hdd-cache/issues/5), [D02 #4](https://github.com/H4M4CHi-ttr/win-ssd-hdd-cache/issues/4) |
-| [F06 #20](https://github.com/H4M4CHi-ttr/win-ssd-hdd-cache/issues/20) | traceを再生し独立oracleと照合するRust harnessを作る | sol → astra | ready / pending | [D07 #17](https://github.com/H4M4CHi-ttr/win-ssd-hdd-cache/issues/17), [F03 #7](https://github.com/H4M4CHi-ttr/win-ssd-hdd-cache/issues/7), [F04 #12](https://github.com/H4M4CHi-ttr/win-ssd-hdd-cache/issues/12), [F05 #14](https://github.com/H4M4CHi-ttr/win-ssd-hdd-cache/issues/14) |
-| [F07 #23](https://github.com/H4M4CHi-ttr/win-ssd-hdd-cache/issues/23) | 基本WI・partial write・複数writer・stale-fillの回帰traceを追加する | luna → astra | blocked / pending | [F06 #20](https://github.com/H4M4CHi-ttr/win-ssd-hdd-cache/issues/20) |
+| [F06 #20](https://github.com/H4M4CHi-ttr/win-ssd-hdd-cache/issues/20) | traceを再生し独立oracleと照合するRust harnessを作る | sol → astra | done / accepted | [D07 #17](https://github.com/H4M4CHi-ttr/win-ssd-hdd-cache/issues/17), [F03 #7](https://github.com/H4M4CHi-ttr/win-ssd-hdd-cache/issues/7), [F04 #12](https://github.com/H4M4CHi-ttr/win-ssd-hdd-cache/issues/12), [F05 #14](https://github.com/H4M4CHi-ttr/win-ssd-hdd-cache/issues/14) |
+| [F07 #23](https://github.com/H4M4CHi-ttr/win-ssd-hdd-cache/issues/23) | 基本WI・partial write・複数writer・stale-fillの回帰traceを追加する | luna → astra | ready / pending | [F06 #20](https://github.com/H4M4CHi-ttr/win-ssd-hdd-cache/issues/20) |
+| [F11 #75](https://github.com/H4M4CHi-ttr/win-ssd-hdd-cache/issues/75) | trace v1限定のportable lifetime/fault回帰fixtureを追加する | luna → astra | ready / pending | [F06 #20](https://github.com/H4M4CHi-ttr/win-ssd-hdd-cache/issues/20), [D02 #4](https://github.com/H4M4CHi-ttr/win-ssd-hdd-cache/issues/4), [D07 #17](https://github.com/H4M4CHi-ttr/win-ssd-hdd-cache/issues/17) |
 | [F08 #25](https://github.com/H4M4CHi-ttr/win-ssd-hdd-cache/issues/25) | late completion・slot再利用・resource faultの回帰traceを追加する | luna → astra | blocked / pending | [F06 #20](https://github.com/H4M4CHi-ttr/win-ssd-hdd-cache/issues/20), [D04 #11](https://github.com/H4M4CHi-ttr/win-ssd-hdd-cache/issues/11), [D10 #52](https://github.com/H4M4CHi-ttr/win-ssd-hdd-cache/issues/52) |
 | [F09 #27](https://github.com/H4M4CHi-ttr/win-ssd-hdd-cache/issues/27) | 選定engineをuser-mode harnessで独立oracleと対照試験する | sol → astra | blocked / pending | [D03 #8](https://github.com/H4M4CHi-ttr/win-ssd-hdd-cache/issues/8), [F06 #20](https://github.com/H4M4CHi-ttr/win-ssd-hdd-cache/issues/20), [F07 #23](https://github.com/H4M4CHi-ttr/win-ssd-hdd-cache/issues/23), [F08 #25](https://github.com/H4M4CHi-ttr/win-ssd-hdd-cache/issues/25) |
 | [G01 #29](https://github.com/H4M4CHi-ttr/win-ssd-hdd-cache/issues/29) | 設計契約とoffline modelのG1ゲートをレビューする | astra → astra | blocked / pending | [D01 #3](https://github.com/H4M4CHi-ttr/win-ssd-hdd-cache/issues/3), [D02 #4](https://github.com/H4M4CHi-ttr/win-ssd-hdd-cache/issues/4), [D03 #8](https://github.com/H4M4CHi-ttr/win-ssd-hdd-cache/issues/8), [D04 #11](https://github.com/H4M4CHi-ttr/win-ssd-hdd-cache/issues/11), [D05 #15](https://github.com/H4M4CHi-ttr/win-ssd-hdd-cache/issues/15), [D06 #19](https://github.com/H4M4CHi-ttr/win-ssd-hdd-cache/issues/19), [D07 #17](https://github.com/H4M4CHi-ttr/win-ssd-hdd-cache/issues/17), [D08 #9](https://github.com/H4M4CHi-ttr/win-ssd-hdd-cache/issues/9), [D09 #6](https://github.com/H4M4CHi-ttr/win-ssd-hdd-cache/issues/6), [F07 #23](https://github.com/H4M4CHi-ttr/win-ssd-hdd-cache/issues/23), [F08 #25](https://github.com/H4M4CHi-ttr/win-ssd-hdd-cache/issues/25), [F09 #27](https://github.com/H4M4CHi-ttr/win-ssd-hdd-cache/issues/27), [F10 #13](https://github.com/H4M4CHi-ttr/win-ssd-hdd-cache/issues/13), [B03 #30](https://github.com/H4M4CHi-ttr/win-ssd-hdd-cache/issues/30), [D10 #52](https://github.com/H4M4CHi-ttr/win-ssd-hdd-cache/issues/52) |

@@ -495,7 +495,7 @@
       "title": "traceを再生し独立oracleと照合するRust harnessを作る",
       "agent": "sol",
       "review": "astra",
-      "status": "ready",
+      "status": "done",
       "priority": "p0",
       "type": "task",
       "area": "model",
@@ -510,9 +510,16 @@
         "crates/cache-model/src/replay.rs",
         "crates/cache-model/src/oracle.rs",
         "crates/cache-model/tests/replay_contract.rs",
-        "crates/cache-model/examples/replay.rs"
+        "crates/cache-model/examples/replay.rs",
+        "crates/cache-model/src/replay/",
+        "crates/cache-model/src/bin/cache-replay/",
+        "crates/cache-model/tests/replay_cli.rs",
+        "crates/cache-types/src/evidence.rs",
+        "crates/cache-types/tests/evidence_format.rs",
+        "tests/fixtures/replay/",
+        "docs/evidence/F06.md"
       ],
-      "output": "D02/D07の凍結契約に従うReplayResult/run_trace。seed/replay order、known/unknown/allowed outcomes、completed vs flushedを記録するoffline CLI。 D07/F05の独立受入・PR #70/#71統合と二OS CIを確認してready。実装・受入は未完。",
+      "output": "D02/D07の凍結契約に従うReplayResult/run_trace、strict evidence codec、bounded offline CLI。独立Astra reviewと65件再実行、Windows204/Linux207 host CIを受入。PR #74、merge e3561b4bada7c5b2ca993199e03ce2f1d7609ebeでmain統合済み。証拠: docs/evidence/F06.md。kernel/実機資格とsource/digest provenanceは未成立。",
       "acceptance": [
         "同じtrace/seedで結果・順序・errorが再現し、wall clock/thread schedulerに依存しない",
         "故障model stale-fill/early ACK/late-slot overwriteがそれぞれFAILし、正しいreference modelがPASS",
@@ -521,7 +528,7 @@
       "escalation": "D02/D07の矛盾をharness内で勝手に解決しない。期待結果集合の追加はAstraレビュー。",
       "issue_number": 20,
       "issue_url": "https://github.com/H4M4CHi-ttr/win-ssd-hdd-cache/issues/20",
-      "completion": "pending",
+      "completion": "accepted",
       "owner_approval": "not-required",
       "approval_evidence": []
     },
@@ -530,7 +537,7 @@
       "title": "基本WI・partial write・複数writer・stale-fillの回帰traceを追加する",
       "agent": "luna",
       "review": "astra",
-      "status": "blocked",
+      "status": "ready",
       "priority": "p0",
       "type": "task",
       "area": "model",
@@ -542,7 +549,7 @@
         "tests/fixtures/coherence/",
         "crates/cache-model/tests/coherence_traces.rs"
       ],
-      "output": "D02で承認された順序/期待結果だけをJSON trace化。T01〜T05/T11の小さな固定seed再現セット。",
+      "output": "D02で承認された順序/期待結果だけをJSON trace化。T01〜T05/T11の小さな固定seed再現セット。前提F06はPR #74で独立受入・二OS CI・main統合済み。F07自体のfixture受入は未完。",
       "acceptance": [
         "cold fill/hit、4095境界write、2 overlappingwritersの片方完了、readA→writeB→latefillAを各1fixture以上",
         "discard/partialrewriteはunknownを含むrangeの値を断定しない。古いcacheを受理する故障modelに対してFAIL",
@@ -551,6 +558,37 @@
       "escalation": "どのread結果が許容されるか迷ったらAstraへ。runnerの結果に合わせて期待値を書き換えない。",
       "issue_number": 23,
       "issue_url": "https://github.com/H4M4CHi-ttr/win-ssd-hdd-cache/issues/23",
+      "completion": "pending",
+      "owner_approval": "not-required",
+      "approval_evidence": []
+    },
+    {
+      "id": "F11",
+      "title": "trace v1限定のportable lifetime/fault回帰fixtureを追加する",
+      "agent": "luna",
+      "review": "astra",
+      "status": "ready",
+      "priority": "p0",
+      "type": "task",
+      "area": "model",
+      "owner_decision": false,
+      "dependencies": ["F06", "D02", "D07"],
+      "files": [
+        "tests/fixtures/portable-lifetime/",
+        "crates/cache-model/tests/portable_lifetime_traces.rs",
+        "docs/evidence/F11.md"
+      ],
+      "output": "凍結済みtrace v1による5つのportable-only固定fixtureと手書き期待表。F08のWindows mapping/resource recovery受入やF09の依存の代替にはしない。独立gate監査でscopeを分離し、F06受入後にready。",
+      "acceptance": [
+        "cancel-held lease、epoch-held lease、fallback→caller commit→late cache completion、failed cache overwrite visibility、failed origin result preservationの5固定trace",
+        "D02/D07根拠、seed、明示順序、期待decision/result/terminal/categoryを手書きcase表に記録。runner結果を期待値にしない",
+        "lease 2ケースはreference passed、同一traceのlate_slot_reuse mutantはsafety_violation/LIVE_LEASE_REUSED。parser/assertion失敗やinconclusiveは検出成功ではない",
+        "caller result不変、actual child完了までretire待機、cache/origin error分離。正常fixtureはdrainし、意図的pendingはinconclusive",
+        "cargo test -p cache-model --test portable_lifetime_traces、fmt/clippy/planning、独立Astra review、二OS host CIの非zero証拠"
+      ],
+      "escalation": "新event/fault/期待値、実OOM/timeout/MDL/IRQL保証が必要なら別契約review。F08/F09/D04/D10/G1の依存を弱めず、F08のpathsを占有しない。",
+      "issue_number": 75,
+      "issue_url": "https://github.com/H4M4CHi-ttr/win-ssd-hdd-cache/issues/75",
       "completion": "pending",
       "owner_approval": "not-required",
       "approval_evidence": []
