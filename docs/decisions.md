@@ -17,6 +17,9 @@
 | ADR-011 | owner decision GOV01 | original code MIT OR Apache-2.0を提案 | source repositoryは所有者判断でpublic。license/外部貢献/vendoring/製品配布は未決 |
 | ADR-012 | 採択 | 原本の暗黙変更、危険な実機自動試験は禁止 | task実装許可とdisk消去/OS安全機能変更の許可は別 |
 | [ADR-013](adr/0013-coherence-model.md) | D02受入・main統合済み | token/writer数/physical lease/content provenance | bounded checkerと二OS host試験。実Windows安全性・一般的証明ではない |
+| [ADR-018](adr/0018-capture-probe-language-boundary.md) | P04 source/build受入・main統合済み | 実験用observerの限定lifecycleだけC17/WDK、collector/archive/auditはRust | 製品driverの言語や捕捉位置は未採択。storage payload/MDL/DMA/cache I/Oへの拡張は別review |
+
+B03のresource-policyは将来のADR-019として予約します。採択済みADR-018との番号衝突を直しただけで、B03を受入・readyにしたものではありません。
 
 ## 個別ADRの完了形式
 

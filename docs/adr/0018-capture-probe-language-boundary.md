@@ -1,10 +1,12 @@
 # ADR-018: C/WDK observation lifecycle, Rust collection and audit
 
-2026-11-03 JST. **Independently accepted P04 source/build boundary; implementation
-waits for the planning checkpoint's publication/readiness.** Proposed-content
+2026-11-03 JST. **Independently accepted P04 source/build boundary. PR90 published
+the planning checkpoint; PR91 merged the reviewed and built candidate. No runtime
+qualification or installation permission follows.** Original proposed-content
 SHA-256 `04f862cfdff29b3aabb5c705dbbc519f4e929f181ef0ddac974873acdcf0008e`.
 Related: [P04 #89](https://github.com/H4M4CHi-ttr/win-ssd-hdd-cache/issues/89),
-[ADR-007](0007-rust-kernel-boundary.md), [P02 evidence](../evidence/P02.md).
+[ADR-007](0007-rust-kernel-boundary.md), [P02 evidence](../evidence/P02.md),
+[P04 acceptance evidence](../evidence/P04.md).
 
 ## Decision and scope
 

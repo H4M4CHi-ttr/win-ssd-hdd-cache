@@ -1,0 +1,99 @@
+{
+  "schema": "p04-build-only-evidence-v1",
+  "source": "8f19bcabe7d02aad5473030882ace13c54cb77c6",
+  "sourceTree": "05aa06f0effce5f9c659fb8b91806b541c7f6db1",
+  "runnerOs": "Windows",
+  "runnerImageVersion": "20261026.347.1",
+  "runnerImageOs": "win22",
+  "kitVersion": "10.0.26100.0",
+  "packageVersion": "10.0.26100.6584",
+  "packages": [
+    {
+      "id": "microsoft.windows.wdk.x64",
+      "sha256": "c393d03dfb640b5c92f546b32f6770ef68cd3aaf691956e7d66d8e2c28a1b55e"
+    },
+    {
+      "id": "microsoft.windows.sdk.cpp",
+      "sha256": "5d31b38205bdd9ac761b4cb39fbbc6b7209b01c11194324afc674d7d119483a0"
+    },
+    {
+      "id": "microsoft.windows.sdk.cpp.x64",
+      "sha256": "c29ce7a4641cb37ee32ebb8078cc65cfbabc7025076bcfba869039204b1e960d"
+    }
+  ],
+  "clVersion": "19.44.35229.0",
+  "clSha256": "fe251ef50a1545b1b0835ee17b1e785459712b38d79e45b5c1d3d28970a36619",
+  "linkVersion": "14.44.35229.0",
+  "linkSha256": "a364af801a8539e4324d9489313dbf001d959128451fc99a27b24676bbac058f",
+  "dumpbinSha256": "cfee7ed764b7b0866aae0be12f9c0ad2a7f5aecc4046ba2b7de26335827ca815",
+  "powershell": "7.6.9",
+  "node": "v22.23.4",
+  "rust": "info: syncing channel updates for 1.99.1-x86_64-pc-windows-msvc\ninfo: latest update on 2026-10-15 for version 1.99.1 (58cf8f9c3 2026-10-13)\ninfo: downloading 2 components\nrustc 1.99.1 (58cf8f9c3 2026-10-13)\nbinary: rustc\ncommit-hash: 58cf8f9c35b355199727627d07ae34a4e2846d67\ncommit-date: 2026-10-13\nhost: x86_64-pc-windows-msvc\nrelease: 1.99.1\nLLVM version: 23.1.1",
+  "sourceHashes": [
+    {
+      "path": "wdk/driver.c",
+      "sha256": "9f2539af6b2fff2901ec708a2f049c22124fb3aa0370d223018231949840a836",
+      "objectSha256": "965154e7ccf323d7c1a7a14bf5f6964e7e45c2201aa3d50c66ff47521b9aed7e"
+    },
+    {
+      "path": "common/wire.c",
+      "sha256": "c89b992068405e44cdccf9c01da2197c8e9c3ab500404833ecc312def57e5c44",
+      "objectSha256": "e41f2ee4dc87addfb1eee9cb9680daf2dc31ea00d5fa46c6216ede7542267070"
+    },
+    {
+      "path": "common/recorder.c",
+      "sha256": "d78fc6ed68f4e6b1ee6a4b42f6f1794e8df67c88b9a44e5efc15a92f9d054f7d",
+      "objectSha256": "b1a7fdcaeec93f375ae0e752fdfd6c81895039d9164b25f2e08b61f8b28448f9"
+    },
+    {
+      "path": "../wdk/upper_snapshot.c",
+      "sha256": "c18cb5cfcb17327f9ae17a90162f9ef1f2e9113d83fb9ed3b9eb22fbcf517097",
+      "objectSha256": "f10723828003df4ed15554f2626bd37d70e517b718d85f9f3b3f874db1527bbb"
+    }
+  ],
+  "headerCount": 145,
+  "libraries": [
+    {
+      "name": "Wdmsec.lib",
+      "sha256": "b1ed42ed46ba1e12beb97488fa226b30e030f1f61c62d8058bbb3180a6c452a2"
+    },
+    {
+      "name": "BufferOverflowK.lib",
+      "sha256": "a26a069d479331373594c53fec444156acbba2906a31f8aa20239608c96d944d"
+    },
+    {
+      "name": "ntoskrnl.lib",
+      "sha256": "2d1b5678f070b3cab76af6646e1d438b6204edf2fc999b03b1e02a8daa39bb4c"
+    },
+    {
+      "name": "hal.lib",
+      "sha256": "c0a967cfa739a064971ef7202fff5523e440f664f27396bef62e499575f50906"
+    },
+    {
+      "name": "libcntpr.lib",
+      "sha256": "9a9ed2f084e161b49c26d1d222af1e35d499bd060b03a96cc2c9dc34e5e114c3"
+    }
+  ],
+  "imageSha256": "9fcd5d601d5c17ce0b48bd03e6b08f92ce02645056b3686d738337949de0077b",
+  "imageBytes": 32256,
+  "hostSuiteCounts": {
+    "driver": 47,
+    "recorder": 15,
+    "wire": 7
+  },
+  "buildContractTests": 18,
+  "headerPathTests": 25,
+  "peCheckerTests": 22,
+  "rustHostTests": 46,
+  "collectorEnabledFeatureChecked": true,
+  "collectorEnabledFeatureLinked": true,
+  "sameTranslationUnitsCompiled": true,
+  "simulatedDdiScheduling": true,
+  "kernelImageLinked": true,
+  "driverInstalledOrLoaded": false,
+  "registeredOrAttached": false,
+  "observedLiveRequests": false,
+  "realDeviceAccess": false,
+  "runtimeQualified": false,
+  "windowsClientQualified": false
+}

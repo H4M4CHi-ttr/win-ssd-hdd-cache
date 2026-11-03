@@ -15,10 +15,10 @@
 | [P01 capture envelope](contracts/capture-envelope-v1.md) / [実装証拠](evidence/P01.md) | 収集後の相関・欠落検査。Windows coverage/producer/権限の認定ではない |
 | [P02 bounded producer契約](contracts/capture-producer-v1.md) / [計画・証拠](evidence/P02.md) | 固定容量のRust coreとcompile-only WDK snapshot。実callback・装着・transportなし |
 | [P03 capture v2契約](contracts/capture-envelope-v2.md) / [実装証拠](evidence/P03.md) | PR88で受入済み。Windows296/Linux299のhost CI。不明Informationを保持するoffline形式拡張 |
-| [P04 probe契約](contracts/upper-candidate-probe-v1.md) / [計画](superpowers/plans/2026-11-03-p04-upper-probe.md) / [証拠](evidence/P04.md) / [候補source](../experiments/stack-trace/probe/README.md) / [C境界ADR](adr/0018-capture-probe-language-boundary.md) | 観測専用candidate実装、Rust/C source review受入。実WDK・Windows CI待ち。実機操作は別承認 |
+| [P04 probe契約](contracts/upper-candidate-probe-v1.md) / [計画](superpowers/plans/2026-11-03-p04-upper-probe.md) / [証拠](evidence/P04.md) / [候補source](../experiments/stack-trace/probe/README.md) / [C境界ADR](adr/0018-capture-probe-language-boundary.md) | PR91でsource/build受入。host Windows342/Linux344、両OS C69、実WDK link・有効Win32 collector linkを確認。未load・実機操作は別承認 |
 | [portable継続境界の監査](portable-boundary-audit-2026-11-03.md) | F11の限定scopeと、解除しないWindows/lab gate |
 | [portable受入・次の観測準備](evidence/2026-11-03-portable-integration.md) | F07/F11 main統合とP01の限定scope・契約review |
-| [Windows工程への引き継ぎ](handoff/2026-11-03-windows-next-step.md) | 完成済み/未実装を区別し、read-only inventoryからprobe契約・build・別承認の観測へ進む |
+| [Windows工程への引き継ぎ](handoff/2026-11-03-windows-next-step.md) | source/build受入と実機未実施を区別し、read-only inventoryから対象適合性・登録/回復review・別承認の観測へ進む |
 | [main統合・D02受入履歴](evidence/2026-11-02-main-integration.md) | PR54〜67、CI、公開範囲、残るlab/owner gate |
 | [host基盤の受入履歴](evidence/2026-11-02-host-foundation.md) | 統合前の10実装、独立レビュー、Linux/Windows実行結果 |
 | [D01捕捉境界](adr/0004-interception-boundary.md) | 資料調査と実trace待ちの境界 |
