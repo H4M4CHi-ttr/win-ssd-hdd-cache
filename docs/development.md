@@ -15,6 +15,14 @@ cargo xtask check-planning
 
 With dependencies already fetched, the first three accept `--offline` as appropriate. Unit/integration tests exercise in-memory data and temporary ordinary files only. Some targets have no unit tests of their own: require a nonzero total of applicable integration/unit tests, not a misleading zero-test success. Actual platform-specific test counts can differ. Offline command examples are under [status](../examples/status/README.md) and [benchmarks](../examples/benchmarks/README.md).
 
+The [F06 replay guide](evidence/F06.md) documents the independent-history host model:
+
+```sh
+cargo run --locked -p cache-model --example replay -- --trace tests/fixtures/replay/origin-read.json
+```
+
+It accepts only an explicit bounded ordinary file and outputs payload-free evidence. Exit0 means the trace passed observed checks; exit2 is inconclusive, exit3 is a detected model failure and exit1 is input/usage/IO failure. `--fault early_ack` on `tests/fixtures/replay/early-ack.json` is deliberately exit3, not a passing candidate. `--bin cache-replay` is the same CLI used by process tests. Reports currently carry null provenance and cannot be used as release-gate proof. No device or Windows APIs are involved.
+
 ## Host CI policy
 
 The [workflow](../.github/workflows/host-tests.yml) is intentionally written in the JSON subset of YAML. Its [closed policy](../xtask/src/workflow.rs) rejects any unreviewed key, command, action, event, runner or condition. [Mutation tests](../xtask/tests/workflow_policy.rs) validate the real file and reject duplicate JSON keys, privilege/trigger/credential expansion, missing OS/checks, masked failures, altered commands and zero-test guard removal. This is not a general-purpose YAML validator.

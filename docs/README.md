@@ -10,6 +10,7 @@
 | [計画checker契約](contracts/planning-checker-v1.md) | schema/approval/DAG/label/相対リンクのread-only検査 |
 | [全Issue監査](issue-audit-2026-11-02.md) | 依存・承認状態・担当欠落の是正と未解決gate |
 | [Phase 2統合・F06着手条件](evidence/2026-11-03-phase2-integration.md) | PR68/70/71/72、二OS CI、16課題受入と残るlab gate |
+| [F06 host replay](evidence/F06.md) | 独立oracle、故障model、bounded CLI、検査の範囲と受入証拠 |
 | [main統合・D02受入履歴](evidence/2026-11-02-main-integration.md) | PR54〜67、CI、公開範囲、残るlab/owner gate |
 | [host基盤の受入履歴](evidence/2026-11-02-host-foundation.md) | 統合前の10実装、独立レビュー、Linux/Windows実行結果 |
 | [D01捕捉境界](adr/0004-interception-boundary.md) | 資料調査と実trace待ちの境界 |

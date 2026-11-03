@@ -35,6 +35,7 @@ line extentは `[line*line_size, min(capacity,(line+1)*line_size))`。最終shor
 - active writerはactual origin child completionまで残す。cancel、timeout、error、部分変更でも古いentryを復活させない。未forward親を拒否したときはwriterを登録しない。
 - fill parentのadmission前にwriter=0を要求し、**最初のorigin read sampleより前**のepoch/generationを保存する。source read完了時に新tokenを作り直さない。
 - hitは一つのline内のrequestだけ（cross-line readはoriginへ）。metadata検証時にread leaseとtokenを取得し、child専用bufferへ読む。最終検証とimmutable caller resultのcommitを一つのtransitionにする。
+- 零lengthのcache readは`offset < capacity`なら`offset / line_size`のlineを選ぶ。内部line境界は次のlineに属し、`offset == capacity`とcapacity=0は実在する所属lineがないためcache admissionをrejectedにする（originの零length readは禁止しない）。零lengthでも通常のvisibility/writer/lease条件・final validationを省略しない。これはF06着手時の独立reviewで曖昧さを明文化した規則であり、mutationの零length範囲が交差lineを持たないこととは別。
 - commit後の実通知までにwriterが来ても、既にcommitしたsnapshotを変えない。origin-readのfragment sampleは各eventで観測した値を返せ、後のwrite完了時のoriginに合わせない。
 - cache read leaseはshared、fill write leaseはexclusive。実転送が終わるactual completionまでslot再bind禁止。metadata invalidationはleaseを解放しない。
 - **cache_writeのaccepted admissionごとに**、同じlineへの同じslotでも、物理転送より前にslotのvisibilityを失効し、incarnationをchecked増分する。この新incarnationとchild IO IDをcontent provenanceとして記録する。exclusive lease取得・失効・provenance更新は一つのtransition。枯渇時はslotをretireしてrejectし、転送しない。
