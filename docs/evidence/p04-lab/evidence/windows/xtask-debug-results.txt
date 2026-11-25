@@ -1,0 +1,35 @@
+running 0 tests
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+running 0 tests
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+running 16 tests
+test backlog_duplicate_keys_missing_fields_and_types_are_not_erased ... ok
+test baseline_labels_backlog_and_real_repository_pass_nonzero_checks ... ok
+test checker_command_is_cwd_independent_and_rejects_extra_arguments ... ok
+test cycles_and_unaccepted_dependencies_do_not_become_ready ... ok
+test duplicate_unknown_missing_and_wrong_json_shapes_are_structural ... ok
+test exact_byte_caps_and_collection_limits_are_enforced ... ok
+test ids_issue_mapping_and_duplicate_dependencies_are_checked ... ok
+test label_byte_scalar_bounds_and_existing_grammar_are_not_conflated ... ok
+test label_semantics_aggregate_in_stable_code_path_order ... ok
+test local_absolute_encoded_and_parent_escapes_are_rejected ... ok
+test malformed_oversized_and_deep_json_are_rejected_without_panics ... ok
+test markdown_link_parser_skips_code_and_understands_references_and_escaping ... ok
+test owner_evidence_is_representation_not_implicit_authority ... ok
+test real_dates_and_planned_paths_are_validated_without_requiring_files ... ok
+test repository_io_link_errors_and_planned_files_remain_distinct ... ok
+test state_completion_enum_and_label_rules_cannot_be_bypassed ... ok
+test result: ok. 16 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.83s
+running 9 tests
+test actual_result_guard_rejects_zero_and_all_ignored_tests ... ok
+test actual_result_pipeline_cannot_hide_a_failed_test_command ... ok
+test actual_workflow_passes_with_exact_toolchain_and_lf_fixtures ... ok
+test raw_syntax_duplicates_and_resource_bounds_are_strict ... ok
+test required_checks_and_nonzero_guard_cannot_be_removed_or_masked ... ok
+test runner_matrix_and_job_privilege_are_closed ... ok
+test steps_are_an_exact_allowlist_not_a_dangerous_word_blacklist ... ok
+test triggers_permissions_and_credentials_cannot_be_expanded ... ok
+test windows_shell_selection_does_not_search_for_the_wsl_launcher ... ok
+test result: ok. 9 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.41s
+running 0 tests
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s

@@ -1,0 +1,18 @@
+[
+  {
+    "path": "P04-T1-cancel-review.md",
+    "sha256": "dd7fde8f5144a035b83e619371ac952e24c604d13789af8d61f3a8ef02736fe4"
+  },
+  {
+    "path": "P04-T1-cancel-spec.md",
+    "sha256": "bff471e8877da83c98596afa438df97e036e2cda403b855dade0fc465101bcaf"
+  },
+  {
+    "path": "P04-T1-cancel-test-matrix.md",
+    "sha256": "d46bc7f8e52487fe2d1149bc3a9e5913dd16bcc0f86d05b1582f27146711cd4c"
+  },
+  {
+    "path": "P04-VM-A-T1-runbook.md",
+    "sha256": "37f8c86ec02576cc4ef703d09a01a5112c6b9a326155def4bf41d6d5e0ac1451"
+  }
+]

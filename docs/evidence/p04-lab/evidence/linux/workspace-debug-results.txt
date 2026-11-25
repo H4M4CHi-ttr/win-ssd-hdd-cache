@@ -1,0 +1,669 @@
+running 8 tests
+test producer::limits_tests::attempted_overflow_discards_new_events_but_still_retires_and_drains ... ok
+test producer::limits_tests::context_exhaustion_precedes_identity_exhaustion_but_not_validation ... ok
+test producer::limits_tests::dropped_overflow_makes_both_counters_unknown_and_preserves_ring ... ok
+test producer::limits_tests::final_request_identity_is_allocated_once_and_diagnostic_is_immediate ... ok
+test producer::limits_tests::impossible_ticket_slot_is_rejected_before_indexing_or_retirement ... ok
+test producer::limits_tests::invalid_completion_during_counter_exhaustion_cannot_pin_a_context ... ok
+test producer::limits_tests::last_representable_attempt_is_retained_without_wrapping_next_ordinal ... ok
+test producer::limits_tests::lowest_free_slot_is_reused_but_its_request_identity_is_not ... ok
+test result: ok. 8 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+running 17 tests
+test completion_information_validation_uses_each_requests_saved_classification ... ok
+test completion_status_information_unknown_zero_short_and_large_are_not_healed ... ok
+test context_exhaustion_has_an_ordinal_gap_and_sticky_tracking_loss_after_drain ... ok
+test empty_running_producer_cannot_seal_and_stop_seal_are_idempotent ... ok
+test fifo_wrap_reuses_only_drained_slots_and_keeps_original_attempted_ordinals ... ok
+test foreign_ticket_is_rejected_before_metadata_without_mutating_either_context ... ok
+test full_ring_drops_newest_without_revoking_contexts_or_claiming_tracking_loss ... ok
+test invalid_completion_retires_once_and_duplicate_cannot_repair_the_missing_record ... ok
+test invalid_completion_while_ring_full_counts_one_drop_and_still_retires_context ... ok
+test invalid_submission_latches_fault_without_consuming_ordinal_or_identity ... ok
+test old_ticket_cannot_retire_a_new_context_after_slot_reuse ... ok
+test popping_every_event_does_not_release_any_request_context ... ok
+test producer_stays_within_reviewed_host_size_budget ... ok
+test running_snapshot_validation_precedes_context_capacity_check ... ok
+test saved_unknown_zero_range_flush_and_control_fields_survive_notification_queue ... ok
+test stop_retains_outstanding_then_sealed_state_is_immutable_except_event_drain ... ok
+test two_requests_complete_in_reverse_order_with_saved_fields_and_exact_identity ... ok
+test result: ok. 17 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+running 7 tests
+test exact_success_information_is_independent_of_range_and_not_clipped ... ok
+test failed_pending_other_and_pnp_information_never_become_known ... ok
+test malformed_completion_shapes_are_rejected_not_normalized ... ok
+test malformed_submit_fields_are_rejected_not_healed ... ok
+test ordinary_classification_preserves_zero_and_unsigned_end_candidates ... ok
+test scalar_layout_is_exact_without_serializing_structure_bytes ... ok
+test unknown_range_is_not_zero_and_nonordinary_unions_are_absent ... ok
+test result: ok. 7 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+running 0 tests
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+running 0 tests
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+running 8 tests
+test base_is_read_and_parsed_before_candidate_then_comparison ... ok
+test each_required_matching_condition_refuses_comparison_in_frozen_order ... ok
+test errors_use_fixed_field_names_only ... ok
+test golden_reports_show_both_treatments_and_no_identifier_or_path ... ok
+test invalid_utf8_and_oversized_benchmark_inputs_are_bounded ... ok
+test public_values_are_revalidated_before_comparison_and_statistics ... ok
+test report_arguments_cannot_fall_back_to_live_sources ... ok
+test speedup_and_percentiles_are_exact_for_the_literal_fixture ... ok
+test result: ok. 8 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.60s
+running 10 tests
+test complete_capture_has_exact_stdout_and_zero_exit_without_qualification ... ok
+test exact_byte_bound_is_read_but_plus_one_and_utf8_fail_without_output ... ok
+test existing_symlink_is_refused_without_following_its_contents ... ok
+test incomplete_capture_has_json_and_exit_four_not_success_or_parser_failure ... ok
+test missing_duplicate_unknown_or_extra_arguments_are_usage_without_echo ... ok
+test missing_file_and_directory_are_fixed_io_errors_without_path_echo ... ok
+test non_utf8_file_name_is_supported_but_non_utf8_option_is_usage ... ok
+test original_status_binary_remains_available_and_unchanged ... ok
+test record_bound_failure_is_not_mistaken_for_incomplete_evidence ... ok
+test syntax_version_and_value_errors_have_fixed_nonreflecting_stderr ... ok
+test result: ok. 10 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.76s
+running 4 tests
+test v1_null_information_is_not_upgraded ... ok
+test v2_known_information_has_json_exit_zero ... ok
+test v2_missing_information_is_not_a_nullable_field ... ok
+test v2_unknown_information_has_json_exit_four ... ok
+test result: ok. 4 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.20s
+running 8 tests
+test all_states_have_exact_json_and_text_with_lf_only ... ok
+test every_error_description_is_fixed_and_null_is_not_zero ... ok
+test flags_are_required_exactly_once_and_order_is_flexible ... ok
+test missing_file_and_directory_return_only_fixed_io_errors ... ok
+test oversized_and_invalid_utf8_inputs_are_bounded_errors ... ok
+test schema_syntax_and_value_failures_are_nonreflecting ... ok
+test symlink_inputs_are_rejected_before_reading ... ok
+test unix_non_utf8_paths_are_not_rejected_or_printed ... ok
+test result: ok. 8 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 1.08s
+running 9 tests
+test completion::tests::failed_reserve_does_not_consume_the_next_token ... ok
+test completion::tests::size_error_has_priority_over_token_exhaustion ... ok
+test completion::tests::token_exhaustion_never_wraps_and_keeps_the_last_request_alive ... ok
+test oracle::tests::duplicate_result_is_a_safety_failure_not_a_second_snapshot ... ok
+test oracle::tests::durable_or_restore_claims_are_checked_against_independently_applied_history ... ok
+test oracle::tests::forced_cache_claim_is_rejected_after_mutation_rebind_or_epoch_without_policy_help ... ok
+test oracle::tests::origin_claim_cannot_change_status_count_bytes_knownness_or_history ... ok
+test oracle::tests::retained_guard_checks_missing_extra_and_mutated_results_once_per_collection ... ok
+test oracle::tests::wrong_parent_delivery_is_rejected_without_candidate_validation ... ok
+test result: ok. 9 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+running 0 tests
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+running 5 tests
+test earlier_completed_fill_cannot_publish_after_a_later_physical_write ... ok
+test every_correct_bounded_case_is_exhausted_without_a_violation ... ok
+test exhaustion_is_inconclusive_never_a_success ... ok
+test slot_write_admission_invalidates_even_without_rebinding ... ok
+test wrong_models_produce_valid_safety_counterexamples ... ok
+test result: ok. 5 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.03s
+running 10 tests
+test t01_cold_read_falls_back_then_a_complete_fill_serves_a_known_hit ... ok
+test t02_failed_partial_write_keeps_actual_effects_and_the_original_error_count ... ok
+test t02_partial_write_invalidates_the_entire_requested_line_before_origin_fallback ... ok
+test t03_two_bytes_at_4095_invalidate_both_lines_and_cross_line_hit_is_refused ... ok
+test t04_byte_equal_aba_does_not_restore_the_old_fill_lineage ... ok
+test t04_late_a_fill_after_b_mutation_cannot_publish_or_supply_a_hit ... ok
+test t04_same_aba_trace_detects_stale_lineage_even_when_bytes_are_equal ... ok
+test t04_same_stale_trace_detects_stale_fill_with_independent_safety_code ... ok
+test t05_one_writer_completion_does_not_admit_fill_or_hit_while_another_remains ... ok
+test t11_discard_unknownness_survives_partial_rewrite_and_refuses_cache_population ... ok
+test result: ok. 10 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.01s
+running 6 tests
+test a_failed_reservation_leaves_existing_payload_unchanged ... ok
+test cancellation_retains_payload_until_explicit_completion ... ok
+test completed_and_unknown_tokens_are_rejected_without_affecting_pending_work ... ok
+test completion_order_is_chosen_by_the_caller ... ok
+test payload_limit_precedes_total_budget_and_rejection_does_not_consume_tokens ... ok
+test pending_limit_has_priority_and_rejection_preserves_the_queue ... ok
+test result: ok. 6 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.01s
+running 14 tests
+test cache_success_count_without_physical_coverage_cannot_publish ... ok
+test cancelled_and_invalidated_physical_io_keeps_lease_until_actual_completion ... ok
+test cold_fill_hit_and_final_hit_validation_use_actual_sampled_bytes ... ok
+test correct_candidate_handles_required_d02_schedules ... ok
+test exhausted_limits_never_drop_existing_io_and_measurements_are_explicit ... ok
+test fixed_schedules_detect_four_deliberate_candidate_faults ... ok
+test provenance_mutant_is_detected_at_publish_not_only_visibility ... ok
+test reported_prefix_and_fragments_do_not_invent_transfer_or_ack ... ok
+test returned_hit_snapshot_survives_later_origin_and_slot_writes ... ok
+test shared_read_leases_survive_one_completion_cancellation_and_epoch_change ... ok
+test short_unknown_or_failed_fill_never_produces_cache_write ... ok
+test small_generation_and_incarnation_limit_retires_instead_of_wrapping ... ok
+test superseded_successful_child_cannot_publish_wrong_physical_slot ... ok
+test zero_length_requests_still_obey_record_cap ... ok
+test result: ok. 14 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.01s
+running 7 tests
+test capacity_limit_accepts_exactly_one_mib ... ok
+test cross_line_write_only_changes_its_two_bytes ... ok
+test discard_is_unknown_and_partial_rewrite_only_restores_written_bytes ... ok
+test initial_bytes_are_known_and_read_results_are_independent ... ok
+test invalid_mutations_preserve_bytes_and_unknown_map ... ok
+test overflowing_ranges_are_rejected_without_mutation ... ok
+test zero_length_is_valid_at_eof_and_on_unknown_bytes ... ok
+test result: ok. 7 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+running 7 tests
+test cache_error_fallback_preserves_origin_error_reported_prefix_and_known_bytes ... ok
+test cancel_flags_hold_physical_write_lease_until_actual_cancelled_completion ... ok
+test committed_origin_b_is_not_overwritten_by_late_cache_a_or_double_completed ... ok
+test epoch_invalidation_waits_for_old_child_before_cold_resume_and_reuse ... ok
+test failed_partial_same_slot_overwrite_never_restores_previous_visibility ... ok
+test same_cancel_fixture_detects_live_lease_reuse_before_any_assertion ... ok
+test same_epoch_fixture_detects_live_lease_reuse_before_any_assertion ... ok
+test result: ok. 7 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.01s
+running 7 tests
+test baseline_stdout_is_only_stable_lf_terminated_evidence_without_forged_provenance ... ok
+test duplicate_unknown_missing_and_noncanonical_options_are_usage_errors ... ok
+test faults_are_explicit_and_do_not_fabricate_detection_on_unrelated_traces ... ok
+test final_symlinks_and_special_files_are_rejected_without_reading_their_contents ... ok
+test input_errors_have_no_report_paths_payload_or_raw_serde_messages ... ok
+test pending_and_detected_mutant_have_distinct_exits_not_success ... ok
+test valid_input_does_not_require_a_utf8_filename ... ok
+test result: ok. 7 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 1.06s
+running 37 tests
+test actual_completion_and_parent_commit_have_separate_pending_counts ... ok
+test cache_counts_admission_publication_and_final_claim_as_separate_points ... ok
+test cache_short_error_or_missing_coverage_cannot_become_hit_and_fallback_preserves_origin_error ... ok
+test cache_sources_must_be_complete_successful_and_known_and_cache_coverage_is_separate ... ok
+test caller_commit_does_not_release_late_cache_child_or_mutate_immutable_result ... ok
+test cancel_flags_do_not_complete_or_release_and_retirement_preserves_results ... ok
+test cancelled_or_disabled_cache_writer_keeps_physical_lease_until_actual_completion ... ok
+test cold_fill_and_cached_read_survive_source_retirement ... ok
+test counter_exhaustion_never_wraps_and_origin_passthrough_stays_available ... ok
+test coverage_and_overlap_are_backend_and_semantic_failures_not_decisions ... ok
+test disabled_resume_waits_for_old_children_and_unforwarded_writers ... ok
+test discard_unknownness_and_fragmented_origin_read_are_not_latest_snapshot_comparison ... ok
+test duplicate_publish_is_semantic_and_cross_line_hit_falls_back ... ok
+test early_ack_mutant_is_caught_before_any_actual_completion ... ok
+test empty_and_assert_only_are_inconclusive_not_zero_test_success ... ok
+test evidence_counts_evaluation_points_and_stops_before_later_stages ... ok
+test first_semantic_failure_stops_before_trailing_assertions ... ok
+test fua_and_flush_backend_promises_are_separate_from_candidate_safety ... ok
+test hit_final_validation_detects_mutation_or_rebind_after_actual_read_completion ... ok
+test incomplete_commit_is_pending_and_origin_error_is_preserved ... ok
+test literal_origin_read_has_independent_observations_and_reproducible_report ... ok
+test live_parent_limit_is_exact_and_rejected_parent_can_retire_without_commit ... ok
+test mutation_child_reservation_survives_shared_cache_children_and_retry_uses_new_id ... ok
+test newer_durable_write_covers_flush_frontier_but_later_incomplete_write_is_not_in_frontier ... ok
+test old_completed_write_cannot_publish_over_new_content_owner ... ok
+test old_persist_cannot_regress_newer_durable_version ... ok
+test ordinary_write_success_is_not_durable_and_failed_partial_effect_is_real ... ok
+test physical_overwrite_invalidates_old_visibility_even_if_new_writer_fails ... ok
+test power_loss_is_terminal_and_reports_abandoned_not_fabricated_completion ... ok
+test result_assertion_requires_committed_parent_as_a_lifecycle_precondition ... ok
+test retained_guard_counts_once_after_each_successful_nonassert_event ... ok
+test retained_results_and_future_result_reservations_enforce_exact_cell_budget ... ok
+test retired_mutation_history_retains_owned_budget_and_persistability ... ok
+test stale_fill_is_rejected_but_faulty_candidate_fails_independent_lineage_check ... ok
+test writer_count_not_boolean_and_failed_partial_write_does_not_restore_visibility ... ok
+test zero_length_cache_reads_use_containing_half_open_line_not_previous_line ... ok
+test zero_length_transfers_are_noops_and_unapplied_persist_is_semantic_error ... ok
+test result: ok. 37 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 4.94s
+running 40 tests
+test capture::tests::budget_status_failure_gets_one_cleanup_stop ... ok
+test capture::tests::budget_stops_without_truncation ... ok
+test capture::tests::c11_controlled_record_budget_status_failure_never_drains_zero ... ok
+test capture::tests::controlled::c04_abort_after_open_closes_once_without_begin ... ok
+test capture::tests::controlled::c04_abort_before_open_has_no_transport_or_archive ... ok
+test capture::tests::controlled::c04_control_failure_before_and_after_open_is_os_error ... ok
+test capture::tests::controlled::c05_begin_inflight_abort_waits_for_ack_then_same_owner_stop ... ok
+test capture::tests::controlled::c05_history_invalid_begin_uses_only_builder_cleanup_rule ... ok
+test capture::tests::controlled::c05_unknown_begin_never_retries_or_adds_stop_archive ... ok
+test capture::tests::controlled::c06_signal_after_last_poll_allows_one_drain_and_keeps_actual_records_once ... ok
+test capture::tests::controlled::c06_signal_before_predrain_has_zero_normal_drain ... ok
+test capture::tests::controlled::c07_drain_uncertainty_wins_over_abort_and_no_second_drain ... ok
+test capture::tests::controlled::c08_cleanup_stop_failure_does_not_gain_another_budget ... ok
+test capture::tests::controlled::c08_failed_normal_stop_has_only_one_fresh_cleanup ... ok
+test capture::tests::controlled::c08_history_invalid_recovery_response_has_only_cleanup_stop ... ok
+test capture::tests::controlled::c08_recovery_drain_failure_has_one_cleanup_and_no_later_drain ... ok
+test capture::tests::controlled::c09_attempted_unknown_remains_unknown ... ok
+test capture::tests::controlled::c09_known_drop_stops_normal_drain ... ok
+test capture::tests::controlled::c09_known_skip_stops_normal_drain ... ok
+test capture::tests::controlled::c09_popped_unknown_remains_unknown ... ok
+test capture::tests::controlled::c09_producer_fault_stops_normal_drain ... ok
+test capture::tests::controlled::c09_running_to_stopping_requires_stop ... ok
+test capture::tests::controlled::c09_skipped_unknown_remains_unknown ... ok
+test capture::tests::controlled::c10_control_poll_failure_after_begin_stops_without_transport_loss ... ok
+test capture::tests::controlled::c10_producer_abort_and_expiry_share_one_priority_boundary ... ok
+test capture::tests::controlled::c10_producer_priority_preserves_concurrent_abort ... ok
+test capture::tests::controlled::c10_signal_during_stop_is_secondary_and_never_repeats_normal_stop ... ok
+test capture::tests::controlled::c11_frame_limit_preserves_cleanup_reserve_without_truncation ... ok
+test capture::tests::controlled::c11_post_stop_deadline_is_checked_only_on_returned_boundaries ... ok
+test capture::tests::controlled::c11_recovery_waits_for_both_active_and_queued_then_terminal ... ok
+test capture::tests::controlled::c12_abort_empty_keeps_v1_footer_and_unknown_external_facts ... ok
+test capture::tests::controlled::c12_terminal_response_does_not_accept_late_signal_or_issue_more_commands ... ok
+test capture::tests::deadline_keeps_late_requests_unresolved ... ok
+test capture::tests::failed_begin_emits_nothing ... ok
+test capture::tests::live_first_drain_failure_stops_normal_collection ... ok
+test capture::tests::mismatched_call_id_stops ... ok
+test capture::tests::original_stop_failure_gets_one_cleanup_stop ... ok
+test capture::tests::output_failure_has_no_success_claim ... ok
+test capture::tests::rng_four_zero_draws ... ok
+test capture::tests::rng_zero_then_seven ... ok
+test result: ok. 40 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 3.19s
+running 0 tests
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+running 7 tests
+test audit_and_project_exit4 ... ok
+test c01_controlled_arguments_are_canonical_and_environment_never_activates_live ... ok
+test c01_controlled_default_off_at_both_duration_bounds ... ok
+test duplicate_options_rejected ... ok
+test live_disabled_before_platform_calls ... ok
+test redacted_input_and_limits ... ok
+test usage_never_collects ... ok
+test result: ok. 7 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.59s
+running 11 tests
+test h01_open_success_and_failure_after_release ... ok
+test h02_begin_success_and_failure_after_release ... ok
+test h03_already_popped_drain_success_and_failure ... ok
+test h03_drain_success_and_failure_after_release ... ok
+test h04_budget_status_success_and_failure ... ok
+test h04_recovery_drain_success_and_failure ... ok
+test h04_stop_success_and_failure_after_release ... ok
+test h05_flush_success_and_failure_after_release ... ok
+test h05_write_success_and_failure_after_release ... ok
+test h06_monitor_loss_regression_and_completed_receiver_are_independent ... ok
+test synthetic_hang_child ... ok
+test result: ok. 11 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 4.79s
+running 0 tests
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+running 17 tests
+test builder_failed_drain_allows_only_stop ... ok
+test builder_round_trip_preserves_exact_native_bytes ... ok
+test classification_state_and_first_baseline_are_history_faults ... ok
+test counter_identity_and_popped_delta ... ok
+test duplicate_and_orphan_correlation ... ok
+test failed_normal_stop_permits_one_fresh_cleanup_stop ... ok
+test false_terminal_footer_cannot_hide_observed_terminal ... ok
+test footer_cannot_hide_derived_faults ... ok
+test frame_boundary_without_footer ... ok
+test known_drop_gap_is_loss_not_invented_collector_fault ... ok
+test lost_first_drain_offline_adversarial ... ok
+test malformed_precedence ... ok
+test native_and_projection_limits ... ok
+test prefix_only_is_unfinished ... ok
+test read_pair_report_literal ... ok
+test regression_resurrection_and_call_replay ... ok
+test second_begin_is_history_not_parser_error ... ok
+test result: ok. 17 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.03s
+running 7 tests
+test flush_pair_projects_null_information ... ok
+test lying_footer_count_invalidates_terminal_projection ... ok
+test missing_terminal_never_infers_counter_or_closure ... ok
+test project_derived_fault_does_not_trust_footer ... ok
+test project_keeps_duplicate_orphan_status_and_original_order ... ok
+test project_never_upgrades_unknown_minor_or_address_mapping ... ok
+test read_pair_projects_literal_unverified_boundaries ... ok
+test result: ok. 7 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.01s
+running 6 tests
+test wire_actual_returned_bytes_not_capacity ... ok
+test wire_binding_and_reserved_rejected ... ok
+test wire_known_read_pair ... ok
+test wire_lengths_and_ioctl_values ... ok
+test wire_scalar_union_and_bounds_are_not_reinterpreted ... ok
+test wire_unknown_information_distinct_from_zero ... ok
+test result: ok. 6 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+running 0 tests
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+running 0 tests
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+running 0 tests
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+running 145 tests
+test tests::crash_tests::r13b_f_after_process_kill ... ok
+test tests::crash_tests::r13b_f_before_process_kill ... ok
+test tests::crash_tests::r13b_k_after_process_kill ... ok
+test tests::crash_tests::r13b_k_before_process_kill ... ok
+test tests::crash_tests::r13b_p_after_process_kill ... ok
+test tests::crash_tests::r13b_p_before_process_kill ... ok
+test tests::crash_tests::r13b_s_after_process_kill ... ok
+test tests::crash_tests::r13b_s_before_process_kill ... ok
+test tests::crash_tests::r14_before_complete_process_kill ... ok
+test tests::crash_tests::r14_mid_verification_process_kill ... ok
+test tests::crash_tests::r14_private_record_rejects_truncation_and_other_identity_binding ... ok
+test tests::crash_tests::r14_v_process_kill ... ok
+test tests::r01_dry_run_then_p_s_k_f_v_only_t ... ok
+test tests::r01_initial_rights_and_private_journal_fail_closed ... ok
+test tests::r02_a_reuses_t_number ... ok
+test tests::r02_api_returns_a_after_t_check ... ok
+test tests::r02_input_points_to_os ... ok
+test tests::r02_mutated_registrar_request_is_logged_by_actual_fake_object ... ok
+test tests::r02_t_label_has_a_identity ... ok
+test tests::r03_capacity_cannot_replace_strong_identity ... ok
+test tests::r03_disconnected ... ok
+test tests::r03_duplicate_serial ... ok
+test tests::r03_empty_device_location_same_hardware_uses_independent_identity ... ok
+test tests::r03_mixed_identity_rows ... ok
+test tests::r03_non_ascii_case_alias_cannot_hide_collision ... ok
+test tests::r03_number_changes_parent_lun_identity_still_bind ... ok
+test tests::r03_old_host_chain ... ok
+test tests::r03_t1_capacity_other_known_values_refused ... ok
+test tests::r03_t1_capacity_unknown_refused ... ok
+test tests::r03_two_t ... ok
+test tests::r03_zero_t ... ok
+test tests::r04_inadmissible_pnp_characters_refused ... ok
+test tests::r04_non_ascii_exact_and_expansion_fail_closed ... ok
+test tests::r04_non_ascii_protected_or_observed_ids_refused ... ok
+test tests::r04_pnp_admission_199_and_200_separate_from_codec ... ok
+test tests::r04_selector_boundaries ... ok
+test tests::r04_selector_malformed_and_exact_matching ... ok
+test tests::r05_dedicated_dump ... ok
+test tests::r05_dump ... ok
+test tests::r05_efi ... ok
+test tests::r05_empty_build ... ok
+test tests::r05_empty_expected_class_or_stack_refused ... ok
+test tests::r05_empty_or_unbound_function_service_refused ... ok
+test tests::r05_hibernation ... ok
+test tests::r05_os ... ok
+test tests::r05_os_pagefile_change_is_retained_not_target_use ... ok
+test tests::r05_other ... ok
+test tests::r05_pagefile ... ok
+test tests::r05_unknown_build ... ok
+test tests::r05_unknown_chain ... ok
+test tests::r05_unknown_r1 ... ok
+test tests::r05_unknown_usage ... ok
+test tests::r05_unknown_vm ... ok
+test tests::r06_class_upper_unavailable ... ok
+test tests::r06_duplicate_object_token ... ok
+test tests::r06_invalid_multi_sz_rejected ... ok
+test tests::r06_missing_empty_and_existing_preserved ... ok
+test tests::r06_protected_upper_unavailable ... ok
+test tests::r06_query_failure_is_not_missing ... ok
+test tests::r06_target_lower_unavailable ... ok
+test tests::r07_allowlist_hash_change_rejected ... ok
+test tests::r07_auto_start ... ok
+test tests::r07_broad_install ... ok
+test tests::r07_class_install ... ok
+test tests::r07_duplicate_case_probe ... ok
+test tests::r07_existing_probe ... ok
+test tests::r07_loaded_service ... ok
+test tests::r07_mutation_oracle_catches_broad_registration ... ok
+test tests::r07_unknown_service ... ok
+test tests::r07_unreviewed_inf ... ok
+test tests::r07_wrong_binary_same_service ... ok
+test tests::r08_compare_then_set_mutation_loses_other_even_with_matching_readback ... ok
+test tests::r08_mutex_and_unknown_exclusion_fail_before_p ... ok
+test tests::r08_real_gate_cannot_be_unlocked_by_synthetic_rights ... ok
+test tests::r09_exclusion_lost ... ok
+test tests::r09_generation ... ok
+test tests::r09_invalid_admission_fresh_observation_stops_before_p ... ok
+test tests::r09_loaded ... ok
+test tests::r09_protected_record_changed ... ok
+test tests::r09_removed ... ok
+test tests::r09_rights_lost ... ok
+test tests::r09_swap ... ok
+test tests::r10_a_stack_unknown ... ok
+test tests::r10_class_changed ... ok
+test tests::r10_protected_changed ... ok
+test tests::r10_t_stack_unknown ... ok
+test tests::r10_target_content ... ok
+test tests::r10_target_duplicate_count ... ok
+test tests::r10_target_generation ... ok
+test tests::r10_target_order ... ok
+test tests::r10_type ... ok
+test tests::r10_v_denied ... ok
+test tests::r11_completed_same_attempt_is_read_only ... ok
+test tests::r11_different_bound_plan_never_adopted ... ok
+test tests::r11_new_generation_number_reuse_is_not_owned ... ok
+test tests::r11_read_only_rights_can_confirm_completed_record_without_exclusion ... ok
+test tests::r11_values_without_completion_never_adopted ... ok
+test tests::r12_public_outcomes_redact_private_markers ... ok
+test tests::r13_readback_decider_requires_fresh_protection_rights_and_exclusion ... ok
+test tests::r13_readback_decider_uses_snapshot_and_call_status_only ... ok
+test tests::r13_same_error_and_returned_observation_ignore_hidden_store_effect ... ok
+test tests::r13_success_with_before_readback_is_contradictory_not_confirmed ... ok
+test tests::r13a_f ... ok
+test tests::r13a_k ... ok
+test tests::r13a_p ... ok
+test tests::r13a_s ... ok
+test tests::r13b_f_after ... ok
+test tests::r13b_f_before ... ok
+test tests::r13b_k_after ... ok
+test tests::r13b_k_before ... ok
+test tests::r13b_p_after ... ok
+test tests::r13b_p_before ... ok
+test tests::r13b_s_after ... ok
+test tests::r13b_s_before ... ok
+test tests::r13b_same_intent_different_fresh_observation ... ok
+test tests::r13c_f_effect ... ok
+test tests::r13c_f_no_effect ... ok
+test tests::r13c_k_effect ... ok
+test tests::r13c_k_no_effect ... ok
+test tests::r13c_p_effect ... ok
+test tests::r13c_p_no_effect ... ok
+test tests::r13c_s_effect ... ok
+test tests::r13c_s_no_effect ... ok
+test tests::r13d_f_content ... ok
+test tests::r13d_f_denied ... ok
+test tests::r13d_f_generation ... ok
+test tests::r13d_f_journal ... ok
+test tests::r13d_f_type ... ok
+test tests::r13d_k_content ... ok
+test tests::r13d_k_denied ... ok
+test tests::r13d_k_generation ... ok
+test tests::r13d_k_journal ... ok
+test tests::r13d_k_type ... ok
+test tests::r13d_p_content ... ok
+test tests::r13d_p_denied ... ok
+test tests::r13d_p_generation ... ok
+test tests::r13d_p_journal ... ok
+test tests::r13d_p_type ... ok
+test tests::r13d_s_content ... ok
+test tests::r13d_s_denied ... ok
+test tests::r13d_s_generation ... ok
+test tests::r13d_s_journal ... ok
+test tests::r13d_s_type ... ok
+test tests::r14_restart_with_lost_record_cannot_be_a_new_apply ... ok
+test tests::r14_v_crashes_and_lost_completion_never_resume ... ok
+test result: ok. 145 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.50s
+running 29 tests
+test boundary::stages::tests::b02_same_plan_native_port_p_s_k_f_and_no_real_capability ... ok
+test boundary::stages::tests::b02_service_config_abi_and_path_outputs_are_bounded ... ok
+test boundary::stages::tests::r07_conflicting_service_location_never_opens_or_hashes_image ... ok
+test boundary::stages::tests::r07_namespace_reserved_reparse_and_nonregular_paths_never_read ... ok
+test boundary::stages::tests::r07_s_start_loaded_wrong_binary_or_api_error_never_reaches_k_f ... ok
+test boundary::stages::tests::r07_unreviewed_source_or_existing_service_has_zero_effects ... ok
+test boundary::stages::tests::r13_p_error_or_readback_or_automatic_service_stops_before_s ... ok
+test boundary::tests::b02_amd64_struct_layout_matches_sdk ... ok
+test boundary::tests::r04_empty_nul_and_overlong_never_call_open ... ok
+test boundary::tests::r04_selector_uses_reg_sz_and_exact_readback_and_one_close ... ok
+test boundary::tests::r04_selector_wrong_type_is_rejected_and_key_is_closed ... ok
+test boundary::tests::r04_utf16_exact_without_trim_or_multichar_case_expansion ... ok
+test boundary::tests::r06_actual_wrapper_preserves_order_case_and_exact_target ... ok
+test boundary::tests::r06_malformed_property_never_issues_write ... ok
+test boundary::tests::r06_missing_empty_and_unavailable_remain_distinct ... ok
+test boundary::tests::r06_native_query_result_mapping_rejects_ambiguous_errors_and_truncation ... ok
+test boundary::tests::r06_raw_sdk_upperfilters_read_write_property_numbers ... ok
+test boundary::tests::r06_unified_property_only_explicit_not_found_confirms_missing ... ok
+test boundary::tests::r07_arbitrary_reorder_duplicate_or_other_service_is_never_written ... ok
+test boundary::tests::r09_changed_identity_stops_before_mutation_and_closes_set ... ok
+test boundary::tests::r13_error_after_effect_is_unknown_without_retry_or_restore ... ok
+test boundary::tests::r13_success_with_wrong_readback_is_not_success ... ok
+test package::tests::b04_actual_bytes_bind_manifest_but_never_grant_deployment ... ok
+test package::tests::b04_duplicate_sections_unknown_directives_and_missing_references_fail ... ok
+test package::tests::b04_inspected_package_binds_core_plan_and_hash_mutation_is_rejected ... ok
+test package::tests::b04_missing_cat_or_sys_and_extra_inf_are_rejected ... ok
+test package::tests::b04_proposal_all_sections_and_references_are_allowlisted ... ok
+test package::tests::b04_sha256_known_independent_vectors ... ok
+test package::tests::r07_b04_mutated_broad_or_automatic_effects_fail_closed ... ok
+test result: ok. 29 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.01s
+running 0 tests
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+running 13 tests
+test empty_single_zero_and_maximum_do_not_overflow_or_impute ... ok
+test encoder_revalidates_manually_constructed_public_fields ... ok
+test errors_do_not_reflect_input ... ok
+test golden_codec_is_canonical_and_roundtrips_every_treatment ... ok
+test huge_numeric_tokens_do_not_change_schema_errors_into_syntax_errors ... ok
+test identity_format_and_length_are_bounded ... ok
+test missing_nullable_duplicate_and_unknown_fields_are_schema_errors ... ok
+test mode_pairs_and_sample_limits_are_enforced_both_directions ... ok
+test nearest_rank_is_exact_and_input_unchanged ... ok
+test noncanonical_numbers_bounds_and_enum_spellings_are_values_errors ... ok
+test null_zero_max_and_sample_count_are_distinct ... ok
+test objects_types_and_integer_tokens_are_strict ... ok
+test syntax_and_byte_limit_have_fixed_errors ... ok
+test result: ok. 13 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.14s
+running 17 tests
+test attempted_ordinals_and_loss_counters_include_trailing_loss ... ok
+test byte_limit_exact_plus_one_and_error_precedence_are_frozen ... ok
+test duplicate_after_completion_neither_reopens_nor_double_pairs_request ... ok
+test first_submit_target_is_immutable_across_duplicate_submissions ... ok
+test hand_written_incomplete_fixtures_have_exact_counts_and_reason_order ... ok
+test literal_complete_report_is_exact_deterministic_and_never_qualification ... ok
+test orphan_completion_consumes_identity_and_later_records_do_not_repair_it ... ok
+test phase_required_nulls_and_range_arithmetic_are_validated_without_io_inference ... ok
+test plausible_windows_metadata_is_not_authenticated_or_echoed ... ok
+test provenance_shape_is_strict_but_synthetic_null_is_not_forged ... ok
+test record_limit_exact_plus_one_remains_bounded_even_with_duplicate_ids ... ok
+test sequence_overflow_never_wraps_to_a_contiguous_capture ... ok
+test sequence_reorder_and_duplicate_are_order_and_gap_not_sorted_success ... ok
+test strict_objects_missing_nulls_unknowns_and_escaped_duplicates_are_rejected ... ok
+test target_mismatch_completion_is_not_repaired_by_repeated_completion ... ok
+test unknown_boundaries_and_empty_capture_cannot_pass ... ok
+test version_tokens_and_numeric_string_lexemes_are_strict ... ok
+test result: ok. 17 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.17s
+running 12 tests
+test literal_v2_known_report_is_complete_but_unqualified ... ok
+test literal_v2_unknown_completions_preserve_pairing ... ok
+test v1_null_information_and_golden_bytes_remain_frozen ... ok
+test v2_boundary_range_and_provenance_uncertainties_keep_order ... ok
+test v2_byte_and_record_limits_accept_exact_reject_plus_one ... ok
+test v2_known_information_extremes_are_not_normalized ... ok
+test v2_null_status_and_nonnull_submit_information_are_invalid ... ok
+test v2_required_presence_and_escaped_duplicates_are_strict ... ok
+test v2_sequence_defects_are_never_sorted_or_repaired ... ok
+test v2_unknown_information_and_actual_loss_are_independent ... ok
+test v2_unknown_information_survives_duplicate_orphan_and_target_mismatch ... ok
+test v2_versions_and_error_precedence_are_closed ... ok
+test result: ok. 12 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.17s
+running 4 tests
+test allowlist_is_a_new_owned_value_not_the_original_payload ... ok
+test identifiers_and_nested_secrets_are_rejected_without_reflection ... ok
+test strict_size_syntax_and_required_field_guards_are_preserved ... ok
+test wrong_types_and_secret_values_are_not_stringified_into_output ... ok
+test result: ok. 4 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+running 12 tests
+test all_versions_require_exact_integer_tokens_and_false_guarantees ... ok
+test counters_are_canonical_u64_and_provenance_is_explicit_nullable_hex ... ok
+test durable_history_mismatch_is_backend_durability_not_origin_result_failure ... ok
+test empty_pending_and_power_loss_are_distinct_valid_verdicts ... ok
+test failure_can_follow_power_loss_and_keep_abandoned_counts ... ok
+test literal_baseline_round_trips_with_fixed_order_and_newline ... ok
+test report_count_status_outcome_and_phase_contradictions_are_rejected ... ok
+test required_nulls_objects_duplicates_and_unknown_keys_are_strict ... ok
+test size_limit_and_parse_errors_never_echo_input ... ok
+test stopped_semantic_and_safety_failures_have_exact_indices_and_fixed_codes ... ok
+test two_ownership_checks_per_event_and_prior_stage_success_are_legal ... ok
+test zero_meaningful_assert_failure_is_failed_and_mutant_need_not_always_fail ... ok
+test result: ok. 12 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+running 11 tests
+test aligned_range_does_not_include_the_next_line ... ok
+test empty_range_at_eof_and_empty_device_succeed ... ok
+test every_line_size_has_the_documented_extent ... ok
+test length_past_capacity_is_rejected_without_wrapping ... ok
+test line_span_does_not_round_up_by_overflowing ... ok
+test line_span_preserves_range_errors ... ok
+test maximum_capacity_is_a_valid_mathematical_boundary ... ok
+test offset_error_precedes_length_error ... ok
+test ranges_are_half_open ... ok
+test two_byte_crossing_covers_both_lines ... ok
+test zero_length_covers_no_lines_even_when_unaligned ... ok
+test result: ok. 11 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+running 11 tests
+test all_states_roundtrip_and_canonical_output_is_exact ... ok
+test input_limit_is_utf8_bytes_and_checked_before_parsing ... ok
+test missing_nullable_fields_are_not_defaulted_to_null ... ok
+test null_zero_and_maximum_u64_remain_distinct ... ok
+test numeric_types_and_noncanonical_decimal_strings_are_rejected ... ok
+test only_known_enum_values_and_error_codes_are_accepted ... ok
+test public_errors_are_fixed_codes_without_parser_payloads ... ok
+test syntax_trailing_documents_and_bom_are_rejected ... ok
+test unknown_and_duplicate_keys_are_rejected_at_each_level ... ok
+test valid_but_unrepresentable_numeric_tokens_are_schema_errors ... ok
+test wrong_version_tokens_and_non_objects_are_rejected ... ok
+test result: ok. 11 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+running 29 tests
+test aggregate_payload_includes_initial_write_and_both_assert_kinds ... ok
+test assert_data_may_be_short_but_not_longer_than_request ... ok
+test assert_index_must_point_to_prior_non_assert_event ... ok
+test cache_source_must_be_prior_origin_read_of_same_fill_not_complete_yet ... ok
+test capacity_limit_exact_and_plus_one ... ok
+test commit_publish_persist_and_asserts_check_static_reference_kinds ... ok
+test cross_line_cache_read_and_unbound_slot_are_runtime_decisions ... ok
+test decimal_strings_are_canonical_bounded_and_typed ... ok
+test empty_zero_capacity_and_eof_zero_length_are_valid ... ok
+test enum_and_bool_fields_do_not_accept_lookalike_values ... ok
+test errors_are_fixed_redacted_and_indexed ... ok
+test event_limit_exact_and_plus_one ... ok
+test final_short_line_and_slot_bounds ... ok
+test flush_count_and_transfer_shape_and_persist_are_static_only ... ok
+test forward_and_unknown_references_are_rejected ... ok
+test golden_has_all_events_and_read_only_accessors ... ok
+test hex_grammar_masks_and_unknown_placeholders ... ok
+test ids_are_positive_unique_per_namespace_not_monotonic_or_counter_limited ... ok
+test integer_fields_reject_strings_bool_float_exponent_and_negative_tokens ... ok
+test internally_tagged_buffer_does_not_accept_externally_tagged_enum_maps ... ok
+test malformed_json_bom_and_trailing_documents_are_rejected ... ok
+test objects_are_not_positional_arrays ... ok
+test parent_target_and_nullable_arity_are_static_contracts ... ok
+test phase_violations_are_parser_success_not_mutant_detection ... ok
+test ranges_and_child_relative_offsets_are_checked_without_wrap ... ok
+test raw_input_limit_exact_and_plus_one_precedes_decoding ... ok
+test required_nullable_fields_cannot_be_missing ... ok
+test unknown_and_duplicate_keys_are_not_erased ... ok
+test unknown_version_and_geometry_are_rejected ... ok
+test result: ok. 29 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 5.76s
+running 0 tests
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+running 0 tests
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+running 17 tests
+test backlog_duplicate_keys_missing_fields_and_types_are_not_erased ... ok
+test baseline_labels_backlog_and_real_repository_pass_nonzero_checks ... ok
+test checker_command_is_cwd_independent_and_rejects_extra_arguments ... ok
+test cycles_and_unaccepted_dependencies_do_not_become_ready ... ok
+test duplicate_unknown_missing_and_wrong_json_shapes_are_structural ... ok
+test escaped_symlink_targets_and_required_json_symlinks_are_rejected ... ok
+test exact_byte_caps_and_collection_limits_are_enforced ... ok
+test ids_issue_mapping_and_duplicate_dependencies_are_checked ... ok
+test label_byte_scalar_bounds_and_existing_grammar_are_not_conflated ... ok
+test label_semantics_aggregate_in_stable_code_path_order ... ok
+test local_absolute_encoded_and_parent_escapes_are_rejected ... ok
+test malformed_oversized_and_deep_json_are_rejected_without_panics ... ok
+test markdown_link_parser_skips_code_and_understands_references_and_escaping ... ok
+test owner_evidence_is_representation_not_implicit_authority ... ok
+test real_dates_and_planned_paths_are_validated_without_requiring_files ... ok
+test repository_io_link_errors_and_planned_files_remain_distinct ... ok
+test state_completion_enum_and_label_rules_cannot_be_bypassed ... ok
+test result: ok. 17 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 4.08s
+running 9 tests
+test actual_result_guard_rejects_zero_and_all_ignored_tests ... ok
+test actual_result_pipeline_cannot_hide_a_failed_test_command ... ok
+test actual_workflow_passes_with_exact_toolchain_and_lf_fixtures ... ok
+test raw_syntax_duplicates_and_resource_bounds_are_strict ... ok
+test required_checks_and_nonzero_guard_cannot_be_removed_or_masked ... ok
+test runner_matrix_and_job_privilege_are_closed ... ok
+test steps_are_an_exact_allowlist_not_a_dangerous_word_blacklist ... ok
+test triggers_permissions_and_credentials_cannot_be_expanded ... ok
+test windows_shell_selection_does_not_search_for_the_wsl_launcher ... ok
+test result: ok. 9 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.22s
+running 0 tests
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+running 0 tests
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+running 0 tests
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+running 0 tests
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+running 0 tests
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+running 0 tests
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+running 0 tests
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+running 0 tests
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+running 0 tests
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s

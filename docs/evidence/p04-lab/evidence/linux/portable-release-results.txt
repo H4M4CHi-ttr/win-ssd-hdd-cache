@@ -1,0 +1,316 @@
+running 40 tests
+test capture::tests::budget_status_failure_gets_one_cleanup_stop ... ok
+test capture::tests::budget_stops_without_truncation ... ok
+test capture::tests::c11_controlled_record_budget_status_failure_never_drains_zero ... ok
+test capture::tests::controlled::c04_abort_after_open_closes_once_without_begin ... ok
+test capture::tests::controlled::c04_abort_before_open_has_no_transport_or_archive ... ok
+test capture::tests::controlled::c04_control_failure_before_and_after_open_is_os_error ... ok
+test capture::tests::controlled::c05_begin_inflight_abort_waits_for_ack_then_same_owner_stop ... ok
+test capture::tests::controlled::c05_history_invalid_begin_uses_only_builder_cleanup_rule ... ok
+test capture::tests::controlled::c05_unknown_begin_never_retries_or_adds_stop_archive ... ok
+test capture::tests::controlled::c06_signal_after_last_poll_allows_one_drain_and_keeps_actual_records_once ... ok
+test capture::tests::controlled::c06_signal_before_predrain_has_zero_normal_drain ... ok
+test capture::tests::controlled::c07_drain_uncertainty_wins_over_abort_and_no_second_drain ... ok
+test capture::tests::controlled::c08_cleanup_stop_failure_does_not_gain_another_budget ... ok
+test capture::tests::controlled::c08_failed_normal_stop_has_only_one_fresh_cleanup ... ok
+test capture::tests::controlled::c08_history_invalid_recovery_response_has_only_cleanup_stop ... ok
+test capture::tests::controlled::c08_recovery_drain_failure_has_one_cleanup_and_no_later_drain ... ok
+test capture::tests::controlled::c09_attempted_unknown_remains_unknown ... ok
+test capture::tests::controlled::c09_known_drop_stops_normal_drain ... ok
+test capture::tests::controlled::c09_known_skip_stops_normal_drain ... ok
+test capture::tests::controlled::c09_popped_unknown_remains_unknown ... ok
+test capture::tests::controlled::c09_producer_fault_stops_normal_drain ... ok
+test capture::tests::controlled::c09_running_to_stopping_requires_stop ... ok
+test capture::tests::controlled::c09_skipped_unknown_remains_unknown ... ok
+test capture::tests::controlled::c10_control_poll_failure_after_begin_stops_without_transport_loss ... ok
+test capture::tests::controlled::c10_producer_abort_and_expiry_share_one_priority_boundary ... ok
+test capture::tests::controlled::c10_producer_priority_preserves_concurrent_abort ... ok
+test capture::tests::controlled::c10_signal_during_stop_is_secondary_and_never_repeats_normal_stop ... ok
+test capture::tests::controlled::c11_frame_limit_preserves_cleanup_reserve_without_truncation ... ok
+test capture::tests::controlled::c11_post_stop_deadline_is_checked_only_on_returned_boundaries ... ok
+test capture::tests::controlled::c11_recovery_waits_for_both_active_and_queued_then_terminal ... ok
+test capture::tests::controlled::c12_abort_empty_keeps_v1_footer_and_unknown_external_facts ... ok
+test capture::tests::controlled::c12_terminal_response_does_not_accept_late_signal_or_issue_more_commands ... ok
+test capture::tests::deadline_keeps_late_requests_unresolved ... ok
+test capture::tests::failed_begin_emits_nothing ... ok
+test capture::tests::live_first_drain_failure_stops_normal_collection ... ok
+test capture::tests::mismatched_call_id_stops ... ok
+test capture::tests::original_stop_failure_gets_one_cleanup_stop ... ok
+test capture::tests::output_failure_has_no_success_claim ... ok
+test capture::tests::rng_four_zero_draws ... ok
+test capture::tests::rng_zero_then_seven ... ok
+test result: ok. 40 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.23s
+running 0 tests
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+running 7 tests
+test audit_and_project_exit4 ... ok
+test c01_controlled_arguments_are_canonical_and_environment_never_activates_live ... ok
+test c01_controlled_default_off_at_both_duration_bounds ... ok
+test duplicate_options_rejected ... ok
+test live_disabled_before_platform_calls ... ok
+test redacted_input_and_limits ... ok
+test usage_never_collects ... ok
+test result: ok. 7 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.77s
+running 11 tests
+test h01_open_success_and_failure_after_release ... ok
+test h02_begin_success_and_failure_after_release ... ok
+test h03_already_popped_drain_success_and_failure ... ok
+test h03_drain_success_and_failure_after_release ... ok
+test h04_budget_status_success_and_failure ... ok
+test h04_recovery_drain_success_and_failure ... ok
+test h04_stop_success_and_failure_after_release ... ok
+test h05_flush_success_and_failure_after_release ... ok
+test h05_write_success_and_failure_after_release ... ok
+test h06_monitor_loss_regression_and_completed_receiver_are_independent ... ok
+test synthetic_hang_child ... ok
+{"schema":"p04-hang-case-v1","point":"open","release":"ok","entered":true,"prefix":["Open"],"actual":["Open", "Close"],"deadlineObservedAt":15000,"deadlineSticky":true,"lateProcessExitAt":15001,"receivedBytes":0,"receivedSha256":"e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855","result":"abort-before-begin","report":{"schema":"p04-controlled-v1","first_reason":"EXTERNAL_ABORT","reasons":["EXTERNAL_ABORT"],"abort_accepted":true,"begin_submitted":false,"begin_acknowledged":null,"stop_acknowledged":null,"terminal_received":null,"send_result":null,"host_deadline":null,"process_exit":null,"received_bytes":null,"received_hash":null,"saved":null},"realDeviceAccess":false,"driverInstalledOrLoaded":false,"registeredOrAttached":false,"runtimeQualified":false,"windowsClientQualified":false}
+{"schema":"p04-hang-case-v1","point":"open","release":"error","entered":true,"prefix":["Open"],"actual":["Open"],"deadlineObservedAt":15000,"deadlineSticky":true,"lateProcessExitAt":15001,"receivedBytes":0,"receivedSha256":"e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855","result":"device-unavailable","report":{"schema":"p04-controlled-v1","first_reason":null,"reasons":[],"abort_accepted":false,"begin_submitted":false,"begin_acknowledged":null,"stop_acknowledged":null,"terminal_received":null,"send_result":null,"host_deadline":null,"process_exit":null,"received_bytes":null,"received_hash":null,"saved":null},"realDeviceAccess":false,"driverInstalledOrLoaded":false,"registeredOrAttached":false,"runtimeQualified":false,"windowsClientQualified":false}
+{"schema":"p04-hang-case-v1","point":"begin","release":"ok","entered":true,"prefix":["Open", "B1"],"actual":["Open", "B1", "S2", "Close"],"deadlineObservedAt":15000,"deadlineSticky":true,"lateProcessExitAt":15001,"receivedBytes":416,"receivedSha256":"e75e2328c1574d433938a87a98f9a06b4ee6412a2352802caf3f990c831c5f74","result":"archive-emitted","report":{"schema":"p04-controlled-v1","first_reason":"EXTERNAL_ABORT","reasons":["EXTERNAL_ABORT"],"abort_accepted":true,"begin_submitted":true,"begin_acknowledged":true,"stop_acknowledged":true,"terminal_received":true,"send_result":null,"host_deadline":null,"process_exit":null,"received_bytes":null,"received_hash":null,"saved":null},"realDeviceAccess":false,"driverInstalledOrLoaded":false,"registeredOrAttached":false,"runtimeQualified":false,"windowsClientQualified":false}
+{"schema":"p04-hang-case-v1","point":"begin","release":"error","entered":true,"prefix":["Open", "B1"],"actual":["Open", "B1", "Close"],"deadlineObservedAt":15000,"deadlineSticky":true,"lateProcessExitAt":15001,"receivedBytes":0,"receivedSha256":"e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855","result":"device-unavailable","report":{"schema":"p04-controlled-v1","first_reason":"UNCERTAIN","reasons":["UNCERTAIN","EXTERNAL_ABORT"],"abort_accepted":true,"begin_submitted":true,"begin_acknowledged":null,"stop_acknowledged":null,"terminal_received":null,"send_result":null,"host_deadline":null,"process_exit":null,"received_bytes":null,"received_hash":null,"saved":null},"realDeviceAccess":false,"driverInstalledOrLoaded":false,"registeredOrAttached":false,"runtimeQualified":false,"windowsClientQualified":false}
+{"schema":"p04-hang-case-v1","point":"popped","release":"ok","entered":true,"prefix":["Open", "B1", "D2"],"actual":["Open", "B1", "D2", "S3", "Close"],"deadlineObservedAt":15000,"deadlineSticky":true,"lateProcessExitAt":15001,"receivedBytes":752,"receivedSha256":"3fd5b1aedb4185e8b6efc58bf7b97ddfc4ec962699ca0aea40afc56470b4a2c7","result":"archive-emitted","report":{"schema":"p04-controlled-v1","first_reason":"EXTERNAL_ABORT","reasons":["EXTERNAL_ABORT"],"abort_accepted":true,"begin_submitted":true,"begin_acknowledged":true,"stop_acknowledged":true,"terminal_received":true,"send_result":null,"host_deadline":null,"process_exit":null,"received_bytes":null,"received_hash":null,"saved":null},"realDeviceAccess":false,"driverInstalledOrLoaded":false,"registeredOrAttached":false,"runtimeQualified":false,"windowsClientQualified":false}
+{"schema":"p04-hang-case-v1","point":"popped","release":"error","entered":true,"prefix":["Open", "B1", "D2"],"actual":["Open", "B1", "D2", "S3", "Close"],"deadlineObservedAt":15000,"deadlineSticky":true,"lateProcessExitAt":15001,"receivedBytes":416,"receivedSha256":"b351ceba0807531615d9523b0879a9403923ce1537ce60381663177f31075a0b","result":"archive-emitted","report":{"schema":"p04-controlled-v1","first_reason":"UNCERTAIN","reasons":["UNCERTAIN","EXTERNAL_ABORT"],"abort_accepted":true,"begin_submitted":true,"begin_acknowledged":true,"stop_acknowledged":true,"terminal_received":true,"send_result":null,"host_deadline":null,"process_exit":null,"received_bytes":null,"received_hash":null,"saved":null},"realDeviceAccess":false,"driverInstalledOrLoaded":false,"registeredOrAttached":false,"runtimeQualified":false,"windowsClientQualified":false}
+{"schema":"p04-hang-case-v1","point":"drain","release":"ok","entered":true,"prefix":["Open", "B1", "D2"],"actual":["Open", "B1", "D2", "S3", "Close"],"deadlineObservedAt":15000,"deadlineSticky":true,"lateProcessExitAt":15001,"receivedBytes":560,"receivedSha256":"ee2815d9546d7e87ffe85dacc4fb0ea6e4665dba0da16bad93447e254b481ad4","result":"archive-emitted","report":{"schema":"p04-controlled-v1","first_reason":"EXTERNAL_ABORT","reasons":["EXTERNAL_ABORT"],"abort_accepted":true,"begin_submitted":true,"begin_acknowledged":true,"stop_acknowledged":true,"terminal_received":true,"send_result":null,"host_deadline":null,"process_exit":null,"received_bytes":null,"received_hash":null,"saved":null},"realDeviceAccess":false,"driverInstalledOrLoaded":false,"registeredOrAttached":false,"runtimeQualified":false,"windowsClientQualified":false}
+{"schema":"p04-hang-case-v1","point":"drain","release":"error","entered":true,"prefix":["Open", "B1", "D2"],"actual":["Open", "B1", "D2", "S3", "Close"],"deadlineObservedAt":15000,"deadlineSticky":true,"lateProcessExitAt":15001,"receivedBytes":416,"receivedSha256":"e946475909b9818d11c6326a0a1edc398a86fd646d2cb86a00c155dd3520cd83","result":"archive-emitted","report":{"schema":"p04-controlled-v1","first_reason":"UNCERTAIN","reasons":["UNCERTAIN","EXTERNAL_ABORT"],"abort_accepted":true,"begin_submitted":true,"begin_acknowledged":true,"stop_acknowledged":true,"terminal_received":true,"send_result":null,"host_deadline":null,"process_exit":null,"received_bytes":null,"received_hash":null,"saved":null},"realDeviceAccess":false,"driverInstalledOrLoaded":false,"registeredOrAttached":false,"runtimeQualified":false,"windowsClientQualified":false}
+{"schema":"p04-hang-case-v1","point":"status","release":"ok","entered":true,"prefix":["Open", "B1", "D2", "D3", "D4", "D5", "D6", "D7", "D8", "D9", "D10", "D11", "D12", "D13", "D14", "D15", "D16", "D17", "D18", "D19", "D20", "D21", "D22", "D23", "D24", "D25", "D26", "D27", "D28", "D29", "D30", "D31", "D32", "D33", "D34", "D35", "D36", "D37", "D38", "D39", "D40", "D41", "D42", "D43", "D44", "D45", "D46", "D47", "D48", "D49", "D50", "D51", "D52", "D53", "D54", "D55", "D56", "D57", "D58", "D59", "D60", "D61", "D62", "D63", "D64", "D65", "D66", "D67", "D68", "D69", "D70", "D71", "D72", "D73", "D74", "D75", "D76", "D77", "D78", "D79", "D80", "D81", "D82", "D83", "D84", "D85", "D86", "D87", "D88", "D89", "D90", "D91", "D92", "D93", "D94", "D95", "D96", "D97", "D98", "D99", "D100", "D101", "D102", "D103", "D104", "D105", "D106", "D107", "D108", "D109", "D110", "D111", "D112", "D113", "D114", "D115", "D116", "D117", "D118", "D119", "D120", "D121", "D122", "D123", "D124", "D125", "D126", "D127", "D128", "D129", "D130", "D131", "D132", "D133", "D134", "D135", "D136", "D137", "D138", "D139", "D140", "D141", "D142", "D143", "D144", "D145", "D146", "D147", "D148", "D149", "D150", "D151", "D152", "D153", "D154", "D155", "D156", "D157", "D158", "D159", "D160", "D161", "D162", "D163", "D164", "D165", "D166", "D167", "D168", "D169", "D170", "D171", "D172", "D173", "D174", "D175", "D176", "D177", "D178", "D179", "D180", "D181", "D182", "D183", "D184", "D185", "D186", "D187", "D188", "D189", "D190", "D191", "D192", "D193", "D194", "D195", "D196", "D197", "D198", "D199", "D200", "D201", "D202", "D203", "D204", "D205", "D206", "D207", "D208", "D209", "D210", "D211", "D212", "D213", "D214", "D215", "D216", "D217", "D218", "D219", "D220", "D221", "D222", "D223", "D224", "D225", "D226", "D227", "D228", "D229", "D230", "D231", "D232", "D233", "D234", "D235", "D236", "D237", "D238", "D239", "D240", "D241", "D242", "D243", "D244", "D245", "D246", "D247", "D248", "D249", "D250", "D251", "D252", "D253", "D254", "D255", "D256", "D257", "S258", "T259"],"actual":["Open", "B1", "D2", "D3", "D4", "D5", "D6", "D7", "D8", "D9", "D10", "D11", "D12", "D13", "D14", "D15", "D16", "D17", "D18", "D19", "D20", "D21", "D22", "D23", "D24", "D25", "D26", "D27", "D28", "D29", "D30", "D31", "D32", "D33", "D34", "D35", "D36", "D37", "D38", "D39", "D40", "D41", "D42", "D43", "D44", "D45", "D46", "D47", "D48", "D49", "D50", "D51", "D52", "D53", "D54", "D55", "D56", "D57", "D58", "D59", "D60", "D61", "D62", "D63", "D64", "D65", "D66", "D67", "D68", "D69", "D70", "D71", "D72", "D73", "D74", "D75", "D76", "D77", "D78", "D79", "D80", "D81", "D82", "D83", "D84", "D85", "D86", "D87", "D88", "D89", "D90", "D91", "D92", "D93", "D94", "D95", "D96", "D97", "D98", "D99", "D100", "D101", "D102", "D103", "D104", "D105", "D106", "D107", "D108", "D109", "D110", "D111", "D112", "D113", "D114", "D115", "D116", "D117", "D118", "D119", "D120", "D121", "D122", "D123", "D124", "D125", "D126", "D127", "D128", "D129", "D130", "D131", "D132", "D133", "D134", "D135", "D136", "D137", "D138", "D139", "D140", "D141", "D142", "D143", "D144", "D145", "D146", "D147", "D148", "D149", "D150", "D151", "D152", "D153", "D154", "D155", "D156", "D157", "D158", "D159", "D160", "D161", "D162", "D163", "D164", "D165", "D166", "D167", "D168", "D169", "D170", "D171", "D172", "D173", "D174", "D175", "D176", "D177", "D178", "D179", "D180", "D181", "D182", "D183", "D184", "D185", "D186", "D187", "D188", "D189", "D190", "D191", "D192", "D193", "D194", "D195", "D196", "D197", "D198", "D199", "D200", "D201", "D202", "D203", "D204", "D205", "D206", "D207", "D208", "D209", "D210", "D211", "D212", "D213", "D214", "D215", "D216", "D217", "D218", "D219", "D220", "D221", "D222", "D223", "D224", "D225", "D226", "D227", "D228", "D229", "D230", "D231", "D232", "D233", "D234", "D235", "D236", "D237", "D238", "D239", "D240", "D241", "D242", "D243", "D244", "D245", "D246", "D247", "D248", "D249", "D250", "D251", "D252", "D253", "D254", "D255", "D256", "D257", "S258", "T259", "Close"],"deadlineObservedAt":15000,"deadlineSticky":true,"lateProcessExitAt":15001,"receivedBytes":430640,"receivedSha256":"2935993e02aed7aace68d1b7eac9a15acf6beb69609f79dc0a00701c89789a2c","result":"archive-emitted","report":{"schema":"p04-controlled-v1","first_reason":"LIMIT","reasons":["EXTERNAL_ABORT","LIMIT"],"abort_accepted":true,"begin_submitted":true,"begin_acknowledged":true,"stop_acknowledged":true,"terminal_received":false,"send_result":null,"host_deadline":null,"process_exit":null,"received_bytes":null,"received_hash":null,"saved":null},"realDeviceAccess":false,"driverInstalledOrLoaded":false,"registeredOrAttached":false,"runtimeQualified":false,"windowsClientQualified":false}
+{"schema":"p04-hang-case-v1","point":"status","release":"error","entered":true,"prefix":["Open", "B1", "D2", "D3", "D4", "D5", "D6", "D7", "D8", "D9", "D10", "D11", "D12", "D13", "D14", "D15", "D16", "D17", "D18", "D19", "D20", "D21", "D22", "D23", "D24", "D25", "D26", "D27", "D28", "D29", "D30", "D31", "D32", "D33", "D34", "D35", "D36", "D37", "D38", "D39", "D40", "D41", "D42", "D43", "D44", "D45", "D46", "D47", "D48", "D49", "D50", "D51", "D52", "D53", "D54", "D55", "D56", "D57", "D58", "D59", "D60", "D61", "D62", "D63", "D64", "D65", "D66", "D67", "D68", "D69", "D70", "D71", "D72", "D73", "D74", "D75", "D76", "D77", "D78", "D79", "D80", "D81", "D82", "D83", "D84", "D85", "D86", "D87", "D88", "D89", "D90", "D91", "D92", "D93", "D94", "D95", "D96", "D97", "D98", "D99", "D100", "D101", "D102", "D103", "D104", "D105", "D106", "D107", "D108", "D109", "D110", "D111", "D112", "D113", "D114", "D115", "D116", "D117", "D118", "D119", "D120", "D121", "D122", "D123", "D124", "D125", "D126", "D127", "D128", "D129", "D130", "D131", "D132", "D133", "D134", "D135", "D136", "D137", "D138", "D139", "D140", "D141", "D142", "D143", "D144", "D145", "D146", "D147", "D148", "D149", "D150", "D151", "D152", "D153", "D154", "D155", "D156", "D157", "D158", "D159", "D160", "D161", "D162", "D163", "D164", "D165", "D166", "D167", "D168", "D169", "D170", "D171", "D172", "D173", "D174", "D175", "D176", "D177", "D178", "D179", "D180", "D181", "D182", "D183", "D184", "D185", "D186", "D187", "D188", "D189", "D190", "D191", "D192", "D193", "D194", "D195", "D196", "D197", "D198", "D199", "D200", "D201", "D202", "D203", "D204", "D205", "D206", "D207", "D208", "D209", "D210", "D211", "D212", "D213", "D214", "D215", "D216", "D217", "D218", "D219", "D220", "D221", "D222", "D223", "D224", "D225", "D226", "D227", "D228", "D229", "D230", "D231", "D232", "D233", "D234", "D235", "D236", "D237", "D238", "D239", "D240", "D241", "D242", "D243", "D244", "D245", "D246", "D247", "D248", "D249", "D250", "D251", "D252", "D253", "D254", "D255", "D256", "D257", "S258", "T259"],"actual":["Open", "B1", "D2", "D3", "D4", "D5", "D6", "D7", "D8", "D9", "D10", "D11", "D12", "D13", "D14", "D15", "D16", "D17", "D18", "D19", "D20", "D21", "D22", "D23", "D24", "D25", "D26", "D27", "D28", "D29", "D30", "D31", "D32", "D33", "D34", "D35", "D36", "D37", "D38", "D39", "D40", "D41", "D42", "D43", "D44", "D45", "D46", "D47", "D48", "D49", "D50", "D51", "D52", "D53", "D54", "D55", "D56", "D57", "D58", "D59", "D60", "D61", "D62", "D63", "D64", "D65", "D66", "D67", "D68", "D69", "D70", "D71", "D72", "D73", "D74", "D75", "D76", "D77", "D78", "D79", "D80", "D81", "D82", "D83", "D84", "D85", "D86", "D87", "D88", "D89", "D90", "D91", "D92", "D93", "D94", "D95", "D96", "D97", "D98", "D99", "D100", "D101", "D102", "D103", "D104", "D105", "D106", "D107", "D108", "D109", "D110", "D111", "D112", "D113", "D114", "D115", "D116", "D117", "D118", "D119", "D120", "D121", "D122", "D123", "D124", "D125", "D126", "D127", "D128", "D129", "D130", "D131", "D132", "D133", "D134", "D135", "D136", "D137", "D138", "D139", "D140", "D141", "D142", "D143", "D144", "D145", "D146", "D147", "D148", "D149", "D150", "D151", "D152", "D153", "D154", "D155", "D156", "D157", "D158", "D159", "D160", "D161", "D162", "D163", "D164", "D165", "D166", "D167", "D168", "D169", "D170", "D171", "D172", "D173", "D174", "D175", "D176", "D177", "D178", "D179", "D180", "D181", "D182", "D183", "D184", "D185", "D186", "D187", "D188", "D189", "D190", "D191", "D192", "D193", "D194", "D195", "D196", "D197", "D198", "D199", "D200", "D201", "D202", "D203", "D204", "D205", "D206", "D207", "D208", "D209", "D210", "D211", "D212", "D213", "D214", "D215", "D216", "D217", "D218", "D219", "D220", "D221", "D222", "D223", "D224", "D225", "D226", "D227", "D228", "D229", "D230", "D231", "D232", "D233", "D234", "D235", "D236", "D237", "D238", "D239", "D240", "D241", "D242", "D243", "D244", "D245", "D246", "D247", "D248", "D249", "D250", "D251", "D252", "D253", "D254", "D255", "D256", "D257", "S258", "T259", "S260", "Close"],"deadlineObservedAt":15000,"deadlineSticky":true,"lateProcessExitAt":15001,"receivedBytes":430640,"receivedSha256":"104e6dfbfcf5e43f2ee7f6549fa797c5e6de65ebd0eb70c01fff6924add68c11","result":"archive-emitted","report":{"schema":"p04-controlled-v1","first_reason":"LIMIT","reasons":["UNCERTAIN","EXTERNAL_ABORT","LIMIT"],"abort_accepted":true,"begin_submitted":true,"begin_acknowledged":true,"stop_acknowledged":true,"terminal_received":false,"send_result":null,"host_deadline":null,"process_exit":null,"received_bytes":null,"received_hash":null,"saved":null},"realDeviceAccess":false,"driverInstalledOrLoaded":false,"registeredOrAttached":false,"runtimeQualified":false,"windowsClientQualified":false}
+{"schema":"p04-hang-case-v1","point":"recovery-drain","release":"ok","entered":true,"prefix":["Open", "B1", "D2", "S3", "D4"],"actual":["Open", "B1", "D2", "S3", "D4", "Close"],"deadlineObservedAt":15000,"deadlineSticky":true,"lateProcessExitAt":15001,"receivedBytes":704,"receivedSha256":"f2327e31a63be25c52ca6ab4429ab4d51448fa2b28f327570d9af45c0201bd48","result":"archive-emitted","report":{"schema":"p04-controlled-v1","first_reason":"DURATION","reasons":["DURATION"],"abort_accepted":false,"begin_submitted":true,"begin_acknowledged":true,"stop_acknowledged":true,"terminal_received":true,"send_result":null,"host_deadline":null,"process_exit":null,"received_bytes":null,"received_hash":null,"saved":null},"realDeviceAccess":false,"driverInstalledOrLoaded":false,"registeredOrAttached":false,"runtimeQualified":false,"windowsClientQualified":false}
+{"schema":"p04-hang-case-v1","point":"recovery-drain","release":"error","entered":true,"prefix":["Open", "B1", "D2", "S3", "D4"],"actual":["Open", "B1", "D2", "S3", "D4", "S5", "Close"],"deadlineObservedAt":15000,"deadlineSticky":true,"lateProcessExitAt":15001,"receivedBytes":704,"receivedSha256":"43bb943c0e535fcb7c78cbdd1aff6d57848eeeeb27184d68e64b703b01b38907","result":"archive-emitted","report":{"schema":"p04-controlled-v1","first_reason":"DURATION","reasons":["UNCERTAIN","EXTERNAL_ABORT","DURATION"],"abort_accepted":true,"begin_submitted":true,"begin_acknowledged":true,"stop_acknowledged":true,"terminal_received":true,"send_result":null,"host_deadline":null,"process_exit":null,"received_bytes":null,"received_hash":null,"saved":null},"realDeviceAccess":false,"driverInstalledOrLoaded":false,"registeredOrAttached":false,"runtimeQualified":false,"windowsClientQualified":false}
+{"schema":"p04-hang-case-v1","point":"stop","release":"ok","entered":true,"prefix":["Open", "B1", "D2", "S3"],"actual":["Open", "B1", "D2", "S3", "Close"],"deadlineObservedAt":15000,"deadlineSticky":true,"lateProcessExitAt":15001,"receivedBytes":560,"receivedSha256":"ee2815d9546d7e87ffe85dacc4fb0ea6e4665dba0da16bad93447e254b481ad4","result":"archive-emitted","report":{"schema":"p04-controlled-v1","first_reason":"DURATION","reasons":["DURATION"],"abort_accepted":false,"begin_submitted":true,"begin_acknowledged":true,"stop_acknowledged":true,"terminal_received":true,"send_result":null,"host_deadline":null,"process_exit":null,"received_bytes":null,"received_hash":null,"saved":null},"realDeviceAccess":false,"driverInstalledOrLoaded":false,"registeredOrAttached":false,"runtimeQualified":false,"windowsClientQualified":false}
+{"schema":"p04-hang-case-v1","point":"stop","release":"error","entered":true,"prefix":["Open", "B1", "D2", "S3"],"actual":["Open", "B1", "D2", "S3", "S4", "Close"],"deadlineObservedAt":15000,"deadlineSticky":true,"lateProcessExitAt":15001,"receivedBytes":560,"receivedSha256":"582f7faa81a699280ae428d49878ce8d50cd442f3e3d4cff1576a47cb8acf7bc","result":"archive-emitted","report":{"schema":"p04-controlled-v1","first_reason":"DURATION","reasons":["UNCERTAIN","EXTERNAL_ABORT","DURATION"],"abort_accepted":true,"begin_submitted":true,"begin_acknowledged":true,"stop_acknowledged":true,"terminal_received":true,"send_result":null,"host_deadline":null,"process_exit":null,"received_bytes":null,"received_hash":null,"saved":null},"realDeviceAccess":false,"driverInstalledOrLoaded":false,"registeredOrAttached":false,"runtimeQualified":false,"windowsClientQualified":false}
+{"schema":"p04-hang-case-v1","point":"flush","release":"ok","entered":true,"prefix":["Open", "B1", "D2", "S3", "Close"],"actual":["Open", "B1", "D2", "S3", "Close"],"deadlineObservedAt":15000,"deadlineSticky":true,"lateProcessExitAt":15001,"receivedBytes":560,"receivedSha256":"ee2815d9546d7e87ffe85dacc4fb0ea6e4665dba0da16bad93447e254b481ad4","result":"archive-emitted","report":{"schema":"p04-controlled-v1","first_reason":"DURATION","reasons":["DURATION"],"abort_accepted":false,"begin_submitted":true,"begin_acknowledged":true,"stop_acknowledged":true,"terminal_received":true,"send_result":null,"host_deadline":null,"process_exit":null,"received_bytes":null,"received_hash":null,"saved":null},"realDeviceAccess":false,"driverInstalledOrLoaded":false,"registeredOrAttached":false,"runtimeQualified":false,"windowsClientQualified":false}
+{"schema":"p04-hang-case-v1","point":"flush","release":"error","entered":true,"prefix":["Open", "B1", "D2", "S3", "Close"],"actual":["Open", "B1", "D2", "S3", "Close"],"deadlineObservedAt":15000,"deadlineSticky":true,"lateProcessExitAt":15001,"receivedBytes":560,"receivedSha256":"ee2815d9546d7e87ffe85dacc4fb0ea6e4665dba0da16bad93447e254b481ad4","result":"output-error","report":{"schema":"p04-controlled-v1","first_reason":"DURATION","reasons":["DURATION"],"abort_accepted":false,"begin_submitted":true,"begin_acknowledged":true,"stop_acknowledged":true,"terminal_received":true,"send_result":null,"host_deadline":null,"process_exit":null,"received_bytes":null,"received_hash":null,"saved":null},"realDeviceAccess":false,"driverInstalledOrLoaded":false,"registeredOrAttached":false,"runtimeQualified":false,"windowsClientQualified":false}
+{"schema":"p04-hang-case-v1","point":"write","release":"ok","entered":true,"prefix":["Open", "B1", "D2", "S3", "Close"],"actual":["Open", "B1", "D2", "S3", "Close"],"deadlineObservedAt":15000,"deadlineSticky":true,"lateProcessExitAt":15001,"receivedBytes":560,"receivedSha256":"ee2815d9546d7e87ffe85dacc4fb0ea6e4665dba0da16bad93447e254b481ad4","result":"archive-emitted","report":{"schema":"p04-controlled-v1","first_reason":"DURATION","reasons":["DURATION"],"abort_accepted":false,"begin_submitted":true,"begin_acknowledged":true,"stop_acknowledged":true,"terminal_received":true,"send_result":null,"host_deadline":null,"process_exit":null,"received_bytes":null,"received_hash":null,"saved":null},"realDeviceAccess":false,"driverInstalledOrLoaded":false,"registeredOrAttached":false,"runtimeQualified":false,"windowsClientQualified":false}
+{"schema":"p04-hang-case-v1","point":"write","release":"error","entered":true,"prefix":["Open", "B1", "D2", "S3", "Close"],"actual":["Open", "B1", "D2", "S3", "Close"],"deadlineObservedAt":15000,"deadlineSticky":true,"lateProcessExitAt":15001,"receivedBytes":0,"receivedSha256":"e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855","result":"output-error","report":{"schema":"p04-controlled-v1","first_reason":"DURATION","reasons":["DURATION"],"abort_accepted":false,"begin_submitted":true,"begin_acknowledged":true,"stop_acknowledged":true,"terminal_received":true,"send_result":null,"host_deadline":null,"process_exit":null,"received_bytes":null,"received_hash":null,"saved":null},"realDeviceAccess":false,"driverInstalledOrLoaded":false,"registeredOrAttached":false,"runtimeQualified":false,"windowsClientQualified":false}
+test result: ok. 11 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 3.93s
+running 0 tests
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+running 17 tests
+test builder_failed_drain_allows_only_stop ... ok
+test builder_round_trip_preserves_exact_native_bytes ... ok
+test classification_state_and_first_baseline_are_history_faults ... ok
+test counter_identity_and_popped_delta ... ok
+test duplicate_and_orphan_correlation ... ok
+test failed_normal_stop_permits_one_fresh_cleanup_stop ... ok
+test false_terminal_footer_cannot_hide_observed_terminal ... ok
+test footer_cannot_hide_derived_faults ... ok
+test frame_boundary_without_footer ... ok
+test known_drop_gap_is_loss_not_invented_collector_fault ... ok
+test lost_first_drain_offline_adversarial ... ok
+test malformed_precedence ... ok
+test native_and_projection_limits ... ok
+test prefix_only_is_unfinished ... ok
+test read_pair_report_literal ... ok
+test regression_resurrection_and_call_replay ... ok
+test second_begin_is_history_not_parser_error ... ok
+test result: ok. 17 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+running 7 tests
+test flush_pair_projects_null_information ... ok
+test lying_footer_count_invalidates_terminal_projection ... ok
+test missing_terminal_never_infers_counter_or_closure ... ok
+test project_derived_fault_does_not_trust_footer ... ok
+test project_keeps_duplicate_orphan_status_and_original_order ... ok
+test project_never_upgrades_unknown_minor_or_address_mapping ... ok
+test read_pair_projects_literal_unverified_boundaries ... ok
+test result: ok. 7 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+running 6 tests
+test wire_actual_returned_bytes_not_capacity ... ok
+test wire_binding_and_reserved_rejected ... ok
+test wire_known_read_pair ... ok
+test wire_lengths_and_ioctl_values ... ok
+test wire_scalar_union_and_bounds_are_not_reinterpreted ... ok
+test wire_unknown_information_distinct_from_zero ... ok
+test result: ok. 6 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+running 0 tests
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+running 0 tests
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+running 0 tests
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+running 145 tests
+test tests::crash_tests::r13b_f_after_process_kill ... ok
+test tests::crash_tests::r13b_f_before_process_kill ... ok
+test tests::crash_tests::r13b_k_after_process_kill ... ok
+test tests::crash_tests::r13b_k_before_process_kill ... ok
+test tests::crash_tests::r13b_p_after_process_kill ... ok
+test tests::crash_tests::r13b_p_before_process_kill ... ok
+test tests::crash_tests::r13b_s_after_process_kill ... ok
+test tests::crash_tests::r13b_s_before_process_kill ... ok
+test tests::crash_tests::r14_before_complete_process_kill ... ok
+test tests::crash_tests::r14_mid_verification_process_kill ... ok
+test tests::crash_tests::r14_private_record_rejects_truncation_and_other_identity_binding ... ok
+test tests::crash_tests::r14_v_process_kill ... ok
+test tests::r01_dry_run_then_p_s_k_f_v_only_t ... ok
+test tests::r01_initial_rights_and_private_journal_fail_closed ... ok
+test tests::r02_a_reuses_t_number ... ok
+test tests::r02_api_returns_a_after_t_check ... ok
+test tests::r02_input_points_to_os ... ok
+test tests::r02_mutated_registrar_request_is_logged_by_actual_fake_object ... ok
+test tests::r02_t_label_has_a_identity ... ok
+test tests::r03_capacity_cannot_replace_strong_identity ... ok
+test tests::r03_disconnected ... ok
+test tests::r03_duplicate_serial ... ok
+test tests::r03_empty_device_location_same_hardware_uses_independent_identity ... ok
+test tests::r03_mixed_identity_rows ... ok
+test tests::r03_non_ascii_case_alias_cannot_hide_collision ... ok
+test tests::r03_number_changes_parent_lun_identity_still_bind ... ok
+test tests::r03_old_host_chain ... ok
+test tests::r03_t1_capacity_other_known_values_refused ... ok
+test tests::r03_t1_capacity_unknown_refused ... ok
+test tests::r03_two_t ... ok
+test tests::r03_zero_t ... ok
+test tests::r04_inadmissible_pnp_characters_refused ... ok
+test tests::r04_non_ascii_exact_and_expansion_fail_closed ... ok
+test tests::r04_non_ascii_protected_or_observed_ids_refused ... ok
+test tests::r04_pnp_admission_199_and_200_separate_from_codec ... ok
+test tests::r04_selector_boundaries ... ok
+test tests::r04_selector_malformed_and_exact_matching ... ok
+test tests::r05_dedicated_dump ... ok
+test tests::r05_dump ... ok
+test tests::r05_efi ... ok
+test tests::r05_empty_build ... ok
+test tests::r05_empty_expected_class_or_stack_refused ... ok
+test tests::r05_empty_or_unbound_function_service_refused ... ok
+test tests::r05_hibernation ... ok
+test tests::r05_os ... ok
+test tests::r05_os_pagefile_change_is_retained_not_target_use ... ok
+test tests::r05_other ... ok
+test tests::r05_pagefile ... ok
+test tests::r05_unknown_build ... ok
+test tests::r05_unknown_chain ... ok
+test tests::r05_unknown_r1 ... ok
+test tests::r05_unknown_usage ... ok
+test tests::r05_unknown_vm ... ok
+test tests::r06_class_upper_unavailable ... ok
+test tests::r06_duplicate_object_token ... ok
+test tests::r06_invalid_multi_sz_rejected ... ok
+test tests::r06_missing_empty_and_existing_preserved ... ok
+test tests::r06_protected_upper_unavailable ... ok
+test tests::r06_query_failure_is_not_missing ... ok
+test tests::r06_target_lower_unavailable ... ok
+test tests::r07_allowlist_hash_change_rejected ... ok
+test tests::r07_auto_start ... ok
+test tests::r07_broad_install ... ok
+test tests::r07_class_install ... ok
+test tests::r07_duplicate_case_probe ... ok
+test tests::r07_existing_probe ... ok
+test tests::r07_loaded_service ... ok
+test tests::r07_mutation_oracle_catches_broad_registration ... ok
+test tests::r07_unknown_service ... ok
+test tests::r07_unreviewed_inf ... ok
+test tests::r07_wrong_binary_same_service ... ok
+test tests::r08_compare_then_set_mutation_loses_other_even_with_matching_readback ... ok
+test tests::r08_mutex_and_unknown_exclusion_fail_before_p ... ok
+test tests::r08_real_gate_cannot_be_unlocked_by_synthetic_rights ... ok
+test tests::r09_exclusion_lost ... ok
+test tests::r09_generation ... ok
+test tests::r09_invalid_admission_fresh_observation_stops_before_p ... ok
+test tests::r09_loaded ... ok
+test tests::r09_protected_record_changed ... ok
+test tests::r09_removed ... ok
+test tests::r09_rights_lost ... ok
+test tests::r09_swap ... ok
+test tests::r10_a_stack_unknown ... ok
+test tests::r10_class_changed ... ok
+test tests::r10_protected_changed ... ok
+test tests::r10_t_stack_unknown ... ok
+test tests::r10_target_content ... ok
+test tests::r10_target_duplicate_count ... ok
+test tests::r10_target_generation ... ok
+test tests::r10_target_order ... ok
+test tests::r10_type ... ok
+test tests::r10_v_denied ... ok
+test tests::r11_completed_same_attempt_is_read_only ... ok
+test tests::r11_different_bound_plan_never_adopted ... ok
+test tests::r11_new_generation_number_reuse_is_not_owned ... ok
+test tests::r11_read_only_rights_can_confirm_completed_record_without_exclusion ... ok
+test tests::r11_values_without_completion_never_adopted ... ok
+test tests::r12_public_outcomes_redact_private_markers ... ok
+test tests::r13_readback_decider_requires_fresh_protection_rights_and_exclusion ... ok
+test tests::r13_readback_decider_uses_snapshot_and_call_status_only ... ok
+test tests::r13_same_error_and_returned_observation_ignore_hidden_store_effect ... ok
+test tests::r13_success_with_before_readback_is_contradictory_not_confirmed ... ok
+test tests::r13a_f ... ok
+test tests::r13a_k ... ok
+test tests::r13a_p ... ok
+test tests::r13a_s ... ok
+test tests::r13b_f_after ... ok
+test tests::r13b_f_before ... ok
+test tests::r13b_k_after ... ok
+test tests::r13b_k_before ... ok
+test tests::r13b_p_after ... ok
+test tests::r13b_p_before ... ok
+test tests::r13b_s_after ... ok
+test tests::r13b_s_before ... ok
+test tests::r13b_same_intent_different_fresh_observation ... ok
+test tests::r13c_f_effect ... ok
+test tests::r13c_f_no_effect ... ok
+test tests::r13c_k_effect ... ok
+test tests::r13c_k_no_effect ... ok
+test tests::r13c_p_effect ... ok
+test tests::r13c_p_no_effect ... ok
+test tests::r13c_s_effect ... ok
+test tests::r13c_s_no_effect ... ok
+test tests::r13d_f_content ... ok
+test tests::r13d_f_denied ... ok
+test tests::r13d_f_generation ... ok
+test tests::r13d_f_journal ... ok
+test tests::r13d_f_type ... ok
+test tests::r13d_k_content ... ok
+test tests::r13d_k_denied ... ok
+test tests::r13d_k_generation ... ok
+test tests::r13d_k_journal ... ok
+test tests::r13d_k_type ... ok
+test tests::r13d_p_content ... ok
+test tests::r13d_p_denied ... ok
+test tests::r13d_p_generation ... ok
+test tests::r13d_p_journal ... ok
+test tests::r13d_p_type ... ok
+test tests::r13d_s_content ... ok
+test tests::r13d_s_denied ... ok
+test tests::r13d_s_generation ... ok
+test tests::r13d_s_journal ... ok
+test tests::r13d_s_type ... ok
+test tests::r14_restart_with_lost_record_cannot_be_a_new_apply ... ok
+test tests::r14_v_crashes_and_lost_completion_never_resume ... ok
+test result: ok. 145 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.43s
+running 29 tests
+test boundary::stages::tests::b02_same_plan_native_port_p_s_k_f_and_no_real_capability ... ok
+test boundary::stages::tests::b02_service_config_abi_and_path_outputs_are_bounded ... ok
+test boundary::stages::tests::r07_conflicting_service_location_never_opens_or_hashes_image ... ok
+test boundary::stages::tests::r07_namespace_reserved_reparse_and_nonregular_paths_never_read ... ok
+test boundary::stages::tests::r07_s_start_loaded_wrong_binary_or_api_error_never_reaches_k_f ... ok
+test boundary::stages::tests::r07_unreviewed_source_or_existing_service_has_zero_effects ... ok
+test boundary::stages::tests::r13_p_error_or_readback_or_automatic_service_stops_before_s ... ok
+test boundary::tests::b02_amd64_struct_layout_matches_sdk ... ok
+test boundary::tests::r04_empty_nul_and_overlong_never_call_open ... ok
+test boundary::tests::r04_selector_uses_reg_sz_and_exact_readback_and_one_close ... ok
+test boundary::tests::r04_selector_wrong_type_is_rejected_and_key_is_closed ... ok
+test boundary::tests::r04_utf16_exact_without_trim_or_multichar_case_expansion ... ok
+test boundary::tests::r06_actual_wrapper_preserves_order_case_and_exact_target ... ok
+test boundary::tests::r06_malformed_property_never_issues_write ... ok
+test boundary::tests::r06_missing_empty_and_unavailable_remain_distinct ... ok
+test boundary::tests::r06_native_query_result_mapping_rejects_ambiguous_errors_and_truncation ... ok
+test boundary::tests::r06_raw_sdk_upperfilters_read_write_property_numbers ... ok
+test boundary::tests::r06_unified_property_only_explicit_not_found_confirms_missing ... ok
+test boundary::tests::r07_arbitrary_reorder_duplicate_or_other_service_is_never_written ... ok
+test boundary::tests::r09_changed_identity_stops_before_mutation_and_closes_set ... ok
+test boundary::tests::r13_error_after_effect_is_unknown_without_retry_or_restore ... ok
+test boundary::tests::r13_success_with_wrong_readback_is_not_success ... ok
+test package::tests::b04_actual_bytes_bind_manifest_but_never_grant_deployment ... ok
+test package::tests::b04_duplicate_sections_unknown_directives_and_missing_references_fail ... ok
+test package::tests::b04_inspected_package_binds_core_plan_and_hash_mutation_is_rejected ... ok
+test package::tests::b04_missing_cat_or_sys_and_extra_inf_are_rejected ... ok
+test package::tests::b04_proposal_all_sections_and_references_are_allowlisted ... ok
+test package::tests::b04_sha256_known_independent_vectors ... ok
+test package::tests::r07_b04_mutated_broad_or_automatic_effects_fail_closed ... ok
+test result: ok. 29 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+running 0 tests
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+running 0 tests
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+running 0 tests
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+running 0 tests
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+running 0 tests
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s

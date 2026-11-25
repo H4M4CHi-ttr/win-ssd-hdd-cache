@@ -1,0 +1,172 @@
+[
+  {
+    "path": "P04-source-build-evidence.md",
+    "bytes": 8716,
+    "sha256": "b3d7703bd6e4f7d057d5e01ab87a7733d5f79cd168a3f22d1f2b782b52af2362"
+  },
+  {
+    "path": "P04-source-build-review.md",
+    "bytes": 4878,
+    "sha256": "d7998179ee3bf644a778dee6d3c1c1467a82d023af00314382ab6a5a6d961c45"
+  },
+  {
+    "path": "P04-source-build.patch",
+    "bytes": 562079,
+    "sha256": "83e1b99d8f548ebe6c68a495decba63552837172d5b0ef5a6b08d456b4f4db94"
+  },
+  {
+    "path": "basis/reviewed-inputs.json",
+    "bytes": 521,
+    "sha256": "fd9e9bd777c466d1fef5407a9a8a3c41a018105e414c5c2e3ff754f2a940e296"
+  },
+  {
+    "path": "evidence/admission-mutations.json",
+    "bytes": 1162,
+    "sha256": "8d599fd7e0451e9cd88b5f04597b4929c8604707c895525f55198ecfddfb5387"
+  },
+  {
+    "path": "evidence/linux/commands.json",
+    "bytes": 5929,
+    "sha256": "7accf4821ed2eec2292ce81d3e49fc85282cbe35d94877cc5a498839a725cc30"
+  },
+  {
+    "path": "evidence/linux/fake-ddi-results.txt",
+    "bytes": 3571,
+    "sha256": "d007932fbfde4aae4f86c4b62b323cc67e073deb1728a0e44b27c51313d35d15"
+  },
+  {
+    "path": "evidence/linux/pe-regression-results.txt",
+    "bytes": 41,
+    "sha256": "a7bd5f0f0c84e2259bc8c303ddcd627d718e3c6a2b6418cde296c821e498e067"
+  },
+  {
+    "path": "evidence/linux/policy-count-results.txt",
+    "bytes": 36,
+    "sha256": "27e1dcc501d552dadccbec5a14cbaa1237e1e8005e22b0376a798439d9c0314f"
+  },
+  {
+    "path": "evidence/linux/policy-tests-results.txt",
+    "bytes": 4436,
+    "sha256": "8ed8b3f60bd4502045bfc711faa35609b470a08a612d855b23102872afff6a84"
+  },
+  {
+    "path": "evidence/linux/portable-proof.json",
+    "bytes": 160437,
+    "sha256": "9223b3cd7bb265d7a67f5d700e26930dbbb9437c9c5f579e88ec58b309f119bc"
+  },
+  {
+    "path": "evidence/linux/portable-release-results.txt",
+    "bytes": 40062,
+    "sha256": "6e833b15ec4532cd44b4188bb2f38592bcb78f7278ae6a2baca28dbabc8544be"
+  },
+  {
+    "path": "evidence/linux/workspace-debug-results.txt",
+    "bytes": 42939,
+    "sha256": "dabaabb0886174ed54c874b4441381edcda16be365cb23d66cb990f741124dda"
+  },
+  {
+    "path": "evidence/readback-mutations.json",
+    "bytes": 811,
+    "sha256": "c95d9c4a4694c9b00b5d2413a59756391f1f32d19424073cd070a0aa414a1411"
+  },
+  {
+    "path": "evidence/source-manifest.json",
+    "bytes": 10120,
+    "sha256": "d8d488f245c1829688c4d603e75349bc187ef56086f55d33d72284f992c1db6c"
+  },
+  {
+    "path": "evidence/toolchain.json",
+    "bytes": 2824,
+    "sha256": "794ebfc3aaecbb13bb21e61d1d699ca35803e824eb9d019872a76c8461ae40d2"
+  },
+  {
+    "path": "evidence/verification-summary.json",
+    "bytes": 804,
+    "sha256": "8666d7bca51cfeae67ac387c95514fd628fdb68847b67e8d0a5c82243ff6000c"
+  },
+  {
+    "path": "evidence/windows/commands.json",
+    "bytes": 15799,
+    "sha256": "62de960838476f237447c456bfe0c4549593b75225b1906ab01b5e97e146dfe7"
+  },
+  {
+    "path": "evidence/windows/fake-ddi-results.txt",
+    "bytes": 3571,
+    "sha256": "d007932fbfde4aae4f86c4b62b323cc67e073deb1728a0e44b27c51313d35d15"
+  },
+  {
+    "path": "evidence/windows/ipc-proof.json",
+    "bytes": 15956,
+    "sha256": "e8c72d24b3b337515b5c6a8206f4de641c571cd82be672c62aafeef641ec0355"
+  },
+  {
+    "path": "evidence/windows/ipc-release-results.txt",
+    "bytes": 1505,
+    "sha256": "6fba178b5fcda48e17e52bb449e4d05eed152eb49f35f5e417760ef14ed5e123"
+  },
+  {
+    "path": "evidence/windows/linked-images.json",
+    "bytes": 7732,
+    "sha256": "dc28f127d882934415960130a14c0b0a8637210f5361865fc83e95812c196522"
+  },
+  {
+    "path": "evidence/windows/native-linker.json",
+    "bytes": 567,
+    "sha256": "7200a815a64210c1e36d9e1f2c2947307e35b7a925e2bb72591264cbfcb088e8"
+  },
+  {
+    "path": "evidence/windows/pe-regression-results.txt",
+    "bytes": 41,
+    "sha256": "a7bd5f0f0c84e2259bc8c303ddcd627d718e3c6a2b6418cde296c821e498e067"
+  },
+  {
+    "path": "evidence/windows/policy-count-results.txt",
+    "bytes": 36,
+    "sha256": "27e1dcc501d552dadccbec5a14cbaa1237e1e8005e22b0376a798439d9c0314f"
+  },
+  {
+    "path": "evidence/windows/policy-tests-results.txt",
+    "bytes": 4436,
+    "sha256": "8ed8b3f60bd4502045bfc711faa35609b470a08a612d855b23102872afff6a84"
+  },
+  {
+    "path": "evidence/windows/portable-proof.json",
+    "bytes": 160943,
+    "sha256": "0025435c624bd9a355683836e504fbd8e0ba8564f6fa390c9b1f617c142deb23"
+  },
+  {
+    "path": "evidence/windows/portable-release-results.txt",
+    "bytes": 40126,
+    "sha256": "e2f1bb197cf582739188296991d69ecbee750ecc2b95edc74db6c6e738580f53"
+  },
+  {
+    "path": "evidence/windows/sdk-layout.json",
+    "bytes": 265,
+    "sha256": "497a8b54e8624bb5e406659f581221a6e9ba310a04e24dc10412316f86b2282c"
+  },
+  {
+    "path": "evidence/windows/toolchain-inputs.json",
+    "bytes": 39005,
+    "sha256": "e5dfbd3b6a73f260dd4001f7261f05c871dc28f6fc09fed56c0a88bcf6d11785"
+  },
+  {
+    "path": "evidence/windows/workspace-debug-results.txt",
+    "bytes": 40520,
+    "sha256": "1fa637cc08aa0afa44bfe245cb125e3f44ac7a84a90faaa92de5585ea97d8336"
+  },
+  {
+    "path": "evidence/windows/xtask-debug-results.txt",
+    "bytes": 2320,
+    "sha256": "5a722c9dfc7e40922810237d0eb356126893583476bc60062cc49d95e61c3d72"
+  },
+  {
+    "path": "evidence/wrong-target-mutation-results.txt",
+    "bytes": 525,
+    "sha256": "02d0a81108bb270ff69cbb3f0ef6eb2391583fb8dc23edf0aaf1b3d2359a710c"
+  },
+  {
+    "path": "evidence/wrong-target-mutation.json",
+    "bytes": 1416,
+    "sha256": "199a5cc0f730970644cfc86bc01b323aa5221164ee8e509a440c180be9d39ca1"
+  }
+]

@@ -1,0 +1,82 @@
+{
+  "sdkPackageVersion": "10.0.26100.6584",
+  "sdkHeaderVersion": "10.0.26100.0",
+  "rust": "1.99.1",
+  "windowsTarget": "x86_64-pc-windows-msvc",
+  "linuxTarget": "x86_64-unknown-linux-gnu",
+  "linuxEnvironment": "Debian trixie in WSL, non-root",
+  "linuxCCompiler": "Zig 0.15.2 cc",
+  "node": "26.13.0",
+  "packages": [
+    {
+      "file": "sdk-x64.nupkg",
+      "sha256": "c29ce7a4641cb37ee32ebb8078cc65cfbabc7025076bcfba869039204b1e960d"
+    },
+    {
+      "file": "sdk-neutral.nupkg",
+      "sha256": "5d31b38205bdd9ac761b4cb39fbbc6b7209b01c11194324afc674d7d119483a0"
+    },
+    {
+      "file": "rust-channel-1.99.1.toml",
+      "sha256": "45ed3c16614ecfefead8c920526326202bfa18287ecd33113e0fa94af1d5a02f"
+    },
+    {
+      "file": "node-v26.13.0-linux-x64.tar.xz",
+      "sha256": "d28a96af6c38596f6d9d97c0ee531c13d238d757742387d1928de822d959e997"
+    },
+    {
+      "file": "Microsoft.VC.14.44.17.14.Tools.HostX64.TargetX64.base.vsix",
+      "sha256": "fb0eb9097fcac86ae264917fa543aecb6ab88c6656f29d912de56bfde802c541"
+    },
+    {
+      "file": "Microsoft.VC.14.44.17.14.CRT.Headers.base.vsix",
+      "sha256": "852382a9aa73502b7849c1bcadfb603ba7175c4e8b60e6aba03c7de711d4ece5"
+    },
+    {
+      "file": "msvc-x64-crt.vsix",
+      "sha256": "f01f701a7bcd9587a340898c851424f6a52bb913a70c185ff0d5bf0288c5831a"
+    },
+    {
+      "file": "cl-resources.vsix",
+      "sha256": "aa79883c5534acad5f506f66a6e4f40c0a1f89b6867c3733d82583c34d7f0b30"
+    }
+  ],
+  "microsoftTools": [
+    {
+      "file": "cl.exe",
+      "fileVersion": "19.44.35230.0",
+      "authenticode": "Valid",
+      "microsoftSigner": true,
+      "sha256": "e87e78b3ef6580b75aebda843f8a22e874612d9f766344046551399f898eb226"
+    },
+    {
+      "file": "link.exe",
+      "fileVersion": "14.44.35230.0",
+      "authenticode": "Valid",
+      "microsoftSigner": true,
+      "sha256": "49a5df25c3182a22684375b1d62a025016deffccea247894fe5ca2c85610c6a6"
+    },
+    {
+      "file": "dumpbin.exe",
+      "fileVersion": "14.44.35230.0",
+      "authenticode": "Valid",
+      "microsoftSigner": true,
+      "sha256": "e2c0ec987bb904acfe88c0685cbc836e695cf22007cb17f3ce9f39e785dec980"
+    },
+    {
+      "file": "c1.dll",
+      "fileVersion": "19.44.35230.0",
+      "authenticode": "Valid",
+      "microsoftSigner": true,
+      "sha256": "3b82d58d21354fdb611efdd5ab82ec0484acfa5f3de37ca6bea42c630ff2c24a"
+    },
+    {
+      "file": "c2.dll",
+      "fileVersion": "19.44.35230.0",
+      "authenticode": "Valid",
+      "microsoftSigner": true,
+      "sha256": "e2fdfd6505cd6e9b670922733a914fbf22cae5d226943290548f24eaf699267a"
+    }
+  ],
+  "provenance": "Individual Microsoft compiler binaries have valid Authenticode signatures. SDK packages and tool archives are identified by SHA-256. Full Visual Studio channel-catalog digest authentication was not established."
+}

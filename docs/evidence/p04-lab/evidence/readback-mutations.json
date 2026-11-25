@@ -1,0 +1,20 @@
+{
+  "canonicalNeverReplacedByMutants": true,
+  "mutants": [
+    {
+      "id": "status-only",
+      "expectedRejected": true,
+      "sourceSha256": "D272FCF26565DDBE25130672F0B97107BF137B8B94BDFF6604B8DDFC3516DF7B",
+      "binarySha256": "CB640467EE34EACAA77BBB23FAC91581870F3E93A13AF6E456D9FC4DE7DB5A23",
+      "logSha256": "8869920B348AA599CAD36ACCBF7E53A8A4A5E4AE0A1091E46080F58318CB7955"
+    },
+    {
+      "id": "store-truth",
+      "expectedRejected": true,
+      "sourceSha256": "DE811629843BC6748D4FC8E9DBAA968F870179D887A18D53EF28F018A02D8F77",
+      "binarySha256": "2B604B00D218E0CF0653F782840F177B59905F00678350B276DF905B9EDF2015",
+      "logSha256": "17A1B91D70F7BDE1B98EA5BF3CB85C9FC09290873269D1061ABEDA954E98880C"
+    }
+  ],
+  "stage": "targeted readback regression before final source freeze"
+}

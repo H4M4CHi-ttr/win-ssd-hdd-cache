@@ -1,0 +1,59 @@
+# Subtest: all three suites require their independently named fixed schedules
+ok 1 - all three suites require their independently named fixed schedules
+# Subtest: a self-consistent smaller suite cannot omit a mandatory case
+ok 2 - a self-consistent smaller suite cannot omit a mandatory case
+# Subtest: zero duplicate mismatched summary and unknown suite are rejected
+ok 3 - zero duplicate mismatched summary and unknown suite are rejected
+# Subtest: an additional distinct regression is accepted without weakening minimums
+ok 4 - an additional distinct regression is accepted without weakening minimums
+# Subtest: workflow uses only least-privilege ordinary hosted jobs
+ok 5 - workflow uses only least-privilege ordinary hosted jobs
+# Subtest: both event filters include the direct Rust scalar-decoder dependency
+ok 6 - both event filters include the direct Rust scalar-decoder dependency
+# Subtest: only pinned checkout and text JSON evidence upload actions are used
+ok 7 - only pinned checkout and text JSON evidence upload actions are used
+# Subtest: workflow has no live device invocation or credential-bearing feature
+ok 8 - workflow has no live device invocation or credential-bearing feature
+# Subtest: kernel build refuses a non-Actions or non-Windows host
+ok 9 - kernel build refuses a non-Actions or non-Windows host
+# Subtest: same actual driver and snapshot TUs feed host and WDK evidence
+ok 10 - same actual driver and snapshot TUs feed host and WDK evidence
+# Subtest: only exact kit and two public include directories are accepted
+ok 11 - only exact kit and two public include directories are accepted
+# Subtest: package digest signatures collision and compiler evidence are mandatory
+ok 12 - package digest signatures collision and compiler evidence are mandatory
+# Subtest: kernel link retains GS native W^X flags and original PE checker
+ok 13 - kernel link retains GS native W^X flags and original PE checker
+# Subtest: evidence never promotes build execution into runtime qualification
+ok 14 - evidence never promotes build execution into runtime qualification
+# Subtest: all three actual AMD64 user boundaries receive check release link static proof and no invocation
+ok 15 - all three actual AMD64 user boundaries receive check release link static proof and no invocation
+# Subtest: Rust proof rejects zero ignored failed or incomplete summaries
+ok 16 - Rust proof rejects zero ignored failed or incomplete summaries
+# Subtest: Rust proof totals real named passes across targets without deduplicating names
+ok 17 - Rust proof totals real named passes across targets without deduplicating names
+# Subtest: TAP proof requires complete unique nonzero all-pass summary
+ok 18 - TAP proof requires complete unique nonzero all-pass summary
+# Subtest: matrix gate requires every fixed platform-applicable name once
+ok 19 - matrix gate requires every fixed platform-applicable name once
+# Subtest: both event filters cover every new crate and the proof helper directory
+ok 20 - both event filters cover every new crate and the proof helper directory
+# Subtest: portable jobs retain default features and Windows executes only the synthetic IPC target
+ok 21 - portable jobs retain default features and Windows executes only the synthetic IPC target
+# Subtest: fixed coverage includes all R13 stage variants and helpers never satisfy H gates
+ok 22 - fixed coverage includes all R13 stage variants and helpers never satisfy H gates
+# Subtest: all 18 real H branch records require independent prefixes traces deadlines and false real flags
+ok 23 - all 18 real H branch records require independent prefixes traces deadlines and false real flags
+# Subtest: a self-consistent reduced portable run or duplicate required case cannot pass by helper counts
+ok 24 - a self-consistent reduced portable run or duplicate required case cannot pass by helper counts
+# Subtest: real SDK layout translation unit is compiled once and never linked or executed
+ok 25 - real SDK layout translation unit is compiled once and never linked or executed
+# Subtest: user link checks the actual import thunks as well as the separate inspection
+ok 26 - user link checks the actual import thunks as well as the separate inspection
+# Subtest: static proof rejects corrupted tables and the wrong architecture/subsystem
+ok 27 - static proof rejects corrupted tables and the wrong architecture/subsystem
+# tests 27
+# pass 27
+# fail 0
+# cancelled 0
+# skipped 0

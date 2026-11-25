@@ -1,0 +1,30 @@
+{
+  "canonicalSha256": "C7A418E0861A22942B782CC0390C748F048806D49D1F928E888268D5643CD5AF",
+  "canonicalUnchanged": true,
+  "mutants": [
+    {
+      "id": "capacity-bypass",
+      "case": "tests::r03_t1_capacity_other_known_values_refused",
+      "exitCode": 101,
+      "rejected": true,
+      "sourceSha256": "7B1DD8202C184C1B763B997AA667EC4B779DC96D622EF07934C62B67770BF86B",
+      "binarySha256": "8FE20AA7F48CA1A5B7D7362D247AE3A310D4CF4943BB0CEE5A4ADC9D6F075042"
+    },
+    {
+      "id": "observed-id-bypass",
+      "case": "tests::r04_non_ascii_protected_or_observed_ids_refused",
+      "exitCode": 101,
+      "rejected": true,
+      "sourceSha256": "13E970A670DACAEDBEFC9CDCE901B0F8DDB6DDA7CCC4FF896688DE722A67483A",
+      "binarySha256": "D961CE4023C5E0C9555294C678454C567E85E6188C7282293F266FE9D958F52F"
+    },
+    {
+      "id": "empty-class-bypass",
+      "case": "tests::r05_empty_expected_class_or_stack_refused",
+      "exitCode": 101,
+      "rejected": true,
+      "sourceSha256": "3762ADEB2874ACBE31E60FC81CBB8742A425917FFB5572BA80DB10741386175F",
+      "binarySha256": "D5D7E1AE140BC8450C129B7873D8762F016CD8248FE792D70A402B3ED4E9A138"
+    }
+  ]
+}

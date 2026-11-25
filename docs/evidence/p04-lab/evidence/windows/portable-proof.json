@@ -1,0 +1,5125 @@
+{
+  "schema": "p04-matrix-proof-v1",
+  "suite": "portable",
+  "platform": "windows",
+  "passed": 263,
+  "requiredPassed": 223,
+  "groups": [
+    {
+      "id": "registration",
+      "requiredPassed": 145,
+      "cases": [
+        {
+          "id": "R13B",
+          "name": "tests::crash_tests::r13b_f_after_process_kill",
+          "fixtureVariants": [
+            "r13b_f_after_process_kill"
+          ],
+          "sources": [
+            "crates/cache-probe-registration/src/lib.rs",
+            "crates/cache-probe-registration/src/synthetic.rs",
+            "crates/cache-probe-registration/src/tests.rs",
+            "crates/cache-probe-registration/src/tests/crash_tests.rs"
+          ]
+        },
+        {
+          "id": "R13B",
+          "name": "tests::crash_tests::r13b_f_before_process_kill",
+          "fixtureVariants": [
+            "r13b_f_before_process_kill"
+          ],
+          "sources": [
+            "crates/cache-probe-registration/src/lib.rs",
+            "crates/cache-probe-registration/src/synthetic.rs",
+            "crates/cache-probe-registration/src/tests.rs",
+            "crates/cache-probe-registration/src/tests/crash_tests.rs"
+          ]
+        },
+        {
+          "id": "R13B",
+          "name": "tests::crash_tests::r13b_k_after_process_kill",
+          "fixtureVariants": [
+            "r13b_k_after_process_kill"
+          ],
+          "sources": [
+            "crates/cache-probe-registration/src/lib.rs",
+            "crates/cache-probe-registration/src/synthetic.rs",
+            "crates/cache-probe-registration/src/tests.rs",
+            "crates/cache-probe-registration/src/tests/crash_tests.rs"
+          ]
+        },
+        {
+          "id": "R13B",
+          "name": "tests::crash_tests::r13b_k_before_process_kill",
+          "fixtureVariants": [
+            "r13b_k_before_process_kill"
+          ],
+          "sources": [
+            "crates/cache-probe-registration/src/lib.rs",
+            "crates/cache-probe-registration/src/synthetic.rs",
+            "crates/cache-probe-registration/src/tests.rs",
+            "crates/cache-probe-registration/src/tests/crash_tests.rs"
+          ]
+        },
+        {
+          "id": "R13B",
+          "name": "tests::crash_tests::r13b_p_after_process_kill",
+          "fixtureVariants": [
+            "r13b_p_after_process_kill"
+          ],
+          "sources": [
+            "crates/cache-probe-registration/src/lib.rs",
+            "crates/cache-probe-registration/src/synthetic.rs",
+            "crates/cache-probe-registration/src/tests.rs",
+            "crates/cache-probe-registration/src/tests/crash_tests.rs"
+          ]
+        },
+        {
+          "id": "R13B",
+          "name": "tests::crash_tests::r13b_p_before_process_kill",
+          "fixtureVariants": [
+            "r13b_p_before_process_kill"
+          ],
+          "sources": [
+            "crates/cache-probe-registration/src/lib.rs",
+            "crates/cache-probe-registration/src/synthetic.rs",
+            "crates/cache-probe-registration/src/tests.rs",
+            "crates/cache-probe-registration/src/tests/crash_tests.rs"
+          ]
+        },
+        {
+          "id": "R13B",
+          "name": "tests::crash_tests::r13b_s_after_process_kill",
+          "fixtureVariants": [
+            "r13b_s_after_process_kill"
+          ],
+          "sources": [
+            "crates/cache-probe-registration/src/lib.rs",
+            "crates/cache-probe-registration/src/synthetic.rs",
+            "crates/cache-probe-registration/src/tests.rs",
+            "crates/cache-probe-registration/src/tests/crash_tests.rs"
+          ]
+        },
+        {
+          "id": "R13B",
+          "name": "tests::crash_tests::r13b_s_before_process_kill",
+          "fixtureVariants": [
+            "r13b_s_before_process_kill"
+          ],
+          "sources": [
+            "crates/cache-probe-registration/src/lib.rs",
+            "crates/cache-probe-registration/src/synthetic.rs",
+            "crates/cache-probe-registration/src/tests.rs",
+            "crates/cache-probe-registration/src/tests/crash_tests.rs"
+          ]
+        },
+        {
+          "id": "R14",
+          "name": "tests::crash_tests::r14_before_complete_process_kill",
+          "fixtureVariants": [
+            "r14_before_complete_process_kill"
+          ],
+          "sources": [
+            "crates/cache-probe-registration/src/lib.rs",
+            "crates/cache-probe-registration/src/synthetic.rs",
+            "crates/cache-probe-registration/src/tests.rs",
+            "crates/cache-probe-registration/src/tests/crash_tests.rs"
+          ]
+        },
+        {
+          "id": "R14",
+          "name": "tests::crash_tests::r14_mid_verification_process_kill",
+          "fixtureVariants": [
+            "r14_mid_verification_process_kill"
+          ],
+          "sources": [
+            "crates/cache-probe-registration/src/lib.rs",
+            "crates/cache-probe-registration/src/synthetic.rs",
+            "crates/cache-probe-registration/src/tests.rs",
+            "crates/cache-probe-registration/src/tests/crash_tests.rs"
+          ]
+        },
+        {
+          "id": "R14",
+          "name": "tests::crash_tests::r14_private_record_rejects_truncation_and_other_identity_binding",
+          "fixtureVariants": [
+            "r14_private_record_rejects_truncation_and_other_identity_binding"
+          ],
+          "sources": [
+            "crates/cache-probe-registration/src/lib.rs",
+            "crates/cache-probe-registration/src/synthetic.rs",
+            "crates/cache-probe-registration/src/tests.rs",
+            "crates/cache-probe-registration/src/tests/crash_tests.rs"
+          ]
+        },
+        {
+          "id": "R14",
+          "name": "tests::crash_tests::r14_v_process_kill",
+          "fixtureVariants": [
+            "r14_v_process_kill"
+          ],
+          "sources": [
+            "crates/cache-probe-registration/src/lib.rs",
+            "crates/cache-probe-registration/src/synthetic.rs",
+            "crates/cache-probe-registration/src/tests.rs",
+            "crates/cache-probe-registration/src/tests/crash_tests.rs"
+          ]
+        },
+        {
+          "id": "R01",
+          "name": "tests::r01_dry_run_then_p_s_k_f_v_only_t",
+          "fixtureVariants": [
+            "r01_dry_run_then_p_s_k_f_v_only_t"
+          ],
+          "sources": [
+            "crates/cache-probe-registration/src/lib.rs",
+            "crates/cache-probe-registration/src/synthetic.rs",
+            "crates/cache-probe-registration/src/tests.rs",
+            "crates/cache-probe-registration/src/tests/crash_tests.rs"
+          ]
+        },
+        {
+          "id": "R01",
+          "name": "tests::r01_initial_rights_and_private_journal_fail_closed",
+          "fixtureVariants": [
+            "r01_initial_rights_and_private_journal_fail_closed"
+          ],
+          "sources": [
+            "crates/cache-probe-registration/src/lib.rs",
+            "crates/cache-probe-registration/src/synthetic.rs",
+            "crates/cache-probe-registration/src/tests.rs",
+            "crates/cache-probe-registration/src/tests/crash_tests.rs"
+          ]
+        },
+        {
+          "id": "R02",
+          "name": "tests::r02_a_reuses_t_number",
+          "fixtureVariants": [
+            "r02_a_reuses_t_number"
+          ],
+          "sources": [
+            "crates/cache-probe-registration/src/lib.rs",
+            "crates/cache-probe-registration/src/synthetic.rs",
+            "crates/cache-probe-registration/src/tests.rs",
+            "crates/cache-probe-registration/src/tests/crash_tests.rs"
+          ]
+        },
+        {
+          "id": "R02",
+          "name": "tests::r02_api_returns_a_after_t_check",
+          "fixtureVariants": [
+            "r02_api_returns_a_after_t_check"
+          ],
+          "sources": [
+            "crates/cache-probe-registration/src/lib.rs",
+            "crates/cache-probe-registration/src/synthetic.rs",
+            "crates/cache-probe-registration/src/tests.rs",
+            "crates/cache-probe-registration/src/tests/crash_tests.rs"
+          ]
+        },
+        {
+          "id": "R02",
+          "name": "tests::r02_input_points_to_os",
+          "fixtureVariants": [
+            "r02_input_points_to_os"
+          ],
+          "sources": [
+            "crates/cache-probe-registration/src/lib.rs",
+            "crates/cache-probe-registration/src/synthetic.rs",
+            "crates/cache-probe-registration/src/tests.rs",
+            "crates/cache-probe-registration/src/tests/crash_tests.rs"
+          ]
+        },
+        {
+          "id": "R02",
+          "name": "tests::r02_mutated_registrar_request_is_logged_by_actual_fake_object",
+          "fixtureVariants": [
+            "r02_mutated_registrar_request_is_logged_by_actual_fake_object"
+          ],
+          "sources": [
+            "crates/cache-probe-registration/src/lib.rs",
+            "crates/cache-probe-registration/src/synthetic.rs",
+            "crates/cache-probe-registration/src/tests.rs",
+            "crates/cache-probe-registration/src/tests/crash_tests.rs"
+          ]
+        },
+        {
+          "id": "R02",
+          "name": "tests::r02_t_label_has_a_identity",
+          "fixtureVariants": [
+            "r02_t_label_has_a_identity"
+          ],
+          "sources": [
+            "crates/cache-probe-registration/src/lib.rs",
+            "crates/cache-probe-registration/src/synthetic.rs",
+            "crates/cache-probe-registration/src/tests.rs",
+            "crates/cache-probe-registration/src/tests/crash_tests.rs"
+          ]
+        },
+        {
+          "id": "R03",
+          "name": "tests::r03_disconnected",
+          "fixtureVariants": [
+            "r03_disconnected"
+          ],
+          "sources": [
+            "crates/cache-probe-registration/src/lib.rs",
+            "crates/cache-probe-registration/src/synthetic.rs",
+            "crates/cache-probe-registration/src/tests.rs",
+            "crates/cache-probe-registration/src/tests/crash_tests.rs"
+          ]
+        },
+        {
+          "id": "R03",
+          "name": "tests::r03_duplicate_serial",
+          "fixtureVariants": [
+            "r03_duplicate_serial"
+          ],
+          "sources": [
+            "crates/cache-probe-registration/src/lib.rs",
+            "crates/cache-probe-registration/src/synthetic.rs",
+            "crates/cache-probe-registration/src/tests.rs",
+            "crates/cache-probe-registration/src/tests/crash_tests.rs"
+          ]
+        },
+        {
+          "id": "R03",
+          "name": "tests::r03_empty_device_location_same_hardware_uses_independent_identity",
+          "fixtureVariants": [
+            "r03_empty_device_location_same_hardware_uses_independent_identity"
+          ],
+          "sources": [
+            "crates/cache-probe-registration/src/lib.rs",
+            "crates/cache-probe-registration/src/synthetic.rs",
+            "crates/cache-probe-registration/src/tests.rs",
+            "crates/cache-probe-registration/src/tests/crash_tests.rs"
+          ]
+        },
+        {
+          "id": "R03",
+          "name": "tests::r03_mixed_identity_rows",
+          "fixtureVariants": [
+            "r03_mixed_identity_rows"
+          ],
+          "sources": [
+            "crates/cache-probe-registration/src/lib.rs",
+            "crates/cache-probe-registration/src/synthetic.rs",
+            "crates/cache-probe-registration/src/tests.rs",
+            "crates/cache-probe-registration/src/tests/crash_tests.rs"
+          ]
+        },
+        {
+          "id": "R03",
+          "name": "tests::r03_number_changes_parent_lun_identity_still_bind",
+          "fixtureVariants": [
+            "r03_number_changes_parent_lun_identity_still_bind"
+          ],
+          "sources": [
+            "crates/cache-probe-registration/src/lib.rs",
+            "crates/cache-probe-registration/src/synthetic.rs",
+            "crates/cache-probe-registration/src/tests.rs",
+            "crates/cache-probe-registration/src/tests/crash_tests.rs"
+          ]
+        },
+        {
+          "id": "R03",
+          "name": "tests::r03_old_host_chain",
+          "fixtureVariants": [
+            "r03_old_host_chain"
+          ],
+          "sources": [
+            "crates/cache-probe-registration/src/lib.rs",
+            "crates/cache-probe-registration/src/synthetic.rs",
+            "crates/cache-probe-registration/src/tests.rs",
+            "crates/cache-probe-registration/src/tests/crash_tests.rs"
+          ]
+        },
+        {
+          "id": "R03",
+          "name": "tests::r03_two_t",
+          "fixtureVariants": [
+            "r03_two_t"
+          ],
+          "sources": [
+            "crates/cache-probe-registration/src/lib.rs",
+            "crates/cache-probe-registration/src/synthetic.rs",
+            "crates/cache-probe-registration/src/tests.rs",
+            "crates/cache-probe-registration/src/tests/crash_tests.rs"
+          ]
+        },
+        {
+          "id": "R03",
+          "name": "tests::r03_zero_t",
+          "fixtureVariants": [
+            "r03_zero_t"
+          ],
+          "sources": [
+            "crates/cache-probe-registration/src/lib.rs",
+            "crates/cache-probe-registration/src/synthetic.rs",
+            "crates/cache-probe-registration/src/tests.rs",
+            "crates/cache-probe-registration/src/tests/crash_tests.rs"
+          ]
+        },
+        {
+          "id": "R04",
+          "name": "tests::r04_non_ascii_exact_and_expansion_fail_closed",
+          "fixtureVariants": [
+            "r04_non_ascii_exact_and_expansion_fail_closed"
+          ],
+          "sources": [
+            "crates/cache-probe-registration/src/lib.rs",
+            "crates/cache-probe-registration/src/synthetic.rs",
+            "crates/cache-probe-registration/src/tests.rs",
+            "crates/cache-probe-registration/src/tests/crash_tests.rs"
+          ]
+        },
+        {
+          "id": "R04",
+          "name": "tests::r04_selector_boundaries",
+          "fixtureVariants": [
+            "r04_selector_boundaries"
+          ],
+          "sources": [
+            "crates/cache-probe-registration/src/lib.rs",
+            "crates/cache-probe-registration/src/synthetic.rs",
+            "crates/cache-probe-registration/src/tests.rs",
+            "crates/cache-probe-registration/src/tests/crash_tests.rs"
+          ]
+        },
+        {
+          "id": "R04",
+          "name": "tests::r04_selector_malformed_and_exact_matching",
+          "fixtureVariants": [
+            "r04_selector_malformed_and_exact_matching"
+          ],
+          "sources": [
+            "crates/cache-probe-registration/src/lib.rs",
+            "crates/cache-probe-registration/src/synthetic.rs",
+            "crates/cache-probe-registration/src/tests.rs",
+            "crates/cache-probe-registration/src/tests/crash_tests.rs"
+          ]
+        },
+        {
+          "id": "R05",
+          "name": "tests::r05_dedicated_dump",
+          "fixtureVariants": [
+            "r05_dedicated_dump"
+          ],
+          "sources": [
+            "crates/cache-probe-registration/src/lib.rs",
+            "crates/cache-probe-registration/src/synthetic.rs",
+            "crates/cache-probe-registration/src/tests.rs",
+            "crates/cache-probe-registration/src/tests/crash_tests.rs"
+          ]
+        },
+        {
+          "id": "R05",
+          "name": "tests::r05_dump",
+          "fixtureVariants": [
+            "r05_dump"
+          ],
+          "sources": [
+            "crates/cache-probe-registration/src/lib.rs",
+            "crates/cache-probe-registration/src/synthetic.rs",
+            "crates/cache-probe-registration/src/tests.rs",
+            "crates/cache-probe-registration/src/tests/crash_tests.rs"
+          ]
+        },
+        {
+          "id": "R05",
+          "name": "tests::r05_efi",
+          "fixtureVariants": [
+            "r05_efi"
+          ],
+          "sources": [
+            "crates/cache-probe-registration/src/lib.rs",
+            "crates/cache-probe-registration/src/synthetic.rs",
+            "crates/cache-probe-registration/src/tests.rs",
+            "crates/cache-probe-registration/src/tests/crash_tests.rs"
+          ]
+        },
+        {
+          "id": "R05",
+          "name": "tests::r05_empty_build",
+          "fixtureVariants": [
+            "r05_empty_build"
+          ],
+          "sources": [
+            "crates/cache-probe-registration/src/lib.rs",
+            "crates/cache-probe-registration/src/synthetic.rs",
+            "crates/cache-probe-registration/src/tests.rs",
+            "crates/cache-probe-registration/src/tests/crash_tests.rs"
+          ]
+        },
+        {
+          "id": "R05",
+          "name": "tests::r05_hibernation",
+          "fixtureVariants": [
+            "r05_hibernation"
+          ],
+          "sources": [
+            "crates/cache-probe-registration/src/lib.rs",
+            "crates/cache-probe-registration/src/synthetic.rs",
+            "crates/cache-probe-registration/src/tests.rs",
+            "crates/cache-probe-registration/src/tests/crash_tests.rs"
+          ]
+        },
+        {
+          "id": "R05",
+          "name": "tests::r05_os",
+          "fixtureVariants": [
+            "r05_os"
+          ],
+          "sources": [
+            "crates/cache-probe-registration/src/lib.rs",
+            "crates/cache-probe-registration/src/synthetic.rs",
+            "crates/cache-probe-registration/src/tests.rs",
+            "crates/cache-probe-registration/src/tests/crash_tests.rs"
+          ]
+        },
+        {
+          "id": "R05",
+          "name": "tests::r05_os_pagefile_change_is_retained_not_target_use",
+          "fixtureVariants": [
+            "r05_os_pagefile_change_is_retained_not_target_use"
+          ],
+          "sources": [
+            "crates/cache-probe-registration/src/lib.rs",
+            "crates/cache-probe-registration/src/synthetic.rs",
+            "crates/cache-probe-registration/src/tests.rs",
+            "crates/cache-probe-registration/src/tests/crash_tests.rs"
+          ]
+        },
+        {
+          "id": "R05",
+          "name": "tests::r05_other",
+          "fixtureVariants": [
+            "r05_other"
+          ],
+          "sources": [
+            "crates/cache-probe-registration/src/lib.rs",
+            "crates/cache-probe-registration/src/synthetic.rs",
+            "crates/cache-probe-registration/src/tests.rs",
+            "crates/cache-probe-registration/src/tests/crash_tests.rs"
+          ]
+        },
+        {
+          "id": "R05",
+          "name": "tests::r05_pagefile",
+          "fixtureVariants": [
+            "r05_pagefile"
+          ],
+          "sources": [
+            "crates/cache-probe-registration/src/lib.rs",
+            "crates/cache-probe-registration/src/synthetic.rs",
+            "crates/cache-probe-registration/src/tests.rs",
+            "crates/cache-probe-registration/src/tests/crash_tests.rs"
+          ]
+        },
+        {
+          "id": "R05",
+          "name": "tests::r05_unknown_build",
+          "fixtureVariants": [
+            "r05_unknown_build"
+          ],
+          "sources": [
+            "crates/cache-probe-registration/src/lib.rs",
+            "crates/cache-probe-registration/src/synthetic.rs",
+            "crates/cache-probe-registration/src/tests.rs",
+            "crates/cache-probe-registration/src/tests/crash_tests.rs"
+          ]
+        },
+        {
+          "id": "R05",
+          "name": "tests::r05_unknown_chain",
+          "fixtureVariants": [
+            "r05_unknown_chain"
+          ],
+          "sources": [
+            "crates/cache-probe-registration/src/lib.rs",
+            "crates/cache-probe-registration/src/synthetic.rs",
+            "crates/cache-probe-registration/src/tests.rs",
+            "crates/cache-probe-registration/src/tests/crash_tests.rs"
+          ]
+        },
+        {
+          "id": "R05",
+          "name": "tests::r05_unknown_r1",
+          "fixtureVariants": [
+            "r05_unknown_r1"
+          ],
+          "sources": [
+            "crates/cache-probe-registration/src/lib.rs",
+            "crates/cache-probe-registration/src/synthetic.rs",
+            "crates/cache-probe-registration/src/tests.rs",
+            "crates/cache-probe-registration/src/tests/crash_tests.rs"
+          ]
+        },
+        {
+          "id": "R05",
+          "name": "tests::r05_unknown_usage",
+          "fixtureVariants": [
+            "r05_unknown_usage"
+          ],
+          "sources": [
+            "crates/cache-probe-registration/src/lib.rs",
+            "crates/cache-probe-registration/src/synthetic.rs",
+            "crates/cache-probe-registration/src/tests.rs",
+            "crates/cache-probe-registration/src/tests/crash_tests.rs"
+          ]
+        },
+        {
+          "id": "R05",
+          "name": "tests::r05_unknown_vm",
+          "fixtureVariants": [
+            "r05_unknown_vm"
+          ],
+          "sources": [
+            "crates/cache-probe-registration/src/lib.rs",
+            "crates/cache-probe-registration/src/synthetic.rs",
+            "crates/cache-probe-registration/src/tests.rs",
+            "crates/cache-probe-registration/src/tests/crash_tests.rs"
+          ]
+        },
+        {
+          "id": "R06",
+          "name": "tests::r06_class_upper_unavailable",
+          "fixtureVariants": [
+            "r06_class_upper_unavailable"
+          ],
+          "sources": [
+            "crates/cache-probe-registration/src/lib.rs",
+            "crates/cache-probe-registration/src/synthetic.rs",
+            "crates/cache-probe-registration/src/tests.rs",
+            "crates/cache-probe-registration/src/tests/crash_tests.rs"
+          ]
+        },
+        {
+          "id": "R06",
+          "name": "tests::r06_duplicate_object_token",
+          "fixtureVariants": [
+            "r06_duplicate_object_token"
+          ],
+          "sources": [
+            "crates/cache-probe-registration/src/lib.rs",
+            "crates/cache-probe-registration/src/synthetic.rs",
+            "crates/cache-probe-registration/src/tests.rs",
+            "crates/cache-probe-registration/src/tests/crash_tests.rs"
+          ]
+        },
+        {
+          "id": "R06",
+          "name": "tests::r06_invalid_multi_sz_rejected",
+          "fixtureVariants": [
+            "r06_invalid_multi_sz_rejected"
+          ],
+          "sources": [
+            "crates/cache-probe-registration/src/lib.rs",
+            "crates/cache-probe-registration/src/synthetic.rs",
+            "crates/cache-probe-registration/src/tests.rs",
+            "crates/cache-probe-registration/src/tests/crash_tests.rs"
+          ]
+        },
+        {
+          "id": "R06",
+          "name": "tests::r06_missing_empty_and_existing_preserved",
+          "fixtureVariants": [
+            "r06_missing_empty_and_existing_preserved"
+          ],
+          "sources": [
+            "crates/cache-probe-registration/src/lib.rs",
+            "crates/cache-probe-registration/src/synthetic.rs",
+            "crates/cache-probe-registration/src/tests.rs",
+            "crates/cache-probe-registration/src/tests/crash_tests.rs"
+          ]
+        },
+        {
+          "id": "R06",
+          "name": "tests::r06_protected_upper_unavailable",
+          "fixtureVariants": [
+            "r06_protected_upper_unavailable"
+          ],
+          "sources": [
+            "crates/cache-probe-registration/src/lib.rs",
+            "crates/cache-probe-registration/src/synthetic.rs",
+            "crates/cache-probe-registration/src/tests.rs",
+            "crates/cache-probe-registration/src/tests/crash_tests.rs"
+          ]
+        },
+        {
+          "id": "R06",
+          "name": "tests::r06_query_failure_is_not_missing",
+          "fixtureVariants": [
+            "r06_query_failure_is_not_missing"
+          ],
+          "sources": [
+            "crates/cache-probe-registration/src/lib.rs",
+            "crates/cache-probe-registration/src/synthetic.rs",
+            "crates/cache-probe-registration/src/tests.rs",
+            "crates/cache-probe-registration/src/tests/crash_tests.rs"
+          ]
+        },
+        {
+          "id": "R06",
+          "name": "tests::r06_target_lower_unavailable",
+          "fixtureVariants": [
+            "r06_target_lower_unavailable"
+          ],
+          "sources": [
+            "crates/cache-probe-registration/src/lib.rs",
+            "crates/cache-probe-registration/src/synthetic.rs",
+            "crates/cache-probe-registration/src/tests.rs",
+            "crates/cache-probe-registration/src/tests/crash_tests.rs"
+          ]
+        },
+        {
+          "id": "R07",
+          "name": "tests::r07_allowlist_hash_change_rejected",
+          "fixtureVariants": [
+            "r07_allowlist_hash_change_rejected"
+          ],
+          "sources": [
+            "crates/cache-probe-registration/src/lib.rs",
+            "crates/cache-probe-registration/src/synthetic.rs",
+            "crates/cache-probe-registration/src/tests.rs",
+            "crates/cache-probe-registration/src/tests/crash_tests.rs"
+          ]
+        },
+        {
+          "id": "R07",
+          "name": "tests::r07_auto_start",
+          "fixtureVariants": [
+            "r07_auto_start"
+          ],
+          "sources": [
+            "crates/cache-probe-registration/src/lib.rs",
+            "crates/cache-probe-registration/src/synthetic.rs",
+            "crates/cache-probe-registration/src/tests.rs",
+            "crates/cache-probe-registration/src/tests/crash_tests.rs"
+          ]
+        },
+        {
+          "id": "R07",
+          "name": "tests::r07_broad_install",
+          "fixtureVariants": [
+            "r07_broad_install"
+          ],
+          "sources": [
+            "crates/cache-probe-registration/src/lib.rs",
+            "crates/cache-probe-registration/src/synthetic.rs",
+            "crates/cache-probe-registration/src/tests.rs",
+            "crates/cache-probe-registration/src/tests/crash_tests.rs"
+          ]
+        },
+        {
+          "id": "R07",
+          "name": "tests::r07_class_install",
+          "fixtureVariants": [
+            "r07_class_install"
+          ],
+          "sources": [
+            "crates/cache-probe-registration/src/lib.rs",
+            "crates/cache-probe-registration/src/synthetic.rs",
+            "crates/cache-probe-registration/src/tests.rs",
+            "crates/cache-probe-registration/src/tests/crash_tests.rs"
+          ]
+        },
+        {
+          "id": "R07",
+          "name": "tests::r07_duplicate_case_probe",
+          "fixtureVariants": [
+            "r07_duplicate_case_probe"
+          ],
+          "sources": [
+            "crates/cache-probe-registration/src/lib.rs",
+            "crates/cache-probe-registration/src/synthetic.rs",
+            "crates/cache-probe-registration/src/tests.rs",
+            "crates/cache-probe-registration/src/tests/crash_tests.rs"
+          ]
+        },
+        {
+          "id": "R07",
+          "name": "tests::r07_existing_probe",
+          "fixtureVariants": [
+            "r07_existing_probe"
+          ],
+          "sources": [
+            "crates/cache-probe-registration/src/lib.rs",
+            "crates/cache-probe-registration/src/synthetic.rs",
+            "crates/cache-probe-registration/src/tests.rs",
+            "crates/cache-probe-registration/src/tests/crash_tests.rs"
+          ]
+        },
+        {
+          "id": "R07",
+          "name": "tests::r07_loaded_service",
+          "fixtureVariants": [
+            "r07_loaded_service"
+          ],
+          "sources": [
+            "crates/cache-probe-registration/src/lib.rs",
+            "crates/cache-probe-registration/src/synthetic.rs",
+            "crates/cache-probe-registration/src/tests.rs",
+            "crates/cache-probe-registration/src/tests/crash_tests.rs"
+          ]
+        },
+        {
+          "id": "R07",
+          "name": "tests::r07_mutation_oracle_catches_broad_registration",
+          "fixtureVariants": [
+            "r07_mutation_oracle_catches_broad_registration"
+          ],
+          "sources": [
+            "crates/cache-probe-registration/src/lib.rs",
+            "crates/cache-probe-registration/src/synthetic.rs",
+            "crates/cache-probe-registration/src/tests.rs",
+            "crates/cache-probe-registration/src/tests/crash_tests.rs"
+          ]
+        },
+        {
+          "id": "R07",
+          "name": "tests::r07_unknown_service",
+          "fixtureVariants": [
+            "r07_unknown_service"
+          ],
+          "sources": [
+            "crates/cache-probe-registration/src/lib.rs",
+            "crates/cache-probe-registration/src/synthetic.rs",
+            "crates/cache-probe-registration/src/tests.rs",
+            "crates/cache-probe-registration/src/tests/crash_tests.rs"
+          ]
+        },
+        {
+          "id": "R07",
+          "name": "tests::r07_unreviewed_inf",
+          "fixtureVariants": [
+            "r07_unreviewed_inf"
+          ],
+          "sources": [
+            "crates/cache-probe-registration/src/lib.rs",
+            "crates/cache-probe-registration/src/synthetic.rs",
+            "crates/cache-probe-registration/src/tests.rs",
+            "crates/cache-probe-registration/src/tests/crash_tests.rs"
+          ]
+        },
+        {
+          "id": "R07",
+          "name": "tests::r07_wrong_binary_same_service",
+          "fixtureVariants": [
+            "r07_wrong_binary_same_service"
+          ],
+          "sources": [
+            "crates/cache-probe-registration/src/lib.rs",
+            "crates/cache-probe-registration/src/synthetic.rs",
+            "crates/cache-probe-registration/src/tests.rs",
+            "crates/cache-probe-registration/src/tests/crash_tests.rs"
+          ]
+        },
+        {
+          "id": "R08",
+          "name": "tests::r08_compare_then_set_mutation_loses_other_even_with_matching_readback",
+          "fixtureVariants": [
+            "r08_compare_then_set_mutation_loses_other_even_with_matching_readback"
+          ],
+          "sources": [
+            "crates/cache-probe-registration/src/lib.rs",
+            "crates/cache-probe-registration/src/synthetic.rs",
+            "crates/cache-probe-registration/src/tests.rs",
+            "crates/cache-probe-registration/src/tests/crash_tests.rs"
+          ]
+        },
+        {
+          "id": "R08",
+          "name": "tests::r08_mutex_and_unknown_exclusion_fail_before_p",
+          "fixtureVariants": [
+            "r08_mutex_and_unknown_exclusion_fail_before_p"
+          ],
+          "sources": [
+            "crates/cache-probe-registration/src/lib.rs",
+            "crates/cache-probe-registration/src/synthetic.rs",
+            "crates/cache-probe-registration/src/tests.rs",
+            "crates/cache-probe-registration/src/tests/crash_tests.rs"
+          ]
+        },
+        {
+          "id": "R08",
+          "name": "tests::r08_real_gate_cannot_be_unlocked_by_synthetic_rights",
+          "fixtureVariants": [
+            "r08_real_gate_cannot_be_unlocked_by_synthetic_rights"
+          ],
+          "sources": [
+            "crates/cache-probe-registration/src/lib.rs",
+            "crates/cache-probe-registration/src/synthetic.rs",
+            "crates/cache-probe-registration/src/tests.rs",
+            "crates/cache-probe-registration/src/tests/crash_tests.rs"
+          ]
+        },
+        {
+          "id": "R09",
+          "name": "tests::r09_exclusion_lost",
+          "fixtureVariants": [
+            "r09_exclusion_lost"
+          ],
+          "sources": [
+            "crates/cache-probe-registration/src/lib.rs",
+            "crates/cache-probe-registration/src/synthetic.rs",
+            "crates/cache-probe-registration/src/tests.rs",
+            "crates/cache-probe-registration/src/tests/crash_tests.rs"
+          ]
+        },
+        {
+          "id": "R09",
+          "name": "tests::r09_generation",
+          "fixtureVariants": [
+            "r09_generation"
+          ],
+          "sources": [
+            "crates/cache-probe-registration/src/lib.rs",
+            "crates/cache-probe-registration/src/synthetic.rs",
+            "crates/cache-probe-registration/src/tests.rs",
+            "crates/cache-probe-registration/src/tests/crash_tests.rs"
+          ]
+        },
+        {
+          "id": "R09",
+          "name": "tests::r09_loaded",
+          "fixtureVariants": [
+            "r09_loaded"
+          ],
+          "sources": [
+            "crates/cache-probe-registration/src/lib.rs",
+            "crates/cache-probe-registration/src/synthetic.rs",
+            "crates/cache-probe-registration/src/tests.rs",
+            "crates/cache-probe-registration/src/tests/crash_tests.rs"
+          ]
+        },
+        {
+          "id": "R09",
+          "name": "tests::r09_protected_record_changed",
+          "fixtureVariants": [
+            "r09_protected_record_changed"
+          ],
+          "sources": [
+            "crates/cache-probe-registration/src/lib.rs",
+            "crates/cache-probe-registration/src/synthetic.rs",
+            "crates/cache-probe-registration/src/tests.rs",
+            "crates/cache-probe-registration/src/tests/crash_tests.rs"
+          ]
+        },
+        {
+          "id": "R09",
+          "name": "tests::r09_removed",
+          "fixtureVariants": [
+            "r09_removed"
+          ],
+          "sources": [
+            "crates/cache-probe-registration/src/lib.rs",
+            "crates/cache-probe-registration/src/synthetic.rs",
+            "crates/cache-probe-registration/src/tests.rs",
+            "crates/cache-probe-registration/src/tests/crash_tests.rs"
+          ]
+        },
+        {
+          "id": "R09",
+          "name": "tests::r09_rights_lost",
+          "fixtureVariants": [
+            "r09_rights_lost"
+          ],
+          "sources": [
+            "crates/cache-probe-registration/src/lib.rs",
+            "crates/cache-probe-registration/src/synthetic.rs",
+            "crates/cache-probe-registration/src/tests.rs",
+            "crates/cache-probe-registration/src/tests/crash_tests.rs"
+          ]
+        },
+        {
+          "id": "R09",
+          "name": "tests::r09_swap",
+          "fixtureVariants": [
+            "r09_swap"
+          ],
+          "sources": [
+            "crates/cache-probe-registration/src/lib.rs",
+            "crates/cache-probe-registration/src/synthetic.rs",
+            "crates/cache-probe-registration/src/tests.rs",
+            "crates/cache-probe-registration/src/tests/crash_tests.rs"
+          ]
+        },
+        {
+          "id": "R10",
+          "name": "tests::r10_a_stack_unknown",
+          "fixtureVariants": [
+            "r10_a_stack_unknown"
+          ],
+          "sources": [
+            "crates/cache-probe-registration/src/lib.rs",
+            "crates/cache-probe-registration/src/synthetic.rs",
+            "crates/cache-probe-registration/src/tests.rs",
+            "crates/cache-probe-registration/src/tests/crash_tests.rs"
+          ]
+        },
+        {
+          "id": "R10",
+          "name": "tests::r10_class_changed",
+          "fixtureVariants": [
+            "r10_class_changed"
+          ],
+          "sources": [
+            "crates/cache-probe-registration/src/lib.rs",
+            "crates/cache-probe-registration/src/synthetic.rs",
+            "crates/cache-probe-registration/src/tests.rs",
+            "crates/cache-probe-registration/src/tests/crash_tests.rs"
+          ]
+        },
+        {
+          "id": "R10",
+          "name": "tests::r10_protected_changed",
+          "fixtureVariants": [
+            "r10_protected_changed"
+          ],
+          "sources": [
+            "crates/cache-probe-registration/src/lib.rs",
+            "crates/cache-probe-registration/src/synthetic.rs",
+            "crates/cache-probe-registration/src/tests.rs",
+            "crates/cache-probe-registration/src/tests/crash_tests.rs"
+          ]
+        },
+        {
+          "id": "R10",
+          "name": "tests::r10_t_stack_unknown",
+          "fixtureVariants": [
+            "r10_t_stack_unknown"
+          ],
+          "sources": [
+            "crates/cache-probe-registration/src/lib.rs",
+            "crates/cache-probe-registration/src/synthetic.rs",
+            "crates/cache-probe-registration/src/tests.rs",
+            "crates/cache-probe-registration/src/tests/crash_tests.rs"
+          ]
+        },
+        {
+          "id": "R10",
+          "name": "tests::r10_target_content",
+          "fixtureVariants": [
+            "r10_target_content"
+          ],
+          "sources": [
+            "crates/cache-probe-registration/src/lib.rs",
+            "crates/cache-probe-registration/src/synthetic.rs",
+            "crates/cache-probe-registration/src/tests.rs",
+            "crates/cache-probe-registration/src/tests/crash_tests.rs"
+          ]
+        },
+        {
+          "id": "R10",
+          "name": "tests::r10_target_duplicate_count",
+          "fixtureVariants": [
+            "r10_target_duplicate_count"
+          ],
+          "sources": [
+            "crates/cache-probe-registration/src/lib.rs",
+            "crates/cache-probe-registration/src/synthetic.rs",
+            "crates/cache-probe-registration/src/tests.rs",
+            "crates/cache-probe-registration/src/tests/crash_tests.rs"
+          ]
+        },
+        {
+          "id": "R10",
+          "name": "tests::r10_target_generation",
+          "fixtureVariants": [
+            "r10_target_generation"
+          ],
+          "sources": [
+            "crates/cache-probe-registration/src/lib.rs",
+            "crates/cache-probe-registration/src/synthetic.rs",
+            "crates/cache-probe-registration/src/tests.rs",
+            "crates/cache-probe-registration/src/tests/crash_tests.rs"
+          ]
+        },
+        {
+          "id": "R10",
+          "name": "tests::r10_target_order",
+          "fixtureVariants": [
+            "r10_target_order"
+          ],
+          "sources": [
+            "crates/cache-probe-registration/src/lib.rs",
+            "crates/cache-probe-registration/src/synthetic.rs",
+            "crates/cache-probe-registration/src/tests.rs",
+            "crates/cache-probe-registration/src/tests/crash_tests.rs"
+          ]
+        },
+        {
+          "id": "R10",
+          "name": "tests::r10_type",
+          "fixtureVariants": [
+            "r10_type"
+          ],
+          "sources": [
+            "crates/cache-probe-registration/src/lib.rs",
+            "crates/cache-probe-registration/src/synthetic.rs",
+            "crates/cache-probe-registration/src/tests.rs",
+            "crates/cache-probe-registration/src/tests/crash_tests.rs"
+          ]
+        },
+        {
+          "id": "R10",
+          "name": "tests::r10_v_denied",
+          "fixtureVariants": [
+            "r10_v_denied"
+          ],
+          "sources": [
+            "crates/cache-probe-registration/src/lib.rs",
+            "crates/cache-probe-registration/src/synthetic.rs",
+            "crates/cache-probe-registration/src/tests.rs",
+            "crates/cache-probe-registration/src/tests/crash_tests.rs"
+          ]
+        },
+        {
+          "id": "R11",
+          "name": "tests::r11_completed_same_attempt_is_read_only",
+          "fixtureVariants": [
+            "r11_completed_same_attempt_is_read_only"
+          ],
+          "sources": [
+            "crates/cache-probe-registration/src/lib.rs",
+            "crates/cache-probe-registration/src/synthetic.rs",
+            "crates/cache-probe-registration/src/tests.rs",
+            "crates/cache-probe-registration/src/tests/crash_tests.rs"
+          ]
+        },
+        {
+          "id": "R11",
+          "name": "tests::r11_different_bound_plan_never_adopted",
+          "fixtureVariants": [
+            "r11_different_bound_plan_never_adopted"
+          ],
+          "sources": [
+            "crates/cache-probe-registration/src/lib.rs",
+            "crates/cache-probe-registration/src/synthetic.rs",
+            "crates/cache-probe-registration/src/tests.rs",
+            "crates/cache-probe-registration/src/tests/crash_tests.rs"
+          ]
+        },
+        {
+          "id": "R11",
+          "name": "tests::r11_new_generation_number_reuse_is_not_owned",
+          "fixtureVariants": [
+            "r11_new_generation_number_reuse_is_not_owned"
+          ],
+          "sources": [
+            "crates/cache-probe-registration/src/lib.rs",
+            "crates/cache-probe-registration/src/synthetic.rs",
+            "crates/cache-probe-registration/src/tests.rs",
+            "crates/cache-probe-registration/src/tests/crash_tests.rs"
+          ]
+        },
+        {
+          "id": "R11",
+          "name": "tests::r11_read_only_rights_can_confirm_completed_record_without_exclusion",
+          "fixtureVariants": [
+            "r11_read_only_rights_can_confirm_completed_record_without_exclusion"
+          ],
+          "sources": [
+            "crates/cache-probe-registration/src/lib.rs",
+            "crates/cache-probe-registration/src/synthetic.rs",
+            "crates/cache-probe-registration/src/tests.rs",
+            "crates/cache-probe-registration/src/tests/crash_tests.rs"
+          ]
+        },
+        {
+          "id": "R11",
+          "name": "tests::r11_values_without_completion_never_adopted",
+          "fixtureVariants": [
+            "r11_values_without_completion_never_adopted"
+          ],
+          "sources": [
+            "crates/cache-probe-registration/src/lib.rs",
+            "crates/cache-probe-registration/src/synthetic.rs",
+            "crates/cache-probe-registration/src/tests.rs",
+            "crates/cache-probe-registration/src/tests/crash_tests.rs"
+          ]
+        },
+        {
+          "id": "R12",
+          "name": "tests::r12_public_outcomes_redact_private_markers",
+          "fixtureVariants": [
+            "r12_public_outcomes_redact_private_markers"
+          ],
+          "sources": [
+            "crates/cache-probe-registration/src/lib.rs",
+            "crates/cache-probe-registration/src/synthetic.rs",
+            "crates/cache-probe-registration/src/tests.rs",
+            "crates/cache-probe-registration/src/tests/crash_tests.rs"
+          ]
+        },
+        {
+          "id": "R13A",
+          "name": "tests::r13a_f",
+          "fixtureVariants": [
+            "r13a_f"
+          ],
+          "sources": [
+            "crates/cache-probe-registration/src/lib.rs",
+            "crates/cache-probe-registration/src/synthetic.rs",
+            "crates/cache-probe-registration/src/tests.rs",
+            "crates/cache-probe-registration/src/tests/crash_tests.rs"
+          ]
+        },
+        {
+          "id": "R13A",
+          "name": "tests::r13a_k",
+          "fixtureVariants": [
+            "r13a_k"
+          ],
+          "sources": [
+            "crates/cache-probe-registration/src/lib.rs",
+            "crates/cache-probe-registration/src/synthetic.rs",
+            "crates/cache-probe-registration/src/tests.rs",
+            "crates/cache-probe-registration/src/tests/crash_tests.rs"
+          ]
+        },
+        {
+          "id": "R13A",
+          "name": "tests::r13a_p",
+          "fixtureVariants": [
+            "r13a_p"
+          ],
+          "sources": [
+            "crates/cache-probe-registration/src/lib.rs",
+            "crates/cache-probe-registration/src/synthetic.rs",
+            "crates/cache-probe-registration/src/tests.rs",
+            "crates/cache-probe-registration/src/tests/crash_tests.rs"
+          ]
+        },
+        {
+          "id": "R13A",
+          "name": "tests::r13a_s",
+          "fixtureVariants": [
+            "r13a_s"
+          ],
+          "sources": [
+            "crates/cache-probe-registration/src/lib.rs",
+            "crates/cache-probe-registration/src/synthetic.rs",
+            "crates/cache-probe-registration/src/tests.rs",
+            "crates/cache-probe-registration/src/tests/crash_tests.rs"
+          ]
+        },
+        {
+          "id": "R13B",
+          "name": "tests::r13b_f_after",
+          "fixtureVariants": [
+            "r13b_f_after"
+          ],
+          "sources": [
+            "crates/cache-probe-registration/src/lib.rs",
+            "crates/cache-probe-registration/src/synthetic.rs",
+            "crates/cache-probe-registration/src/tests.rs",
+            "crates/cache-probe-registration/src/tests/crash_tests.rs"
+          ]
+        },
+        {
+          "id": "R13B",
+          "name": "tests::r13b_f_before",
+          "fixtureVariants": [
+            "r13b_f_before"
+          ],
+          "sources": [
+            "crates/cache-probe-registration/src/lib.rs",
+            "crates/cache-probe-registration/src/synthetic.rs",
+            "crates/cache-probe-registration/src/tests.rs",
+            "crates/cache-probe-registration/src/tests/crash_tests.rs"
+          ]
+        },
+        {
+          "id": "R13B",
+          "name": "tests::r13b_k_after",
+          "fixtureVariants": [
+            "r13b_k_after"
+          ],
+          "sources": [
+            "crates/cache-probe-registration/src/lib.rs",
+            "crates/cache-probe-registration/src/synthetic.rs",
+            "crates/cache-probe-registration/src/tests.rs",
+            "crates/cache-probe-registration/src/tests/crash_tests.rs"
+          ]
+        },
+        {
+          "id": "R13B",
+          "name": "tests::r13b_k_before",
+          "fixtureVariants": [
+            "r13b_k_before"
+          ],
+          "sources": [
+            "crates/cache-probe-registration/src/lib.rs",
+            "crates/cache-probe-registration/src/synthetic.rs",
+            "crates/cache-probe-registration/src/tests.rs",
+            "crates/cache-probe-registration/src/tests/crash_tests.rs"
+          ]
+        },
+        {
+          "id": "R13B",
+          "name": "tests::r13b_p_after",
+          "fixtureVariants": [
+            "r13b_p_after"
+          ],
+          "sources": [
+            "crates/cache-probe-registration/src/lib.rs",
+            "crates/cache-probe-registration/src/synthetic.rs",
+            "crates/cache-probe-registration/src/tests.rs",
+            "crates/cache-probe-registration/src/tests/crash_tests.rs"
+          ]
+        },
+        {
+          "id": "R13B",
+          "name": "tests::r13b_p_before",
+          "fixtureVariants": [
+            "r13b_p_before"
+          ],
+          "sources": [
+            "crates/cache-probe-registration/src/lib.rs",
+            "crates/cache-probe-registration/src/synthetic.rs",
+            "crates/cache-probe-registration/src/tests.rs",
+            "crates/cache-probe-registration/src/tests/crash_tests.rs"
+          ]
+        },
+        {
+          "id": "R13B",
+          "name": "tests::r13b_s_after",
+          "fixtureVariants": [
+            "r13b_s_after"
+          ],
+          "sources": [
+            "crates/cache-probe-registration/src/lib.rs",
+            "crates/cache-probe-registration/src/synthetic.rs",
+            "crates/cache-probe-registration/src/tests.rs",
+            "crates/cache-probe-registration/src/tests/crash_tests.rs"
+          ]
+        },
+        {
+          "id": "R13B",
+          "name": "tests::r13b_s_before",
+          "fixtureVariants": [
+            "r13b_s_before"
+          ],
+          "sources": [
+            "crates/cache-probe-registration/src/lib.rs",
+            "crates/cache-probe-registration/src/synthetic.rs",
+            "crates/cache-probe-registration/src/tests.rs",
+            "crates/cache-probe-registration/src/tests/crash_tests.rs"
+          ]
+        },
+        {
+          "id": "R13B",
+          "name": "tests::r13b_same_intent_different_fresh_observation",
+          "fixtureVariants": [
+            "r13b_same_intent_different_fresh_observation"
+          ],
+          "sources": [
+            "crates/cache-probe-registration/src/lib.rs",
+            "crates/cache-probe-registration/src/synthetic.rs",
+            "crates/cache-probe-registration/src/tests.rs",
+            "crates/cache-probe-registration/src/tests/crash_tests.rs"
+          ]
+        },
+        {
+          "id": "R13C",
+          "name": "tests::r13c_f_effect",
+          "fixtureVariants": [
+            "r13c_f_effect"
+          ],
+          "sources": [
+            "crates/cache-probe-registration/src/lib.rs",
+            "crates/cache-probe-registration/src/synthetic.rs",
+            "crates/cache-probe-registration/src/tests.rs",
+            "crates/cache-probe-registration/src/tests/crash_tests.rs"
+          ]
+        },
+        {
+          "id": "R13C",
+          "name": "tests::r13c_f_no_effect",
+          "fixtureVariants": [
+            "r13c_f_no_effect"
+          ],
+          "sources": [
+            "crates/cache-probe-registration/src/lib.rs",
+            "crates/cache-probe-registration/src/synthetic.rs",
+            "crates/cache-probe-registration/src/tests.rs",
+            "crates/cache-probe-registration/src/tests/crash_tests.rs"
+          ]
+        },
+        {
+          "id": "R13C",
+          "name": "tests::r13c_k_effect",
+          "fixtureVariants": [
+            "r13c_k_effect"
+          ],
+          "sources": [
+            "crates/cache-probe-registration/src/lib.rs",
+            "crates/cache-probe-registration/src/synthetic.rs",
+            "crates/cache-probe-registration/src/tests.rs",
+            "crates/cache-probe-registration/src/tests/crash_tests.rs"
+          ]
+        },
+        {
+          "id": "R13C",
+          "name": "tests::r13c_k_no_effect",
+          "fixtureVariants": [
+            "r13c_k_no_effect"
+          ],
+          "sources": [
+            "crates/cache-probe-registration/src/lib.rs",
+            "crates/cache-probe-registration/src/synthetic.rs",
+            "crates/cache-probe-registration/src/tests.rs",
+            "crates/cache-probe-registration/src/tests/crash_tests.rs"
+          ]
+        },
+        {
+          "id": "R13C",
+          "name": "tests::r13c_p_effect",
+          "fixtureVariants": [
+            "r13c_p_effect"
+          ],
+          "sources": [
+            "crates/cache-probe-registration/src/lib.rs",
+            "crates/cache-probe-registration/src/synthetic.rs",
+            "crates/cache-probe-registration/src/tests.rs",
+            "crates/cache-probe-registration/src/tests/crash_tests.rs"
+          ]
+        },
+        {
+          "id": "R13C",
+          "name": "tests::r13c_p_no_effect",
+          "fixtureVariants": [
+            "r13c_p_no_effect"
+          ],
+          "sources": [
+            "crates/cache-probe-registration/src/lib.rs",
+            "crates/cache-probe-registration/src/synthetic.rs",
+            "crates/cache-probe-registration/src/tests.rs",
+            "crates/cache-probe-registration/src/tests/crash_tests.rs"
+          ]
+        },
+        {
+          "id": "R13C",
+          "name": "tests::r13c_s_effect",
+          "fixtureVariants": [
+            "r13c_s_effect"
+          ],
+          "sources": [
+            "crates/cache-probe-registration/src/lib.rs",
+            "crates/cache-probe-registration/src/synthetic.rs",
+            "crates/cache-probe-registration/src/tests.rs",
+            "crates/cache-probe-registration/src/tests/crash_tests.rs"
+          ]
+        },
+        {
+          "id": "R13C",
+          "name": "tests::r13c_s_no_effect",
+          "fixtureVariants": [
+            "r13c_s_no_effect"
+          ],
+          "sources": [
+            "crates/cache-probe-registration/src/lib.rs",
+            "crates/cache-probe-registration/src/synthetic.rs",
+            "crates/cache-probe-registration/src/tests.rs",
+            "crates/cache-probe-registration/src/tests/crash_tests.rs"
+          ]
+        },
+        {
+          "id": "R13D",
+          "name": "tests::r13d_f_content",
+          "fixtureVariants": [
+            "r13d_f_content"
+          ],
+          "sources": [
+            "crates/cache-probe-registration/src/lib.rs",
+            "crates/cache-probe-registration/src/synthetic.rs",
+            "crates/cache-probe-registration/src/tests.rs",
+            "crates/cache-probe-registration/src/tests/crash_tests.rs"
+          ]
+        },
+        {
+          "id": "R13D",
+          "name": "tests::r13d_f_denied",
+          "fixtureVariants": [
+            "r13d_f_denied"
+          ],
+          "sources": [
+            "crates/cache-probe-registration/src/lib.rs",
+            "crates/cache-probe-registration/src/synthetic.rs",
+            "crates/cache-probe-registration/src/tests.rs",
+            "crates/cache-probe-registration/src/tests/crash_tests.rs"
+          ]
+        },
+        {
+          "id": "R13D",
+          "name": "tests::r13d_f_generation",
+          "fixtureVariants": [
+            "r13d_f_generation"
+          ],
+          "sources": [
+            "crates/cache-probe-registration/src/lib.rs",
+            "crates/cache-probe-registration/src/synthetic.rs",
+            "crates/cache-probe-registration/src/tests.rs",
+            "crates/cache-probe-registration/src/tests/crash_tests.rs"
+          ]
+        },
+        {
+          "id": "R13D",
+          "name": "tests::r13d_f_journal",
+          "fixtureVariants": [
+            "r13d_f_journal"
+          ],
+          "sources": [
+            "crates/cache-probe-registration/src/lib.rs",
+            "crates/cache-probe-registration/src/synthetic.rs",
+            "crates/cache-probe-registration/src/tests.rs",
+            "crates/cache-probe-registration/src/tests/crash_tests.rs"
+          ]
+        },
+        {
+          "id": "R13D",
+          "name": "tests::r13d_f_type",
+          "fixtureVariants": [
+            "r13d_f_type"
+          ],
+          "sources": [
+            "crates/cache-probe-registration/src/lib.rs",
+            "crates/cache-probe-registration/src/synthetic.rs",
+            "crates/cache-probe-registration/src/tests.rs",
+            "crates/cache-probe-registration/src/tests/crash_tests.rs"
+          ]
+        },
+        {
+          "id": "R13D",
+          "name": "tests::r13d_k_content",
+          "fixtureVariants": [
+            "r13d_k_content"
+          ],
+          "sources": [
+            "crates/cache-probe-registration/src/lib.rs",
+            "crates/cache-probe-registration/src/synthetic.rs",
+            "crates/cache-probe-registration/src/tests.rs",
+            "crates/cache-probe-registration/src/tests/crash_tests.rs"
+          ]
+        },
+        {
+          "id": "R13D",
+          "name": "tests::r13d_k_denied",
+          "fixtureVariants": [
+            "r13d_k_denied"
+          ],
+          "sources": [
+            "crates/cache-probe-registration/src/lib.rs",
+            "crates/cache-probe-registration/src/synthetic.rs",
+            "crates/cache-probe-registration/src/tests.rs",
+            "crates/cache-probe-registration/src/tests/crash_tests.rs"
+          ]
+        },
+        {
+          "id": "R13D",
+          "name": "tests::r13d_k_generation",
+          "fixtureVariants": [
+            "r13d_k_generation"
+          ],
+          "sources": [
+            "crates/cache-probe-registration/src/lib.rs",
+            "crates/cache-probe-registration/src/synthetic.rs",
+            "crates/cache-probe-registration/src/tests.rs",
+            "crates/cache-probe-registration/src/tests/crash_tests.rs"
+          ]
+        },
+        {
+          "id": "R13D",
+          "name": "tests::r13d_k_journal",
+          "fixtureVariants": [
+            "r13d_k_journal"
+          ],
+          "sources": [
+            "crates/cache-probe-registration/src/lib.rs",
+            "crates/cache-probe-registration/src/synthetic.rs",
+            "crates/cache-probe-registration/src/tests.rs",
+            "crates/cache-probe-registration/src/tests/crash_tests.rs"
+          ]
+        },
+        {
+          "id": "R13D",
+          "name": "tests::r13d_k_type",
+          "fixtureVariants": [
+            "r13d_k_type"
+          ],
+          "sources": [
+            "crates/cache-probe-registration/src/lib.rs",
+            "crates/cache-probe-registration/src/synthetic.rs",
+            "crates/cache-probe-registration/src/tests.rs",
+            "crates/cache-probe-registration/src/tests/crash_tests.rs"
+          ]
+        },
+        {
+          "id": "R13D",
+          "name": "tests::r13d_p_content",
+          "fixtureVariants": [
+            "r13d_p_content"
+          ],
+          "sources": [
+            "crates/cache-probe-registration/src/lib.rs",
+            "crates/cache-probe-registration/src/synthetic.rs",
+            "crates/cache-probe-registration/src/tests.rs",
+            "crates/cache-probe-registration/src/tests/crash_tests.rs"
+          ]
+        },
+        {
+          "id": "R13D",
+          "name": "tests::r13d_p_denied",
+          "fixtureVariants": [
+            "r13d_p_denied"
+          ],
+          "sources": [
+            "crates/cache-probe-registration/src/lib.rs",
+            "crates/cache-probe-registration/src/synthetic.rs",
+            "crates/cache-probe-registration/src/tests.rs",
+            "crates/cache-probe-registration/src/tests/crash_tests.rs"
+          ]
+        },
+        {
+          "id": "R13D",
+          "name": "tests::r13d_p_generation",
+          "fixtureVariants": [
+            "r13d_p_generation"
+          ],
+          "sources": [
+            "crates/cache-probe-registration/src/lib.rs",
+            "crates/cache-probe-registration/src/synthetic.rs",
+            "crates/cache-probe-registration/src/tests.rs",
+            "crates/cache-probe-registration/src/tests/crash_tests.rs"
+          ]
+        },
+        {
+          "id": "R13D",
+          "name": "tests::r13d_p_journal",
+          "fixtureVariants": [
+            "r13d_p_journal"
+          ],
+          "sources": [
+            "crates/cache-probe-registration/src/lib.rs",
+            "crates/cache-probe-registration/src/synthetic.rs",
+            "crates/cache-probe-registration/src/tests.rs",
+            "crates/cache-probe-registration/src/tests/crash_tests.rs"
+          ]
+        },
+        {
+          "id": "R13D",
+          "name": "tests::r13d_p_type",
+          "fixtureVariants": [
+            "r13d_p_type"
+          ],
+          "sources": [
+            "crates/cache-probe-registration/src/lib.rs",
+            "crates/cache-probe-registration/src/synthetic.rs",
+            "crates/cache-probe-registration/src/tests.rs",
+            "crates/cache-probe-registration/src/tests/crash_tests.rs"
+          ]
+        },
+        {
+          "id": "R13D",
+          "name": "tests::r13d_s_content",
+          "fixtureVariants": [
+            "r13d_s_content"
+          ],
+          "sources": [
+            "crates/cache-probe-registration/src/lib.rs",
+            "crates/cache-probe-registration/src/synthetic.rs",
+            "crates/cache-probe-registration/src/tests.rs",
+            "crates/cache-probe-registration/src/tests/crash_tests.rs"
+          ]
+        },
+        {
+          "id": "R13D",
+          "name": "tests::r13d_s_denied",
+          "fixtureVariants": [
+            "r13d_s_denied"
+          ],
+          "sources": [
+            "crates/cache-probe-registration/src/lib.rs",
+            "crates/cache-probe-registration/src/synthetic.rs",
+            "crates/cache-probe-registration/src/tests.rs",
+            "crates/cache-probe-registration/src/tests/crash_tests.rs"
+          ]
+        },
+        {
+          "id": "R13D",
+          "name": "tests::r13d_s_generation",
+          "fixtureVariants": [
+            "r13d_s_generation"
+          ],
+          "sources": [
+            "crates/cache-probe-registration/src/lib.rs",
+            "crates/cache-probe-registration/src/synthetic.rs",
+            "crates/cache-probe-registration/src/tests.rs",
+            "crates/cache-probe-registration/src/tests/crash_tests.rs"
+          ]
+        },
+        {
+          "id": "R13D",
+          "name": "tests::r13d_s_journal",
+          "fixtureVariants": [
+            "r13d_s_journal"
+          ],
+          "sources": [
+            "crates/cache-probe-registration/src/lib.rs",
+            "crates/cache-probe-registration/src/synthetic.rs",
+            "crates/cache-probe-registration/src/tests.rs",
+            "crates/cache-probe-registration/src/tests/crash_tests.rs"
+          ]
+        },
+        {
+          "id": "R13D",
+          "name": "tests::r13d_s_type",
+          "fixtureVariants": [
+            "r13d_s_type"
+          ],
+          "sources": [
+            "crates/cache-probe-registration/src/lib.rs",
+            "crates/cache-probe-registration/src/synthetic.rs",
+            "crates/cache-probe-registration/src/tests.rs",
+            "crates/cache-probe-registration/src/tests/crash_tests.rs"
+          ]
+        },
+        {
+          "id": "R14",
+          "name": "tests::r14_restart_with_lost_record_cannot_be_a_new_apply",
+          "fixtureVariants": [
+            "r14_restart_with_lost_record_cannot_be_a_new_apply"
+          ],
+          "sources": [
+            "crates/cache-probe-registration/src/lib.rs",
+            "crates/cache-probe-registration/src/synthetic.rs",
+            "crates/cache-probe-registration/src/tests.rs",
+            "crates/cache-probe-registration/src/tests/crash_tests.rs"
+          ]
+        },
+        {
+          "id": "R14",
+          "name": "tests::r14_v_crashes_and_lost_completion_never_resume",
+          "fixtureVariants": [
+            "r14_v_crashes_and_lost_completion_never_resume"
+          ],
+          "sources": [
+            "crates/cache-probe-registration/src/lib.rs",
+            "crates/cache-probe-registration/src/synthetic.rs",
+            "crates/cache-probe-registration/src/tests.rs",
+            "crates/cache-probe-registration/src/tests/crash_tests.rs"
+          ]
+        },
+        {
+          "id": "R13",
+          "name": "tests::r13_readback_decider_uses_snapshot_and_call_status_only",
+          "fixtureVariants": [
+            "P/before/failure",
+            "P/after/failure",
+            "P/before/success-contradiction",
+            "P/after/success",
+            "P/neither"
+          ],
+          "sources": [
+            "crates/cache-probe-registration/src/lib.rs",
+            "crates/cache-probe-registration/src/synthetic.rs",
+            "crates/cache-probe-registration/src/tests.rs",
+            "crates/cache-probe-registration/src/tests/crash_tests.rs"
+          ]
+        },
+        {
+          "id": "R13",
+          "name": "tests::r13_same_error_and_returned_observation_ignore_hidden_store_effect",
+          "fixtureVariants": [
+            "P/error/BeforeState/no-effect",
+            "P/error/BeforeState/effect",
+            "P/error/AfterState/no-effect",
+            "P/error/AfterState/effect",
+            "P/error/Denied/no-effect",
+            "P/error/Denied/effect",
+            "P/error/InvalidType/no-effect",
+            "P/error/InvalidType/effect",
+            "P/error/Different/no-effect",
+            "P/error/Different/effect",
+            "P/error/Generation/no-effect",
+            "P/error/Generation/effect",
+            "S/error/BeforeState/no-effect",
+            "S/error/BeforeState/effect",
+            "S/error/AfterState/no-effect",
+            "S/error/AfterState/effect",
+            "S/error/Denied/no-effect",
+            "S/error/Denied/effect",
+            "S/error/InvalidType/no-effect",
+            "S/error/InvalidType/effect",
+            "S/error/Different/no-effect",
+            "S/error/Different/effect",
+            "S/error/Generation/no-effect",
+            "S/error/Generation/effect",
+            "K/error/BeforeState/no-effect",
+            "K/error/BeforeState/effect",
+            "K/error/AfterState/no-effect",
+            "K/error/AfterState/effect",
+            "K/error/Denied/no-effect",
+            "K/error/Denied/effect",
+            "K/error/InvalidType/no-effect",
+            "K/error/InvalidType/effect",
+            "K/error/Different/no-effect",
+            "K/error/Different/effect",
+            "K/error/Generation/no-effect",
+            "K/error/Generation/effect",
+            "F/error/BeforeState/no-effect",
+            "F/error/BeforeState/effect",
+            "F/error/AfterState/no-effect",
+            "F/error/AfterState/effect",
+            "F/error/Denied/no-effect",
+            "F/error/Denied/effect",
+            "F/error/InvalidType/no-effect",
+            "F/error/InvalidType/effect",
+            "F/error/Different/no-effect",
+            "F/error/Different/effect",
+            "F/error/Generation/no-effect",
+            "F/error/Generation/effect"
+          ],
+          "sources": [
+            "crates/cache-probe-registration/src/lib.rs",
+            "crates/cache-probe-registration/src/synthetic.rs",
+            "crates/cache-probe-registration/src/tests.rs",
+            "crates/cache-probe-registration/src/tests/crash_tests.rs"
+          ]
+        },
+        {
+          "id": "R13",
+          "name": "tests::r13_success_with_before_readback_is_contradictory_not_confirmed",
+          "fixtureVariants": [
+            "P/success-before/no-effect",
+            "P/success-before/effect",
+            "S/success-before/no-effect",
+            "S/success-before/effect",
+            "K/success-before/no-effect",
+            "K/success-before/effect",
+            "F/success-before/no-effect",
+            "F/success-before/effect"
+          ],
+          "sources": [
+            "crates/cache-probe-registration/src/lib.rs",
+            "crates/cache-probe-registration/src/synthetic.rs",
+            "crates/cache-probe-registration/src/tests.rs",
+            "crates/cache-probe-registration/src/tests/crash_tests.rs"
+          ]
+        },
+        {
+          "id": "R13",
+          "name": "tests::r13_readback_decider_requires_fresh_protection_rights_and_exclusion",
+          "fixtureVariants": [
+            "read-only-rights",
+            "unknown-rights",
+            "changed-exclusion-epoch",
+            "unknown-exclusion",
+            "changed-protected-record"
+          ],
+          "sources": [
+            "crates/cache-probe-registration/src/lib.rs",
+            "crates/cache-probe-registration/src/synthetic.rs",
+            "crates/cache-probe-registration/src/tests.rs",
+            "crates/cache-probe-registration/src/tests/crash_tests.rs"
+          ]
+        },
+        {
+          "id": "R03",
+          "name": "tests::r03_t1_capacity_other_known_values_refused",
+          "fixtureVariants": [
+            "0",
+            "1",
+            "8GiB-minus1",
+            "8GiB-plus1",
+            "7GiB",
+            "64GiB"
+          ],
+          "sources": [
+            "crates/cache-probe-registration/src/lib.rs",
+            "crates/cache-probe-registration/src/synthetic.rs",
+            "crates/cache-probe-registration/src/tests.rs",
+            "crates/cache-probe-registration/src/tests/crash_tests.rs"
+          ]
+        },
+        {
+          "id": "R03",
+          "name": "tests::r03_t1_capacity_unknown_refused",
+          "fixtureVariants": [
+            "unknown-capacity"
+          ],
+          "sources": [
+            "crates/cache-probe-registration/src/lib.rs",
+            "crates/cache-probe-registration/src/synthetic.rs",
+            "crates/cache-probe-registration/src/tests.rs",
+            "crates/cache-probe-registration/src/tests/crash_tests.rs"
+          ]
+        },
+        {
+          "id": "R03",
+          "name": "tests::r03_capacity_cannot_replace_strong_identity",
+          "fixtureVariants": [
+            "selectedT7GiB-unrelatedU8GiB-T-number-and-label"
+          ],
+          "sources": [
+            "crates/cache-probe-registration/src/lib.rs",
+            "crates/cache-probe-registration/src/synthetic.rs",
+            "crates/cache-probe-registration/src/tests.rs",
+            "crates/cache-probe-registration/src/tests/crash_tests.rs"
+          ]
+        },
+        {
+          "id": "R04",
+          "name": "tests::r04_non_ascii_protected_or_observed_ids_refused",
+          "fixtureVariants": [
+            "protectedOS-and-observedOS",
+            "protectedT-and-observedT",
+            "unselectedU"
+          ],
+          "sources": [
+            "crates/cache-probe-registration/src/lib.rs",
+            "crates/cache-probe-registration/src/synthetic.rs",
+            "crates/cache-probe-registration/src/tests.rs",
+            "crates/cache-probe-registration/src/tests/crash_tests.rs"
+          ]
+        },
+        {
+          "id": "R03",
+          "name": "tests::r03_non_ascii_case_alias_cannot_hide_collision",
+          "fixtureVariants": [
+            "nonASCII-upper-lower-plausible-alias"
+          ],
+          "sources": [
+            "crates/cache-probe-registration/src/lib.rs",
+            "crates/cache-probe-registration/src/synthetic.rs",
+            "crates/cache-probe-registration/src/tests.rs",
+            "crates/cache-probe-registration/src/tests/crash_tests.rs"
+          ]
+        },
+        {
+          "id": "R04",
+          "name": "tests::r04_inadmissible_pnp_characters_refused",
+          "fixtureVariants": [
+            "comma-T-U",
+            "space-T-U",
+            "tab-T-U",
+            "newline-T-U",
+            "DEL-T-U",
+            "empty-private-record"
+          ],
+          "sources": [
+            "crates/cache-probe-registration/src/lib.rs",
+            "crates/cache-probe-registration/src/synthetic.rs",
+            "crates/cache-probe-registration/src/tests.rs",
+            "crates/cache-probe-registration/src/tests/crash_tests.rs"
+          ]
+        },
+        {
+          "id": "R04",
+          "name": "tests::r04_pnp_admission_199_and_200_separate_from_codec",
+          "fixtureVariants": [
+            "199-admitted",
+            "200-codec-valid-admission-rejected"
+          ],
+          "sources": [
+            "crates/cache-probe-registration/src/lib.rs",
+            "crates/cache-probe-registration/src/synthetic.rs",
+            "crates/cache-probe-registration/src/tests.rs",
+            "crates/cache-probe-registration/src/tests/crash_tests.rs"
+          ]
+        },
+        {
+          "id": "R05",
+          "name": "tests::r05_empty_expected_class_or_stack_refused",
+          "fixtureVariants": [
+            "empty-class",
+            "blank-class",
+            "empty-stack",
+            "empty-stack-entry",
+            "blank-stack-entry"
+          ],
+          "sources": [
+            "crates/cache-probe-registration/src/lib.rs",
+            "crates/cache-probe-registration/src/synthetic.rs",
+            "crates/cache-probe-registration/src/tests.rs",
+            "crates/cache-probe-registration/src/tests/crash_tests.rs"
+          ]
+        },
+        {
+          "id": "R05",
+          "name": "tests::r05_empty_or_unbound_function_service_refused",
+          "fixtureVariants": [
+            "OS-T-empty",
+            "OS-T-blank",
+            "OS-T-NUL",
+            "OS-T-unbound-service"
+          ],
+          "sources": [
+            "crates/cache-probe-registration/src/lib.rs",
+            "crates/cache-probe-registration/src/synthetic.rs",
+            "crates/cache-probe-registration/src/tests.rs",
+            "crates/cache-probe-registration/src/tests/crash_tests.rs"
+          ]
+        },
+        {
+          "id": "R09",
+          "name": "tests::r09_invalid_admission_fresh_observation_stops_before_p",
+          "fixtureVariants": [
+            "unknown-capacity",
+            "wrong-capacity",
+            "nonASCII-unused-device"
+          ],
+          "sources": [
+            "crates/cache-probe-registration/src/lib.rs",
+            "crates/cache-probe-registration/src/synthetic.rs",
+            "crates/cache-probe-registration/src/tests.rs",
+            "crates/cache-probe-registration/src/tests/crash_tests.rs"
+          ]
+        }
+      ],
+      "helpersObserved": []
+    },
+    {
+      "id": "registration-boundary-package",
+      "requiredPassed": 29,
+      "cases": [
+        {
+          "id": "R04",
+          "name": "boundary::tests::r04_empty_nul_and_overlong_never_call_open",
+          "fixtureVariants": [
+            "r04_empty_nul_and_overlong_never_call_open"
+          ],
+          "sources": [
+            "crates/cache-probe-registration-win/src/boundary.rs",
+            "crates/cache-probe-registration-win/src/boundary/tests.rs",
+            "crates/cache-probe-registration-win/src/package.rs",
+            "crates/cache-probe-registration-win/src/package/tests.rs",
+            "crates/cache-probe-registration-win/fixtures/p04-service-only.inf",
+            "crates/cache-probe-registration-win/src/boundary/stages.rs",
+            "crates/cache-probe-registration-win/src/boundary/stages/tests.rs"
+          ]
+        },
+        {
+          "id": "B02",
+          "name": "boundary::tests::b02_amd64_struct_layout_matches_sdk",
+          "fixtureVariants": [
+            "b02_amd64_struct_layout_matches_sdk"
+          ],
+          "sources": [
+            "crates/cache-probe-registration-win/src/boundary.rs",
+            "crates/cache-probe-registration-win/src/boundary/tests.rs",
+            "crates/cache-probe-registration-win/src/package.rs",
+            "crates/cache-probe-registration-win/src/package/tests.rs",
+            "crates/cache-probe-registration-win/fixtures/p04-service-only.inf",
+            "crates/cache-probe-registration-win/src/boundary/stages.rs",
+            "crates/cache-probe-registration-win/src/boundary/stages/tests.rs"
+          ]
+        },
+        {
+          "id": "R06",
+          "name": "boundary::tests::r06_actual_wrapper_preserves_order_case_and_exact_target",
+          "fixtureVariants": [
+            "r06_actual_wrapper_preserves_order_case_and_exact_target"
+          ],
+          "sources": [
+            "crates/cache-probe-registration-win/src/boundary.rs",
+            "crates/cache-probe-registration-win/src/boundary/tests.rs",
+            "crates/cache-probe-registration-win/src/package.rs",
+            "crates/cache-probe-registration-win/src/package/tests.rs",
+            "crates/cache-probe-registration-win/fixtures/p04-service-only.inf",
+            "crates/cache-probe-registration-win/src/boundary/stages.rs",
+            "crates/cache-probe-registration-win/src/boundary/stages/tests.rs"
+          ]
+        },
+        {
+          "id": "R06",
+          "name": "boundary::tests::r06_missing_empty_and_unavailable_remain_distinct",
+          "fixtureVariants": [
+            "r06_missing_empty_and_unavailable_remain_distinct"
+          ],
+          "sources": [
+            "crates/cache-probe-registration-win/src/boundary.rs",
+            "crates/cache-probe-registration-win/src/boundary/tests.rs",
+            "crates/cache-probe-registration-win/src/package.rs",
+            "crates/cache-probe-registration-win/src/package/tests.rs",
+            "crates/cache-probe-registration-win/fixtures/p04-service-only.inf",
+            "crates/cache-probe-registration-win/src/boundary/stages.rs",
+            "crates/cache-probe-registration-win/src/boundary/stages/tests.rs"
+          ]
+        },
+        {
+          "id": "R06",
+          "name": "boundary::tests::r06_malformed_property_never_issues_write",
+          "fixtureVariants": [
+            "r06_malformed_property_never_issues_write"
+          ],
+          "sources": [
+            "crates/cache-probe-registration-win/src/boundary.rs",
+            "crates/cache-probe-registration-win/src/boundary/tests.rs",
+            "crates/cache-probe-registration-win/src/package.rs",
+            "crates/cache-probe-registration-win/src/package/tests.rs",
+            "crates/cache-probe-registration-win/fixtures/p04-service-only.inf",
+            "crates/cache-probe-registration-win/src/boundary/stages.rs",
+            "crates/cache-probe-registration-win/src/boundary/stages/tests.rs"
+          ]
+        },
+        {
+          "id": "R09",
+          "name": "boundary::tests::r09_changed_identity_stops_before_mutation_and_closes_set",
+          "fixtureVariants": [
+            "r09_changed_identity_stops_before_mutation_and_closes_set"
+          ],
+          "sources": [
+            "crates/cache-probe-registration-win/src/boundary.rs",
+            "crates/cache-probe-registration-win/src/boundary/tests.rs",
+            "crates/cache-probe-registration-win/src/package.rs",
+            "crates/cache-probe-registration-win/src/package/tests.rs",
+            "crates/cache-probe-registration-win/fixtures/p04-service-only.inf",
+            "crates/cache-probe-registration-win/src/boundary/stages.rs",
+            "crates/cache-probe-registration-win/src/boundary/stages/tests.rs"
+          ]
+        },
+        {
+          "id": "R13",
+          "name": "boundary::tests::r13_error_after_effect_is_unknown_without_retry_or_restore",
+          "fixtureVariants": [
+            "r13_error_after_effect_is_unknown_without_retry_or_restore"
+          ],
+          "sources": [
+            "crates/cache-probe-registration-win/src/boundary.rs",
+            "crates/cache-probe-registration-win/src/boundary/tests.rs",
+            "crates/cache-probe-registration-win/src/package.rs",
+            "crates/cache-probe-registration-win/src/package/tests.rs",
+            "crates/cache-probe-registration-win/fixtures/p04-service-only.inf",
+            "crates/cache-probe-registration-win/src/boundary/stages.rs",
+            "crates/cache-probe-registration-win/src/boundary/stages/tests.rs"
+          ]
+        },
+        {
+          "id": "R13",
+          "name": "boundary::tests::r13_success_with_wrong_readback_is_not_success",
+          "fixtureVariants": [
+            "r13_success_with_wrong_readback_is_not_success"
+          ],
+          "sources": [
+            "crates/cache-probe-registration-win/src/boundary.rs",
+            "crates/cache-probe-registration-win/src/boundary/tests.rs",
+            "crates/cache-probe-registration-win/src/package.rs",
+            "crates/cache-probe-registration-win/src/package/tests.rs",
+            "crates/cache-probe-registration-win/fixtures/p04-service-only.inf",
+            "crates/cache-probe-registration-win/src/boundary/stages.rs",
+            "crates/cache-probe-registration-win/src/boundary/stages/tests.rs"
+          ]
+        },
+        {
+          "id": "R04",
+          "name": "boundary::tests::r04_selector_uses_reg_sz_and_exact_readback_and_one_close",
+          "fixtureVariants": [
+            "r04_selector_uses_reg_sz_and_exact_readback_and_one_close"
+          ],
+          "sources": [
+            "crates/cache-probe-registration-win/src/boundary.rs",
+            "crates/cache-probe-registration-win/src/boundary/tests.rs",
+            "crates/cache-probe-registration-win/src/package.rs",
+            "crates/cache-probe-registration-win/src/package/tests.rs",
+            "crates/cache-probe-registration-win/fixtures/p04-service-only.inf",
+            "crates/cache-probe-registration-win/src/boundary/stages.rs",
+            "crates/cache-probe-registration-win/src/boundary/stages/tests.rs"
+          ]
+        },
+        {
+          "id": "R04",
+          "name": "boundary::tests::r04_selector_wrong_type_is_rejected_and_key_is_closed",
+          "fixtureVariants": [
+            "r04_selector_wrong_type_is_rejected_and_key_is_closed"
+          ],
+          "sources": [
+            "crates/cache-probe-registration-win/src/boundary.rs",
+            "crates/cache-probe-registration-win/src/boundary/tests.rs",
+            "crates/cache-probe-registration-win/src/package.rs",
+            "crates/cache-probe-registration-win/src/package/tests.rs",
+            "crates/cache-probe-registration-win/fixtures/p04-service-only.inf",
+            "crates/cache-probe-registration-win/src/boundary/stages.rs",
+            "crates/cache-probe-registration-win/src/boundary/stages/tests.rs"
+          ]
+        },
+        {
+          "id": "R07",
+          "name": "boundary::tests::r07_arbitrary_reorder_duplicate_or_other_service_is_never_written",
+          "fixtureVariants": [
+            "r07_arbitrary_reorder_duplicate_or_other_service_is_never_written"
+          ],
+          "sources": [
+            "crates/cache-probe-registration-win/src/boundary.rs",
+            "crates/cache-probe-registration-win/src/boundary/tests.rs",
+            "crates/cache-probe-registration-win/src/package.rs",
+            "crates/cache-probe-registration-win/src/package/tests.rs",
+            "crates/cache-probe-registration-win/fixtures/p04-service-only.inf",
+            "crates/cache-probe-registration-win/src/boundary/stages.rs",
+            "crates/cache-probe-registration-win/src/boundary/stages/tests.rs"
+          ]
+        },
+        {
+          "id": "R04",
+          "name": "boundary::tests::r04_utf16_exact_without_trim_or_multichar_case_expansion",
+          "fixtureVariants": [
+            "r04_utf16_exact_without_trim_or_multichar_case_expansion"
+          ],
+          "sources": [
+            "crates/cache-probe-registration-win/src/boundary.rs",
+            "crates/cache-probe-registration-win/src/boundary/tests.rs",
+            "crates/cache-probe-registration-win/src/package.rs",
+            "crates/cache-probe-registration-win/src/package/tests.rs",
+            "crates/cache-probe-registration-win/fixtures/p04-service-only.inf",
+            "crates/cache-probe-registration-win/src/boundary/stages.rs",
+            "crates/cache-probe-registration-win/src/boundary/stages/tests.rs"
+          ]
+        },
+        {
+          "id": "R06",
+          "name": "boundary::tests::r06_native_query_result_mapping_rejects_ambiguous_errors_and_truncation",
+          "fixtureVariants": [
+            "r06_native_query_result_mapping_rejects_ambiguous_errors_and_truncation"
+          ],
+          "sources": [
+            "crates/cache-probe-registration-win/src/boundary.rs",
+            "crates/cache-probe-registration-win/src/boundary/tests.rs",
+            "crates/cache-probe-registration-win/src/package.rs",
+            "crates/cache-probe-registration-win/src/package/tests.rs",
+            "crates/cache-probe-registration-win/fixtures/p04-service-only.inf",
+            "crates/cache-probe-registration-win/src/boundary/stages.rs",
+            "crates/cache-probe-registration-win/src/boundary/stages/tests.rs"
+          ]
+        },
+        {
+          "id": "B04",
+          "name": "package::tests::b04_proposal_all_sections_and_references_are_allowlisted",
+          "fixtureVariants": [
+            "b04_proposal_all_sections_and_references_are_allowlisted"
+          ],
+          "sources": [
+            "crates/cache-probe-registration-win/src/boundary.rs",
+            "crates/cache-probe-registration-win/src/boundary/tests.rs",
+            "crates/cache-probe-registration-win/src/package.rs",
+            "crates/cache-probe-registration-win/src/package/tests.rs",
+            "crates/cache-probe-registration-win/fixtures/p04-service-only.inf",
+            "crates/cache-probe-registration-win/src/boundary/stages.rs",
+            "crates/cache-probe-registration-win/src/boundary/stages/tests.rs"
+          ]
+        },
+        {
+          "id": "R07",
+          "name": "package::tests::r07_b04_mutated_broad_or_automatic_effects_fail_closed",
+          "fixtureVariants": [
+            "r07_b04_mutated_broad_or_automatic_effects_fail_closed"
+          ],
+          "sources": [
+            "crates/cache-probe-registration-win/src/boundary.rs",
+            "crates/cache-probe-registration-win/src/boundary/tests.rs",
+            "crates/cache-probe-registration-win/src/package.rs",
+            "crates/cache-probe-registration-win/src/package/tests.rs",
+            "crates/cache-probe-registration-win/fixtures/p04-service-only.inf",
+            "crates/cache-probe-registration-win/src/boundary/stages.rs",
+            "crates/cache-probe-registration-win/src/boundary/stages/tests.rs"
+          ]
+        },
+        {
+          "id": "B04",
+          "name": "package::tests::b04_duplicate_sections_unknown_directives_and_missing_references_fail",
+          "fixtureVariants": [
+            "b04_duplicate_sections_unknown_directives_and_missing_references_fail"
+          ],
+          "sources": [
+            "crates/cache-probe-registration-win/src/boundary.rs",
+            "crates/cache-probe-registration-win/src/boundary/tests.rs",
+            "crates/cache-probe-registration-win/src/package.rs",
+            "crates/cache-probe-registration-win/src/package/tests.rs",
+            "crates/cache-probe-registration-win/fixtures/p04-service-only.inf",
+            "crates/cache-probe-registration-win/src/boundary/stages.rs",
+            "crates/cache-probe-registration-win/src/boundary/stages/tests.rs"
+          ]
+        },
+        {
+          "id": "B04",
+          "name": "package::tests::b04_actual_bytes_bind_manifest_but_never_grant_deployment",
+          "fixtureVariants": [
+            "b04_actual_bytes_bind_manifest_but_never_grant_deployment"
+          ],
+          "sources": [
+            "crates/cache-probe-registration-win/src/boundary.rs",
+            "crates/cache-probe-registration-win/src/boundary/tests.rs",
+            "crates/cache-probe-registration-win/src/package.rs",
+            "crates/cache-probe-registration-win/src/package/tests.rs",
+            "crates/cache-probe-registration-win/fixtures/p04-service-only.inf",
+            "crates/cache-probe-registration-win/src/boundary/stages.rs",
+            "crates/cache-probe-registration-win/src/boundary/stages/tests.rs"
+          ]
+        },
+        {
+          "id": "B04",
+          "name": "package::tests::b04_missing_cat_or_sys_and_extra_inf_are_rejected",
+          "fixtureVariants": [
+            "b04_missing_cat_or_sys_and_extra_inf_are_rejected"
+          ],
+          "sources": [
+            "crates/cache-probe-registration-win/src/boundary.rs",
+            "crates/cache-probe-registration-win/src/boundary/tests.rs",
+            "crates/cache-probe-registration-win/src/package.rs",
+            "crates/cache-probe-registration-win/src/package/tests.rs",
+            "crates/cache-probe-registration-win/fixtures/p04-service-only.inf",
+            "crates/cache-probe-registration-win/src/boundary/stages.rs",
+            "crates/cache-probe-registration-win/src/boundary/stages/tests.rs"
+          ]
+        },
+        {
+          "id": "B04",
+          "name": "package::tests::b04_sha256_known_independent_vectors",
+          "fixtureVariants": [
+            "b04_sha256_known_independent_vectors"
+          ],
+          "sources": [
+            "crates/cache-probe-registration-win/src/boundary.rs",
+            "crates/cache-probe-registration-win/src/boundary/tests.rs",
+            "crates/cache-probe-registration-win/src/package.rs",
+            "crates/cache-probe-registration-win/src/package/tests.rs",
+            "crates/cache-probe-registration-win/fixtures/p04-service-only.inf",
+            "crates/cache-probe-registration-win/src/boundary/stages.rs",
+            "crates/cache-probe-registration-win/src/boundary/stages/tests.rs"
+          ]
+        },
+        {
+          "id": "B04",
+          "name": "package::tests::b04_inspected_package_binds_core_plan_and_hash_mutation_is_rejected",
+          "fixtureVariants": [
+            "b04_inspected_package_binds_core_plan_and_hash_mutation_is_rejected"
+          ],
+          "sources": [
+            "crates/cache-probe-registration-win/src/boundary.rs",
+            "crates/cache-probe-registration-win/src/boundary/tests.rs",
+            "crates/cache-probe-registration-win/src/package.rs",
+            "crates/cache-probe-registration-win/src/package/tests.rs",
+            "crates/cache-probe-registration-win/fixtures/p04-service-only.inf",
+            "crates/cache-probe-registration-win/src/boundary/stages.rs",
+            "crates/cache-probe-registration-win/src/boundary/stages/tests.rs"
+          ]
+        },
+        {
+          "id": "R06",
+          "name": "boundary::tests::r06_unified_property_only_explicit_not_found_confirms_missing",
+          "fixtureVariants": [
+            "r06_unified_property_only_explicit_not_found_confirms_missing"
+          ],
+          "sources": [
+            "crates/cache-probe-registration-win/src/boundary.rs",
+            "crates/cache-probe-registration-win/src/boundary/tests.rs",
+            "crates/cache-probe-registration-win/src/package.rs",
+            "crates/cache-probe-registration-win/src/package/tests.rs",
+            "crates/cache-probe-registration-win/fixtures/p04-service-only.inf",
+            "crates/cache-probe-registration-win/src/boundary/stages.rs",
+            "crates/cache-probe-registration-win/src/boundary/stages/tests.rs"
+          ]
+        },
+        {
+          "id": "B02",
+          "name": "boundary::stages::tests::b02_same_plan_native_port_p_s_k_f_and_no_real_capability",
+          "fixtureVariants": [
+            "b02_same_plan_native_port_p_s_k_f_and_no_real_capability"
+          ],
+          "sources": [
+            "crates/cache-probe-registration-win/src/boundary.rs",
+            "crates/cache-probe-registration-win/src/boundary/tests.rs",
+            "crates/cache-probe-registration-win/src/package.rs",
+            "crates/cache-probe-registration-win/src/package/tests.rs",
+            "crates/cache-probe-registration-win/fixtures/p04-service-only.inf",
+            "crates/cache-probe-registration-win/src/boundary/stages.rs",
+            "crates/cache-probe-registration-win/src/boundary/stages/tests.rs"
+          ]
+        },
+        {
+          "id": "R07",
+          "name": "boundary::stages::tests::r07_unreviewed_source_or_existing_service_has_zero_effects",
+          "fixtureVariants": [
+            "r07_unreviewed_source_or_existing_service_has_zero_effects"
+          ],
+          "sources": [
+            "crates/cache-probe-registration-win/src/boundary.rs",
+            "crates/cache-probe-registration-win/src/boundary/tests.rs",
+            "crates/cache-probe-registration-win/src/package.rs",
+            "crates/cache-probe-registration-win/src/package/tests.rs",
+            "crates/cache-probe-registration-win/fixtures/p04-service-only.inf",
+            "crates/cache-probe-registration-win/src/boundary/stages.rs",
+            "crates/cache-probe-registration-win/src/boundary/stages/tests.rs"
+          ]
+        },
+        {
+          "id": "R13",
+          "name": "boundary::stages::tests::r13_p_error_or_readback_or_automatic_service_stops_before_s",
+          "fixtureVariants": [
+            "r13_p_error_or_readback_or_automatic_service_stops_before_s"
+          ],
+          "sources": [
+            "crates/cache-probe-registration-win/src/boundary.rs",
+            "crates/cache-probe-registration-win/src/boundary/tests.rs",
+            "crates/cache-probe-registration-win/src/package.rs",
+            "crates/cache-probe-registration-win/src/package/tests.rs",
+            "crates/cache-probe-registration-win/fixtures/p04-service-only.inf",
+            "crates/cache-probe-registration-win/src/boundary/stages.rs",
+            "crates/cache-probe-registration-win/src/boundary/stages/tests.rs"
+          ]
+        },
+        {
+          "id": "R07",
+          "name": "boundary::stages::tests::r07_s_start_loaded_wrong_binary_or_api_error_never_reaches_k_f",
+          "fixtureVariants": [
+            "r07_s_start_loaded_wrong_binary_or_api_error_never_reaches_k_f"
+          ],
+          "sources": [
+            "crates/cache-probe-registration-win/src/boundary.rs",
+            "crates/cache-probe-registration-win/src/boundary/tests.rs",
+            "crates/cache-probe-registration-win/src/package.rs",
+            "crates/cache-probe-registration-win/src/package/tests.rs",
+            "crates/cache-probe-registration-win/fixtures/p04-service-only.inf",
+            "crates/cache-probe-registration-win/src/boundary/stages.rs",
+            "crates/cache-probe-registration-win/src/boundary/stages/tests.rs"
+          ]
+        },
+        {
+          "id": "B02",
+          "name": "boundary::stages::tests::b02_service_config_abi_and_path_outputs_are_bounded",
+          "fixtureVariants": [
+            "b02_service_config_abi_and_path_outputs_are_bounded"
+          ],
+          "sources": [
+            "crates/cache-probe-registration-win/src/boundary.rs",
+            "crates/cache-probe-registration-win/src/boundary/tests.rs",
+            "crates/cache-probe-registration-win/src/package.rs",
+            "crates/cache-probe-registration-win/src/package/tests.rs",
+            "crates/cache-probe-registration-win/fixtures/p04-service-only.inf",
+            "crates/cache-probe-registration-win/src/boundary/stages.rs",
+            "crates/cache-probe-registration-win/src/boundary/stages/tests.rs"
+          ]
+        },
+        {
+          "id": "R07",
+          "name": "boundary::stages::tests::r07_conflicting_service_location_never_opens_or_hashes_image",
+          "fixtureVariants": [
+            "foreign-image-metadata-only",
+            "same-name-wrong-location-no-image-read-or-hash"
+          ],
+          "sources": [
+            "crates/cache-probe-registration-win/src/boundary.rs",
+            "crates/cache-probe-registration-win/src/boundary/tests.rs",
+            "crates/cache-probe-registration-win/src/package.rs",
+            "crates/cache-probe-registration-win/src/package/tests.rs",
+            "crates/cache-probe-registration-win/fixtures/p04-service-only.inf",
+            "crates/cache-probe-registration-win/src/boundary/stages.rs",
+            "crates/cache-probe-registration-win/src/boundary/stages/tests.rs"
+          ]
+        },
+        {
+          "id": "R07",
+          "name": "boundary::stages::tests::r07_namespace_reserved_reparse_and_nonregular_paths_never_read",
+          "fixtureVariants": [
+            "namespace-metadata0-read0",
+            "ADS-metadata0-read0",
+            "DOS-reserved-metadata0-read0",
+            "reparse-read0",
+            "metadata-error-read0",
+            "nonregular-read0"
+          ],
+          "sources": [
+            "crates/cache-probe-registration-win/src/boundary.rs",
+            "crates/cache-probe-registration-win/src/boundary/tests.rs",
+            "crates/cache-probe-registration-win/src/package.rs",
+            "crates/cache-probe-registration-win/src/package/tests.rs",
+            "crates/cache-probe-registration-win/fixtures/p04-service-only.inf",
+            "crates/cache-probe-registration-win/src/boundary/stages.rs",
+            "crates/cache-probe-registration-win/src/boundary/stages/tests.rs"
+          ]
+        },
+        {
+          "id": "R06/B02",
+          "name": "boundary::tests::r06_raw_sdk_upperfilters_read_write_property_numbers",
+          "fixtureVariants": [
+            "SPDRP_UPPERFILTERS-read-literal17",
+            "SPDRP_UPPERFILTERS-write-literal17",
+            "unified-property-pid19-separate"
+          ],
+          "sources": [
+            "crates/cache-probe-registration-win/src/boundary.rs",
+            "crates/cache-probe-registration-win/src/boundary/tests.rs",
+            "crates/cache-probe-registration-win/src/package.rs",
+            "crates/cache-probe-registration-win/src/package/tests.rs",
+            "crates/cache-probe-registration-win/fixtures/p04-service-only.inf",
+            "crates/cache-probe-registration-win/src/boundary/stages.rs",
+            "crates/cache-probe-registration-win/src/boundary/stages/tests.rs"
+          ]
+        }
+      ],
+      "helpersObserved": []
+    },
+    {
+      "id": "collector-abort",
+      "requiredPassed": 33,
+      "cases": [
+        {
+          "id": "C11",
+          "name": "capture::tests::c11_controlled_record_budget_status_failure_never_drains_zero",
+          "fixtureVariants": [
+            "c11_controlled_record_budget_status_failure_never_drains_zero"
+          ],
+          "sources": [
+            "crates/cache-probe-collector/src/capture.rs",
+            "crates/cache-probe-collector/tests/cli.rs"
+          ]
+        },
+        {
+          "id": "C04",
+          "name": "capture::tests::controlled::c04_abort_before_open_has_no_transport_or_archive",
+          "fixtureVariants": [
+            "c04_abort_before_open_has_no_transport_or_archive"
+          ],
+          "sources": [
+            "crates/cache-probe-collector/src/capture.rs",
+            "crates/cache-probe-collector/tests/cli.rs"
+          ]
+        },
+        {
+          "id": "C04",
+          "name": "capture::tests::controlled::c04_abort_after_open_closes_once_without_begin",
+          "fixtureVariants": [
+            "c04_abort_after_open_closes_once_without_begin"
+          ],
+          "sources": [
+            "crates/cache-probe-collector/src/capture.rs",
+            "crates/cache-probe-collector/tests/cli.rs"
+          ]
+        },
+        {
+          "id": "C04",
+          "name": "capture::tests::controlled::c04_control_failure_before_and_after_open_is_os_error",
+          "fixtureVariants": [
+            "control-fault-before-open",
+            "control-fault-after-open"
+          ],
+          "sources": [
+            "crates/cache-probe-collector/src/capture.rs",
+            "crates/cache-probe-collector/tests/cli.rs"
+          ]
+        },
+        {
+          "id": "C05",
+          "name": "capture::tests::controlled::c05_begin_inflight_abort_waits_for_ack_then_same_owner_stop",
+          "fixtureVariants": [
+            "c05_begin_inflight_abort_waits_for_ack_then_same_owner_stop"
+          ],
+          "sources": [
+            "crates/cache-probe-collector/src/capture.rs",
+            "crates/cache-probe-collector/tests/cli.rs"
+          ]
+        },
+        {
+          "id": "C05",
+          "name": "capture::tests::controlled::c05_unknown_begin_never_retries_or_adds_stop_archive",
+          "fixtureVariants": [
+            "begin-transport-failure",
+            "begin-session-binding-mismatch"
+          ],
+          "sources": [
+            "crates/cache-probe-collector/src/capture.rs",
+            "crates/cache-probe-collector/tests/cli.rs"
+          ]
+        },
+        {
+          "id": "C05",
+          "name": "capture::tests::controlled::c05_history_invalid_begin_uses_only_builder_cleanup_rule",
+          "fixtureVariants": [
+            "c05_history_invalid_begin_uses_only_builder_cleanup_rule"
+          ],
+          "sources": [
+            "crates/cache-probe-collector/src/capture.rs",
+            "crates/cache-probe-collector/tests/cli.rs"
+          ]
+        },
+        {
+          "id": "C06",
+          "name": "capture::tests::controlled::c06_signal_after_last_poll_allows_one_drain_and_keeps_actual_records_once",
+          "fixtureVariants": [
+            "c06_signal_after_last_poll_allows_one_drain_and_keeps_actual_records_once"
+          ],
+          "sources": [
+            "crates/cache-probe-collector/src/capture.rs",
+            "crates/cache-probe-collector/tests/cli.rs"
+          ]
+        },
+        {
+          "id": "C06",
+          "name": "capture::tests::controlled::c06_signal_before_predrain_has_zero_normal_drain",
+          "fixtureVariants": [
+            "c06_signal_before_predrain_has_zero_normal_drain"
+          ],
+          "sources": [
+            "crates/cache-probe-collector/src/capture.rs",
+            "crates/cache-probe-collector/tests/cli.rs"
+          ]
+        },
+        {
+          "id": "C07",
+          "name": "capture::tests::controlled::c07_drain_uncertainty_wins_over_abort_and_no_second_drain",
+          "fixtureVariants": [
+            "drain-response-lost",
+            "drain-session-mismatch",
+            "drain-target-mismatch",
+            "drain-call-mismatch"
+          ],
+          "sources": [
+            "crates/cache-probe-collector/src/capture.rs",
+            "crates/cache-probe-collector/tests/cli.rs"
+          ]
+        },
+        {
+          "id": "C08",
+          "name": "capture::tests::controlled::c08_failed_normal_stop_has_only_one_fresh_cleanup",
+          "fixtureVariants": [
+            "cleanup-stop-failure",
+            "cleanup-stop-success"
+          ],
+          "sources": [
+            "crates/cache-probe-collector/src/capture.rs",
+            "crates/cache-probe-collector/tests/cli.rs"
+          ]
+        },
+        {
+          "id": "C08",
+          "name": "capture::tests::controlled::c08_cleanup_stop_failure_does_not_gain_another_budget",
+          "fixtureVariants": [
+            "c08_cleanup_stop_failure_does_not_gain_another_budget"
+          ],
+          "sources": [
+            "crates/cache-probe-collector/src/capture.rs",
+            "crates/cache-probe-collector/tests/cli.rs"
+          ]
+        },
+        {
+          "id": "C08",
+          "name": "capture::tests::controlled::c08_recovery_drain_failure_has_one_cleanup_and_no_later_drain",
+          "fixtureVariants": [
+            "c08_recovery_drain_failure_has_one_cleanup_and_no_later_drain"
+          ],
+          "sources": [
+            "crates/cache-probe-collector/src/capture.rs",
+            "crates/cache-probe-collector/tests/cli.rs"
+          ]
+        },
+        {
+          "id": "C08",
+          "name": "capture::tests::controlled::c08_history_invalid_recovery_response_has_only_cleanup_stop",
+          "fixtureVariants": [
+            "c08_history_invalid_recovery_response_has_only_cleanup_stop"
+          ],
+          "sources": [
+            "crates/cache-probe-collector/src/capture.rs",
+            "crates/cache-probe-collector/tests/cli.rs"
+          ]
+        },
+        {
+          "id": "C09",
+          "name": "capture::tests::controlled::c09_producer_fault_stops_normal_drain",
+          "fixtureVariants": [
+            "c09_producer_fault_stops_normal_drain"
+          ],
+          "sources": [
+            "crates/cache-probe-collector/src/capture.rs",
+            "crates/cache-probe-collector/tests/cli.rs"
+          ]
+        },
+        {
+          "id": "C09",
+          "name": "capture::tests::controlled::c09_known_drop_stops_normal_drain",
+          "fixtureVariants": [
+            "c09_known_drop_stops_normal_drain"
+          ],
+          "sources": [
+            "crates/cache-probe-collector/src/capture.rs",
+            "crates/cache-probe-collector/tests/cli.rs"
+          ]
+        },
+        {
+          "id": "C09",
+          "name": "capture::tests::controlled::c09_known_skip_stops_normal_drain",
+          "fixtureVariants": [
+            "c09_known_skip_stops_normal_drain"
+          ],
+          "sources": [
+            "crates/cache-probe-collector/src/capture.rs",
+            "crates/cache-probe-collector/tests/cli.rs"
+          ]
+        },
+        {
+          "id": "C09",
+          "name": "capture::tests::controlled::c09_attempted_unknown_remains_unknown",
+          "fixtureVariants": [
+            "c09_attempted_unknown_remains_unknown"
+          ],
+          "sources": [
+            "crates/cache-probe-collector/src/capture.rs",
+            "crates/cache-probe-collector/tests/cli.rs"
+          ]
+        },
+        {
+          "id": "C09",
+          "name": "capture::tests::controlled::c09_popped_unknown_remains_unknown",
+          "fixtureVariants": [
+            "c09_popped_unknown_remains_unknown"
+          ],
+          "sources": [
+            "crates/cache-probe-collector/src/capture.rs",
+            "crates/cache-probe-collector/tests/cli.rs"
+          ]
+        },
+        {
+          "id": "C09",
+          "name": "capture::tests::controlled::c09_skipped_unknown_remains_unknown",
+          "fixtureVariants": [
+            "c09_skipped_unknown_remains_unknown"
+          ],
+          "sources": [
+            "crates/cache-probe-collector/src/capture.rs",
+            "crates/cache-probe-collector/tests/cli.rs"
+          ]
+        },
+        {
+          "id": "C09",
+          "name": "capture::tests::controlled::c09_running_to_stopping_requires_stop",
+          "fixtureVariants": [
+            "c09_running_to_stopping_requires_stop"
+          ],
+          "sources": [
+            "crates/cache-probe-collector/src/capture.rs",
+            "crates/cache-probe-collector/tests/cli.rs"
+          ]
+        },
+        {
+          "id": "C10",
+          "name": "capture::tests::controlled::c10_producer_priority_preserves_concurrent_abort",
+          "fixtureVariants": [
+            "c10_producer_priority_preserves_concurrent_abort"
+          ],
+          "sources": [
+            "crates/cache-probe-collector/src/capture.rs",
+            "crates/cache-probe-collector/tests/cli.rs"
+          ]
+        },
+        {
+          "id": "C10",
+          "name": "capture::tests::controlled::c10_control_poll_failure_after_begin_stops_without_transport_loss",
+          "fixtureVariants": [
+            "c10_control_poll_failure_after_begin_stops_without_transport_loss"
+          ],
+          "sources": [
+            "crates/cache-probe-collector/src/capture.rs",
+            "crates/cache-probe-collector/tests/cli.rs"
+          ]
+        },
+        {
+          "id": "C10",
+          "name": "capture::tests::controlled::c10_signal_during_stop_is_secondary_and_never_repeats_normal_stop",
+          "fixtureVariants": [
+            "c10_signal_during_stop_is_secondary_and_never_repeats_normal_stop"
+          ],
+          "sources": [
+            "crates/cache-probe-collector/src/capture.rs",
+            "crates/cache-probe-collector/tests/cli.rs"
+          ]
+        },
+        {
+          "id": "C10",
+          "name": "capture::tests::controlled::c10_producer_abort_and_expiry_share_one_priority_boundary",
+          "fixtureVariants": [
+            "c10_producer_abort_and_expiry_share_one_priority_boundary"
+          ],
+          "sources": [
+            "crates/cache-probe-collector/src/capture.rs",
+            "crates/cache-probe-collector/tests/cli.rs"
+          ]
+        },
+        {
+          "id": "C11",
+          "name": "capture::tests::controlled::c11_post_stop_deadline_is_checked_only_on_returned_boundaries",
+          "fixtureVariants": [
+            "c11_post_stop_deadline_is_checked_only_on_returned_boundaries"
+          ],
+          "sources": [
+            "crates/cache-probe-collector/src/capture.rs",
+            "crates/cache-probe-collector/tests/cli.rs"
+          ]
+        },
+        {
+          "id": "C11",
+          "name": "capture::tests::controlled::c11_frame_limit_preserves_cleanup_reserve_without_truncation",
+          "fixtureVariants": [
+            "c11_frame_limit_preserves_cleanup_reserve_without_truncation"
+          ],
+          "sources": [
+            "crates/cache-probe-collector/src/capture.rs",
+            "crates/cache-probe-collector/tests/cli.rs"
+          ]
+        },
+        {
+          "id": "C11",
+          "name": "capture::tests::controlled::c11_recovery_waits_for_both_active_and_queued_then_terminal",
+          "fixtureVariants": [
+            "active-zero-queued-positive",
+            "active-positive-queued-zero",
+            "sealed-both-zero"
+          ],
+          "sources": [
+            "crates/cache-probe-collector/src/capture.rs",
+            "crates/cache-probe-collector/tests/cli.rs"
+          ]
+        },
+        {
+          "id": "C12",
+          "name": "capture::tests::controlled::c12_abort_empty_keeps_v1_footer_and_unknown_external_facts",
+          "fixtureVariants": [
+            "c12_abort_empty_keeps_v1_footer_and_unknown_external_facts"
+          ],
+          "sources": [
+            "crates/cache-probe-collector/src/capture.rs",
+            "crates/cache-probe-collector/tests/cli.rs"
+          ]
+        },
+        {
+          "id": "C12",
+          "name": "capture::tests::controlled::c12_terminal_response_does_not_accept_late_signal_or_issue_more_commands",
+          "fixtureVariants": [
+            "c12_terminal_response_does_not_accept_late_signal_or_issue_more_commands"
+          ],
+          "sources": [
+            "crates/cache-probe-collector/src/capture.rs",
+            "crates/cache-probe-collector/tests/cli.rs"
+          ]
+        },
+        {
+          "id": "C01",
+          "name": "c01_controlled_arguments_are_canonical_and_environment_never_activates_live",
+          "fixtureVariants": [
+            "duration-0",
+            "leading-zero-01",
+            "duration-30001",
+            "plus-sign",
+            "trailing-space",
+            "empty-duration",
+            "overflow-duration",
+            "missing-flags",
+            "missing-live-switch",
+            "unknown-argument",
+            "duplicate-live-switch",
+            "duplicate-duration",
+            "reserved-environment-only"
+          ],
+          "sources": [
+            "crates/cache-probe-collector/src/capture.rs",
+            "crates/cache-probe-collector/tests/cli.rs"
+          ]
+        },
+        {
+          "id": "C01",
+          "name": "c01_controlled_default_off_at_both_duration_bounds",
+          "fixtureVariants": [
+            "duration-1-default-off",
+            "duration-30000-default-off"
+          ],
+          "sources": [
+            "crates/cache-probe-collector/src/capture.rs",
+            "crates/cache-probe-collector/tests/cli.rs"
+          ]
+        },
+        {
+          "id": "C12",
+          "name": "capture::tests::output_failure_has_no_success_claim",
+          "fixtureVariants": [
+            "write-zero-bytes",
+            "write-before-footer-at-688",
+            "partial-footer-at-700",
+            "full-footer-752-then-flush-error"
+          ],
+          "sources": [
+            "crates/cache-probe-collector/src/capture.rs",
+            "crates/cache-probe-collector/tests/cli.rs"
+          ]
+        }
+      ],
+      "helpersObserved": []
+    },
+    {
+      "id": "controlled-hangs",
+      "requiredPassed": 10,
+      "cases": [
+        {
+          "id": "H01",
+          "name": "h01_open_success_and_failure_after_release",
+          "fixtureVariants": [
+            "h01_open_success_and_failure_after_release"
+          ],
+          "sources": [
+            "crates/cache-probe-collector/tests/controlled_hangs.rs",
+            "crates/cache-probe-launcher/src/supervision.rs"
+          ]
+        },
+        {
+          "id": "H02",
+          "name": "h02_begin_success_and_failure_after_release",
+          "fixtureVariants": [
+            "h02_begin_success_and_failure_after_release"
+          ],
+          "sources": [
+            "crates/cache-probe-collector/tests/controlled_hangs.rs",
+            "crates/cache-probe-launcher/src/supervision.rs"
+          ]
+        },
+        {
+          "id": "H03",
+          "name": "h03_drain_success_and_failure_after_release",
+          "fixtureVariants": [
+            "h03_drain_success_and_failure_after_release"
+          ],
+          "sources": [
+            "crates/cache-probe-collector/tests/controlled_hangs.rs",
+            "crates/cache-probe-launcher/src/supervision.rs"
+          ]
+        },
+        {
+          "id": "H03",
+          "name": "h03_already_popped_drain_success_and_failure",
+          "fixtureVariants": [
+            "h03_already_popped_drain_success_and_failure"
+          ],
+          "sources": [
+            "crates/cache-probe-collector/tests/controlled_hangs.rs",
+            "crates/cache-probe-launcher/src/supervision.rs"
+          ]
+        },
+        {
+          "id": "H04",
+          "name": "h04_stop_success_and_failure_after_release",
+          "fixtureVariants": [
+            "h04_stop_success_and_failure_after_release"
+          ],
+          "sources": [
+            "crates/cache-probe-collector/tests/controlled_hangs.rs",
+            "crates/cache-probe-launcher/src/supervision.rs"
+          ]
+        },
+        {
+          "id": "H04",
+          "name": "h04_recovery_drain_success_and_failure",
+          "fixtureVariants": [
+            "h04_recovery_drain_success_and_failure"
+          ],
+          "sources": [
+            "crates/cache-probe-collector/tests/controlled_hangs.rs",
+            "crates/cache-probe-launcher/src/supervision.rs"
+          ]
+        },
+        {
+          "id": "H04",
+          "name": "h04_budget_status_success_and_failure",
+          "fixtureVariants": [
+            "h04_budget_status_success_and_failure"
+          ],
+          "sources": [
+            "crates/cache-probe-collector/tests/controlled_hangs.rs",
+            "crates/cache-probe-launcher/src/supervision.rs"
+          ]
+        },
+        {
+          "id": "H05",
+          "name": "h05_write_success_and_failure_after_release",
+          "fixtureVariants": [
+            "h05_write_success_and_failure_after_release"
+          ],
+          "sources": [
+            "crates/cache-probe-collector/tests/controlled_hangs.rs",
+            "crates/cache-probe-launcher/src/supervision.rs"
+          ]
+        },
+        {
+          "id": "H05",
+          "name": "h05_flush_success_and_failure_after_release",
+          "fixtureVariants": [
+            "h05_flush_success_and_failure_after_release"
+          ],
+          "sources": [
+            "crates/cache-probe-collector/tests/controlled_hangs.rs",
+            "crates/cache-probe-launcher/src/supervision.rs"
+          ]
+        },
+        {
+          "id": "H06",
+          "name": "h06_monitor_loss_regression_and_completed_receiver_are_independent",
+          "fixtureVariants": [
+            "h06_monitor_loss_regression_and_completed_receiver_are_independent"
+          ],
+          "sources": [
+            "crates/cache-probe-collector/tests/controlled_hangs.rs",
+            "crates/cache-probe-launcher/src/supervision.rs"
+          ]
+        }
+      ],
+      "helpersObserved": [
+        "synthetic_hang_child"
+      ]
+    },
+    {
+      "id": "collector-compatibility",
+      "requiredPassed": 5,
+      "cases": [
+        {
+          "id": "C01/C12",
+          "name": "usage_never_collects",
+          "fixtureVariants": [
+            "usage_never_collects"
+          ],
+          "sources": [
+            "crates/cache-probe-collector/tests/cli.rs"
+          ]
+        },
+        {
+          "id": "C01/C12",
+          "name": "live_disabled_before_platform_calls",
+          "fixtureVariants": [
+            "live_disabled_before_platform_calls"
+          ],
+          "sources": [
+            "crates/cache-probe-collector/tests/cli.rs"
+          ]
+        },
+        {
+          "id": "C01/C12",
+          "name": "audit_and_project_exit4",
+          "fixtureVariants": [
+            "audit_and_project_exit4"
+          ],
+          "sources": [
+            "crates/cache-probe-collector/tests/cli.rs"
+          ]
+        },
+        {
+          "id": "C01/C12",
+          "name": "redacted_input_and_limits",
+          "fixtureVariants": [
+            "redacted_input_and_limits"
+          ],
+          "sources": [
+            "crates/cache-probe-collector/tests/cli.rs"
+          ]
+        },
+        {
+          "id": "C01/C12",
+          "name": "duplicate_options_rejected",
+          "fixtureVariants": [
+            "duplicate_options_rejected"
+          ],
+          "sources": [
+            "crates/cache-probe-collector/tests/cli.rs"
+          ]
+        }
+      ],
+      "helpersObserved": []
+    },
+    {
+      "id": "windows-default-off-namespace",
+      "requiredPassed": 1,
+      "cases": [
+        {
+          "id": "C01",
+          "name": "windows_forbidden_namespace_is_rejected_before_open",
+          "fixtureVariants": [
+            "physical-disk",
+            "pipe",
+            "globalroot",
+            "unc",
+            "extended-unc",
+            "dos-device-names"
+          ],
+          "sources": [
+            "crates/cache-probe-collector/tests/cli.rs"
+          ]
+        }
+      ],
+      "helpersObserved": []
+    }
+  ],
+  "hangVariantCount": 18,
+  "hangVariants": [
+    {
+      "schema": "p04-hang-case-v1",
+      "point": "open",
+      "release": "ok",
+      "entered": true,
+      "prefix": [
+        "Open"
+      ],
+      "actual": [
+        "Open",
+        "Close"
+      ],
+      "deadlineObservedAt": 15000,
+      "deadlineSticky": true,
+      "lateProcessExitAt": 15001,
+      "receivedBytes": 0,
+      "receivedSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "result": "abort-before-begin",
+      "report": {
+        "schema": "p04-controlled-v1",
+        "first_reason": "EXTERNAL_ABORT",
+        "reasons": [
+          "EXTERNAL_ABORT"
+        ],
+        "abort_accepted": true,
+        "begin_submitted": false,
+        "begin_acknowledged": null,
+        "stop_acknowledged": null,
+        "terminal_received": null,
+        "send_result": null,
+        "host_deadline": null,
+        "process_exit": null,
+        "received_bytes": null,
+        "received_hash": null,
+        "saved": null
+      },
+      "realDeviceAccess": false,
+      "driverInstalledOrLoaded": false,
+      "registeredOrAttached": false,
+      "runtimeQualified": false,
+      "windowsClientQualified": false
+    },
+    {
+      "schema": "p04-hang-case-v1",
+      "point": "open",
+      "release": "error",
+      "entered": true,
+      "prefix": [
+        "Open"
+      ],
+      "actual": [
+        "Open"
+      ],
+      "deadlineObservedAt": 15000,
+      "deadlineSticky": true,
+      "lateProcessExitAt": 15001,
+      "receivedBytes": 0,
+      "receivedSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "result": "device-unavailable",
+      "report": {
+        "schema": "p04-controlled-v1",
+        "first_reason": null,
+        "reasons": [],
+        "abort_accepted": false,
+        "begin_submitted": false,
+        "begin_acknowledged": null,
+        "stop_acknowledged": null,
+        "terminal_received": null,
+        "send_result": null,
+        "host_deadline": null,
+        "process_exit": null,
+        "received_bytes": null,
+        "received_hash": null,
+        "saved": null
+      },
+      "realDeviceAccess": false,
+      "driverInstalledOrLoaded": false,
+      "registeredOrAttached": false,
+      "runtimeQualified": false,
+      "windowsClientQualified": false
+    },
+    {
+      "schema": "p04-hang-case-v1",
+      "point": "begin",
+      "release": "ok",
+      "entered": true,
+      "prefix": [
+        "Open",
+        "B1"
+      ],
+      "actual": [
+        "Open",
+        "B1",
+        "S2",
+        "Close"
+      ],
+      "deadlineObservedAt": 15000,
+      "deadlineSticky": true,
+      "lateProcessExitAt": 15001,
+      "receivedBytes": 416,
+      "receivedSha256": "e75e2328c1574d433938a87a98f9a06b4ee6412a2352802caf3f990c831c5f74",
+      "result": "archive-emitted",
+      "report": {
+        "schema": "p04-controlled-v1",
+        "first_reason": "EXTERNAL_ABORT",
+        "reasons": [
+          "EXTERNAL_ABORT"
+        ],
+        "abort_accepted": true,
+        "begin_submitted": true,
+        "begin_acknowledged": true,
+        "stop_acknowledged": true,
+        "terminal_received": true,
+        "send_result": null,
+        "host_deadline": null,
+        "process_exit": null,
+        "received_bytes": null,
+        "received_hash": null,
+        "saved": null
+      },
+      "realDeviceAccess": false,
+      "driverInstalledOrLoaded": false,
+      "registeredOrAttached": false,
+      "runtimeQualified": false,
+      "windowsClientQualified": false
+    },
+    {
+      "schema": "p04-hang-case-v1",
+      "point": "begin",
+      "release": "error",
+      "entered": true,
+      "prefix": [
+        "Open",
+        "B1"
+      ],
+      "actual": [
+        "Open",
+        "B1",
+        "Close"
+      ],
+      "deadlineObservedAt": 15000,
+      "deadlineSticky": true,
+      "lateProcessExitAt": 15001,
+      "receivedBytes": 0,
+      "receivedSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "result": "device-unavailable",
+      "report": {
+        "schema": "p04-controlled-v1",
+        "first_reason": "UNCERTAIN",
+        "reasons": [
+          "UNCERTAIN",
+          "EXTERNAL_ABORT"
+        ],
+        "abort_accepted": true,
+        "begin_submitted": true,
+        "begin_acknowledged": null,
+        "stop_acknowledged": null,
+        "terminal_received": null,
+        "send_result": null,
+        "host_deadline": null,
+        "process_exit": null,
+        "received_bytes": null,
+        "received_hash": null,
+        "saved": null
+      },
+      "realDeviceAccess": false,
+      "driverInstalledOrLoaded": false,
+      "registeredOrAttached": false,
+      "runtimeQualified": false,
+      "windowsClientQualified": false
+    },
+    {
+      "schema": "p04-hang-case-v1",
+      "point": "popped",
+      "release": "ok",
+      "entered": true,
+      "prefix": [
+        "Open",
+        "B1",
+        "D2"
+      ],
+      "actual": [
+        "Open",
+        "B1",
+        "D2",
+        "S3",
+        "Close"
+      ],
+      "deadlineObservedAt": 15000,
+      "deadlineSticky": true,
+      "lateProcessExitAt": 15001,
+      "receivedBytes": 752,
+      "receivedSha256": "3fd5b1aedb4185e8b6efc58bf7b97ddfc4ec962699ca0aea40afc56470b4a2c7",
+      "result": "archive-emitted",
+      "report": {
+        "schema": "p04-controlled-v1",
+        "first_reason": "EXTERNAL_ABORT",
+        "reasons": [
+          "EXTERNAL_ABORT"
+        ],
+        "abort_accepted": true,
+        "begin_submitted": true,
+        "begin_acknowledged": true,
+        "stop_acknowledged": true,
+        "terminal_received": true,
+        "send_result": null,
+        "host_deadline": null,
+        "process_exit": null,
+        "received_bytes": null,
+        "received_hash": null,
+        "saved": null
+      },
+      "realDeviceAccess": false,
+      "driverInstalledOrLoaded": false,
+      "registeredOrAttached": false,
+      "runtimeQualified": false,
+      "windowsClientQualified": false
+    },
+    {
+      "schema": "p04-hang-case-v1",
+      "point": "popped",
+      "release": "error",
+      "entered": true,
+      "prefix": [
+        "Open",
+        "B1",
+        "D2"
+      ],
+      "actual": [
+        "Open",
+        "B1",
+        "D2",
+        "S3",
+        "Close"
+      ],
+      "deadlineObservedAt": 15000,
+      "deadlineSticky": true,
+      "lateProcessExitAt": 15001,
+      "receivedBytes": 416,
+      "receivedSha256": "b351ceba0807531615d9523b0879a9403923ce1537ce60381663177f31075a0b",
+      "result": "archive-emitted",
+      "report": {
+        "schema": "p04-controlled-v1",
+        "first_reason": "UNCERTAIN",
+        "reasons": [
+          "UNCERTAIN",
+          "EXTERNAL_ABORT"
+        ],
+        "abort_accepted": true,
+        "begin_submitted": true,
+        "begin_acknowledged": true,
+        "stop_acknowledged": true,
+        "terminal_received": true,
+        "send_result": null,
+        "host_deadline": null,
+        "process_exit": null,
+        "received_bytes": null,
+        "received_hash": null,
+        "saved": null
+      },
+      "realDeviceAccess": false,
+      "driverInstalledOrLoaded": false,
+      "registeredOrAttached": false,
+      "runtimeQualified": false,
+      "windowsClientQualified": false
+    },
+    {
+      "schema": "p04-hang-case-v1",
+      "point": "drain",
+      "release": "ok",
+      "entered": true,
+      "prefix": [
+        "Open",
+        "B1",
+        "D2"
+      ],
+      "actual": [
+        "Open",
+        "B1",
+        "D2",
+        "S3",
+        "Close"
+      ],
+      "deadlineObservedAt": 15000,
+      "deadlineSticky": true,
+      "lateProcessExitAt": 15001,
+      "receivedBytes": 560,
+      "receivedSha256": "ee2815d9546d7e87ffe85dacc4fb0ea6e4665dba0da16bad93447e254b481ad4",
+      "result": "archive-emitted",
+      "report": {
+        "schema": "p04-controlled-v1",
+        "first_reason": "EXTERNAL_ABORT",
+        "reasons": [
+          "EXTERNAL_ABORT"
+        ],
+        "abort_accepted": true,
+        "begin_submitted": true,
+        "begin_acknowledged": true,
+        "stop_acknowledged": true,
+        "terminal_received": true,
+        "send_result": null,
+        "host_deadline": null,
+        "process_exit": null,
+        "received_bytes": null,
+        "received_hash": null,
+        "saved": null
+      },
+      "realDeviceAccess": false,
+      "driverInstalledOrLoaded": false,
+      "registeredOrAttached": false,
+      "runtimeQualified": false,
+      "windowsClientQualified": false
+    },
+    {
+      "schema": "p04-hang-case-v1",
+      "point": "drain",
+      "release": "error",
+      "entered": true,
+      "prefix": [
+        "Open",
+        "B1",
+        "D2"
+      ],
+      "actual": [
+        "Open",
+        "B1",
+        "D2",
+        "S3",
+        "Close"
+      ],
+      "deadlineObservedAt": 15000,
+      "deadlineSticky": true,
+      "lateProcessExitAt": 15001,
+      "receivedBytes": 416,
+      "receivedSha256": "e946475909b9818d11c6326a0a1edc398a86fd646d2cb86a00c155dd3520cd83",
+      "result": "archive-emitted",
+      "report": {
+        "schema": "p04-controlled-v1",
+        "first_reason": "UNCERTAIN",
+        "reasons": [
+          "UNCERTAIN",
+          "EXTERNAL_ABORT"
+        ],
+        "abort_accepted": true,
+        "begin_submitted": true,
+        "begin_acknowledged": true,
+        "stop_acknowledged": true,
+        "terminal_received": true,
+        "send_result": null,
+        "host_deadline": null,
+        "process_exit": null,
+        "received_bytes": null,
+        "received_hash": null,
+        "saved": null
+      },
+      "realDeviceAccess": false,
+      "driverInstalledOrLoaded": false,
+      "registeredOrAttached": false,
+      "runtimeQualified": false,
+      "windowsClientQualified": false
+    },
+    {
+      "schema": "p04-hang-case-v1",
+      "point": "status",
+      "release": "ok",
+      "entered": true,
+      "prefix": [
+        "Open",
+        "B1",
+        "D2",
+        "D3",
+        "D4",
+        "D5",
+        "D6",
+        "D7",
+        "D8",
+        "D9",
+        "D10",
+        "D11",
+        "D12",
+        "D13",
+        "D14",
+        "D15",
+        "D16",
+        "D17",
+        "D18",
+        "D19",
+        "D20",
+        "D21",
+        "D22",
+        "D23",
+        "D24",
+        "D25",
+        "D26",
+        "D27",
+        "D28",
+        "D29",
+        "D30",
+        "D31",
+        "D32",
+        "D33",
+        "D34",
+        "D35",
+        "D36",
+        "D37",
+        "D38",
+        "D39",
+        "D40",
+        "D41",
+        "D42",
+        "D43",
+        "D44",
+        "D45",
+        "D46",
+        "D47",
+        "D48",
+        "D49",
+        "D50",
+        "D51",
+        "D52",
+        "D53",
+        "D54",
+        "D55",
+        "D56",
+        "D57",
+        "D58",
+        "D59",
+        "D60",
+        "D61",
+        "D62",
+        "D63",
+        "D64",
+        "D65",
+        "D66",
+        "D67",
+        "D68",
+        "D69",
+        "D70",
+        "D71",
+        "D72",
+        "D73",
+        "D74",
+        "D75",
+        "D76",
+        "D77",
+        "D78",
+        "D79",
+        "D80",
+        "D81",
+        "D82",
+        "D83",
+        "D84",
+        "D85",
+        "D86",
+        "D87",
+        "D88",
+        "D89",
+        "D90",
+        "D91",
+        "D92",
+        "D93",
+        "D94",
+        "D95",
+        "D96",
+        "D97",
+        "D98",
+        "D99",
+        "D100",
+        "D101",
+        "D102",
+        "D103",
+        "D104",
+        "D105",
+        "D106",
+        "D107",
+        "D108",
+        "D109",
+        "D110",
+        "D111",
+        "D112",
+        "D113",
+        "D114",
+        "D115",
+        "D116",
+        "D117",
+        "D118",
+        "D119",
+        "D120",
+        "D121",
+        "D122",
+        "D123",
+        "D124",
+        "D125",
+        "D126",
+        "D127",
+        "D128",
+        "D129",
+        "D130",
+        "D131",
+        "D132",
+        "D133",
+        "D134",
+        "D135",
+        "D136",
+        "D137",
+        "D138",
+        "D139",
+        "D140",
+        "D141",
+        "D142",
+        "D143",
+        "D144",
+        "D145",
+        "D146",
+        "D147",
+        "D148",
+        "D149",
+        "D150",
+        "D151",
+        "D152",
+        "D153",
+        "D154",
+        "D155",
+        "D156",
+        "D157",
+        "D158",
+        "D159",
+        "D160",
+        "D161",
+        "D162",
+        "D163",
+        "D164",
+        "D165",
+        "D166",
+        "D167",
+        "D168",
+        "D169",
+        "D170",
+        "D171",
+        "D172",
+        "D173",
+        "D174",
+        "D175",
+        "D176",
+        "D177",
+        "D178",
+        "D179",
+        "D180",
+        "D181",
+        "D182",
+        "D183",
+        "D184",
+        "D185",
+        "D186",
+        "D187",
+        "D188",
+        "D189",
+        "D190",
+        "D191",
+        "D192",
+        "D193",
+        "D194",
+        "D195",
+        "D196",
+        "D197",
+        "D198",
+        "D199",
+        "D200",
+        "D201",
+        "D202",
+        "D203",
+        "D204",
+        "D205",
+        "D206",
+        "D207",
+        "D208",
+        "D209",
+        "D210",
+        "D211",
+        "D212",
+        "D213",
+        "D214",
+        "D215",
+        "D216",
+        "D217",
+        "D218",
+        "D219",
+        "D220",
+        "D221",
+        "D222",
+        "D223",
+        "D224",
+        "D225",
+        "D226",
+        "D227",
+        "D228",
+        "D229",
+        "D230",
+        "D231",
+        "D232",
+        "D233",
+        "D234",
+        "D235",
+        "D236",
+        "D237",
+        "D238",
+        "D239",
+        "D240",
+        "D241",
+        "D242",
+        "D243",
+        "D244",
+        "D245",
+        "D246",
+        "D247",
+        "D248",
+        "D249",
+        "D250",
+        "D251",
+        "D252",
+        "D253",
+        "D254",
+        "D255",
+        "D256",
+        "D257",
+        "S258",
+        "T259"
+      ],
+      "actual": [
+        "Open",
+        "B1",
+        "D2",
+        "D3",
+        "D4",
+        "D5",
+        "D6",
+        "D7",
+        "D8",
+        "D9",
+        "D10",
+        "D11",
+        "D12",
+        "D13",
+        "D14",
+        "D15",
+        "D16",
+        "D17",
+        "D18",
+        "D19",
+        "D20",
+        "D21",
+        "D22",
+        "D23",
+        "D24",
+        "D25",
+        "D26",
+        "D27",
+        "D28",
+        "D29",
+        "D30",
+        "D31",
+        "D32",
+        "D33",
+        "D34",
+        "D35",
+        "D36",
+        "D37",
+        "D38",
+        "D39",
+        "D40",
+        "D41",
+        "D42",
+        "D43",
+        "D44",
+        "D45",
+        "D46",
+        "D47",
+        "D48",
+        "D49",
+        "D50",
+        "D51",
+        "D52",
+        "D53",
+        "D54",
+        "D55",
+        "D56",
+        "D57",
+        "D58",
+        "D59",
+        "D60",
+        "D61",
+        "D62",
+        "D63",
+        "D64",
+        "D65",
+        "D66",
+        "D67",
+        "D68",
+        "D69",
+        "D70",
+        "D71",
+        "D72",
+        "D73",
+        "D74",
+        "D75",
+        "D76",
+        "D77",
+        "D78",
+        "D79",
+        "D80",
+        "D81",
+        "D82",
+        "D83",
+        "D84",
+        "D85",
+        "D86",
+        "D87",
+        "D88",
+        "D89",
+        "D90",
+        "D91",
+        "D92",
+        "D93",
+        "D94",
+        "D95",
+        "D96",
+        "D97",
+        "D98",
+        "D99",
+        "D100",
+        "D101",
+        "D102",
+        "D103",
+        "D104",
+        "D105",
+        "D106",
+        "D107",
+        "D108",
+        "D109",
+        "D110",
+        "D111",
+        "D112",
+        "D113",
+        "D114",
+        "D115",
+        "D116",
+        "D117",
+        "D118",
+        "D119",
+        "D120",
+        "D121",
+        "D122",
+        "D123",
+        "D124",
+        "D125",
+        "D126",
+        "D127",
+        "D128",
+        "D129",
+        "D130",
+        "D131",
+        "D132",
+        "D133",
+        "D134",
+        "D135",
+        "D136",
+        "D137",
+        "D138",
+        "D139",
+        "D140",
+        "D141",
+        "D142",
+        "D143",
+        "D144",
+        "D145",
+        "D146",
+        "D147",
+        "D148",
+        "D149",
+        "D150",
+        "D151",
+        "D152",
+        "D153",
+        "D154",
+        "D155",
+        "D156",
+        "D157",
+        "D158",
+        "D159",
+        "D160",
+        "D161",
+        "D162",
+        "D163",
+        "D164",
+        "D165",
+        "D166",
+        "D167",
+        "D168",
+        "D169",
+        "D170",
+        "D171",
+        "D172",
+        "D173",
+        "D174",
+        "D175",
+        "D176",
+        "D177",
+        "D178",
+        "D179",
+        "D180",
+        "D181",
+        "D182",
+        "D183",
+        "D184",
+        "D185",
+        "D186",
+        "D187",
+        "D188",
+        "D189",
+        "D190",
+        "D191",
+        "D192",
+        "D193",
+        "D194",
+        "D195",
+        "D196",
+        "D197",
+        "D198",
+        "D199",
+        "D200",
+        "D201",
+        "D202",
+        "D203",
+        "D204",
+        "D205",
+        "D206",
+        "D207",
+        "D208",
+        "D209",
+        "D210",
+        "D211",
+        "D212",
+        "D213",
+        "D214",
+        "D215",
+        "D216",
+        "D217",
+        "D218",
+        "D219",
+        "D220",
+        "D221",
+        "D222",
+        "D223",
+        "D224",
+        "D225",
+        "D226",
+        "D227",
+        "D228",
+        "D229",
+        "D230",
+        "D231",
+        "D232",
+        "D233",
+        "D234",
+        "D235",
+        "D236",
+        "D237",
+        "D238",
+        "D239",
+        "D240",
+        "D241",
+        "D242",
+        "D243",
+        "D244",
+        "D245",
+        "D246",
+        "D247",
+        "D248",
+        "D249",
+        "D250",
+        "D251",
+        "D252",
+        "D253",
+        "D254",
+        "D255",
+        "D256",
+        "D257",
+        "S258",
+        "T259",
+        "Close"
+      ],
+      "deadlineObservedAt": 15000,
+      "deadlineSticky": true,
+      "lateProcessExitAt": 15001,
+      "receivedBytes": 430640,
+      "receivedSha256": "2935993e02aed7aace68d1b7eac9a15acf6beb69609f79dc0a00701c89789a2c",
+      "result": "archive-emitted",
+      "report": {
+        "schema": "p04-controlled-v1",
+        "first_reason": "LIMIT",
+        "reasons": [
+          "EXTERNAL_ABORT",
+          "LIMIT"
+        ],
+        "abort_accepted": true,
+        "begin_submitted": true,
+        "begin_acknowledged": true,
+        "stop_acknowledged": true,
+        "terminal_received": false,
+        "send_result": null,
+        "host_deadline": null,
+        "process_exit": null,
+        "received_bytes": null,
+        "received_hash": null,
+        "saved": null
+      },
+      "realDeviceAccess": false,
+      "driverInstalledOrLoaded": false,
+      "registeredOrAttached": false,
+      "runtimeQualified": false,
+      "windowsClientQualified": false
+    },
+    {
+      "schema": "p04-hang-case-v1",
+      "point": "status",
+      "release": "error",
+      "entered": true,
+      "prefix": [
+        "Open",
+        "B1",
+        "D2",
+        "D3",
+        "D4",
+        "D5",
+        "D6",
+        "D7",
+        "D8",
+        "D9",
+        "D10",
+        "D11",
+        "D12",
+        "D13",
+        "D14",
+        "D15",
+        "D16",
+        "D17",
+        "D18",
+        "D19",
+        "D20",
+        "D21",
+        "D22",
+        "D23",
+        "D24",
+        "D25",
+        "D26",
+        "D27",
+        "D28",
+        "D29",
+        "D30",
+        "D31",
+        "D32",
+        "D33",
+        "D34",
+        "D35",
+        "D36",
+        "D37",
+        "D38",
+        "D39",
+        "D40",
+        "D41",
+        "D42",
+        "D43",
+        "D44",
+        "D45",
+        "D46",
+        "D47",
+        "D48",
+        "D49",
+        "D50",
+        "D51",
+        "D52",
+        "D53",
+        "D54",
+        "D55",
+        "D56",
+        "D57",
+        "D58",
+        "D59",
+        "D60",
+        "D61",
+        "D62",
+        "D63",
+        "D64",
+        "D65",
+        "D66",
+        "D67",
+        "D68",
+        "D69",
+        "D70",
+        "D71",
+        "D72",
+        "D73",
+        "D74",
+        "D75",
+        "D76",
+        "D77",
+        "D78",
+        "D79",
+        "D80",
+        "D81",
+        "D82",
+        "D83",
+        "D84",
+        "D85",
+        "D86",
+        "D87",
+        "D88",
+        "D89",
+        "D90",
+        "D91",
+        "D92",
+        "D93",
+        "D94",
+        "D95",
+        "D96",
+        "D97",
+        "D98",
+        "D99",
+        "D100",
+        "D101",
+        "D102",
+        "D103",
+        "D104",
+        "D105",
+        "D106",
+        "D107",
+        "D108",
+        "D109",
+        "D110",
+        "D111",
+        "D112",
+        "D113",
+        "D114",
+        "D115",
+        "D116",
+        "D117",
+        "D118",
+        "D119",
+        "D120",
+        "D121",
+        "D122",
+        "D123",
+        "D124",
+        "D125",
+        "D126",
+        "D127",
+        "D128",
+        "D129",
+        "D130",
+        "D131",
+        "D132",
+        "D133",
+        "D134",
+        "D135",
+        "D136",
+        "D137",
+        "D138",
+        "D139",
+        "D140",
+        "D141",
+        "D142",
+        "D143",
+        "D144",
+        "D145",
+        "D146",
+        "D147",
+        "D148",
+        "D149",
+        "D150",
+        "D151",
+        "D152",
+        "D153",
+        "D154",
+        "D155",
+        "D156",
+        "D157",
+        "D158",
+        "D159",
+        "D160",
+        "D161",
+        "D162",
+        "D163",
+        "D164",
+        "D165",
+        "D166",
+        "D167",
+        "D168",
+        "D169",
+        "D170",
+        "D171",
+        "D172",
+        "D173",
+        "D174",
+        "D175",
+        "D176",
+        "D177",
+        "D178",
+        "D179",
+        "D180",
+        "D181",
+        "D182",
+        "D183",
+        "D184",
+        "D185",
+        "D186",
+        "D187",
+        "D188",
+        "D189",
+        "D190",
+        "D191",
+        "D192",
+        "D193",
+        "D194",
+        "D195",
+        "D196",
+        "D197",
+        "D198",
+        "D199",
+        "D200",
+        "D201",
+        "D202",
+        "D203",
+        "D204",
+        "D205",
+        "D206",
+        "D207",
+        "D208",
+        "D209",
+        "D210",
+        "D211",
+        "D212",
+        "D213",
+        "D214",
+        "D215",
+        "D216",
+        "D217",
+        "D218",
+        "D219",
+        "D220",
+        "D221",
+        "D222",
+        "D223",
+        "D224",
+        "D225",
+        "D226",
+        "D227",
+        "D228",
+        "D229",
+        "D230",
+        "D231",
+        "D232",
+        "D233",
+        "D234",
+        "D235",
+        "D236",
+        "D237",
+        "D238",
+        "D239",
+        "D240",
+        "D241",
+        "D242",
+        "D243",
+        "D244",
+        "D245",
+        "D246",
+        "D247",
+        "D248",
+        "D249",
+        "D250",
+        "D251",
+        "D252",
+        "D253",
+        "D254",
+        "D255",
+        "D256",
+        "D257",
+        "S258",
+        "T259"
+      ],
+      "actual": [
+        "Open",
+        "B1",
+        "D2",
+        "D3",
+        "D4",
+        "D5",
+        "D6",
+        "D7",
+        "D8",
+        "D9",
+        "D10",
+        "D11",
+        "D12",
+        "D13",
+        "D14",
+        "D15",
+        "D16",
+        "D17",
+        "D18",
+        "D19",
+        "D20",
+        "D21",
+        "D22",
+        "D23",
+        "D24",
+        "D25",
+        "D26",
+        "D27",
+        "D28",
+        "D29",
+        "D30",
+        "D31",
+        "D32",
+        "D33",
+        "D34",
+        "D35",
+        "D36",
+        "D37",
+        "D38",
+        "D39",
+        "D40",
+        "D41",
+        "D42",
+        "D43",
+        "D44",
+        "D45",
+        "D46",
+        "D47",
+        "D48",
+        "D49",
+        "D50",
+        "D51",
+        "D52",
+        "D53",
+        "D54",
+        "D55",
+        "D56",
+        "D57",
+        "D58",
+        "D59",
+        "D60",
+        "D61",
+        "D62",
+        "D63",
+        "D64",
+        "D65",
+        "D66",
+        "D67",
+        "D68",
+        "D69",
+        "D70",
+        "D71",
+        "D72",
+        "D73",
+        "D74",
+        "D75",
+        "D76",
+        "D77",
+        "D78",
+        "D79",
+        "D80",
+        "D81",
+        "D82",
+        "D83",
+        "D84",
+        "D85",
+        "D86",
+        "D87",
+        "D88",
+        "D89",
+        "D90",
+        "D91",
+        "D92",
+        "D93",
+        "D94",
+        "D95",
+        "D96",
+        "D97",
+        "D98",
+        "D99",
+        "D100",
+        "D101",
+        "D102",
+        "D103",
+        "D104",
+        "D105",
+        "D106",
+        "D107",
+        "D108",
+        "D109",
+        "D110",
+        "D111",
+        "D112",
+        "D113",
+        "D114",
+        "D115",
+        "D116",
+        "D117",
+        "D118",
+        "D119",
+        "D120",
+        "D121",
+        "D122",
+        "D123",
+        "D124",
+        "D125",
+        "D126",
+        "D127",
+        "D128",
+        "D129",
+        "D130",
+        "D131",
+        "D132",
+        "D133",
+        "D134",
+        "D135",
+        "D136",
+        "D137",
+        "D138",
+        "D139",
+        "D140",
+        "D141",
+        "D142",
+        "D143",
+        "D144",
+        "D145",
+        "D146",
+        "D147",
+        "D148",
+        "D149",
+        "D150",
+        "D151",
+        "D152",
+        "D153",
+        "D154",
+        "D155",
+        "D156",
+        "D157",
+        "D158",
+        "D159",
+        "D160",
+        "D161",
+        "D162",
+        "D163",
+        "D164",
+        "D165",
+        "D166",
+        "D167",
+        "D168",
+        "D169",
+        "D170",
+        "D171",
+        "D172",
+        "D173",
+        "D174",
+        "D175",
+        "D176",
+        "D177",
+        "D178",
+        "D179",
+        "D180",
+        "D181",
+        "D182",
+        "D183",
+        "D184",
+        "D185",
+        "D186",
+        "D187",
+        "D188",
+        "D189",
+        "D190",
+        "D191",
+        "D192",
+        "D193",
+        "D194",
+        "D195",
+        "D196",
+        "D197",
+        "D198",
+        "D199",
+        "D200",
+        "D201",
+        "D202",
+        "D203",
+        "D204",
+        "D205",
+        "D206",
+        "D207",
+        "D208",
+        "D209",
+        "D210",
+        "D211",
+        "D212",
+        "D213",
+        "D214",
+        "D215",
+        "D216",
+        "D217",
+        "D218",
+        "D219",
+        "D220",
+        "D221",
+        "D222",
+        "D223",
+        "D224",
+        "D225",
+        "D226",
+        "D227",
+        "D228",
+        "D229",
+        "D230",
+        "D231",
+        "D232",
+        "D233",
+        "D234",
+        "D235",
+        "D236",
+        "D237",
+        "D238",
+        "D239",
+        "D240",
+        "D241",
+        "D242",
+        "D243",
+        "D244",
+        "D245",
+        "D246",
+        "D247",
+        "D248",
+        "D249",
+        "D250",
+        "D251",
+        "D252",
+        "D253",
+        "D254",
+        "D255",
+        "D256",
+        "D257",
+        "S258",
+        "T259",
+        "S260",
+        "Close"
+      ],
+      "deadlineObservedAt": 15000,
+      "deadlineSticky": true,
+      "lateProcessExitAt": 15001,
+      "receivedBytes": 430640,
+      "receivedSha256": "104e6dfbfcf5e43f2ee7f6549fa797c5e6de65ebd0eb70c01fff6924add68c11",
+      "result": "archive-emitted",
+      "report": {
+        "schema": "p04-controlled-v1",
+        "first_reason": "LIMIT",
+        "reasons": [
+          "UNCERTAIN",
+          "EXTERNAL_ABORT",
+          "LIMIT"
+        ],
+        "abort_accepted": true,
+        "begin_submitted": true,
+        "begin_acknowledged": true,
+        "stop_acknowledged": true,
+        "terminal_received": false,
+        "send_result": null,
+        "host_deadline": null,
+        "process_exit": null,
+        "received_bytes": null,
+        "received_hash": null,
+        "saved": null
+      },
+      "realDeviceAccess": false,
+      "driverInstalledOrLoaded": false,
+      "registeredOrAttached": false,
+      "runtimeQualified": false,
+      "windowsClientQualified": false
+    },
+    {
+      "schema": "p04-hang-case-v1",
+      "point": "recovery-drain",
+      "release": "ok",
+      "entered": true,
+      "prefix": [
+        "Open",
+        "B1",
+        "D2",
+        "S3",
+        "D4"
+      ],
+      "actual": [
+        "Open",
+        "B1",
+        "D2",
+        "S3",
+        "D4",
+        "Close"
+      ],
+      "deadlineObservedAt": 15000,
+      "deadlineSticky": true,
+      "lateProcessExitAt": 15001,
+      "receivedBytes": 704,
+      "receivedSha256": "f2327e31a63be25c52ca6ab4429ab4d51448fa2b28f327570d9af45c0201bd48",
+      "result": "archive-emitted",
+      "report": {
+        "schema": "p04-controlled-v1",
+        "first_reason": "DURATION",
+        "reasons": [
+          "DURATION"
+        ],
+        "abort_accepted": false,
+        "begin_submitted": true,
+        "begin_acknowledged": true,
+        "stop_acknowledged": true,
+        "terminal_received": true,
+        "send_result": null,
+        "host_deadline": null,
+        "process_exit": null,
+        "received_bytes": null,
+        "received_hash": null,
+        "saved": null
+      },
+      "realDeviceAccess": false,
+      "driverInstalledOrLoaded": false,
+      "registeredOrAttached": false,
+      "runtimeQualified": false,
+      "windowsClientQualified": false
+    },
+    {
+      "schema": "p04-hang-case-v1",
+      "point": "recovery-drain",
+      "release": "error",
+      "entered": true,
+      "prefix": [
+        "Open",
+        "B1",
+        "D2",
+        "S3",
+        "D4"
+      ],
+      "actual": [
+        "Open",
+        "B1",
+        "D2",
+        "S3",
+        "D4",
+        "S5",
+        "Close"
+      ],
+      "deadlineObservedAt": 15000,
+      "deadlineSticky": true,
+      "lateProcessExitAt": 15001,
+      "receivedBytes": 704,
+      "receivedSha256": "43bb943c0e535fcb7c78cbdd1aff6d57848eeeeb27184d68e64b703b01b38907",
+      "result": "archive-emitted",
+      "report": {
+        "schema": "p04-controlled-v1",
+        "first_reason": "DURATION",
+        "reasons": [
+          "UNCERTAIN",
+          "EXTERNAL_ABORT",
+          "DURATION"
+        ],
+        "abort_accepted": true,
+        "begin_submitted": true,
+        "begin_acknowledged": true,
+        "stop_acknowledged": true,
+        "terminal_received": true,
+        "send_result": null,
+        "host_deadline": null,
+        "process_exit": null,
+        "received_bytes": null,
+        "received_hash": null,
+        "saved": null
+      },
+      "realDeviceAccess": false,
+      "driverInstalledOrLoaded": false,
+      "registeredOrAttached": false,
+      "runtimeQualified": false,
+      "windowsClientQualified": false
+    },
+    {
+      "schema": "p04-hang-case-v1",
+      "point": "stop",
+      "release": "ok",
+      "entered": true,
+      "prefix": [
+        "Open",
+        "B1",
+        "D2",
+        "S3"
+      ],
+      "actual": [
+        "Open",
+        "B1",
+        "D2",
+        "S3",
+        "Close"
+      ],
+      "deadlineObservedAt": 15000,
+      "deadlineSticky": true,
+      "lateProcessExitAt": 15001,
+      "receivedBytes": 560,
+      "receivedSha256": "ee2815d9546d7e87ffe85dacc4fb0ea6e4665dba0da16bad93447e254b481ad4",
+      "result": "archive-emitted",
+      "report": {
+        "schema": "p04-controlled-v1",
+        "first_reason": "DURATION",
+        "reasons": [
+          "DURATION"
+        ],
+        "abort_accepted": false,
+        "begin_submitted": true,
+        "begin_acknowledged": true,
+        "stop_acknowledged": true,
+        "terminal_received": true,
+        "send_result": null,
+        "host_deadline": null,
+        "process_exit": null,
+        "received_bytes": null,
+        "received_hash": null,
+        "saved": null
+      },
+      "realDeviceAccess": false,
+      "driverInstalledOrLoaded": false,
+      "registeredOrAttached": false,
+      "runtimeQualified": false,
+      "windowsClientQualified": false
+    },
+    {
+      "schema": "p04-hang-case-v1",
+      "point": "stop",
+      "release": "error",
+      "entered": true,
+      "prefix": [
+        "Open",
+        "B1",
+        "D2",
+        "S3"
+      ],
+      "actual": [
+        "Open",
+        "B1",
+        "D2",
+        "S3",
+        "S4",
+        "Close"
+      ],
+      "deadlineObservedAt": 15000,
+      "deadlineSticky": true,
+      "lateProcessExitAt": 15001,
+      "receivedBytes": 560,
+      "receivedSha256": "582f7faa81a699280ae428d49878ce8d50cd442f3e3d4cff1576a47cb8acf7bc",
+      "result": "archive-emitted",
+      "report": {
+        "schema": "p04-controlled-v1",
+        "first_reason": "DURATION",
+        "reasons": [
+          "UNCERTAIN",
+          "EXTERNAL_ABORT",
+          "DURATION"
+        ],
+        "abort_accepted": true,
+        "begin_submitted": true,
+        "begin_acknowledged": true,
+        "stop_acknowledged": true,
+        "terminal_received": true,
+        "send_result": null,
+        "host_deadline": null,
+        "process_exit": null,
+        "received_bytes": null,
+        "received_hash": null,
+        "saved": null
+      },
+      "realDeviceAccess": false,
+      "driverInstalledOrLoaded": false,
+      "registeredOrAttached": false,
+      "runtimeQualified": false,
+      "windowsClientQualified": false
+    },
+    {
+      "schema": "p04-hang-case-v1",
+      "point": "flush",
+      "release": "ok",
+      "entered": true,
+      "prefix": [
+        "Open",
+        "B1",
+        "D2",
+        "S3",
+        "Close"
+      ],
+      "actual": [
+        "Open",
+        "B1",
+        "D2",
+        "S3",
+        "Close"
+      ],
+      "deadlineObservedAt": 15000,
+      "deadlineSticky": true,
+      "lateProcessExitAt": 15001,
+      "receivedBytes": 560,
+      "receivedSha256": "ee2815d9546d7e87ffe85dacc4fb0ea6e4665dba0da16bad93447e254b481ad4",
+      "result": "archive-emitted",
+      "report": {
+        "schema": "p04-controlled-v1",
+        "first_reason": "DURATION",
+        "reasons": [
+          "DURATION"
+        ],
+        "abort_accepted": false,
+        "begin_submitted": true,
+        "begin_acknowledged": true,
+        "stop_acknowledged": true,
+        "terminal_received": true,
+        "send_result": null,
+        "host_deadline": null,
+        "process_exit": null,
+        "received_bytes": null,
+        "received_hash": null,
+        "saved": null
+      },
+      "realDeviceAccess": false,
+      "driverInstalledOrLoaded": false,
+      "registeredOrAttached": false,
+      "runtimeQualified": false,
+      "windowsClientQualified": false
+    },
+    {
+      "schema": "p04-hang-case-v1",
+      "point": "flush",
+      "release": "error",
+      "entered": true,
+      "prefix": [
+        "Open",
+        "B1",
+        "D2",
+        "S3",
+        "Close"
+      ],
+      "actual": [
+        "Open",
+        "B1",
+        "D2",
+        "S3",
+        "Close"
+      ],
+      "deadlineObservedAt": 15000,
+      "deadlineSticky": true,
+      "lateProcessExitAt": 15001,
+      "receivedBytes": 560,
+      "receivedSha256": "ee2815d9546d7e87ffe85dacc4fb0ea6e4665dba0da16bad93447e254b481ad4",
+      "result": "output-error",
+      "report": {
+        "schema": "p04-controlled-v1",
+        "first_reason": "DURATION",
+        "reasons": [
+          "DURATION"
+        ],
+        "abort_accepted": false,
+        "begin_submitted": true,
+        "begin_acknowledged": true,
+        "stop_acknowledged": true,
+        "terminal_received": true,
+        "send_result": null,
+        "host_deadline": null,
+        "process_exit": null,
+        "received_bytes": null,
+        "received_hash": null,
+        "saved": null
+      },
+      "realDeviceAccess": false,
+      "driverInstalledOrLoaded": false,
+      "registeredOrAttached": false,
+      "runtimeQualified": false,
+      "windowsClientQualified": false
+    },
+    {
+      "schema": "p04-hang-case-v1",
+      "point": "write",
+      "release": "ok",
+      "entered": true,
+      "prefix": [
+        "Open",
+        "B1",
+        "D2",
+        "S3",
+        "Close"
+      ],
+      "actual": [
+        "Open",
+        "B1",
+        "D2",
+        "S3",
+        "Close"
+      ],
+      "deadlineObservedAt": 15000,
+      "deadlineSticky": true,
+      "lateProcessExitAt": 15001,
+      "receivedBytes": 560,
+      "receivedSha256": "ee2815d9546d7e87ffe85dacc4fb0ea6e4665dba0da16bad93447e254b481ad4",
+      "result": "archive-emitted",
+      "report": {
+        "schema": "p04-controlled-v1",
+        "first_reason": "DURATION",
+        "reasons": [
+          "DURATION"
+        ],
+        "abort_accepted": false,
+        "begin_submitted": true,
+        "begin_acknowledged": true,
+        "stop_acknowledged": true,
+        "terminal_received": true,
+        "send_result": null,
+        "host_deadline": null,
+        "process_exit": null,
+        "received_bytes": null,
+        "received_hash": null,
+        "saved": null
+      },
+      "realDeviceAccess": false,
+      "driverInstalledOrLoaded": false,
+      "registeredOrAttached": false,
+      "runtimeQualified": false,
+      "windowsClientQualified": false
+    },
+    {
+      "schema": "p04-hang-case-v1",
+      "point": "write",
+      "release": "error",
+      "entered": true,
+      "prefix": [
+        "Open",
+        "B1",
+        "D2",
+        "S3",
+        "Close"
+      ],
+      "actual": [
+        "Open",
+        "B1",
+        "D2",
+        "S3",
+        "Close"
+      ],
+      "deadlineObservedAt": 15000,
+      "deadlineSticky": true,
+      "lateProcessExitAt": 15001,
+      "receivedBytes": 0,
+      "receivedSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "result": "output-error",
+      "report": {
+        "schema": "p04-controlled-v1",
+        "first_reason": "DURATION",
+        "reasons": [
+          "DURATION"
+        ],
+        "abort_accepted": false,
+        "begin_submitted": true,
+        "begin_acknowledged": true,
+        "stop_acknowledged": true,
+        "terminal_received": true,
+        "send_result": null,
+        "host_deadline": null,
+        "process_exit": null,
+        "received_bytes": null,
+        "received_hash": null,
+        "saved": null
+      },
+      "realDeviceAccess": false,
+      "driverInstalledOrLoaded": false,
+      "registeredOrAttached": false,
+      "runtimeQualified": false,
+      "windowsClientQualified": false
+    }
+  ],
+  "notApplicable": [],
+  "logSha256": "38b2037f694a6c70f962b3fe6fd1b87f09151a975dd3bff3c66c6aebfd173f34",
+  "coverageManifestSha256": "8a3065938d2bc5e522a9b73b7322455cb6eb2e4f49a371bdd4edd5da5a7871b0",
+  "driverInstalledOrLoaded": false,
+  "registeredOrAttached": false,
+  "observedLiveRequests": false,
+  "realDeviceAccess": false,
+  "runtimeQualified": false,
+  "windowsClientQualified": false,
+  "sourceHashes": [
+    {
+      "path": ".github/workflows/probe-build-proof.yml",
+      "sha256": "5b7c4abcf6e23053f60994171baf18d7d076dfb3eb4084e8aa5baa465b8c88cc"
+    },
+    {
+      "path": "Cargo.lock",
+      "sha256": "03c3c6a13b76b567ab230fdbb63b765bedf1add378cfe010914880b3a88b9094"
+    },
+    {
+      "path": "Cargo.toml",
+      "sha256": "fa8cfb097035cf1e47221e6813cbdc31638fa7fbd5ea9ba3e239be9e267a604b"
+    },
+    {
+      "path": "crates/cache-probe-collector/Cargo.toml",
+      "sha256": "5288380e4c6c9d1e7074303ada6c9a7bb4482daf4c2b649434ebbe8c87901978"
+    },
+    {
+      "path": "crates/cache-probe-collector/src/abort_event.rs",
+      "sha256": "53e194b67664cadb10f30a3f9cec3a404e4a0b92080fa918f2fa4bf7054c8796"
+    },
+    {
+      "path": "crates/cache-probe-collector/src/capture.rs",
+      "sha256": "2ae3a8b21c032e88f5a682094dcb721e3ec5fd05bafb6a3eed5c39b9d95b8a5c"
+    },
+    {
+      "path": "crates/cache-probe-collector/src/input.rs",
+      "sha256": "220a23e06154272a7e147be20becddebbef470506bc0638afe82aedac3baa94f"
+    },
+    {
+      "path": "crates/cache-probe-collector/src/lib.rs",
+      "sha256": "c9003d6d3b3f2ac6b2530a04789ebb2b99b41f822602f711baa2bcb1a4688ead"
+    },
+    {
+      "path": "crates/cache-probe-collector/src/main.rs",
+      "sha256": "7f5be050e65f53d015c79f77e94a30cd4802879039ee6c93ff2251857a3fe152"
+    },
+    {
+      "path": "crates/cache-probe-collector/src/win32.rs",
+      "sha256": "2e13d35cc4ea5fdcabcd08192b3ec59930e56e870dc3abf8df43116f015b0925"
+    },
+    {
+      "path": "crates/cache-probe-collector/tests/cli.rs",
+      "sha256": "2d45d9750daae0e8ea6d44ee8d6c990bd38c5fde6d3950a1fd3a587734ac81e7"
+    },
+    {
+      "path": "crates/cache-probe-collector/tests/controlled_hangs.rs",
+      "sha256": "468da6a89cfbcf8d966b880bd52af91ba83c825ef97b40e46cb663622fe16cbc"
+    },
+    {
+      "path": "crates/cache-probe-launcher/Cargo.toml",
+      "sha256": "2fad832c1b1c45c55a5d043e94bb4d533d6748949d83743afb6729f0ed174d35"
+    },
+    {
+      "path": "crates/cache-probe-launcher/src/lib.rs",
+      "sha256": "bfd1a14ae0cb2501ec74e03fe0eff256e2e8d3bbe348b87f9fae1e7818cffb5c"
+    },
+    {
+      "path": "crates/cache-probe-launcher/src/main.rs",
+      "sha256": "3cdffd677f7f96022af3120bb61375206fe1b3f6e0375df73cca048dcd9fe631"
+    },
+    {
+      "path": "crates/cache-probe-launcher/src/supervision.rs",
+      "sha256": "7cdbe3642ca668b6d4edb50d68e43ee2e653e88c4c0e65c5c1f68925f77d8b02"
+    },
+    {
+      "path": "crates/cache-probe-launcher/src/windows.rs",
+      "sha256": "84f6584253976df3c4baed75d41e8820c84f038ecb060e0ae43162f106cdded1"
+    },
+    {
+      "path": "crates/cache-probe-launcher/src/worker.rs",
+      "sha256": "60b656c4424cd9f0790fa92898c370c96d1e94a18617316feb51a569d93eddbe"
+    },
+    {
+      "path": "crates/cache-probe-launcher/tests/windows_ipc.rs",
+      "sha256": "7d67cf78bf34480de66070146330e5c79f8b1eb632520f22376361690694de46"
+    },
+    {
+      "path": "crates/cache-probe-registration-win/Cargo.toml",
+      "sha256": "043ec887b65d5bff2d3b8d57a631d0e4323e5ef43977dba95f19b7ecc3992f91"
+    },
+    {
+      "path": "crates/cache-probe-registration-win/fixtures/p04-service-only.inf",
+      "sha256": "06cac3155fe530a7febe93da9b1e1a92dd8a3d196fcfcff9b9fcb3615fc53967"
+    },
+    {
+      "path": "crates/cache-probe-registration-win/src/bin/registration-link-proof.rs",
+      "sha256": "96ab4f33e919418c4ad3d808064b974ba902211f8a7217b4950d19b3e68a97e5"
+    },
+    {
+      "path": "crates/cache-probe-registration-win/src/boundary.rs",
+      "sha256": "43373c3db43c3f26d0306bbd3779f544804a9e302778970b5f4a5dbda1fe8a41"
+    },
+    {
+      "path": "crates/cache-probe-registration-win/src/boundary/stages.rs",
+      "sha256": "a1a3122f759de64e8d5c92fcde99fd59d56cda50a09ac611aec10dc6952d917e"
+    },
+    {
+      "path": "crates/cache-probe-registration-win/src/boundary/stages/tests.rs",
+      "sha256": "8692e9488d60cb92e51070de0596503c91612e35576525b7391fe8df37e68c88"
+    },
+    {
+      "path": "crates/cache-probe-registration-win/src/boundary/tests.rs",
+      "sha256": "28bba11b511012fb62181682293209e0de8797efc685bbc0f1461d7a8ece1e38"
+    },
+    {
+      "path": "crates/cache-probe-registration-win/src/lib.rs",
+      "sha256": "4bef1daf59fbce2e47d879f674e17559f14032fb601f19a438d322b044caa0ba"
+    },
+    {
+      "path": "crates/cache-probe-registration-win/src/package.rs",
+      "sha256": "535d95af8772cbb3bfc0b074fd9e02a5155fe86201538e762b95b8b3fdbfe230"
+    },
+    {
+      "path": "crates/cache-probe-registration-win/src/package/tests.rs",
+      "sha256": "6f9fe44508d93aace8ad7820c602cd143651b96d6172859e0fbd033eecc8460d"
+    },
+    {
+      "path": "crates/cache-probe-registration/Cargo.toml",
+      "sha256": "6402080a0ccec74ab9f44abc1d5029699e436de4990388c2120e33fad7e3ccb9"
+    },
+    {
+      "path": "crates/cache-probe-registration/src/lib.rs",
+      "sha256": "c7a418e0861a22942b782cc0390c748f048806d49d1f928e888268d5643cd5af"
+    },
+    {
+      "path": "crates/cache-probe-registration/src/synthetic.rs",
+      "sha256": "b5494c5f6e79fd11e2e97725f2ae3cf659d348852ec91abe7839bf8126492df8"
+    },
+    {
+      "path": "crates/cache-probe-registration/src/tests.rs",
+      "sha256": "9e17961b44c19701d8f6e7670e07674e4871488f5ca2d452a01f458b7504d3e3"
+    },
+    {
+      "path": "crates/cache-probe-registration/src/tests/crash_tests.rs",
+      "sha256": "3514b973ee1132728340f87bfe68dce2a63d76a3dd40aae1b4661f010179e98b"
+    },
+    {
+      "path": "experiments/stack-trace/probe/host/user_sdk_layouts.c",
+      "sha256": "69c5d4d062163beaa0fbc1ab93b48501e406ffd4c398041de0bc6d2ed8bfa865"
+    },
+    {
+      "path": "experiments/stack-trace/probe/tools/build.ps1",
+      "sha256": "b6c6be9614e66574a3ddbb309affbabfd72f007c5a93c3e11ffab77e273e6ae8"
+    },
+    {
+      "path": "experiments/stack-trace/probe/tools/matrix-cases.json",
+      "sha256": "8a3065938d2bc5e522a9b73b7322455cb6eb2e4f49a371bdd4edd5da5a7871b0"
+    },
+    {
+      "path": "experiments/stack-trace/probe/tools/matrix-proof.mjs",
+      "sha256": "a0b555990a1195815287ac87ebb800a5692ac965f68afd3f8b00bda7ce6d8352"
+    },
+    {
+      "path": "experiments/stack-trace/probe/tools/result-proof.mjs",
+      "sha256": "0d72b741cf08f89f93e5eb2a6e763c2403a97033b89bfead58c52e71e4fb317f"
+    },
+    {
+      "path": "experiments/stack-trace/probe/tools/test-build-contract.mjs",
+      "sha256": "2517b8624e277905520ce8c70aed6a7570436ca7f93c442084cd374c15dc0dd6"
+    },
+    {
+      "path": "experiments/stack-trace/probe/tools/test-user-link-proof.mjs",
+      "sha256": "5c6c0a44e405ca9db9971fac9f232eccd7e99d7785cb129602f5e4320e87b038"
+    },
+    {
+      "path": "experiments/stack-trace/probe/tools/user-link-proof.mjs",
+      "sha256": "d1a9482bf376f7324f64e44e7d43e401acd5d1c7640cec0b1f1e1eaba57f9aef"
+    },
+    {
+      "path": "rust-toolchain.toml",
+      "sha256": "d13306be0ecda81ce779baa290ffb417380d525928477f16200884b5169cca33"
+    }
+  ]
+}

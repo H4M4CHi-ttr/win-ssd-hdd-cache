@@ -1,0 +1,36 @@
+{
+  "matrixCase": "R02",
+  "test": "tests::r02_a_reuses_t_number",
+  "mutation": "in isolated synthetic registration model, bind the protected OS object in place of the already resolved T1 object",
+  "originalRustSha256": "c7a418e0861a22942b782cc0390c748f048806d49d1f928e888268d5643cd5af",
+  "mutatedRustSha256": "624a41e723411f171aef886917366b53c5c3beacf946b9149a545fb1fe31761a",
+  "compilerExit": 0,
+  "testExit": 101,
+  "namedFailed": 1,
+  "expectedFailureObserved": true,
+  "canonicalSourceStillMatches": true,
+  "mutantBinarySha256": "e1c3657543c78346aeb7bbf7e99a08ff5577617be4ecae232eaeec9ddde895f7",
+  "rawLogSha256": "415d45601bef90ad89b0ca83e7ecb132ee6b2e4ed21cf6cce25cb475d01260a3",
+  "realDeviceAccess": false,
+  "earlierTestRunLogSha256": "e9739c5474964e861301d679bd5a94dea9c4c8b0bcc18ff0238e887c1c7d6e21",
+  "originalCompileCommand": [
+    "rustc",
+    "--edition=2024",
+    "--test",
+    "<MUTANT>/src/lib.rs",
+    "-o",
+    "<MUTANT>/fake-target-selection-tests.exe",
+    "-C",
+    "debuginfo=0"
+  ],
+  "originalCompileExit": 0,
+  "repeatTestCommand": [
+    "<MUTANT>/fake-target-selection-tests.exe",
+    "--exact",
+    "tests::r02_a_reuses_t_number"
+  ],
+  "repeatTestExit": 101,
+  "retainedRunUsedIdenticalCompiledBinary": true,
+  "redactedTranscript": "evidence/wrong-target-mutation-results.txt",
+  "redactedTranscriptSha256": "02d0a81108bb270ff69cbb3f0ef6eb2391583fb8dc23edf0aaf1b3d2359a710c"
+}

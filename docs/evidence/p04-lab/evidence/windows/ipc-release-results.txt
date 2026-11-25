@@ -1,0 +1,19 @@
+running 11 tests
+test abort_event::tests::c02_query_errors_type_and_granted_rights_fail_closed ... ok
+test abort_event::tests::c02_reserved_handle_encoding_is_exact ... ok
+test windows::tests::b03_evidence_backpressure_is_nonblocking_and_cannot_report_flush_success ... ok
+test windows::tests::c03_publish_uses_actual_time_and_records_once_outside_owner ... ok
+test windows::tests::b03_child_diagnostics_reject_truncation_overflow_and_private_text ... ok
+test windows::tests::c03_guest_evidence_preserves_trial_actual_publication_and_unknown_save ... ok
+test windows::tests::b03_receiver_flush_failure_keeps_received_hash_without_forward_or_save ... ok
+test windows::tests::b03_child_diagnostics_fragment_interleave_and_final_eof_are_json ... ok
+test windows::tests::b03_receiver_sha256_known_vectors_and_multiple_chunks ... ok
+test windows::tests::b03_child_diagnostics_backpressure_and_sink_failure_are_not_complete ... ok
+test windows::tests::b03_binary_forward_failure_waits_for_final_diagnostic_and_evidence_flush ... ok
+test result: ok. 11 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.43s
+running 4 tests
+test c03_b03_sender_loss_does_not_signal_or_acknowledge ... ok
+test c03_b03_distinct_attempts_duplicate_notification_and_binary_pipes ... ok
+test c03_b03_sender_process_exits_without_notification ... ok
+test c02_b03_real_windows_event_type_rights_and_invalid_startup ... ok
+test result: ok. 4 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.26s

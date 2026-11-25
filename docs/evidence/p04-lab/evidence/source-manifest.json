@@ -1,0 +1,299 @@
+{
+  "base": "eb2ee0573ed5cc82b84bb7ad3477b4cb764b5d7c",
+  "baseTree": "9a48e1f755f894c3bb3fc9fe2bb1a1dcb3177b57",
+  "candidateTree": "f1fb5c4f9f459edd2aeebfc490bef246f4a2f7d7",
+  "patchSha256": "83e1b99d8f548ebe6c68a495decba63552837172d5b0ef5a6b08d456b4f4db94",
+  "sourceZipSha256": "c298424aca9d4785d3b642258ccbf195242b199a7938c563b8695d2b43935806",
+  "patchBytes": 562079,
+  "sourceFiles": [
+    {
+      "status": "M",
+      "path": ".github/workflows/probe-build-proof.yml",
+      "bytes": 5023,
+      "sha256": "5b7c4abcf6e23053f60994171baf18d7d076dfb3eb4084e8aa5baa465b8c88cc"
+    },
+    {
+      "status": "M",
+      "path": "Cargo.lock",
+      "bytes": 6404,
+      "sha256": "03c3c6a13b76b567ab230fdbb63b765bedf1add378cfe010914880b3a88b9094"
+    },
+    {
+      "status": "M",
+      "path": "Cargo.toml",
+      "bytes": 918,
+      "sha256": "fa8cfb097035cf1e47221e6813cbdc31638fa7fbd5ea9ba3e239be9e267a604b"
+    },
+    {
+      "status": "M",
+      "path": "crates/cache-probe-collector/Cargo.toml",
+      "bytes": 358,
+      "sha256": "5288380e4c6c9d1e7074303ada6c9a7bb4482daf4c2b649434ebbe8c87901978"
+    },
+    {
+      "status": "A",
+      "path": "crates/cache-probe-collector/src/abort_event.rs",
+      "bytes": 16318,
+      "sha256": "53e194b67664cadb10f30a3f9cec3a404e4a0b92080fa918f2fa4bf7054c8796"
+    },
+    {
+      "status": "M",
+      "path": "crates/cache-probe-collector/src/capture.rs",
+      "bytes": 57149,
+      "sha256": "2ae3a8b21c032e88f5a682094dcb721e3ec5fd05bafb6a3eed5c39b9d95b8a5c"
+    },
+    {
+      "status": "A",
+      "path": "crates/cache-probe-collector/src/lib.rs",
+      "bytes": 121,
+      "sha256": "c9003d6d3b3f2ac6b2530a04789ebb2b99b41f822602f711baa2bcb1a4688ead"
+    },
+    {
+      "status": "M",
+      "path": "crates/cache-probe-collector/src/main.rs",
+      "bytes": 6621,
+      "sha256": "7f5be050e65f53d015c79f77e94a30cd4802879039ee6c93ff2251857a3fe152"
+    },
+    {
+      "status": "M",
+      "path": "crates/cache-probe-collector/src/win32.rs",
+      "bytes": 5913,
+      "sha256": "2e13d35cc4ea5fdcabcd08192b3ec59930e56e870dc3abf8df43116f015b0925"
+    },
+    {
+      "status": "M",
+      "path": "crates/cache-probe-collector/tests/cli.rs",
+      "bytes": 6922,
+      "sha256": "2d45d9750daae0e8ea6d44ee8d6c990bd38c5fde6d3950a1fd3a587734ac81e7"
+    },
+    {
+      "status": "A",
+      "path": "crates/cache-probe-collector/tests/controlled_hangs.rs",
+      "bytes": 30595,
+      "sha256": "468da6a89cfbcf8d966b880bd52af91ba83c825ef97b40e46cb663622fe16cbc"
+    },
+    {
+      "status": "M",
+      "path": "crates/cache-probe-core/src/wire.rs",
+      "bytes": 10703,
+      "sha256": "496c5862b77d931ab1a93e2894f12de7c3cc1a5012a0d40d17ad77842a48e962"
+    },
+    {
+      "status": "A",
+      "path": "crates/cache-probe-launcher/Cargo.toml",
+      "bytes": 432,
+      "sha256": "2fad832c1b1c45c55a5d043e94bb4d533d6748949d83743afb6729f0ed174d35"
+    },
+    {
+      "status": "A",
+      "path": "crates/cache-probe-launcher/README.md",
+      "bytes": 8467,
+      "sha256": "568ef9d25b01dc58b00110bda8215d92a58cc5aa8fd6976d85466c0370f37a59"
+    },
+    {
+      "status": "A",
+      "path": "crates/cache-probe-launcher/src/lib.rs",
+      "bytes": 648,
+      "sha256": "bfd1a14ae0cb2501ec74e03fe0eff256e2e8d3bbe348b87f9fae1e7818cffb5c"
+    },
+    {
+      "status": "A",
+      "path": "crates/cache-probe-launcher/src/main.rs",
+      "bytes": 3580,
+      "sha256": "3cdffd677f7f96022af3120bb61375206fe1b3f6e0375df73cca048dcd9fe631"
+    },
+    {
+      "status": "A",
+      "path": "crates/cache-probe-launcher/src/supervision.rs",
+      "bytes": 5408,
+      "sha256": "7cdbe3642ca668b6d4edb50d68e43ee2e653e88c4c0e65c5c1f68925f77d8b02"
+    },
+    {
+      "status": "A",
+      "path": "crates/cache-probe-launcher/src/windows.rs",
+      "bytes": 70851,
+      "sha256": "84f6584253976df3c4baed75d41e8820c84f038ecb060e0ae43162f106cdded1"
+    },
+    {
+      "status": "A",
+      "path": "crates/cache-probe-launcher/src/worker.rs",
+      "bytes": 6130,
+      "sha256": "60b656c4424cd9f0790fa92898c370c96d1e94a18617316feb51a569d93eddbe"
+    },
+    {
+      "status": "A",
+      "path": "crates/cache-probe-launcher/tests/windows_ipc.rs",
+      "bytes": 5060,
+      "sha256": "7d67cf78bf34480de66070146330e5c79f8b1eb632520f22376361690694de46"
+    },
+    {
+      "status": "A",
+      "path": "crates/cache-probe-registration-win/.gitignore",
+      "bytes": 16,
+      "sha256": "3973b8284df32561d8d1ff6547a5ec703d9870f4376302c9db53f3705df29553"
+    },
+    {
+      "status": "A",
+      "path": "crates/cache-probe-registration-win/Cargo.toml",
+      "bytes": 407,
+      "sha256": "043ec887b65d5bff2d3b8d57a631d0e4323e5ef43977dba95f19b7ecc3992f91"
+    },
+    {
+      "status": "A",
+      "path": "crates/cache-probe-registration-win/README.md",
+      "bytes": 10645,
+      "sha256": "79a99e111132167cba3509194daeb79d22cc1e642e13a3a04da71054b0d20990"
+    },
+    {
+      "status": "A",
+      "path": "crates/cache-probe-registration-win/fixtures/p04-service-only.inf",
+      "bytes": 678,
+      "sha256": "06cac3155fe530a7febe93da9b1e1a92dd8a3d196fcfcff9b9fcb3615fc53967"
+    },
+    {
+      "status": "A",
+      "path": "crates/cache-probe-registration-win/src/bin/registration-link-proof.rs",
+      "bytes": 121,
+      "sha256": "96ab4f33e919418c4ad3d808064b974ba902211f8a7217b4950d19b3e68a97e5"
+    },
+    {
+      "status": "A",
+      "path": "crates/cache-probe-registration-win/src/boundary.rs",
+      "bytes": 23442,
+      "sha256": "43373c3db43c3f26d0306bbd3779f544804a9e302778970b5f4a5dbda1fe8a41"
+    },
+    {
+      "status": "A",
+      "path": "crates/cache-probe-registration-win/src/boundary/stages.rs",
+      "bytes": 23527,
+      "sha256": "a1a3122f759de64e8d5c92fcde99fd59d56cda50a09ac611aec10dc6952d917e"
+    },
+    {
+      "status": "A",
+      "path": "crates/cache-probe-registration-win/src/boundary/stages/tests.rs",
+      "bytes": 15479,
+      "sha256": "8692e9488d60cb92e51070de0596503c91612e35576525b7391fe8df37e68c88"
+    },
+    {
+      "status": "A",
+      "path": "crates/cache-probe-registration-win/src/boundary/tests.rs",
+      "bytes": 14519,
+      "sha256": "28bba11b511012fb62181682293209e0de8797efc685bbc0f1461d7a8ece1e38"
+    },
+    {
+      "status": "A",
+      "path": "crates/cache-probe-registration-win/src/lib.rs",
+      "bytes": 562,
+      "sha256": "4bef1daf59fbce2e47d879f674e17559f14032fb601f19a438d322b044caa0ba"
+    },
+    {
+      "status": "A",
+      "path": "crates/cache-probe-registration-win/src/package.rs",
+      "bytes": 6507,
+      "sha256": "535d95af8772cbb3bfc0b074fd9e02a5155fe86201538e762b95b8b3fdbfe230"
+    },
+    {
+      "status": "A",
+      "path": "crates/cache-probe-registration-win/src/package/tests.rs",
+      "bytes": 8337,
+      "sha256": "6f9fe44508d93aace8ad7820c602cd143651b96d6172859e0fbd033eecc8460d"
+    },
+    {
+      "status": "A",
+      "path": "crates/cache-probe-registration/Cargo.toml",
+      "bytes": 175,
+      "sha256": "6402080a0ccec74ab9f44abc1d5029699e436de4990388c2120e33fad7e3ccb9"
+    },
+    {
+      "status": "A",
+      "path": "crates/cache-probe-registration/README.md",
+      "bytes": 5424,
+      "sha256": "b9e53e8de80f8f37950f50bd700e861e9e2aba2206e197e43984a35581def138"
+    },
+    {
+      "status": "A",
+      "path": "crates/cache-probe-registration/src/lib.rs",
+      "bytes": 18741,
+      "sha256": "c7a418e0861a22942b782cc0390c748f048806d49d1f928e888268d5643cd5af"
+    },
+    {
+      "status": "A",
+      "path": "crates/cache-probe-registration/src/synthetic.rs",
+      "bytes": 35488,
+      "sha256": "b5494c5f6e79fd11e2e97725f2ae3cf659d348852ec91abe7839bf8126492df8"
+    },
+    {
+      "status": "A",
+      "path": "crates/cache-probe-registration/src/tests.rs",
+      "bytes": 46070,
+      "sha256": "9e17961b44c19701d8f6e7670e07674e4871488f5ca2d452a01f458b7504d3e3"
+    },
+    {
+      "status": "A",
+      "path": "crates/cache-probe-registration/src/tests/crash_tests.rs",
+      "bytes": 8418,
+      "sha256": "3514b973ee1132728340f87bfe68dce2a63d76a3dd40aae1b4661f010179e98b"
+    },
+    {
+      "status": "A",
+      "path": "docs/contracts/p04-source-build-control.md",
+      "bytes": 4518,
+      "sha256": "ae11291c01b983251c9bc86f53aa4b9a9a2773e4ab5dc70f7904b27195dcae1f"
+    },
+    {
+      "status": "M",
+      "path": "docs/contracts/upper-candidate-probe-v1.md",
+      "bytes": 51407,
+      "sha256": "dcbb95287f55e297cb476998c8e020b0c0ae04b80fcb7935a121367274de3d04"
+    },
+    {
+      "status": "M",
+      "path": "experiments/stack-trace/probe/README.md",
+      "bytes": 4550,
+      "sha256": "187926005b4fe73c585eaac8dc656d5cd6fea73d10071ccff85eb9c790208fbc"
+    },
+    {
+      "status": "A",
+      "path": "experiments/stack-trace/probe/host/user_sdk_layouts.c",
+      "bytes": 2412,
+      "sha256": "69c5d4d062163beaa0fbc1ab93b48501e406ffd4c398041de0bc6d2ed8bfa865"
+    },
+    {
+      "status": "M",
+      "path": "experiments/stack-trace/probe/tools/build.ps1",
+      "bytes": 20706,
+      "sha256": "b6c6be9614e66574a3ddbb309affbabfd72f007c5a93c3e11ffab77e273e6ae8"
+    },
+    {
+      "status": "A",
+      "path": "experiments/stack-trace/probe/tools/matrix-cases.json",
+      "bytes": 56659,
+      "sha256": "8a3065938d2bc5e522a9b73b7322455cb6eb2e4f49a371bdd4edd5da5a7871b0"
+    },
+    {
+      "status": "A",
+      "path": "experiments/stack-trace/probe/tools/matrix-proof.mjs",
+      "bytes": 6822,
+      "sha256": "a0b555990a1195815287ac87ebb800a5692ac965f68afd3f8b00bda7ce6d8352"
+    },
+    {
+      "status": "M",
+      "path": "experiments/stack-trace/probe/tools/test-build-contract.mjs",
+      "bytes": 18122,
+      "sha256": "2517b8624e277905520ce8c70aed6a7570436ca7f93c442084cd374c15dc0dd6"
+    },
+    {
+      "status": "A",
+      "path": "experiments/stack-trace/probe/tools/test-user-link-proof.mjs",
+      "bytes": 3274,
+      "sha256": "5c6c0a44e405ca9db9971fac9f232eccd7e99d7785cb129602f5e4320e87b038"
+    },
+    {
+      "status": "A",
+      "path": "experiments/stack-trace/probe/tools/user-link-proof.mjs",
+      "bytes": 5701,
+      "sha256": "d1a9482bf376f7324f64e44e7d43e401acd5d1c7640cec0b1f1e1eaba57f9aef"
+    }
+  ],
+  "patchReplayTreeMatched": true
+}

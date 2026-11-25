@@ -1,0 +1,24 @@
+[
+  {
+    "profile": "debug",
+    "linker": "Microsoft link.exe",
+    "observedImportLibraries": [
+      "kernel32.lib",
+      "bcrypt.lib",
+      "advapi32.lib",
+      "setupapi.lib"
+    ],
+    "rawLogSha256": "a79b90d2f2cbac05a9559675a54065d5b60c69adc48cb9a6f8f4f045ec619275"
+  },
+  {
+    "profile": "release",
+    "linker": "Microsoft link.exe",
+    "observedImportLibraries": [
+      "kernel32.lib",
+      "bcrypt.lib",
+      "advapi32.lib",
+      "setupapi.lib"
+    ],
+    "rawLogSha256": "6c58c2afeb5578ef12f4d6383073bc37033598fb06f724d28b93b441b0a52cdb"
+  }
+]

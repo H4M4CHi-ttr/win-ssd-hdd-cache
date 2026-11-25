@@ -1,0 +1,582 @@
+[
+  {
+    "name": "rust-version",
+    "program": "rustc",
+    "args": [
+      "-vV"
+    ],
+    "exit": 0,
+    "elapsedMs": 37,
+    "namedPassed": 0,
+    "stderrFlag": false,
+    "logSha256": "341fed434cf52bd9ba5ab2f3507dbd943a2062212028574e529fc3e7e5ecd7a8"
+  },
+  {
+    "name": "cargo-version",
+    "program": "cargo",
+    "args": [
+      "-V"
+    ],
+    "exit": 0,
+    "elapsedMs": 28,
+    "namedPassed": 0,
+    "stderrFlag": false,
+    "logSha256": "c35608815f43d0b8788a9b826fad2bb17384f49fb328dc4fe64da9db5f5ef4d6"
+  },
+  {
+    "name": "fmt",
+    "program": "cargo",
+    "args": [
+      "fmt",
+      "--all",
+      "--",
+      "--check"
+    ],
+    "exit": 0,
+    "elapsedMs": 965,
+    "namedPassed": 0,
+    "stderrFlag": false,
+    "logSha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+  },
+  {
+    "name": "clippy",
+    "program": "cargo",
+    "args": [
+      "clippy",
+      "--workspace",
+      "--all-targets",
+      "--offline",
+      "--locked",
+      "--",
+      "-D",
+      "warnings"
+    ],
+    "exit": 0,
+    "elapsedMs": 6679,
+    "namedPassed": 0,
+    "stderrFlag": false,
+    "logSha256": "eeca71075730b21bc1f4e01b592d712ac5ce1895c357bc81d33cdc3bab05e8ee"
+  },
+  {
+    "name": "clippy-all-features",
+    "program": "cargo",
+    "args": [
+      "clippy",
+      "-p",
+      "cache-probe-core",
+      "-p",
+      "cache-probe-collector",
+      "-p",
+      "cache-probe-registration",
+      "-p",
+      "cache-probe-registration-win",
+      "-p",
+      "cache-probe-launcher",
+      "--all-targets",
+      "--all-features",
+      "--offline",
+      "--locked",
+      "--",
+      "-D",
+      "warnings"
+    ],
+    "exit": 0,
+    "elapsedMs": 2114,
+    "namedPassed": 0,
+    "stderrFlag": false,
+    "logSha256": "05fae30a5820ae00540b7a83eecccb90ccca4347f6e0469a7a081632ec8f25cd"
+  },
+  {
+    "name": "workspace-debug",
+    "program": "cargo",
+    "args": [
+      "test",
+      "--workspace",
+      "--exclude",
+      "xtask",
+      "--offline",
+      "--locked",
+      "--",
+      "--test-threads=1"
+    ],
+    "exit": 0,
+    "elapsedMs": 39915,
+    "namedPassed": 534,
+    "stderrFlag": false,
+    "logSha256": "14862dc0b063a8c7c825921a78a6105fa614856be4c4ac36814e5ded0ced4050",
+    "publicExcerptSha256": "1fa637cc08aa0afa44bfe245cb125e3f44ac7a84a90faaa92de5585ea97d8336"
+  },
+  {
+    "name": "workspace-debug-nonzero",
+    "program": "node.exe",
+    "args": [
+      "experiments/stack-trace/probe/tools/result-proof.mjs",
+      "rust",
+      "<WORK>/evidence/candidate-2/results/windows/workspace-debug.log"
+    ],
+    "exit": 0,
+    "elapsedMs": 53,
+    "namedPassed": 0,
+    "stderrFlag": false,
+    "logSha256": "c7a5c211de77b5a9a068724b9717fa02393bd2bd6675a83f6f4c4b7af7da8557"
+  },
+  {
+    "name": "planning",
+    "program": "cargo",
+    "args": [
+      "xtask",
+      "check-planning"
+    ],
+    "exit": 0,
+    "elapsedMs": 3251,
+    "namedPassed": 0,
+    "stderrFlag": false,
+    "logSha256": "eab3286577b8a37d74157b9dbb2fb454d07138c6a3a191e254d382139c87a94e"
+  },
+  {
+    "name": "xtask-debug",
+    "program": "cargo",
+    "args": [
+      "test",
+      "-p",
+      "xtask",
+      "--offline",
+      "--locked",
+      "--",
+      "--test-threads=1"
+    ],
+    "exit": 0,
+    "elapsedMs": 9585,
+    "namedPassed": 25,
+    "stderrFlag": false,
+    "logSha256": "2937ff977eba270ad0dba1c9b39e7065f8f7fcae7a02d2d6e2874b4e9fc75e37",
+    "publicExcerptSha256": "5a722c9dfc7e40922810237d0eb356126893583476bc60062cc49d95e61c3d72"
+  },
+  {
+    "name": "xtask-nonzero",
+    "program": "node.exe",
+    "args": [
+      "experiments/stack-trace/probe/tools/result-proof.mjs",
+      "rust",
+      "<WORK>/evidence/candidate-2/results/windows/xtask-debug.log"
+    ],
+    "exit": 0,
+    "elapsedMs": 49,
+    "namedPassed": 0,
+    "stderrFlag": false,
+    "logSha256": "af81ef0e6d3e51ca3bf29279903e75049e9c6c6de3b26a4768966183621f1f12"
+  },
+  {
+    "name": "portable-release",
+    "program": "cargo",
+    "args": [
+      "test",
+      "-p",
+      "cache-probe-core",
+      "-p",
+      "cache-probe-collector",
+      "-p",
+      "cache-probe-registration",
+      "-p",
+      "cache-probe-registration-win",
+      "-p",
+      "cache-probe-launcher",
+      "--release",
+      "--locked",
+      "--offline",
+      "--",
+      "--show-output",
+      "--test-threads=1"
+    ],
+    "exit": 0,
+    "elapsedMs": 16064,
+    "namedPassed": 263,
+    "stderrFlag": false,
+    "logSha256": "38b2037f694a6c70f962b3fe6fd1b87f09151a975dd3bff3c66c6aebfd173f34",
+    "publicExcerptSha256": "e2f1bb197cf582739188296991d69ecbee750ecc2b95edc74db6c6e738580f53"
+  },
+  {
+    "name": "portable-proof",
+    "program": "node.exe",
+    "args": [
+      "experiments/stack-trace/probe/tools/matrix-proof.mjs",
+      "portable",
+      "windows",
+      "<WORK>/evidence/candidate-2/results/windows/portable-release.log"
+    ],
+    "exit": 0,
+    "elapsedMs": 73,
+    "namedPassed": 0,
+    "stderrFlag": false,
+    "logSha256": "0025435c624bd9a355683836e504fbd8e0ba8564f6fa390c9b1f617c142deb23"
+  },
+  {
+    "name": "ipc-release",
+    "program": "cargo",
+    "args": [
+      "test",
+      "-p",
+      "cache-probe-launcher",
+      "--features",
+      "synthetic-ipc",
+      "--lib",
+      "--test",
+      "windows_ipc",
+      "--release",
+      "--locked",
+      "--offline"
+    ],
+    "exit": 0,
+    "elapsedMs": 6781,
+    "namedPassed": 15,
+    "stderrFlag": false,
+    "logSha256": "4b01c7b6d6439178369b4f8b739a9288d9834f5d2c70fefdac1b9b45c721b922",
+    "publicExcerptSha256": "6fba178b5fcda48e17e52bb449e4d05eed152eb49f35f5e417760ef14ed5e123"
+  },
+  {
+    "name": "ipc-proof",
+    "program": "node.exe",
+    "args": [
+      "experiments/stack-trace/probe/tools/matrix-proof.mjs",
+      "ipc",
+      "windows",
+      "<WORK>/evidence/candidate-2/results/windows/ipc-release.log"
+    ],
+    "exit": 0,
+    "elapsedMs": 85,
+    "namedPassed": 0,
+    "stderrFlag": false,
+    "logSha256": "e8c72d24b3b337515b5c6a8206f4de641c571cd82be672c62aafeef641ec0355"
+  },
+  {
+    "name": "windows-check",
+    "program": "cargo",
+    "args": [
+      "check",
+      "-p",
+      "cache-probe-registration-win",
+      "-p",
+      "cache-probe-collector",
+      "-p",
+      "cache-probe-launcher",
+      "--features",
+      "cache-probe-collector/experimental-live,cache-probe-launcher/experimental-live",
+      "--target",
+      "x86_64-pc-windows-msvc",
+      "--offline",
+      "--locked",
+      "--release"
+    ],
+    "exit": 0,
+    "elapsedMs": 3273,
+    "namedPassed": 0,
+    "stderrFlag": false,
+    "logSha256": "f4a46b867d157661cf144d97f0847a662d635011038c95f1c2b5200cd2caf3e4"
+  },
+  {
+    "name": "windows-link-debug",
+    "program": "cargo",
+    "args": [
+      "build",
+      "-p",
+      "cache-probe-registration-win",
+      "-p",
+      "cache-probe-collector",
+      "-p",
+      "cache-probe-launcher",
+      "--features",
+      "cache-probe-collector/experimental-live,cache-probe-launcher/experimental-live",
+      "--target",
+      "x86_64-pc-windows-msvc",
+      "--offline",
+      "--locked"
+    ],
+    "exit": 0,
+    "elapsedMs": 9872,
+    "namedPassed": 0,
+    "stderrFlag": false,
+    "logSha256": "a79b90d2f2cbac05a9559675a54065d5b60c69adc48cb9a6f8f4f045ec619275"
+  },
+  {
+    "name": "dumpbin-registration-debug",
+    "program": "dumpbin.exe",
+    "args": [
+      "/nologo",
+      "/headers",
+      "/imports",
+      "<WORK>/target/proof-win-candidate-2/x86_64-pc-windows-msvc/debug/registration-link-proof.exe"
+    ],
+    "exit": 0,
+    "elapsedMs": 82,
+    "namedPassed": 0,
+    "stderrFlag": false,
+    "logSha256": "9ff64eeb5cb6caf1773be9ba2dcd04d4902d8b2860215cfd866298151540f432"
+  },
+  {
+    "name": "pe-registration-debug",
+    "program": "node.exe",
+    "args": [
+      "experiments/stack-trace/probe/tools/user-link-proof.mjs",
+      "registration",
+      "<WORK>/target/proof-win-candidate-2/x86_64-pc-windows-msvc/debug/registration-link-proof.exe",
+      "<WORK>/evidence/candidate-2/results/windows/dumpbin-registration-debug.log"
+    ],
+    "exit": 0,
+    "elapsedMs": 60,
+    "namedPassed": 0,
+    "stderrFlag": false,
+    "logSha256": "639d7695a7ba87c426676b23b209d8af8ae4dfcd4f9204ed0b0786607121e219"
+  },
+  {
+    "name": "dumpbin-collector-debug",
+    "program": "dumpbin.exe",
+    "args": [
+      "/nologo",
+      "/headers",
+      "/imports",
+      "<WORK>/target/proof-win-candidate-2/x86_64-pc-windows-msvc/debug/cache-probe-collector.exe"
+    ],
+    "exit": 0,
+    "elapsedMs": 105,
+    "namedPassed": 0,
+    "stderrFlag": false,
+    "logSha256": "21e6b8dc426eac59c7cfb199814e28e774462f2bcfddbee33e95fb1f5638fbc0"
+  },
+  {
+    "name": "pe-collector-debug",
+    "program": "node.exe",
+    "args": [
+      "experiments/stack-trace/probe/tools/user-link-proof.mjs",
+      "collector",
+      "<WORK>/target/proof-win-candidate-2/x86_64-pc-windows-msvc/debug/cache-probe-collector.exe",
+      "<WORK>/evidence/candidate-2/results/windows/dumpbin-collector-debug.log"
+    ],
+    "exit": 0,
+    "elapsedMs": 56,
+    "namedPassed": 0,
+    "stderrFlag": false,
+    "logSha256": "27f855468229a558e7d7b3e49f27afb03db5d92ed3d524270aa0546a84613930"
+  },
+  {
+    "name": "dumpbin-launcher-debug",
+    "program": "dumpbin.exe",
+    "args": [
+      "/nologo",
+      "/headers",
+      "/imports",
+      "<WORK>/target/proof-win-candidate-2/x86_64-pc-windows-msvc/debug/cache-probe-launcher.exe"
+    ],
+    "exit": 0,
+    "elapsedMs": 95,
+    "namedPassed": 0,
+    "stderrFlag": false,
+    "logSha256": "805eeea2c9771fddac1e373a6d9ff590dafb7cf86bba334eb41702a1e91a2e12"
+  },
+  {
+    "name": "pe-launcher-debug",
+    "program": "node.exe",
+    "args": [
+      "experiments/stack-trace/probe/tools/user-link-proof.mjs",
+      "launcher",
+      "<WORK>/target/proof-win-candidate-2/x86_64-pc-windows-msvc/debug/cache-probe-launcher.exe",
+      "<WORK>/evidence/candidate-2/results/windows/dumpbin-launcher-debug.log"
+    ],
+    "exit": 0,
+    "elapsedMs": 53,
+    "namedPassed": 0,
+    "stderrFlag": false,
+    "logSha256": "c8038cc3d86d6e03abfc5d45fc558c4f9970ef19a6caa7b66c43212893ff307f"
+  },
+  {
+    "name": "windows-link-release",
+    "program": "cargo",
+    "args": [
+      "build",
+      "-p",
+      "cache-probe-registration-win",
+      "-p",
+      "cache-probe-collector",
+      "-p",
+      "cache-probe-launcher",
+      "--features",
+      "cache-probe-collector/experimental-live,cache-probe-launcher/experimental-live",
+      "--target",
+      "x86_64-pc-windows-msvc",
+      "--offline",
+      "--locked",
+      "--release"
+    ],
+    "exit": 0,
+    "elapsedMs": 7210,
+    "namedPassed": 0,
+    "stderrFlag": false,
+    "logSha256": "6c58c2afeb5578ef12f4d6383073bc37033598fb06f724d28b93b441b0a52cdb"
+  },
+  {
+    "name": "dumpbin-registration-release",
+    "program": "dumpbin.exe",
+    "args": [
+      "/nologo",
+      "/headers",
+      "/imports",
+      "<WORK>/target/proof-win-candidate-2/x86_64-pc-windows-msvc/release/registration-link-proof.exe"
+    ],
+    "exit": 0,
+    "elapsedMs": 65,
+    "namedPassed": 0,
+    "stderrFlag": false,
+    "logSha256": "140104a60ae0cc2e586018c5ee3257492c70b9253e52549b7db3063a71ef17ec"
+  },
+  {
+    "name": "pe-registration-release",
+    "program": "node.exe",
+    "args": [
+      "experiments/stack-trace/probe/tools/user-link-proof.mjs",
+      "registration",
+      "<WORK>/target/proof-win-candidate-2/x86_64-pc-windows-msvc/release/registration-link-proof.exe",
+      "<WORK>/evidence/candidate-2/results/windows/dumpbin-registration-release.log"
+    ],
+    "exit": 0,
+    "elapsedMs": 59,
+    "namedPassed": 0,
+    "stderrFlag": false,
+    "logSha256": "6297876be02c15dcbcff8e7e66dc5f1d7063e400b37ad4bd9e414f1692140a42"
+  },
+  {
+    "name": "dumpbin-collector-release",
+    "program": "dumpbin.exe",
+    "args": [
+      "/nologo",
+      "/headers",
+      "/imports",
+      "<WORK>/target/proof-win-candidate-2/x86_64-pc-windows-msvc/release/cache-probe-collector.exe"
+    ],
+    "exit": 0,
+    "elapsedMs": 67,
+    "namedPassed": 0,
+    "stderrFlag": false,
+    "logSha256": "8af0f112957ca1c42328876a3319b61665a27fd2cc00292887be9ec3916eff7d"
+  },
+  {
+    "name": "pe-collector-release",
+    "program": "node.exe",
+    "args": [
+      "experiments/stack-trace/probe/tools/user-link-proof.mjs",
+      "collector",
+      "<WORK>/target/proof-win-candidate-2/x86_64-pc-windows-msvc/release/cache-probe-collector.exe",
+      "<WORK>/evidence/candidate-2/results/windows/dumpbin-collector-release.log"
+    ],
+    "exit": 0,
+    "elapsedMs": 60,
+    "namedPassed": 0,
+    "stderrFlag": false,
+    "logSha256": "a717c198756ed497d5a04f81628701de56779c1bffd5b80a3f0996fe8147d4db"
+  },
+  {
+    "name": "dumpbin-launcher-release",
+    "program": "dumpbin.exe",
+    "args": [
+      "/nologo",
+      "/headers",
+      "/imports",
+      "<WORK>/target/proof-win-candidate-2/x86_64-pc-windows-msvc/release/cache-probe-launcher.exe"
+    ],
+    "exit": 0,
+    "elapsedMs": 70,
+    "namedPassed": 0,
+    "stderrFlag": false,
+    "logSha256": "592d9250c1491ed7bf1720fb706a18e98a8543434be4932f3679e8737fdc4299"
+  },
+  {
+    "name": "pe-launcher-release",
+    "program": "node.exe",
+    "args": [
+      "experiments/stack-trace/probe/tools/user-link-proof.mjs",
+      "launcher",
+      "<WORK>/target/proof-win-candidate-2/x86_64-pc-windows-msvc/release/cache-probe-launcher.exe",
+      "<WORK>/evidence/candidate-2/results/windows/dumpbin-launcher-release.log"
+    ],
+    "exit": 0,
+    "elapsedMs": 56,
+    "namedPassed": 0,
+    "stderrFlag": false,
+    "logSha256": "c231b739e8655be04c29e8dd2df285e6217d7ab72481410f4cc4405a88bbe040"
+  },
+  {
+    "name": "sdk-layout-compile",
+    "program": "cl.exe",
+    "args": [
+      "/nologo",
+      "/std:c17",
+      "/c",
+      "/W4",
+      "/WX",
+      "/Fo<WORK>/evidence/candidate-2/results/user-sdk-layouts.obj",
+      "experiments/stack-trace/probe/host/user_sdk_layouts.c"
+    ],
+    "exit": 0,
+    "elapsedMs": 397,
+    "namedPassed": 0,
+    "stderrFlag": false,
+    "logSha256": "2a7e1e0ef3e33dfd9bc164cba4659862a2f1cac3009a66e0752bae71b8c60fb5"
+  },
+  {
+    "name": "policy-tests",
+    "program": "node.exe",
+    "args": [
+      "--test",
+      "--test-reporter=tap",
+      "experiments/stack-trace/probe/tools/test-build-contract.mjs",
+      "experiments/stack-trace/probe/tools/test-user-link-proof.mjs"
+    ],
+    "exit": 0,
+    "elapsedMs": 230,
+    "namedPassed": 0,
+    "stderrFlag": false,
+    "logSha256": "f5d553c93ebfe71d5e62a41117e1a91a47e985f5c4ec958fdfdba179aca7230e",
+    "publicExcerptSha256": "8ed8b3f60bd4502045bfc711faa35609b470a08a612d855b23102872afff6a84"
+  },
+  {
+    "name": "policy-count",
+    "program": "node.exe",
+    "args": [
+      "experiments/stack-trace/probe/tools/result-proof.mjs",
+      "tap",
+      "<WORK>/evidence/candidate-2/results/windows/policy-tests.log"
+    ],
+    "exit": 0,
+    "elapsedMs": 50,
+    "namedPassed": 0,
+    "stderrFlag": false,
+    "logSha256": "27e1dcc501d552dadccbec5a14cbaa1237e1e8005e22b0376a798439d9c0314f",
+    "publicExcerptSha256": "27e1dcc501d552dadccbec5a14cbaa1237e1e8005e22b0376a798439d9c0314f"
+  },
+  {
+    "name": "pe-regression",
+    "program": "node.exe",
+    "args": [
+      "experiments/rust-wdk/tools/test-pe.mjs"
+    ],
+    "exit": 0,
+    "elapsedMs": 50,
+    "namedPassed": 0,
+    "stderrFlag": false,
+    "logSha256": "a7bd5f0f0c84e2259bc8c303ddcd627d718e3c6a2b6418cde296c821e498e067",
+    "publicExcerptSha256": "a7bd5f0f0c84e2259bc8c303ddcd627d718e3c6a2b6418cde296c821e498e067"
+  },
+  {
+    "name": "fake-ddi",
+    "program": "node.exe",
+    "args": [
+      "experiments/stack-trace/probe/tools/test-host.mjs",
+      "--suite",
+      "all"
+    ],
+    "exit": 0,
+    "elapsedMs": 2548,
+    "namedPassed": 0,
+    "stderrFlag": false,
+    "logSha256": "546dfa71cd95bf63fb862220c96e7b925ceb05c08f24bf376ea8ac453c571a5a",
+    "publicExcerptSha256": "d007932fbfde4aae4f86c4b62b323cc67e073deb1728a0e44b27c51313d35d15"
+  }
+]

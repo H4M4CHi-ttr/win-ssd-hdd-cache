@@ -1,0 +1,1 @@
+P04_RESULT_PROOF kind=tap passed=27

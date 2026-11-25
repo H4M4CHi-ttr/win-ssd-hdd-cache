@@ -1,0 +1,332 @@
+{
+  "registration": {
+    "debug": {
+      "kind": "registration",
+      "machine": "AMD64",
+      "subsystem": "Windows CUI",
+      "bytes": 549888,
+      "sha256": "12e4e1be0ca66abbb37b5b908597065dfb5e57af036b52663674c28f4f637b0d",
+      "verifiedImports": {
+        "SetupDiCreateDeviceInfoList": [
+          "setupapi.dll"
+        ],
+        "SetupDiOpenDeviceInfoW": [
+          "setupapi.dll"
+        ],
+        "SetupDiGetDeviceInstanceIdW": [
+          "setupapi.dll"
+        ],
+        "SetupDiGetDeviceRegistryPropertyW": [
+          "setupapi.dll"
+        ],
+        "SetupDiSetDeviceRegistryPropertyW": [
+          "setupapi.dll"
+        ],
+        "SetupDiGetDevicePropertyW": [
+          "setupapi.dll"
+        ],
+        "SetupDiDestroyDeviceInfoList": [
+          "setupapi.dll"
+        ],
+        "SetupCopyOEMInfW": [
+          "setupapi.dll"
+        ],
+        "SetupGetInfDriverStoreLocationW": [
+          "setupapi.dll"
+        ],
+        "SetupOpenInfFileW": [
+          "setupapi.dll"
+        ],
+        "SetupCloseInfFile": [
+          "setupapi.dll"
+        ],
+        "SetupInstallServicesFromInfSectionW": [
+          "setupapi.dll"
+        ],
+        "OpenSCManagerW": [
+          "advapi32.dll"
+        ],
+        "OpenServiceW": [
+          "advapi32.dll"
+        ],
+        "QueryServiceConfigW": [
+          "advapi32.dll"
+        ],
+        "QueryServiceStatusEx": [
+          "advapi32.dll"
+        ],
+        "CloseServiceHandle": [
+          "advapi32.dll"
+        ],
+        "RegOpenKeyExW": [
+          "advapi32.dll"
+        ],
+        "RegCreateKeyExW": [
+          "advapi32.dll"
+        ],
+        "RegSetValueExW": [
+          "advapi32.dll"
+        ],
+        "RegQueryValueExW": [
+          "advapi32.dll"
+        ],
+        "RegCloseKey": [
+          "advapi32.dll"
+        ],
+        "CompareStringOrdinal": [
+          "kernel32.dll"
+        ],
+        "GetLastError": [
+          "kernel32.dll"
+        ],
+        "SetLastError": [
+          "kernel32.dll"
+        ]
+      },
+      "executed": false
+    },
+    "release": {
+      "kind": "registration",
+      "machine": "AMD64",
+      "subsystem": "Windows CUI",
+      "bytes": 250880,
+      "sha256": "5ad4fb4550f67f9eaeb97742ebf4f012d0b25e65ea881c6605a661e76e18e037",
+      "verifiedImports": {
+        "SetupDiCreateDeviceInfoList": [
+          "setupapi.dll"
+        ],
+        "SetupDiOpenDeviceInfoW": [
+          "setupapi.dll"
+        ],
+        "SetupDiGetDeviceInstanceIdW": [
+          "setupapi.dll"
+        ],
+        "SetupDiGetDeviceRegistryPropertyW": [
+          "setupapi.dll"
+        ],
+        "SetupDiSetDeviceRegistryPropertyW": [
+          "setupapi.dll"
+        ],
+        "SetupDiGetDevicePropertyW": [
+          "setupapi.dll"
+        ],
+        "SetupDiDestroyDeviceInfoList": [
+          "setupapi.dll"
+        ],
+        "SetupCopyOEMInfW": [
+          "setupapi.dll"
+        ],
+        "SetupGetInfDriverStoreLocationW": [
+          "setupapi.dll"
+        ],
+        "SetupOpenInfFileW": [
+          "setupapi.dll"
+        ],
+        "SetupCloseInfFile": [
+          "setupapi.dll"
+        ],
+        "SetupInstallServicesFromInfSectionW": [
+          "setupapi.dll"
+        ],
+        "OpenSCManagerW": [
+          "advapi32.dll"
+        ],
+        "OpenServiceW": [
+          "advapi32.dll"
+        ],
+        "QueryServiceConfigW": [
+          "advapi32.dll"
+        ],
+        "QueryServiceStatusEx": [
+          "advapi32.dll"
+        ],
+        "CloseServiceHandle": [
+          "advapi32.dll"
+        ],
+        "RegOpenKeyExW": [
+          "advapi32.dll"
+        ],
+        "RegCreateKeyExW": [
+          "advapi32.dll"
+        ],
+        "RegSetValueExW": [
+          "advapi32.dll"
+        ],
+        "RegQueryValueExW": [
+          "advapi32.dll"
+        ],
+        "RegCloseKey": [
+          "advapi32.dll"
+        ],
+        "CompareStringOrdinal": [
+          "kernel32.dll"
+        ],
+        "GetLastError": [
+          "kernel32.dll"
+        ],
+        "SetLastError": [
+          "kernel32.dll"
+        ]
+      },
+      "executed": false
+    }
+  },
+  "collector": {
+    "debug": {
+      "kind": "collector",
+      "machine": "AMD64",
+      "subsystem": "Windows CUI",
+      "bytes": 867328,
+      "sha256": "3b282d219da76140fa4868cb72a2bb2c5cc3bc4f5d2177c0efff60f9cc4343bc",
+      "verifiedImports": {
+        "CreateFileW": [
+          "kernel32.dll"
+        ],
+        "DeviceIoControl": [
+          "kernel32.dll"
+        ],
+        "BCryptGenRandom": [
+          "bcrypt.dll"
+        ],
+        "GetFileType": [
+          "kernel32.dll"
+        ],
+        "GetProcAddress": [
+          "kernel32.dll"
+        ],
+        "SetHandleInformation": [
+          "kernel32.dll"
+        ],
+        "WaitForSingleObject": [
+          "kernel32.dll"
+        ],
+        "PssCaptureSnapshot": [
+          "kernel32.dll"
+        ],
+        "PssWalkSnapshot": [
+          "kernel32.dll"
+        ],
+        "PssFreeSnapshot": [
+          "kernel32.dll"
+        ]
+      },
+      "executed": false
+    },
+    "release": {
+      "kind": "collector",
+      "machine": "AMD64",
+      "subsystem": "Windows CUI",
+      "bytes": 377856,
+      "sha256": "41f8af705bb3a44da808f814cdfcca1a9fae885d3b80af02a73f4cc9b5a99989",
+      "verifiedImports": {
+        "CreateFileW": [
+          "kernel32.dll"
+        ],
+        "DeviceIoControl": [
+          "kernel32.dll"
+        ],
+        "BCryptGenRandom": [
+          "bcrypt.dll"
+        ],
+        "GetFileType": [
+          "kernel32.dll"
+        ],
+        "GetProcAddress": [
+          "kernel32.dll"
+        ],
+        "SetHandleInformation": [
+          "kernel32.dll"
+        ],
+        "WaitForSingleObject": [
+          "kernel32.dll"
+        ],
+        "PssCaptureSnapshot": [
+          "kernel32.dll"
+        ],
+        "PssWalkSnapshot": [
+          "kernel32.dll"
+        ],
+        "PssFreeSnapshot": [
+          "kernel32.dll"
+        ]
+      },
+      "executed": false
+    }
+  },
+  "launcher": {
+    "debug": {
+      "kind": "launcher",
+      "machine": "AMD64",
+      "subsystem": "Windows CUI",
+      "bytes": 965632,
+      "sha256": "f37682ddd66f2c457377296635e56526f4059ea3bbab2f7a589ff5058ca1c2ef",
+      "verifiedImports": {
+        "CreateEventW": [
+          "kernel32.dll"
+        ],
+        "DuplicateHandle": [
+          "kernel32.dll"
+        ],
+        "SetEvent": [
+          "kernel32.dll"
+        ],
+        "CreatePipe": [
+          "kernel32.dll"
+        ],
+        "CreateProcessW": [
+          "kernel32.dll"
+        ],
+        "UpdateProcThreadAttribute": [
+          "kernel32.dll"
+        ],
+        "WaitForSingleObject": [
+          "kernel32.dll"
+        ],
+        "GetFileInformationByHandleEx": [
+          "kernel32.dll"
+        ],
+        "BCryptGenRandom": [
+          "bcrypt.dll"
+        ]
+      },
+      "executed": false
+    },
+    "release": {
+      "kind": "launcher",
+      "machine": "AMD64",
+      "subsystem": "Windows CUI",
+      "bytes": 522752,
+      "sha256": "f8c8a6029dd2fdda01aaf5a0d80fc08e86197a73e8f5b961ea8d56bf3005aabb",
+      "verifiedImports": {
+        "CreateEventW": [
+          "kernel32.dll"
+        ],
+        "DuplicateHandle": [
+          "kernel32.dll"
+        ],
+        "SetEvent": [
+          "kernel32.dll"
+        ],
+        "CreatePipe": [
+          "kernel32.dll"
+        ],
+        "CreateProcessW": [
+          "kernel32.dll"
+        ],
+        "UpdateProcThreadAttribute": [
+          "kernel32.dll"
+        ],
+        "WaitForSingleObject": [
+          "kernel32.dll"
+        ],
+        "GetFileInformationByHandleEx": [
+          "kernel32.dll"
+        ],
+        "BCryptGenRandom": [
+          "bcrypt.dll"
+        ]
+      },
+      "executed": false
+    }
+  }
+}

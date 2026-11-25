@@ -1,0 +1,19 @@
+
+running 1 test
+test tests::r02_a_reuses_t_number ... FAILED
+
+failures:
+
+---- tests::r02_a_reuses_t_number stdout ----
+
+thread 'tests::r02_a_reuses_t_number' (14152) panicked at <WORK>/tmp/target-selection-mutant-candidate-2/src/tests.rs:241:5:
+assertion `left == right` failed
+  left: 11
+ right: 22
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+
+
+failures:
+    tests::r02_a_reuses_t_number
+
+test result: FAILED. 0 passed; 1 failed; 0 ignored; 0 measured; 144 filtered out; finished in 0.00s
