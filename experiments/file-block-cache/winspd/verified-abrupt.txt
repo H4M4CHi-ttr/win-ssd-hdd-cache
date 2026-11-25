@@ -1,0 +1,14 @@
+ABRUPT_EVENT applied_bytes=512 CLIENT_WRITE_TRANSPORT_ERROR lba=7 sectors=2 reaped=1 code=233
+RECOVERY_EVENT partial-reopen BROKER client-result=0 reaped=1
+RECOVERY_WORKER partial-reopen received=2 callbacks=2 applied_writes=0 cold_origin_lines=2 warm_cache_lines=2 shutdown_sync=1
+ABRUPT_PAIR applied_bytes=512 first_read=new/old write_response=absent worker_killed_and_reaped=1 sdk_abort_flush_callbacks=1 loss_origin_syncs=0 broker_exit=31 reopened_origin_lines=2 reopened_cache_lines=2 reopened_shutdown_sync=1 all_bytes_verified=1
+ABRUPT_EVENT applied_bytes=0 CLIENT_WRITE_TRANSPORT_ERROR lba=7 sectors=2 reaped=1 code=233
+RECOVERY_EVENT before-reopen BROKER client-result=0 reaped=1
+RECOVERY_WORKER before-reopen received=2 callbacks=2 applied_writes=0 cold_origin_lines=2 warm_cache_lines=2 shutdown_sync=1
+ABRUPT_PAIR applied_bytes=0 first_read=old/old write_response=absent worker_killed_and_reaped=1 sdk_abort_flush_callbacks=1 loss_origin_syncs=0 broker_exit=31 reopened_origin_lines=2 reopened_cache_lines=2 reopened_shutdown_sync=1 all_bytes_verified=1
+ABRUPT_EVENT applied_bytes=1024 CLIENT_WRITE_TRANSPORT_ERROR lba=7 sectors=2 reaped=1 code=233
+RECOVERY_EVENT after-reopen BROKER client-result=0 reaped=1
+RECOVERY_WORKER after-reopen received=2 callbacks=2 applied_writes=0 cold_origin_lines=2 warm_cache_lines=2 shutdown_sync=1
+ABRUPT_PAIR applied_bytes=1024 first_read=new/new write_response=absent worker_killed_and_reaped=1 sdk_abort_flush_callbacks=1 loss_origin_syncs=0 broker_exit=31 reopened_origin_lines=2 reopened_cache_lines=2 reopened_shutdown_sync=1 all_bytes_verified=1
+FILE_CACHE_WORKER_LOSS_OK
+test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 34 filtered out; finished in 0.31s

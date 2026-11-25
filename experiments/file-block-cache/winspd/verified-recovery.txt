@@ -1,0 +1,14 @@
+RECOVERY_EVENT after-loss CUT write after_apply=1 write_response_sent=0
+RECOVERY_EVENT after-loss CLIENT_WRITE_TRANSPORT_ERROR lba=7 sectors=2 reaped=1 code=233
+RECOVERY_WORKER after-loss received=3 callbacks=3 applied_writes=1 cold_origin_lines=2 warm_cache_lines=2 shutdown_sync=1
+RECOVERY_EVENT after-reopen BROKER client-result=0 reaped=1
+RECOVERY_WORKER after-reopen received=2 callbacks=2 applied_writes=0 cold_origin_lines=2 warm_cache_lines=2 shutdown_sync=1
+RECOVERY_PAIR applied=1 client_write_response=absent before_reopen_origin=new before_reopen_cache=old first_read=new cold_origin_lines=2 warm_cache_lines=2 rust_workers_reaped=2 final_image=verified
+RECOVERY_EVENT before-loss CUT write after_apply=0 write_response_sent=0
+RECOVERY_EVENT before-loss CLIENT_WRITE_TRANSPORT_ERROR lba=7 sectors=2 reaped=1 code=233
+RECOVERY_WORKER before-loss received=3 callbacks=2 applied_writes=0 cold_origin_lines=2 warm_cache_lines=2 shutdown_sync=1
+RECOVERY_EVENT before-reopen BROKER client-result=0 reaped=1
+RECOVERY_WORKER before-reopen received=2 callbacks=2 applied_writes=0 cold_origin_lines=2 warm_cache_lines=2 shutdown_sync=1
+RECOVERY_PAIR applied=0 client_write_response=absent before_reopen_origin=old before_reopen_cache=old first_read=old cold_origin_lines=2 warm_cache_lines=2 rust_workers_reaped=2 final_image=verified
+FILE_CACHE_RECOVERY_OK
+test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 30 filtered out; finished in 0.23s

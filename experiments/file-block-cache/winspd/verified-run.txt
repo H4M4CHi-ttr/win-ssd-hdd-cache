@@ -1,0 +1,29 @@
+WIRE warm seq=0 op=2 lba=7 count=2 fua=false scsi=0 sense=00/00 bytes=0 sync_attempts=0 raw_error=None
+WIRE warm seq=1 op=1 lba=7 count=2 fua=false scsi=0 sense=00/00 bytes=1024 sync_attempts=0 raw_error=None
+WIRE warm seq=2 op=1 lba=7 count=2 fua=false scsi=0 sense=00/00 bytes=1024 sync_attempts=0 raw_error=None
+WIRE warm seq=3 op=3 lba=7 count=2 fua=false scsi=0 sense=00/00 bytes=0 sync_attempts=1 raw_error=None
+WIRE warm seq=4 op=2 lba=9 count=2 fua=false scsi=0 sense=00/00 bytes=0 sync_attempts=0 raw_error=None
+WIRE warm seq=5 op=1 lba=9 count=2 fua=false scsi=0 sense=00/00 bytes=1024 sync_attempts=0 raw_error=None
+WIRE warm seq=6 op=1 lba=9 count=2 fua=false scsi=0 sense=00/00 bytes=1024 sync_attempts=0 raw_error=None
+WIRE warm seq=7 op=3 lba=9 count=2 fua=false scsi=0 sense=00/00 bytes=0 sync_attempts=1 raw_error=None
+WINSPD warm requests=8 sync=2 origin_reads=3 cache_reads=3 check_conditions=0 client_reaped=true
+WIRE fua seq=0 op=2 lba=7 count=2 fua=true scsi=0 sense=00/00 bytes=0 sync_attempts=1 raw_error=None
+WIRE fua seq=1 op=1 lba=7 count=2 fua=true scsi=0 sense=00/00 bytes=1024 sync_attempts=1 raw_error=None
+WIRE fua seq=2 op=3 lba=7 count=2 fua=false scsi=0 sense=00/00 bytes=0 sync_attempts=1 raw_error=None
+WINSPD fua requests=3 sync=3 origin_reads=1 cache_reads=0 check_conditions=0 client_reaped=true
+WIRE write-error seq=0 op=2 lba=7 count=2 fua=true scsi=2 sense=03/0c bytes=0 sync_attempts=1 raw_error=Some(1234)
+WINSPD write-error requests=1 sync=1 origin_reads=0 cache_reads=0 check_conditions=1 client_reaped=true
+WIRE read-error seq=0 op=1 lba=7 count=2 fua=true scsi=2 sense=03/11 bytes=0 sync_attempts=1 raw_error=Some(5)
+WINSPD read-error requests=1 sync=1 origin_reads=0 cache_reads=0 check_conditions=1 client_reaped=true
+WIRE flush-error seq=0 op=3 lba=7 count=2 fua=false scsi=2 sense=03/0c bytes=0 sync_attempts=1 raw_error=Some(5)
+WINSPD flush-error requests=1 sync=1 origin_reads=0 cache_reads=0 check_conditions=1 client_reaped=true
+WIRE unmap seq=0 op=4 lba=7 count=2 fua=false scsi=2 sense=05/20 bytes=0 sync_attempts=0 raw_error=None
+WINSPD unmap requests=1 sync=0 origin_reads=0 cache_reads=0 check_conditions=1 client_reaped=true
+WIRE corrupt-reply seq=0 op=2 lba=7 count=2 fua=false scsi=0 sense=00/00 bytes=0 sync_attempts=0 raw_error=None
+WIRE corrupt-reply seq=1 op=1 lba=7 count=2 fua=false scsi=0 sense=00/00 bytes=1024 sync_attempts=0 raw_error=None
+WINSPD corrupt-reply requests=2 sync=0 origin_reads=2 cache_reads=0 check_conditions=0 client_reaped=true
+WINSPD peer-check requests=0 sync=0 origin_reads=0 cache_reads=0 check_conditions=0 client_reaped=true
+WIRE deadline seq=0 op=1 lba=7 count=2 withheld=true
+WINSPD deadline requests=1 sync=0 origin_reads=0 cache_reads=0 check_conditions=0 client_reaped=true
+FILE_CACHE_WINSPD_OK
+test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 24 filtered out; finished in 2.45s

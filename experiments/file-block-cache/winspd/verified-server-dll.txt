@@ -1,0 +1,118 @@
+WIRE warm seq=0 op=2 lba=7 count=2 fua=false scsi=0 sense=00/00 bytes=0 sync_attempts=0 raw_error=None
+WIRE warm seq=1 op=1 lba=7 count=2 fua=false scsi=0 sense=00/00 bytes=1024 sync_attempts=0 raw_error=None
+WIRE warm seq=2 op=1 lba=7 count=2 fua=false scsi=0 sense=00/00 bytes=1024 sync_attempts=0 raw_error=None
+WIRE warm seq=3 op=3 lba=7 count=2 fua=false scsi=0 sense=00/00 bytes=0 sync_attempts=1 raw_error=None
+WIRE warm seq=4 op=2 lba=9 count=2 fua=false scsi=0 sense=00/00 bytes=0 sync_attempts=0 raw_error=None
+WIRE warm seq=5 op=1 lba=9 count=2 fua=false scsi=0 sense=00/00 bytes=1024 sync_attempts=0 raw_error=None
+WIRE warm seq=6 op=1 lba=9 count=2 fua=false scsi=0 sense=00/00 bytes=1024 sync_attempts=0 raw_error=None
+WIRE warm seq=7 op=3 lba=9 count=2 fua=false scsi=0 sense=00/00 bytes=0 sync_attempts=1 raw_error=None
+DLL warm SDK ready inner-peer=verified dispatchers=1
+DLL warm SDK outer-request kind=2
+DLL warm SDK callback ordinal=1 kind=2
+DLL warm SDK outer-request kind=1
+DLL warm SDK callback ordinal=2 kind=1
+DLL warm SDK outer-request kind=1
+DLL warm SDK callback ordinal=3 kind=1
+DLL warm SDK outer-request kind=3
+DLL warm SDK callback ordinal=4 kind=3
+DLL warm SDK outer-request kind=2
+DLL warm SDK callback ordinal=5 kind=2
+DLL warm SDK outer-request kind=1
+DLL warm SDK callback ordinal=6 kind=1
+DLL warm SDK outer-request kind=1
+DLL warm SDK callback ordinal=7 kind=1
+DLL warm SDK outer-request kind=3
+DLL warm SDK callback ordinal=8 kind=3
+DLL warm BROKER client-result=0 reaped=1
+DLL warm SDK stopped callbacks=8 rejected=0 close_calls=1 close_error=0 waited=1
+SERVER_DLL warm client_requests=8 forwarded_to_rust=8 rejected_callbacks=0 external_syncs=2 close_calls=1 close_error=0 broker_exit=0
+WIRE fua seq=0 op=2 lba=7 count=2 fua=true scsi=0 sense=00/00 bytes=0 sync_attempts=1 raw_error=None
+WIRE fua seq=1 op=1 lba=7 count=2 fua=true scsi=0 sense=00/00 bytes=1024 sync_attempts=1 raw_error=None
+WIRE fua seq=2 op=3 lba=7 count=2 fua=false scsi=0 sense=00/00 bytes=0 sync_attempts=1 raw_error=None
+DLL fua SDK ready inner-peer=verified dispatchers=1
+DLL fua SDK outer-request kind=2
+DLL fua SDK callback ordinal=1 kind=2
+DLL fua SDK outer-request kind=1
+DLL fua SDK callback ordinal=2 kind=1
+DLL fua SDK outer-request kind=3
+DLL fua SDK callback ordinal=3 kind=3
+DLL fua BROKER client-result=0 reaped=1
+DLL fua SDK stopped callbacks=3 rejected=0 close_calls=0 close_error=0 waited=1
+SERVER_DLL fua client_requests=3 forwarded_to_rust=3 rejected_callbacks=0 external_syncs=3 close_calls=0 close_error=0 broker_exit=0
+WIRE write-error seq=0 op=2 lba=7 count=2 fua=true scsi=2 sense=03/0c bytes=0 sync_attempts=1 raw_error=Some(1234)
+DLL write-error SDK ready inner-peer=verified dispatchers=1
+DLL write-error SDK outer-request kind=2
+DLL write-error SDK callback ordinal=1 kind=2
+DLL write-error BROKER client-result=1117 reaped=1
+DLL write-error SDK stopped callbacks=1 rejected=0 close_calls=0 close_error=0 waited=1
+SERVER_DLL write-error client_requests=1 forwarded_to_rust=1 rejected_callbacks=0 external_syncs=1 close_calls=0 close_error=0 broker_exit=0
+WIRE read-error seq=0 op=1 lba=7 count=2 fua=true scsi=2 sense=03/11 bytes=0 sync_attempts=1 raw_error=Some(5)
+DLL read-error SDK ready inner-peer=verified dispatchers=1
+DLL read-error SDK outer-request kind=1
+DLL read-error SDK callback ordinal=1 kind=1
+DLL read-error SDK failed-read internal_bytes=1024 outer_bytes=0 zero_checked=1
+DLL read-error BROKER client-result=1117 reaped=1
+DLL read-error SDK stopped callbacks=1 rejected=0 close_calls=0 close_error=0 waited=1
+SERVER_DLL read-error client_requests=1 forwarded_to_rust=1 rejected_callbacks=0 external_syncs=1 close_calls=0 close_error=0 broker_exit=0
+WIRE flush-error seq=0 op=3 lba=7 count=2 fua=false scsi=2 sense=03/0c bytes=0 sync_attempts=1 raw_error=Some(5)
+DLL flush-error SDK ready inner-peer=verified dispatchers=1
+DLL flush-error SDK outer-request kind=3
+DLL flush-error SDK callback ordinal=1 kind=3
+DLL flush-error BROKER client-result=1117 reaped=1
+DLL flush-error SDK stopped callbacks=1 rejected=0 close_calls=1 close_error=0 waited=1
+SERVER_DLL flush-error client_requests=1 forwarded_to_rust=1 rejected_callbacks=0 external_syncs=1 close_calls=1 close_error=0 broker_exit=0
+WIRE unmap seq=0 op=4 lba=7 count=2 fua=false scsi=2 sense=05/20 bytes=0 sync_attempts=0 raw_error=None
+DLL unmap SDK ready inner-peer=verified dispatchers=1
+DLL unmap SDK outer-request kind=4
+DLL unmap SDK callback ordinal=1 kind=4
+DLL unmap BROKER client-result=1117 reaped=1
+DLL unmap SDK stopped callbacks=1 rejected=0 close_calls=1 close_error=0 waited=1
+SERVER_DLL unmap client_requests=1 forwarded_to_rust=1 rejected_callbacks=0 external_syncs=0 close_calls=1 close_error=0 broker_exit=0
+WIRE corrupt-reply seq=0 op=2 lba=7 count=2 fua=false scsi=0 sense=00/00 bytes=0 sync_attempts=0 raw_error=None
+WIRE corrupt-reply seq=1 op=1 lba=7 count=2 fua=false scsi=0 sense=00/00 bytes=1024 sync_attempts=0 raw_error=None
+DLL corrupt-reply SDK ready inner-peer=verified dispatchers=1
+DLL corrupt-reply SDK outer-request kind=2
+DLL corrupt-reply SDK callback ordinal=1 kind=2
+DLL corrupt-reply SDK outer-request kind=1
+DLL corrupt-reply SDK callback ordinal=2 kind=1
+DLL corrupt-reply BROKER client-result=1117 reaped=1
+DLL corrupt-reply SDK stopped callbacks=2 rejected=0 close_calls=1 close_error=0 waited=1
+SERVER_DLL corrupt-reply client_requests=2 forwarded_to_rust=2 rejected_callbacks=0 external_syncs=0 close_calls=1 close_error=0 broker_exit=0
+DLL peer-check BROKER client-result=233 reaped=1
+SERVER_DLL peer-check client_requests=0 forwarded_to_rust=0 rejected_callbacks=0 external_syncs=0 close_calls=0 close_error=0 broker_exit=0
+WIRE deadline seq=0 op=1 lba=7 count=2 withheld=true
+DLL deadline SDK ready inner-peer=verified dispatchers=1
+DLL deadline SDK outer-request kind=1
+DLL deadline SDK callback ordinal=1 kind=1
+SERVER_DLL deadline client_requests=1 forwarded_to_rust=1 rejected_callbacks=0 external_syncs=0 close_calls=0 close_error=0 broker_exit=1460
+WIRE read-after-write-error seq=0 op=2 lba=7 count=2 fua=true scsi=0 sense=00/00 bytes=0 sync_attempts=1 raw_error=None
+WIRE read-after-write-error seq=1 op=1 lba=7 count=2 fua=true scsi=2 sense=03/11 bytes=0 sync_attempts=1 raw_error=Some(5)
+DLL read-after-write-error SDK ready inner-peer=verified dispatchers=1
+DLL read-after-write-error SDK outer-request kind=2
+DLL read-after-write-error SDK callback ordinal=1 kind=2
+DLL read-after-write-error SDK outer-request kind=1
+DLL read-after-write-error SDK callback ordinal=2 kind=1
+DLL read-after-write-error SDK failed-read internal_bytes=1024 outer_bytes=0 zero_checked=1
+DLL read-after-write-error BROKER client-result=1117 reaped=1
+DLL read-after-write-error SDK stopped callbacks=2 rejected=0 close_calls=0 close_error=0 waited=1
+SERVER_DLL read-after-write-error client_requests=2 forwarded_to_rust=2 rejected_callbacks=0 external_syncs=2 close_calls=0 close_error=0 broker_exit=0
+WIRE close-error seq=0 op=2 lba=7 count=2 fua=false scsi=0 sense=00/00 bytes=0 sync_attempts=0 raw_error=None
+WIRE close-error seq=1 op=1 lba=7 count=2 fua=false scsi=0 sense=00/00 bytes=1024 sync_attempts=0 raw_error=None
+DLL close-error SDK ready inner-peer=verified dispatchers=1
+DLL close-error SDK outer-request kind=2
+DLL close-error SDK callback ordinal=1 kind=2
+DLL close-error SDK outer-request kind=1
+DLL close-error SDK callback ordinal=2 kind=1
+DLL close-error BROKER client-result=0 reaped=1
+DLL close-error SDK stopped callbacks=2 rejected=0 close_calls=1 close_error=5 waited=1
+SERVER_DLL close-error client_requests=2 forwarded_to_rust=2 rejected_callbacks=0 external_syncs=0 close_calls=1 close_error=5 broker_exit=29
+DLL inner-busy BROKER client-result=233 reaped=1
+DLL inner-busy SDK inner-busy before-dispatch
+SERVER_DLL inner-busy client_requests=0 forwarded_to_rust=0 rejected_callbacks=0 external_syncs=0 close_calls=0 close_error=0 broker_exit=0
+DLL callback-mismatch SDK ready inner-peer=verified dispatchers=1
+DLL callback-mismatch SDK outer-request kind=2
+DLL callback-mismatch BROKER client-result=1117 reaped=1
+DLL callback-mismatch SDK stopped callbacks=0 rejected=1 close_calls=0 close_error=0 waited=1
+SERVER_DLL callback-mismatch client_requests=1 forwarded_to_rust=0 rejected_callbacks=1 external_syncs=0 close_calls=0 close_error=0 broker_exit=13
+FILE_CACHE_WINSPD_SERVER_DLL_OK
+test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 28 filtered out; finished in 2.54s

@@ -1,0 +1,9 @@
+READ_ONLY ro-write advertised=1 external=3 backend_reads=2 backend_mutations=0 sense=07/27 origin_reads=2 cache_reads=2 external_syncs=0 shutdown_syncs=1 final_origin_verified=1 conflicting_write_and_delete_denied=1
+READ_ONLY ro-warm advertised=1 external=2 backend_reads=2 backend_mutations=0 sense=none origin_reads=2 cache_reads=2 external_syncs=0 shutdown_syncs=1 final_origin_verified=1 conflicting_write_and_delete_denied=1
+READ_ONLY ro-unmap advertised=1 external=3 backend_reads=2 backend_mutations=0 sense=05/20 origin_reads=2 cache_reads=2 external_syncs=0 shutdown_syncs=1 final_origin_verified=1 conflicting_write_and_delete_denied=1
+READ_ONLY ro-fua advertised=1 external=1 backend_reads=1 backend_mutations=0 sense=none origin_reads=1 cache_reads=0 external_syncs=1 shutdown_syncs=0 final_origin_verified=1 conflicting_write_and_delete_denied=1
+READ_ONLY ro-flush advertised=1 external=1 backend_reads=0 backend_mutations=0 sense=07/27 origin_reads=0 cache_reads=0 external_syncs=0 shutdown_syncs=1 final_origin_verified=1 conflicting_write_and_delete_denied=1
+READ_ONLY ro-nocache-flush advertised=1 external=1 backend_reads=0 backend_mutations=0 sense=05/20 origin_reads=0 cache_reads=0 external_syncs=0 shutdown_syncs=0 final_origin_verified=1 conflicting_write_and_delete_denied=1
+READ_ONLY ro-fua-write advertised=1 external=1 backend_reads=0 backend_mutations=0 sense=07/27 origin_reads=0 cache_reads=0 external_syncs=0 shutdown_syncs=0 final_origin_verified=1 conflicting_write_and_delete_denied=1
+FILE_CACHE_READ_ONLY_OK
+test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 35 filtered out; finished in 0.32s

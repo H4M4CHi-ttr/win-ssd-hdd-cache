@@ -1,0 +1,225 @@
+{
+  "as_of_jst": "2026-11-25",
+  "project_main": "eb2ee0573ed5cc82b84bb7ad3477b4cb764b5d7c",
+  "winspd_release": "v1.0B1",
+  "winspd_commit": "55c53bc454afbbba38bd1692f52beb77ed59142f",
+  "msi_sha256": "F1157EEF805DCBEC78A477F2B4EE5ABC0049C8A9329444E5D18CAB01D3604265",
+  "msi_install_executed": false,
+  "guest_accessed": false,
+  "msi_tables": {
+    "features": [
+      {
+        "Feature": "F.User",
+        "Level": "1",
+        "Attributes": "24"
+      },
+      {
+        "Feature": "F.Main",
+        "Level": "1",
+        "Attributes": "24"
+      },
+      {
+        "Feature": "F.Developer",
+        "Level": "1000",
+        "Attributes": "8"
+      }
+    ],
+    "core": [
+      {
+        "Feature_": "F.User",
+        "Component_": "C.winspd.inf"
+      },
+      {
+        "Feature_": "F.User",
+        "Component_": "C.winspd_x64.sys"
+      },
+      {
+        "Feature_": "F.User",
+        "Component_": "C.winspd_x64.cat"
+      },
+      {
+        "Feature_": "F.User",
+        "Component_": "C.shellex_x64.dll.selfreg"
+      },
+      {
+        "Feature_": "F.User",
+        "Component_": "C.launcher_x64.exe.svcinst"
+      },
+      {
+        "Feature_": "F.Developer",
+        "Component_": "C.rawdisk_x64.exe"
+      }
+    ],
+    "services": [
+      {
+        "Name": "[P.LauncherName]",
+        "ServiceType": "16",
+        "StartType": "2",
+        "StartName": "",
+        "Component_": "C.launcher_x64.exe.svcinst"
+      }
+    ],
+    "serviceControl": [
+      {
+        "Name": "[P.LauncherName]",
+        "Event": "163",
+        "Component_": "C.launcher_x64.exe.svcinst"
+      }
+    ],
+    "property": [
+      {
+        "Property": "ALLUSERS",
+        "Value": "1"
+      },
+      {
+        "Property": "P.LauncherName",
+        "Value": "WinSpd.Launcher"
+      },
+      {
+        "Property": "ProductVersion",
+        "Value": "1.0.20357"
+      }
+    ],
+    "actions": [
+      {
+        "Action": "Deferred.DevsetupAdd.x64",
+        "Condition": "VersionNT64 AND ((NOT Installed) OR REINSTALL)",
+        "Sequence": "5804"
+      },
+      {
+        "Action": "Deferred.DevsetupRemove.x64",
+        "Condition": "VersionNT64 AND REMOVE",
+        "Sequence": "1995"
+      },
+      {
+        "Action": "SelfRegModules",
+        "Condition": "",
+        "Sequence": "5600"
+      },
+      {
+        "Action": "InstallServices",
+        "Condition": "VersionNT",
+        "Sequence": "5800"
+      },
+      {
+        "Action": "StartServices",
+        "Condition": "VersionNT",
+        "Sequence": "5900"
+      }
+    ],
+    "selfReg": [
+      {
+        "File_": "FILE.shellex_x64.dll.selfreg"
+      },
+      {
+        "File_": "FILE.shellex_x86.dll.selfreg"
+      }
+    ]
+  },
+  "local_authenticode": [
+    {
+      "ext": "sys",
+      "status": "Valid",
+      "type": "Authenticode",
+      "publisher": "NAVIMATICS LLC",
+      "sha": "E2E5E2E02452F2A4D09E9EC3C5375D2D8512D075523A3A6BF88E246B343184C9"
+    },
+    {
+      "ext": "cat",
+      "status": "Valid",
+      "type": "Authenticode",
+      "publisher": "NAVIMATICS LLC",
+      "sha": "BCAFF78F0801E64E11B39F2BF790E24B25C88251D7BDB9BC40C245B9A3D0CF93"
+    }
+  ],
+  "cms": {
+    "sigs": [
+      {
+        "object": "CAT",
+        "depth": 0,
+        "subject": "NAVIMATICS LLC",
+        "issuer": "DigiCert EV Code Signing CA (SHA2)",
+        "issued": "2019-06-25",
+        "timestampOids": [
+          "1.2.840.113549.1.9.6"
+        ],
+        "digest": "1.3.14.3.2.26"
+      },
+      {
+        "object": "CAT",
+        "depth": 1,
+        "subject": "NAVIMATICS LLC",
+        "issuer": "DigiCert EV Code Signing CA (SHA2)",
+        "issued": "2019-06-25",
+        "timestampOids": [
+          "1.3.6.1.4.1.311.3.3.1"
+        ],
+        "digest": "2.16.840.1.101.3.4.2.1"
+      },
+      {
+        "object": "SYS",
+        "depth": 0,
+        "subject": "NAVIMATICS LLC",
+        "issuer": "DigiCert EV Code Signing CA (SHA2)",
+        "issued": "2019-06-25",
+        "timestampOids": [
+          "1.2.840.113549.1.9.6"
+        ],
+        "digest": "1.3.14.3.2.26"
+      },
+      {
+        "object": "SYS",
+        "depth": 1,
+        "subject": "NAVIMATICS LLC",
+        "issuer": "DigiCert EV Code Signing CA (SHA2)",
+        "issued": "2019-06-25",
+        "timestampOids": [
+          "1.3.6.1.4.1.311.3.3.1"
+        ],
+        "digest": "2.16.840.1.101.3.4.2.1"
+      },
+      {
+        "object": "SYS",
+        "depth": 1,
+        "subject": "Microsoft Windows Hardware Compatibility Publisher",
+        "issuer": "Microsoft Windows Third Party Component CA 2014",
+        "issued": "2020-03-11",
+        "timestampOids": [
+          "1.3.6.1.4.1.311.3.3.1"
+        ],
+        "digest": "2.16.840.1.101.3.4.2.1"
+      }
+    ],
+    "sysEntries": 1
+  },
+  "local_generic_wintrust_and_catalog": [
+    "trust winspd-x64.cat index=0 verified=0 result=00000000 signer=NAVIMATICS LLC",
+    "trust winspd-x64.cat index=1 verified=1 result=800B0100 signer=NAVIMATICS LLC",
+    "trust winspd-x64.sys index=0 verified=0 result=00000000 signer=NAVIMATICS LLC",
+    "trust winspd-x64.sys index=1 verified=1 result=00000000 signer=Microsoft Windows Hardware Compatibility Publisher",
+    "trust winspd-x64.sys index=2 verified=2 result=00000000 signer=NAVIMATICS LLC",
+    "member winspd.inf SHA1 reference-tag=match",
+    "member winspd-x64.sys SHA1 reference-tag=match",
+    "member winspd-x64.dll SHA1 reference-tag=match",
+    "member winspd-x86.dll SHA1 reference-tag=match",
+    "members verified=4/4"
+  ],
+  "host_inventory": {
+    "registered": 4,
+    "matches": 1,
+    "configAccessible": true,
+    "metadataAccessible": true,
+    "r1NameCount": 1,
+    "totalSnapshotNames": 2,
+    "suspendFileCount": 0,
+    "namedResumeFile": false,
+    "hostVmxProcessCount": 0
+  },
+  "snapshot_metadata": {
+    "r1HasR0Parent": true,
+    "r1DiskCount": "2",
+    "r1TwoExpectedNodes": true,
+    "r1RecordedFilesExist": true,
+    "currentMetadataPointsToR1": true
+  }
+}
