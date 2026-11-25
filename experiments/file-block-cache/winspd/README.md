@@ -2,6 +2,8 @@
 
 2026-11-25 JST。Windows x64（build 26300）、PowerShell 7.6.9、.NET 10.0.14の通常ユーザーで、公式の `stgtest-x64.exe`、自作のローカルパイプサーバー、既存のRustキャッシュを接続した。データは各シナリオが新規作成する `origin.img` と `cache.img` の2本に限定する。直接転送の9シナリオに続き、公式サーバーDLLを通る13シナリオも検証した。VM-Aでは後にminiportの起動とW0復元を確認した。Windowsへの仮想ディスク公開は未試験。[Core単体の実測](lab/WinSpd-VM-A-Core-W0-userready-result-2026-11-25.md)。[設計判断と所有権](ADR.md)
 
+[次の読み取り専用ユニット列挙の条件と合成検査](enumeration/README.md)
+
 ## 再現
 
 x64のMSVC・Windows SDKを使えるPowerShell 7.2以降、リポジトリで固定したRust 1.99.1、ローカルのCargo依存キャッシュ、7-Zipが必要。公式リリースの `winspd-1.0.20357.msi` を通常ファイルとして用意し、リポジトリのルートから次を実行する。インストーラーは起動しない。[WinSpd v1.0B1公式リリース](https://github.com/winfsp/winspd/releases/tag/v1.0B1)
