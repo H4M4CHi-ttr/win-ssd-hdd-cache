@@ -14,6 +14,8 @@ $kit = Join-Path $stage 'kit'
 $commands = [System.Collections.Generic.List[object]]::new()
 $completed = $false
 $kernelLinked = $false
+$userSdkLayoutCompiled = $false
+$userLinks = [System.Collections.Generic.List[object]]::new()
 New-Item -ItemType Directory -Path $out, $evidence, $stage, $kit -Force | Out-Null
 
 function Invoke-Recorded([string]$Exe, [string[]]$Arguments, [string]$LogName) {
@@ -62,13 +64,28 @@ try {
     & $devShell -Arch amd64 -HostArch amd64 -SkipAutomaticLocation
     if ($env:VSCMD_ARG_TGT_ARCH -ne 'x64' -or $env:VSCMD_ARG_HOST_ARCH -ne 'x64') { throw 'P04_MSVC_ARCH_MISMATCH' }
     $env:VSLANG = '1033'
+    if (-not $env:WindowsSdkDir -or -not $env:WindowsSDKVersion) { throw 'P04_USER_SDK_SELECTION_MISSING' }
+    $userSdkVersion = $env:WindowsSDKVersion.TrimEnd([char]'\')
+    $userSdkLibRoot = Join-Path $env:WindowsSdkDir ('Lib/' + $userSdkVersion + '/um/x64')
+    $userSdkLibraries = @('kernel32.lib', 'advapi32.lib', 'setupapi.lib', 'bcrypt.lib', 'ntdll.lib')
+    $userSdkHashes = @($userSdkLibraries | ForEach-Object { [ordered]@{ name = $_; sha256 = (Get-Sha (Join-Path $userSdkLibRoot $_)) } })
+    # Official user-mode SDK headers, compile only. This object is never linked
+    # into a runnable image, added to the driver, or passed to an execution tool.
+    $userSdkLayoutSource = 'host/user_sdk_layouts.c'
+    $userSdkLayoutObject = Join-Path $out 'user-sdk-layouts.obj'
+    $null = Invoke-Recorded 'cl.exe' @('/nologo', '/c', '/std:c17', '/W4', '/WX', '/showIncludes', $userSdkLayoutSource, "/Fo:$userSdkLayoutObject") 'user-sdk-layouts-compile.txt'
+    $userSdkLayoutProof = [ordered]@{ source = $userSdkLayoutSource; sourceSha256 = (Get-Sha (Join-Path $root $userSdkLayoutSource)); objectSha256 = (Get-Sha $userSdkLayoutObject); sdkVersion = $userSdkVersion; compiled = $true; linked = $false; executed = $false }
+    $userSdkLayoutCompiled = $true
     $nodeResult = Invoke-Recorded 'node' @('--version') 'node-version.txt'
     $rustResult = Invoke-Recorded 'rustc' @('--version', '--verbose') 'rust-version.txt'
     $null = Invoke-Recorded 'cargo' @('--version') 'cargo-version.txt'
+    if ($rustResult.Lines -cnotcontains 'host: x86_64-pc-windows-msvc') { throw 'P04_RUST_AMD64_HOST_REQUIRED' }
+    # Keep binary outputs outside evidence; the upload allowlist is text/JSON only.
+    $env:CARGO_TARGET_DIR = Join-Path $out 'user-target'
 
     # These use only host memory / path strings and the actual driver TU compiled
     # against fake DDIs. They do not create, open, register or load a real device.
-    $null = Invoke-Recorded 'node' @('--test', '--test-reporter=tap', 'tools/test-build-contract.mjs') 'build-contract-tests.txt'
+    $null = Invoke-Recorded 'node' @('--test', '--test-reporter=tap', 'tools/test-build-contract.mjs', 'tools/test-user-link-proof.mjs') 'build-contract-tests.txt'
     $tapProof = Invoke-Recorded 'node' @('tools/result-proof.mjs', 'tap', (Join-Path $evidence 'build-contract-tests.txt')) 'build-contract-proof.txt'
     $buildTestCount = Get-ResultCount $tapProof 'tap'
     $headerResult = Invoke-Recorded 'pwsh' @('-NoLogo', '-NoProfile', '-NonInteractive', '-File', (Join-Path $PSScriptRoot 'test-header-paths.ps1')) 'header-path-tests.txt'
@@ -91,12 +108,42 @@ try {
     }
     $peTests = Invoke-Recorded 'node' @((Join-Path $repository 'experiments/rust-wdk/tools/test-pe.mjs')) 'pe-checker-tests.txt'
     if ($peTests.Lines -cnotcontains 'D09 PE precheck: 22 nonzero cases passed') { throw 'P04_PE_CHECKER_PROOF_MISSING' }
-    $null = Invoke-Recorded 'cargo' @('test', '-p', 'cache-probe-core', '-p', 'cache-probe-collector', '--release', '--locked') 'rust-host-tests.txt'
+    $null = Invoke-Recorded 'cargo' @('fmt', '--all', '--', '--check') 'rust-fmt.txt'
+    $null = Invoke-Recorded 'cargo' @('clippy', '--workspace', '--all-targets', '--locked', '--', '-D', 'warnings') 'rust-clippy.txt'
+    $null = Invoke-Recorded 'cargo' @('test', '-p', 'cache-probe-core', '-p', 'cache-probe-collector', '-p', 'cache-probe-registration', '-p', 'cache-probe-registration-win', '-p', 'cache-probe-launcher', '--release', '--locked', '--', '--show-output', '--test-threads=1') 'rust-host-tests.txt'
     $rustProof = Invoke-Recorded 'node' @('tools/result-proof.mjs', 'rust', (Join-Path $evidence 'rust-host-tests.txt')) 'rust-host-proof.txt'
     $rustTestCount = Get-ResultCount $rustProof 'rust'
-    # Compile AND link the explicitly gated Win32 path; never invoke its binary.
-    $null = Invoke-Recorded 'cargo' @('check', '-p', 'cache-probe-collector', '--features', 'experimental-live', '--locked') 'collector-enabled-check.txt'
-    $null = Invoke-Recorded 'cargo' @('build', '-p', 'cache-probe-collector', '--features', 'experimental-live', '--locked') 'collector-enabled-link.txt'
+    $matrixResult = Invoke-Recorded 'node' @('tools/matrix-proof.mjs', 'portable', 'windows', (Join-Path $evidence 'rust-host-tests.txt')) 'rust-matrix-proof.json'
+    $matrixProof = ($matrixResult.Lines -join "`n") | ConvertFrom-Json
+    if ($matrixProof.hangVariantCount -ne 18 -or $matrixProof.requiredPassed -le 0) { throw 'P04_MATRIX_PROOF_MISSING' }
+    # Only this dedicated feature/test target may execute native user-mode IPC.
+    # It uses synthetic transport and the isolated p04-ipc-worker, never a device.
+    $null = Invoke-Recorded 'cargo' @('clippy', '-p', 'cache-probe-launcher', '--features', 'synthetic-ipc', '--all-targets', '--locked', '--', '-D', 'warnings') 'ipc-clippy.txt'
+    $null = Invoke-Recorded 'cargo' @('test', '-p', 'cache-probe-launcher', '--features', 'synthetic-ipc', '--lib', '--test', 'windows_ipc', '--release', '--locked') 'windows-ipc-tests.txt'
+    $null = Invoke-Recorded 'node' @('tools/result-proof.mjs', 'rust', (Join-Path $evidence 'windows-ipc-tests.txt')) 'windows-ipc-result-proof.txt'
+    $ipcMatrixResult = Invoke-Recorded 'node' @('tools/matrix-proof.mjs', 'ipc', 'windows', (Join-Path $evidence 'windows-ipc-tests.txt')) 'windows-ipc-matrix-proof.json'
+    $ipcMatrixProof = ($ipcMatrixResult.Lines -join "`n") | ConvertFrom-Json
+    # Compile, release-link and statically inspect each actual AMD64 user boundary.
+    # These images are inputs to dumpbin/node only and are never launched.
+    $userTargets = @(
+        @{ kind = 'registration'; package = 'cache-probe-registration-win'; binary = 'registration-link-proof'; features = @() },
+        @{ kind = 'collector'; package = 'cache-probe-collector'; binary = 'cache-probe-collector'; features = @('experimental-live') },
+        @{ kind = 'launcher'; package = 'cache-probe-launcher'; binary = 'cache-probe-launcher'; features = @('experimental-live') }
+    )
+    foreach ($userTarget in $userTargets) {
+        $targetArguments = @('-p', $userTarget.package, '--bin', $userTarget.binary, '--target', 'x86_64-pc-windows-msvc', '--locked')
+        if ($userTarget.features.Count -gt 0) { $targetArguments += @('--features', ($userTarget.features -join ',')) }
+        $null = Invoke-Recorded 'cargo' (@('check') + $targetArguments) ($userTarget.kind + '-enabled-check.txt')
+        $null = Invoke-Recorded 'cargo' (@('build', '--release') + $targetArguments) ($userTarget.kind + '-enabled-link.txt')
+        $userImage = Join-Path $env:CARGO_TARGET_DIR ('x86_64-pc-windows-msvc/release/' + $userTarget.binary + '.exe')
+        $inspectionName = $userTarget.kind + '-user-inspection.txt'
+        $null = Invoke-Recorded 'dumpbin.exe' @('/headers', '/imports', $userImage) $inspectionName
+        $staticResult = Invoke-Recorded 'node' @('tools/user-link-proof.mjs', $userTarget.kind, $userImage, (Join-Path $evidence $inspectionName)) ($userTarget.kind + '-user-link-proof.json')
+        $staticProof = ($staticResult.Lines -join "`n") | ConvertFrom-Json
+        $userImageSha = Get-Sha $userImage
+        if ($staticProof.kind -cne $userTarget.kind -or $staticProof.sha256 -cne $userImageSha -or $staticProof.executed -ne $false -or $staticProof.machine -cne 'AMD64') { throw 'P04_USER_LINK_BINDING_MISMATCH' }
+        $userLinks.Add([ordered]@{ kind = $userTarget.kind; package = $userTarget.package; binary = $userTarget.binary; target = 'x86_64-pc-windows-msvc'; profile = 'release'; features = $userTarget.features; imageSha256 = $userImageSha; imageBytes = (Get-Item -LiteralPath $userImage).Length; inspectionSha256 = (Get-Sha (Join-Path $evidence $inspectionName)); staticProof = $staticProof; executed = $false })
+    }
 
     # Reuse exact D09 Microsoft SDK/WDK pins. Every download must satisfy its
     # digest AND NuGet signature; collisions must have identical bytes.
@@ -194,6 +241,15 @@ try {
         headerPathTests = 25
         peCheckerTests = 22
         rustHostTests = $rustTestCount
+        namedMatrixProof = $matrixProof
+        syntheticIpcProof = $ipcMatrixProof
+        userBoundaryLinks = $userLinks.ToArray()
+        userSdk = [ordered]@{ version = $userSdkVersion; architecture = 'x64'; selectedLibraryHashes = $userSdkHashes }
+        userSdkLayout = $userSdkLayoutProof
+        userSdkLayoutCompiled = $userSdkLayoutCompiled
+        packageDeploymentQualified = $false
+        packageStaticProposalChecked = $true
+        realApplyAvailable = $false
         collectorEnabledFeatureChecked = $true
         collectorEnabledFeatureLinked = $true
         sameTranslationUnitsCompiled = $true
@@ -205,7 +261,7 @@ try {
         realDeviceAccess = $false
         runtimeQualified = $false
         windowsClientQualified = $false
-    } | ConvertTo-Json -Depth 8
+    } | ConvertTo-Json -Depth 16
     $manifestJson | Set-Content -LiteralPath (Join-Path $evidence 'manifest.json') -Encoding utf8
     Write-Host 'P04_PUBLIC_BUILD_MANIFEST:'
     Write-Host $manifestJson
@@ -217,12 +273,14 @@ try {
         completed = $completed
         source = $env:GITHUB_SHA
         kernelImageLinked = $kernelLinked
+        userSdkLayoutCompiled = $userSdkLayoutCompiled
+        userBoundaryLinks = $userLinks.ToArray()
         driverInstalledOrLoaded = $false
         registeredOrAttached = $false
         observedLiveRequests = $false
         realDeviceAccess = $false
         runtimeQualified = $false
         windowsClientQualified = $false
-    } | ConvertTo-Json | Set-Content -LiteralPath (Join-Path $evidence 'build-state.json') -Encoding utf8
+    } | ConvertTo-Json -Depth 16 | Set-Content -LiteralPath (Join-Path $evidence 'build-state.json') -Encoding utf8
     Pop-Location
 }

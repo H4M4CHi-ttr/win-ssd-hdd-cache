@@ -1,6 +1,6 @@
 [workspace]
-members = ["crates/cache-types", "crates/cache-model", "crates/cache-cli", "crates/cache-capture-core", "crates/cache-probe-core", "crates/cache-probe-collector", "xtask"]
-default-members = ["crates/cache-types", "crates/cache-model", "crates/cache-cli", "crates/cache-capture-core", "crates/cache-probe-core", "crates/cache-probe-collector", "xtask"]
+members = ["crates/cache-types", "crates/cache-model", "crates/cache-cli", "crates/cache-capture-core", "crates/cache-probe-core", "crates/cache-probe-collector", "crates/cache-probe-registration", "crates/cache-probe-registration-win", "crates/cache-probe-launcher", "xtask"]
+default-members = ["crates/cache-types", "crates/cache-model", "crates/cache-cli", "crates/cache-capture-core", "crates/cache-probe-core", "crates/cache-probe-collector", "crates/cache-probe-registration", "crates/cache-probe-registration-win", "crates/cache-probe-launcher", "xtask"]
 resolver = "3"
 
 [workspace.package]
@@ -13,5 +13,6 @@ publish = false
 unsafe_code = "forbid"
 
 [workspace.dependencies]
+sha2 = "=0.10.9"
 serde = { version = "=1.0.229", features = ["derive"] }
 serde_json = { version = "=1.0.154", features = ["arbitrary_precision", "raw_value"] }

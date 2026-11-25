@@ -1,0 +1,1962 @@
+{
+  "schema": "p04-matrix-cases-v1",
+  "description": "Fixed reviewed minimums; helpers are execution plumbing, not matrix coverage. C fixture loops map to source-hashed tests, never invented iteration pass counts.",
+  "groups": [
+    {
+      "id": "registration",
+      "suites": [
+        "portable"
+      ],
+      "platforms": [
+        "linux",
+        "windows"
+      ],
+      "sources": [
+        "crates/cache-probe-registration/src/lib.rs",
+        "crates/cache-probe-registration/src/synthetic.rs",
+        "crates/cache-probe-registration/src/tests.rs",
+        "crates/cache-probe-registration/src/tests/crash_tests.rs"
+      ],
+      "tests": [
+        {
+          "name": "tests::crash_tests::r13b_f_after_process_kill",
+          "caseId": "R13B",
+          "variants": [
+            "r13b_f_after_process_kill"
+          ]
+        },
+        {
+          "name": "tests::crash_tests::r13b_f_before_process_kill",
+          "caseId": "R13B",
+          "variants": [
+            "r13b_f_before_process_kill"
+          ]
+        },
+        {
+          "name": "tests::crash_tests::r13b_k_after_process_kill",
+          "caseId": "R13B",
+          "variants": [
+            "r13b_k_after_process_kill"
+          ]
+        },
+        {
+          "name": "tests::crash_tests::r13b_k_before_process_kill",
+          "caseId": "R13B",
+          "variants": [
+            "r13b_k_before_process_kill"
+          ]
+        },
+        {
+          "name": "tests::crash_tests::r13b_p_after_process_kill",
+          "caseId": "R13B",
+          "variants": [
+            "r13b_p_after_process_kill"
+          ]
+        },
+        {
+          "name": "tests::crash_tests::r13b_p_before_process_kill",
+          "caseId": "R13B",
+          "variants": [
+            "r13b_p_before_process_kill"
+          ]
+        },
+        {
+          "name": "tests::crash_tests::r13b_s_after_process_kill",
+          "caseId": "R13B",
+          "variants": [
+            "r13b_s_after_process_kill"
+          ]
+        },
+        {
+          "name": "tests::crash_tests::r13b_s_before_process_kill",
+          "caseId": "R13B",
+          "variants": [
+            "r13b_s_before_process_kill"
+          ]
+        },
+        {
+          "name": "tests::crash_tests::r14_before_complete_process_kill",
+          "caseId": "R14",
+          "variants": [
+            "r14_before_complete_process_kill"
+          ]
+        },
+        {
+          "name": "tests::crash_tests::r14_mid_verification_process_kill",
+          "caseId": "R14",
+          "variants": [
+            "r14_mid_verification_process_kill"
+          ]
+        },
+        {
+          "name": "tests::crash_tests::r14_private_record_rejects_truncation_and_other_identity_binding",
+          "caseId": "R14",
+          "variants": [
+            "r14_private_record_rejects_truncation_and_other_identity_binding"
+          ]
+        },
+        {
+          "name": "tests::crash_tests::r14_v_process_kill",
+          "caseId": "R14",
+          "variants": [
+            "r14_v_process_kill"
+          ]
+        },
+        {
+          "name": "tests::r01_dry_run_then_p_s_k_f_v_only_t",
+          "caseId": "R01",
+          "variants": [
+            "r01_dry_run_then_p_s_k_f_v_only_t"
+          ]
+        },
+        {
+          "name": "tests::r01_initial_rights_and_private_journal_fail_closed",
+          "caseId": "R01",
+          "variants": [
+            "r01_initial_rights_and_private_journal_fail_closed"
+          ]
+        },
+        {
+          "name": "tests::r02_a_reuses_t_number",
+          "caseId": "R02",
+          "variants": [
+            "r02_a_reuses_t_number"
+          ]
+        },
+        {
+          "name": "tests::r02_api_returns_a_after_t_check",
+          "caseId": "R02",
+          "variants": [
+            "r02_api_returns_a_after_t_check"
+          ]
+        },
+        {
+          "name": "tests::r02_input_points_to_os",
+          "caseId": "R02",
+          "variants": [
+            "r02_input_points_to_os"
+          ]
+        },
+        {
+          "name": "tests::r02_mutated_registrar_request_is_logged_by_actual_fake_object",
+          "caseId": "R02",
+          "variants": [
+            "r02_mutated_registrar_request_is_logged_by_actual_fake_object"
+          ]
+        },
+        {
+          "name": "tests::r02_t_label_has_a_identity",
+          "caseId": "R02",
+          "variants": [
+            "r02_t_label_has_a_identity"
+          ]
+        },
+        {
+          "name": "tests::r03_disconnected",
+          "caseId": "R03",
+          "variants": [
+            "r03_disconnected"
+          ]
+        },
+        {
+          "name": "tests::r03_duplicate_serial",
+          "caseId": "R03",
+          "variants": [
+            "r03_duplicate_serial"
+          ]
+        },
+        {
+          "name": "tests::r03_empty_device_location_same_hardware_uses_independent_identity",
+          "caseId": "R03",
+          "variants": [
+            "r03_empty_device_location_same_hardware_uses_independent_identity"
+          ]
+        },
+        {
+          "name": "tests::r03_mixed_identity_rows",
+          "caseId": "R03",
+          "variants": [
+            "r03_mixed_identity_rows"
+          ]
+        },
+        {
+          "name": "tests::r03_number_changes_parent_lun_identity_still_bind",
+          "caseId": "R03",
+          "variants": [
+            "r03_number_changes_parent_lun_identity_still_bind"
+          ]
+        },
+        {
+          "name": "tests::r03_old_host_chain",
+          "caseId": "R03",
+          "variants": [
+            "r03_old_host_chain"
+          ]
+        },
+        {
+          "name": "tests::r03_two_t",
+          "caseId": "R03",
+          "variants": [
+            "r03_two_t"
+          ]
+        },
+        {
+          "name": "tests::r03_zero_t",
+          "caseId": "R03",
+          "variants": [
+            "r03_zero_t"
+          ]
+        },
+        {
+          "name": "tests::r04_non_ascii_exact_and_expansion_fail_closed",
+          "caseId": "R04",
+          "variants": [
+            "r04_non_ascii_exact_and_expansion_fail_closed"
+          ]
+        },
+        {
+          "name": "tests::r04_selector_boundaries",
+          "caseId": "R04",
+          "variants": [
+            "r04_selector_boundaries"
+          ]
+        },
+        {
+          "name": "tests::r04_selector_malformed_and_exact_matching",
+          "caseId": "R04",
+          "variants": [
+            "r04_selector_malformed_and_exact_matching"
+          ]
+        },
+        {
+          "name": "tests::r05_dedicated_dump",
+          "caseId": "R05",
+          "variants": [
+            "r05_dedicated_dump"
+          ]
+        },
+        {
+          "name": "tests::r05_dump",
+          "caseId": "R05",
+          "variants": [
+            "r05_dump"
+          ]
+        },
+        {
+          "name": "tests::r05_efi",
+          "caseId": "R05",
+          "variants": [
+            "r05_efi"
+          ]
+        },
+        {
+          "name": "tests::r05_empty_build",
+          "caseId": "R05",
+          "variants": [
+            "r05_empty_build"
+          ]
+        },
+        {
+          "name": "tests::r05_hibernation",
+          "caseId": "R05",
+          "variants": [
+            "r05_hibernation"
+          ]
+        },
+        {
+          "name": "tests::r05_os",
+          "caseId": "R05",
+          "variants": [
+            "r05_os"
+          ]
+        },
+        {
+          "name": "tests::r05_os_pagefile_change_is_retained_not_target_use",
+          "caseId": "R05",
+          "variants": [
+            "r05_os_pagefile_change_is_retained_not_target_use"
+          ]
+        },
+        {
+          "name": "tests::r05_other",
+          "caseId": "R05",
+          "variants": [
+            "r05_other"
+          ]
+        },
+        {
+          "name": "tests::r05_pagefile",
+          "caseId": "R05",
+          "variants": [
+            "r05_pagefile"
+          ]
+        },
+        {
+          "name": "tests::r05_unknown_build",
+          "caseId": "R05",
+          "variants": [
+            "r05_unknown_build"
+          ]
+        },
+        {
+          "name": "tests::r05_unknown_chain",
+          "caseId": "R05",
+          "variants": [
+            "r05_unknown_chain"
+          ]
+        },
+        {
+          "name": "tests::r05_unknown_r1",
+          "caseId": "R05",
+          "variants": [
+            "r05_unknown_r1"
+          ]
+        },
+        {
+          "name": "tests::r05_unknown_usage",
+          "caseId": "R05",
+          "variants": [
+            "r05_unknown_usage"
+          ]
+        },
+        {
+          "name": "tests::r05_unknown_vm",
+          "caseId": "R05",
+          "variants": [
+            "r05_unknown_vm"
+          ]
+        },
+        {
+          "name": "tests::r06_class_upper_unavailable",
+          "caseId": "R06",
+          "variants": [
+            "r06_class_upper_unavailable"
+          ]
+        },
+        {
+          "name": "tests::r06_duplicate_object_token",
+          "caseId": "R06",
+          "variants": [
+            "r06_duplicate_object_token"
+          ]
+        },
+        {
+          "name": "tests::r06_invalid_multi_sz_rejected",
+          "caseId": "R06",
+          "variants": [
+            "r06_invalid_multi_sz_rejected"
+          ]
+        },
+        {
+          "name": "tests::r06_missing_empty_and_existing_preserved",
+          "caseId": "R06",
+          "variants": [
+            "r06_missing_empty_and_existing_preserved"
+          ]
+        },
+        {
+          "name": "tests::r06_protected_upper_unavailable",
+          "caseId": "R06",
+          "variants": [
+            "r06_protected_upper_unavailable"
+          ]
+        },
+        {
+          "name": "tests::r06_query_failure_is_not_missing",
+          "caseId": "R06",
+          "variants": [
+            "r06_query_failure_is_not_missing"
+          ]
+        },
+        {
+          "name": "tests::r06_target_lower_unavailable",
+          "caseId": "R06",
+          "variants": [
+            "r06_target_lower_unavailable"
+          ]
+        },
+        {
+          "name": "tests::r07_allowlist_hash_change_rejected",
+          "caseId": "R07",
+          "variants": [
+            "r07_allowlist_hash_change_rejected"
+          ]
+        },
+        {
+          "name": "tests::r07_auto_start",
+          "caseId": "R07",
+          "variants": [
+            "r07_auto_start"
+          ]
+        },
+        {
+          "name": "tests::r07_broad_install",
+          "caseId": "R07",
+          "variants": [
+            "r07_broad_install"
+          ]
+        },
+        {
+          "name": "tests::r07_class_install",
+          "caseId": "R07",
+          "variants": [
+            "r07_class_install"
+          ]
+        },
+        {
+          "name": "tests::r07_duplicate_case_probe",
+          "caseId": "R07",
+          "variants": [
+            "r07_duplicate_case_probe"
+          ]
+        },
+        {
+          "name": "tests::r07_existing_probe",
+          "caseId": "R07",
+          "variants": [
+            "r07_existing_probe"
+          ]
+        },
+        {
+          "name": "tests::r07_loaded_service",
+          "caseId": "R07",
+          "variants": [
+            "r07_loaded_service"
+          ]
+        },
+        {
+          "name": "tests::r07_mutation_oracle_catches_broad_registration",
+          "caseId": "R07",
+          "variants": [
+            "r07_mutation_oracle_catches_broad_registration"
+          ]
+        },
+        {
+          "name": "tests::r07_unknown_service",
+          "caseId": "R07",
+          "variants": [
+            "r07_unknown_service"
+          ]
+        },
+        {
+          "name": "tests::r07_unreviewed_inf",
+          "caseId": "R07",
+          "variants": [
+            "r07_unreviewed_inf"
+          ]
+        },
+        {
+          "name": "tests::r07_wrong_binary_same_service",
+          "caseId": "R07",
+          "variants": [
+            "r07_wrong_binary_same_service"
+          ]
+        },
+        {
+          "name": "tests::r08_compare_then_set_mutation_loses_other_even_with_matching_readback",
+          "caseId": "R08",
+          "variants": [
+            "r08_compare_then_set_mutation_loses_other_even_with_matching_readback"
+          ]
+        },
+        {
+          "name": "tests::r08_mutex_and_unknown_exclusion_fail_before_p",
+          "caseId": "R08",
+          "variants": [
+            "r08_mutex_and_unknown_exclusion_fail_before_p"
+          ]
+        },
+        {
+          "name": "tests::r08_real_gate_cannot_be_unlocked_by_synthetic_rights",
+          "caseId": "R08",
+          "variants": [
+            "r08_real_gate_cannot_be_unlocked_by_synthetic_rights"
+          ]
+        },
+        {
+          "name": "tests::r09_exclusion_lost",
+          "caseId": "R09",
+          "variants": [
+            "r09_exclusion_lost"
+          ]
+        },
+        {
+          "name": "tests::r09_generation",
+          "caseId": "R09",
+          "variants": [
+            "r09_generation"
+          ]
+        },
+        {
+          "name": "tests::r09_loaded",
+          "caseId": "R09",
+          "variants": [
+            "r09_loaded"
+          ]
+        },
+        {
+          "name": "tests::r09_protected_record_changed",
+          "caseId": "R09",
+          "variants": [
+            "r09_protected_record_changed"
+          ]
+        },
+        {
+          "name": "tests::r09_removed",
+          "caseId": "R09",
+          "variants": [
+            "r09_removed"
+          ]
+        },
+        {
+          "name": "tests::r09_rights_lost",
+          "caseId": "R09",
+          "variants": [
+            "r09_rights_lost"
+          ]
+        },
+        {
+          "name": "tests::r09_swap",
+          "caseId": "R09",
+          "variants": [
+            "r09_swap"
+          ]
+        },
+        {
+          "name": "tests::r10_a_stack_unknown",
+          "caseId": "R10",
+          "variants": [
+            "r10_a_stack_unknown"
+          ]
+        },
+        {
+          "name": "tests::r10_class_changed",
+          "caseId": "R10",
+          "variants": [
+            "r10_class_changed"
+          ]
+        },
+        {
+          "name": "tests::r10_protected_changed",
+          "caseId": "R10",
+          "variants": [
+            "r10_protected_changed"
+          ]
+        },
+        {
+          "name": "tests::r10_t_stack_unknown",
+          "caseId": "R10",
+          "variants": [
+            "r10_t_stack_unknown"
+          ]
+        },
+        {
+          "name": "tests::r10_target_content",
+          "caseId": "R10",
+          "variants": [
+            "r10_target_content"
+          ]
+        },
+        {
+          "name": "tests::r10_target_duplicate_count",
+          "caseId": "R10",
+          "variants": [
+            "r10_target_duplicate_count"
+          ]
+        },
+        {
+          "name": "tests::r10_target_generation",
+          "caseId": "R10",
+          "variants": [
+            "r10_target_generation"
+          ]
+        },
+        {
+          "name": "tests::r10_target_order",
+          "caseId": "R10",
+          "variants": [
+            "r10_target_order"
+          ]
+        },
+        {
+          "name": "tests::r10_type",
+          "caseId": "R10",
+          "variants": [
+            "r10_type"
+          ]
+        },
+        {
+          "name": "tests::r10_v_denied",
+          "caseId": "R10",
+          "variants": [
+            "r10_v_denied"
+          ]
+        },
+        {
+          "name": "tests::r11_completed_same_attempt_is_read_only",
+          "caseId": "R11",
+          "variants": [
+            "r11_completed_same_attempt_is_read_only"
+          ]
+        },
+        {
+          "name": "tests::r11_different_bound_plan_never_adopted",
+          "caseId": "R11",
+          "variants": [
+            "r11_different_bound_plan_never_adopted"
+          ]
+        },
+        {
+          "name": "tests::r11_new_generation_number_reuse_is_not_owned",
+          "caseId": "R11",
+          "variants": [
+            "r11_new_generation_number_reuse_is_not_owned"
+          ]
+        },
+        {
+          "name": "tests::r11_read_only_rights_can_confirm_completed_record_without_exclusion",
+          "caseId": "R11",
+          "variants": [
+            "r11_read_only_rights_can_confirm_completed_record_without_exclusion"
+          ]
+        },
+        {
+          "name": "tests::r11_values_without_completion_never_adopted",
+          "caseId": "R11",
+          "variants": [
+            "r11_values_without_completion_never_adopted"
+          ]
+        },
+        {
+          "name": "tests::r12_public_outcomes_redact_private_markers",
+          "caseId": "R12",
+          "variants": [
+            "r12_public_outcomes_redact_private_markers"
+          ]
+        },
+        {
+          "name": "tests::r13a_f",
+          "caseId": "R13A",
+          "variants": [
+            "r13a_f"
+          ]
+        },
+        {
+          "name": "tests::r13a_k",
+          "caseId": "R13A",
+          "variants": [
+            "r13a_k"
+          ]
+        },
+        {
+          "name": "tests::r13a_p",
+          "caseId": "R13A",
+          "variants": [
+            "r13a_p"
+          ]
+        },
+        {
+          "name": "tests::r13a_s",
+          "caseId": "R13A",
+          "variants": [
+            "r13a_s"
+          ]
+        },
+        {
+          "name": "tests::r13b_f_after",
+          "caseId": "R13B",
+          "variants": [
+            "r13b_f_after"
+          ]
+        },
+        {
+          "name": "tests::r13b_f_before",
+          "caseId": "R13B",
+          "variants": [
+            "r13b_f_before"
+          ]
+        },
+        {
+          "name": "tests::r13b_k_after",
+          "caseId": "R13B",
+          "variants": [
+            "r13b_k_after"
+          ]
+        },
+        {
+          "name": "tests::r13b_k_before",
+          "caseId": "R13B",
+          "variants": [
+            "r13b_k_before"
+          ]
+        },
+        {
+          "name": "tests::r13b_p_after",
+          "caseId": "R13B",
+          "variants": [
+            "r13b_p_after"
+          ]
+        },
+        {
+          "name": "tests::r13b_p_before",
+          "caseId": "R13B",
+          "variants": [
+            "r13b_p_before"
+          ]
+        },
+        {
+          "name": "tests::r13b_s_after",
+          "caseId": "R13B",
+          "variants": [
+            "r13b_s_after"
+          ]
+        },
+        {
+          "name": "tests::r13b_s_before",
+          "caseId": "R13B",
+          "variants": [
+            "r13b_s_before"
+          ]
+        },
+        {
+          "name": "tests::r13b_same_intent_different_fresh_observation",
+          "caseId": "R13B",
+          "variants": [
+            "r13b_same_intent_different_fresh_observation"
+          ]
+        },
+        {
+          "name": "tests::r13c_f_effect",
+          "caseId": "R13C",
+          "variants": [
+            "r13c_f_effect"
+          ]
+        },
+        {
+          "name": "tests::r13c_f_no_effect",
+          "caseId": "R13C",
+          "variants": [
+            "r13c_f_no_effect"
+          ]
+        },
+        {
+          "name": "tests::r13c_k_effect",
+          "caseId": "R13C",
+          "variants": [
+            "r13c_k_effect"
+          ]
+        },
+        {
+          "name": "tests::r13c_k_no_effect",
+          "caseId": "R13C",
+          "variants": [
+            "r13c_k_no_effect"
+          ]
+        },
+        {
+          "name": "tests::r13c_p_effect",
+          "caseId": "R13C",
+          "variants": [
+            "r13c_p_effect"
+          ]
+        },
+        {
+          "name": "tests::r13c_p_no_effect",
+          "caseId": "R13C",
+          "variants": [
+            "r13c_p_no_effect"
+          ]
+        },
+        {
+          "name": "tests::r13c_s_effect",
+          "caseId": "R13C",
+          "variants": [
+            "r13c_s_effect"
+          ]
+        },
+        {
+          "name": "tests::r13c_s_no_effect",
+          "caseId": "R13C",
+          "variants": [
+            "r13c_s_no_effect"
+          ]
+        },
+        {
+          "name": "tests::r13d_f_content",
+          "caseId": "R13D",
+          "variants": [
+            "r13d_f_content"
+          ]
+        },
+        {
+          "name": "tests::r13d_f_denied",
+          "caseId": "R13D",
+          "variants": [
+            "r13d_f_denied"
+          ]
+        },
+        {
+          "name": "tests::r13d_f_generation",
+          "caseId": "R13D",
+          "variants": [
+            "r13d_f_generation"
+          ]
+        },
+        {
+          "name": "tests::r13d_f_journal",
+          "caseId": "R13D",
+          "variants": [
+            "r13d_f_journal"
+          ]
+        },
+        {
+          "name": "tests::r13d_f_type",
+          "caseId": "R13D",
+          "variants": [
+            "r13d_f_type"
+          ]
+        },
+        {
+          "name": "tests::r13d_k_content",
+          "caseId": "R13D",
+          "variants": [
+            "r13d_k_content"
+          ]
+        },
+        {
+          "name": "tests::r13d_k_denied",
+          "caseId": "R13D",
+          "variants": [
+            "r13d_k_denied"
+          ]
+        },
+        {
+          "name": "tests::r13d_k_generation",
+          "caseId": "R13D",
+          "variants": [
+            "r13d_k_generation"
+          ]
+        },
+        {
+          "name": "tests::r13d_k_journal",
+          "caseId": "R13D",
+          "variants": [
+            "r13d_k_journal"
+          ]
+        },
+        {
+          "name": "tests::r13d_k_type",
+          "caseId": "R13D",
+          "variants": [
+            "r13d_k_type"
+          ]
+        },
+        {
+          "name": "tests::r13d_p_content",
+          "caseId": "R13D",
+          "variants": [
+            "r13d_p_content"
+          ]
+        },
+        {
+          "name": "tests::r13d_p_denied",
+          "caseId": "R13D",
+          "variants": [
+            "r13d_p_denied"
+          ]
+        },
+        {
+          "name": "tests::r13d_p_generation",
+          "caseId": "R13D",
+          "variants": [
+            "r13d_p_generation"
+          ]
+        },
+        {
+          "name": "tests::r13d_p_journal",
+          "caseId": "R13D",
+          "variants": [
+            "r13d_p_journal"
+          ]
+        },
+        {
+          "name": "tests::r13d_p_type",
+          "caseId": "R13D",
+          "variants": [
+            "r13d_p_type"
+          ]
+        },
+        {
+          "name": "tests::r13d_s_content",
+          "caseId": "R13D",
+          "variants": [
+            "r13d_s_content"
+          ]
+        },
+        {
+          "name": "tests::r13d_s_denied",
+          "caseId": "R13D",
+          "variants": [
+            "r13d_s_denied"
+          ]
+        },
+        {
+          "name": "tests::r13d_s_generation",
+          "caseId": "R13D",
+          "variants": [
+            "r13d_s_generation"
+          ]
+        },
+        {
+          "name": "tests::r13d_s_journal",
+          "caseId": "R13D",
+          "variants": [
+            "r13d_s_journal"
+          ]
+        },
+        {
+          "name": "tests::r13d_s_type",
+          "caseId": "R13D",
+          "variants": [
+            "r13d_s_type"
+          ]
+        },
+        {
+          "name": "tests::r14_restart_with_lost_record_cannot_be_a_new_apply",
+          "caseId": "R14",
+          "variants": [
+            "r14_restart_with_lost_record_cannot_be_a_new_apply"
+          ]
+        },
+        {
+          "name": "tests::r14_v_crashes_and_lost_completion_never_resume",
+          "caseId": "R14",
+          "variants": [
+            "r14_v_crashes_and_lost_completion_never_resume"
+          ]
+        },
+        {
+          "caseId": "R13",
+          "name": "tests::r13_readback_decider_uses_snapshot_and_call_status_only",
+          "variants": [
+            "P/before/failure",
+            "P/after/failure",
+            "P/before/success-contradiction",
+            "P/after/success",
+            "P/neither"
+          ]
+        },
+        {
+          "caseId": "R13",
+          "name": "tests::r13_same_error_and_returned_observation_ignore_hidden_store_effect",
+          "variants": [
+            "P/error/BeforeState/no-effect",
+            "P/error/BeforeState/effect",
+            "P/error/AfterState/no-effect",
+            "P/error/AfterState/effect",
+            "P/error/Denied/no-effect",
+            "P/error/Denied/effect",
+            "P/error/InvalidType/no-effect",
+            "P/error/InvalidType/effect",
+            "P/error/Different/no-effect",
+            "P/error/Different/effect",
+            "P/error/Generation/no-effect",
+            "P/error/Generation/effect",
+            "S/error/BeforeState/no-effect",
+            "S/error/BeforeState/effect",
+            "S/error/AfterState/no-effect",
+            "S/error/AfterState/effect",
+            "S/error/Denied/no-effect",
+            "S/error/Denied/effect",
+            "S/error/InvalidType/no-effect",
+            "S/error/InvalidType/effect",
+            "S/error/Different/no-effect",
+            "S/error/Different/effect",
+            "S/error/Generation/no-effect",
+            "S/error/Generation/effect",
+            "K/error/BeforeState/no-effect",
+            "K/error/BeforeState/effect",
+            "K/error/AfterState/no-effect",
+            "K/error/AfterState/effect",
+            "K/error/Denied/no-effect",
+            "K/error/Denied/effect",
+            "K/error/InvalidType/no-effect",
+            "K/error/InvalidType/effect",
+            "K/error/Different/no-effect",
+            "K/error/Different/effect",
+            "K/error/Generation/no-effect",
+            "K/error/Generation/effect",
+            "F/error/BeforeState/no-effect",
+            "F/error/BeforeState/effect",
+            "F/error/AfterState/no-effect",
+            "F/error/AfterState/effect",
+            "F/error/Denied/no-effect",
+            "F/error/Denied/effect",
+            "F/error/InvalidType/no-effect",
+            "F/error/InvalidType/effect",
+            "F/error/Different/no-effect",
+            "F/error/Different/effect",
+            "F/error/Generation/no-effect",
+            "F/error/Generation/effect"
+          ]
+        },
+        {
+          "caseId": "R13",
+          "name": "tests::r13_success_with_before_readback_is_contradictory_not_confirmed",
+          "variants": [
+            "P/success-before/no-effect",
+            "P/success-before/effect",
+            "S/success-before/no-effect",
+            "S/success-before/effect",
+            "K/success-before/no-effect",
+            "K/success-before/effect",
+            "F/success-before/no-effect",
+            "F/success-before/effect"
+          ]
+        },
+        {
+          "caseId": "R13",
+          "name": "tests::r13_readback_decider_requires_fresh_protection_rights_and_exclusion",
+          "variants": [
+            "read-only-rights",
+            "unknown-rights",
+            "changed-exclusion-epoch",
+            "unknown-exclusion",
+            "changed-protected-record"
+          ]
+        },
+        {
+          "name": "tests::r03_t1_capacity_other_known_values_refused",
+          "caseId": "R03",
+          "variants": [
+            "0",
+            "1",
+            "8GiB-minus1",
+            "8GiB-plus1",
+            "7GiB",
+            "64GiB"
+          ]
+        },
+        {
+          "name": "tests::r03_t1_capacity_unknown_refused",
+          "caseId": "R03",
+          "variants": [
+            "unknown-capacity"
+          ]
+        },
+        {
+          "name": "tests::r03_capacity_cannot_replace_strong_identity",
+          "caseId": "R03",
+          "variants": [
+            "selectedT7GiB-unrelatedU8GiB-T-number-and-label"
+          ]
+        },
+        {
+          "name": "tests::r04_non_ascii_protected_or_observed_ids_refused",
+          "caseId": "R04",
+          "variants": [
+            "protectedOS-and-observedOS",
+            "protectedT-and-observedT",
+            "unselectedU"
+          ]
+        },
+        {
+          "name": "tests::r03_non_ascii_case_alias_cannot_hide_collision",
+          "caseId": "R03",
+          "variants": [
+            "nonASCII-upper-lower-plausible-alias"
+          ]
+        },
+        {
+          "name": "tests::r04_inadmissible_pnp_characters_refused",
+          "caseId": "R04",
+          "variants": [
+            "comma-T-U",
+            "space-T-U",
+            "tab-T-U",
+            "newline-T-U",
+            "DEL-T-U",
+            "empty-private-record"
+          ]
+        },
+        {
+          "name": "tests::r04_pnp_admission_199_and_200_separate_from_codec",
+          "caseId": "R04",
+          "variants": [
+            "199-admitted",
+            "200-codec-valid-admission-rejected"
+          ]
+        },
+        {
+          "name": "tests::r05_empty_expected_class_or_stack_refused",
+          "caseId": "R05",
+          "variants": [
+            "empty-class",
+            "blank-class",
+            "empty-stack",
+            "empty-stack-entry",
+            "blank-stack-entry"
+          ]
+        },
+        {
+          "name": "tests::r05_empty_or_unbound_function_service_refused",
+          "caseId": "R05",
+          "variants": [
+            "OS-T-empty",
+            "OS-T-blank",
+            "OS-T-NUL",
+            "OS-T-unbound-service"
+          ]
+        },
+        {
+          "name": "tests::r09_invalid_admission_fresh_observation_stops_before_p",
+          "caseId": "R09",
+          "variants": [
+            "unknown-capacity",
+            "wrong-capacity",
+            "nonASCII-unused-device"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "registration-boundary-package",
+      "suites": [
+        "portable"
+      ],
+      "platforms": [
+        "linux",
+        "windows"
+      ],
+      "sources": [
+        "crates/cache-probe-registration-win/src/boundary.rs",
+        "crates/cache-probe-registration-win/src/boundary/tests.rs",
+        "crates/cache-probe-registration-win/src/package.rs",
+        "crates/cache-probe-registration-win/src/package/tests.rs",
+        "crates/cache-probe-registration-win/fixtures/p04-service-only.inf",
+        "crates/cache-probe-registration-win/src/boundary/stages.rs",
+        "crates/cache-probe-registration-win/src/boundary/stages/tests.rs"
+      ],
+      "tests": [
+        {
+          "name": "boundary::tests::r04_empty_nul_and_overlong_never_call_open",
+          "caseId": "R04",
+          "variants": [
+            "r04_empty_nul_and_overlong_never_call_open"
+          ]
+        },
+        {
+          "name": "boundary::tests::b02_amd64_struct_layout_matches_sdk",
+          "caseId": "B02",
+          "variants": [
+            "b02_amd64_struct_layout_matches_sdk"
+          ]
+        },
+        {
+          "name": "boundary::tests::r06_actual_wrapper_preserves_order_case_and_exact_target",
+          "caseId": "R06",
+          "variants": [
+            "r06_actual_wrapper_preserves_order_case_and_exact_target"
+          ]
+        },
+        {
+          "name": "boundary::tests::r06_missing_empty_and_unavailable_remain_distinct",
+          "caseId": "R06",
+          "variants": [
+            "r06_missing_empty_and_unavailable_remain_distinct"
+          ]
+        },
+        {
+          "name": "boundary::tests::r06_malformed_property_never_issues_write",
+          "caseId": "R06",
+          "variants": [
+            "r06_malformed_property_never_issues_write"
+          ]
+        },
+        {
+          "name": "boundary::tests::r09_changed_identity_stops_before_mutation_and_closes_set",
+          "caseId": "R09",
+          "variants": [
+            "r09_changed_identity_stops_before_mutation_and_closes_set"
+          ]
+        },
+        {
+          "name": "boundary::tests::r13_error_after_effect_is_unknown_without_retry_or_restore",
+          "caseId": "R13",
+          "variants": [
+            "r13_error_after_effect_is_unknown_without_retry_or_restore"
+          ]
+        },
+        {
+          "name": "boundary::tests::r13_success_with_wrong_readback_is_not_success",
+          "caseId": "R13",
+          "variants": [
+            "r13_success_with_wrong_readback_is_not_success"
+          ]
+        },
+        {
+          "name": "boundary::tests::r04_selector_uses_reg_sz_and_exact_readback_and_one_close",
+          "caseId": "R04",
+          "variants": [
+            "r04_selector_uses_reg_sz_and_exact_readback_and_one_close"
+          ]
+        },
+        {
+          "name": "boundary::tests::r04_selector_wrong_type_is_rejected_and_key_is_closed",
+          "caseId": "R04",
+          "variants": [
+            "r04_selector_wrong_type_is_rejected_and_key_is_closed"
+          ]
+        },
+        {
+          "name": "boundary::tests::r07_arbitrary_reorder_duplicate_or_other_service_is_never_written",
+          "caseId": "R07",
+          "variants": [
+            "r07_arbitrary_reorder_duplicate_or_other_service_is_never_written"
+          ]
+        },
+        {
+          "name": "boundary::tests::r04_utf16_exact_without_trim_or_multichar_case_expansion",
+          "caseId": "R04",
+          "variants": [
+            "r04_utf16_exact_without_trim_or_multichar_case_expansion"
+          ]
+        },
+        {
+          "name": "boundary::tests::r06_native_query_result_mapping_rejects_ambiguous_errors_and_truncation",
+          "caseId": "R06",
+          "variants": [
+            "r06_native_query_result_mapping_rejects_ambiguous_errors_and_truncation"
+          ]
+        },
+        {
+          "name": "package::tests::b04_proposal_all_sections_and_references_are_allowlisted",
+          "caseId": "B04",
+          "variants": [
+            "b04_proposal_all_sections_and_references_are_allowlisted"
+          ]
+        },
+        {
+          "name": "package::tests::r07_b04_mutated_broad_or_automatic_effects_fail_closed",
+          "caseId": "R07",
+          "variants": [
+            "r07_b04_mutated_broad_or_automatic_effects_fail_closed"
+          ]
+        },
+        {
+          "name": "package::tests::b04_duplicate_sections_unknown_directives_and_missing_references_fail",
+          "caseId": "B04",
+          "variants": [
+            "b04_duplicate_sections_unknown_directives_and_missing_references_fail"
+          ]
+        },
+        {
+          "name": "package::tests::b04_actual_bytes_bind_manifest_but_never_grant_deployment",
+          "caseId": "B04",
+          "variants": [
+            "b04_actual_bytes_bind_manifest_but_never_grant_deployment"
+          ]
+        },
+        {
+          "name": "package::tests::b04_missing_cat_or_sys_and_extra_inf_are_rejected",
+          "caseId": "B04",
+          "variants": [
+            "b04_missing_cat_or_sys_and_extra_inf_are_rejected"
+          ]
+        },
+        {
+          "name": "package::tests::b04_sha256_known_independent_vectors",
+          "caseId": "B04",
+          "variants": [
+            "b04_sha256_known_independent_vectors"
+          ]
+        },
+        {
+          "name": "package::tests::b04_inspected_package_binds_core_plan_and_hash_mutation_is_rejected",
+          "caseId": "B04",
+          "variants": [
+            "b04_inspected_package_binds_core_plan_and_hash_mutation_is_rejected"
+          ]
+        },
+        {
+          "variants": [
+            "r06_unified_property_only_explicit_not_found_confirms_missing"
+          ],
+          "name": "boundary::tests::r06_unified_property_only_explicit_not_found_confirms_missing",
+          "caseId": "R06"
+        },
+        {
+          "variants": [
+            "b02_same_plan_native_port_p_s_k_f_and_no_real_capability"
+          ],
+          "name": "boundary::stages::tests::b02_same_plan_native_port_p_s_k_f_and_no_real_capability",
+          "caseId": "B02"
+        },
+        {
+          "variants": [
+            "r07_unreviewed_source_or_existing_service_has_zero_effects"
+          ],
+          "name": "boundary::stages::tests::r07_unreviewed_source_or_existing_service_has_zero_effects",
+          "caseId": "R07"
+        },
+        {
+          "variants": [
+            "r13_p_error_or_readback_or_automatic_service_stops_before_s"
+          ],
+          "name": "boundary::stages::tests::r13_p_error_or_readback_or_automatic_service_stops_before_s",
+          "caseId": "R13"
+        },
+        {
+          "variants": [
+            "r07_s_start_loaded_wrong_binary_or_api_error_never_reaches_k_f"
+          ],
+          "name": "boundary::stages::tests::r07_s_start_loaded_wrong_binary_or_api_error_never_reaches_k_f",
+          "caseId": "R07"
+        },
+        {
+          "variants": [
+            "b02_service_config_abi_and_path_outputs_are_bounded"
+          ],
+          "name": "boundary::stages::tests::b02_service_config_abi_and_path_outputs_are_bounded",
+          "caseId": "B02"
+        },
+        {
+          "variants": [
+            "foreign-image-metadata-only",
+            "same-name-wrong-location-no-image-read-or-hash"
+          ],
+          "name": "boundary::stages::tests::r07_conflicting_service_location_never_opens_or_hashes_image",
+          "caseId": "R07"
+        },
+        {
+          "variants": [
+            "namespace-metadata0-read0",
+            "ADS-metadata0-read0",
+            "DOS-reserved-metadata0-read0",
+            "reparse-read0",
+            "metadata-error-read0",
+            "nonregular-read0"
+          ],
+          "name": "boundary::stages::tests::r07_namespace_reserved_reparse_and_nonregular_paths_never_read",
+          "caseId": "R07"
+        },
+        {
+          "caseId": "R06/B02",
+          "variants": [
+            "SPDRP_UPPERFILTERS-read-literal17",
+            "SPDRP_UPPERFILTERS-write-literal17",
+            "unified-property-pid19-separate"
+          ],
+          "name": "boundary::tests::r06_raw_sdk_upperfilters_read_write_property_numbers"
+        }
+      ]
+    },
+    {
+      "id": "collector-abort",
+      "suites": [
+        "portable"
+      ],
+      "platforms": [
+        "linux",
+        "windows"
+      ],
+      "sources": [
+        "crates/cache-probe-collector/src/capture.rs",
+        "crates/cache-probe-collector/tests/cli.rs"
+      ],
+      "tests": [
+        {
+          "name": "capture::tests::c11_controlled_record_budget_status_failure_never_drains_zero",
+          "caseId": "C11",
+          "variants": [
+            "c11_controlled_record_budget_status_failure_never_drains_zero"
+          ]
+        },
+        {
+          "name": "capture::tests::controlled::c04_abort_before_open_has_no_transport_or_archive",
+          "caseId": "C04",
+          "variants": [
+            "c04_abort_before_open_has_no_transport_or_archive"
+          ]
+        },
+        {
+          "name": "capture::tests::controlled::c04_abort_after_open_closes_once_without_begin",
+          "caseId": "C04",
+          "variants": [
+            "c04_abort_after_open_closes_once_without_begin"
+          ]
+        },
+        {
+          "name": "capture::tests::controlled::c04_control_failure_before_and_after_open_is_os_error",
+          "caseId": "C04",
+          "variants": [
+            "control-fault-before-open",
+            "control-fault-after-open"
+          ]
+        },
+        {
+          "name": "capture::tests::controlled::c05_begin_inflight_abort_waits_for_ack_then_same_owner_stop",
+          "caseId": "C05",
+          "variants": [
+            "c05_begin_inflight_abort_waits_for_ack_then_same_owner_stop"
+          ]
+        },
+        {
+          "name": "capture::tests::controlled::c05_unknown_begin_never_retries_or_adds_stop_archive",
+          "caseId": "C05",
+          "variants": [
+            "begin-transport-failure",
+            "begin-session-binding-mismatch"
+          ]
+        },
+        {
+          "name": "capture::tests::controlled::c05_history_invalid_begin_uses_only_builder_cleanup_rule",
+          "caseId": "C05",
+          "variants": [
+            "c05_history_invalid_begin_uses_only_builder_cleanup_rule"
+          ]
+        },
+        {
+          "name": "capture::tests::controlled::c06_signal_after_last_poll_allows_one_drain_and_keeps_actual_records_once",
+          "caseId": "C06",
+          "variants": [
+            "c06_signal_after_last_poll_allows_one_drain_and_keeps_actual_records_once"
+          ]
+        },
+        {
+          "name": "capture::tests::controlled::c06_signal_before_predrain_has_zero_normal_drain",
+          "caseId": "C06",
+          "variants": [
+            "c06_signal_before_predrain_has_zero_normal_drain"
+          ]
+        },
+        {
+          "name": "capture::tests::controlled::c07_drain_uncertainty_wins_over_abort_and_no_second_drain",
+          "caseId": "C07",
+          "variants": [
+            "drain-response-lost",
+            "drain-session-mismatch",
+            "drain-target-mismatch",
+            "drain-call-mismatch"
+          ]
+        },
+        {
+          "name": "capture::tests::controlled::c08_failed_normal_stop_has_only_one_fresh_cleanup",
+          "caseId": "C08",
+          "variants": [
+            "cleanup-stop-failure",
+            "cleanup-stop-success"
+          ]
+        },
+        {
+          "name": "capture::tests::controlled::c08_cleanup_stop_failure_does_not_gain_another_budget",
+          "caseId": "C08",
+          "variants": [
+            "c08_cleanup_stop_failure_does_not_gain_another_budget"
+          ]
+        },
+        {
+          "name": "capture::tests::controlled::c08_recovery_drain_failure_has_one_cleanup_and_no_later_drain",
+          "caseId": "C08",
+          "variants": [
+            "c08_recovery_drain_failure_has_one_cleanup_and_no_later_drain"
+          ]
+        },
+        {
+          "name": "capture::tests::controlled::c08_history_invalid_recovery_response_has_only_cleanup_stop",
+          "caseId": "C08",
+          "variants": [
+            "c08_history_invalid_recovery_response_has_only_cleanup_stop"
+          ]
+        },
+        {
+          "name": "capture::tests::controlled::c09_producer_fault_stops_normal_drain",
+          "caseId": "C09",
+          "variants": [
+            "c09_producer_fault_stops_normal_drain"
+          ]
+        },
+        {
+          "name": "capture::tests::controlled::c09_known_drop_stops_normal_drain",
+          "caseId": "C09",
+          "variants": [
+            "c09_known_drop_stops_normal_drain"
+          ]
+        },
+        {
+          "name": "capture::tests::controlled::c09_known_skip_stops_normal_drain",
+          "caseId": "C09",
+          "variants": [
+            "c09_known_skip_stops_normal_drain"
+          ]
+        },
+        {
+          "name": "capture::tests::controlled::c09_attempted_unknown_remains_unknown",
+          "caseId": "C09",
+          "variants": [
+            "c09_attempted_unknown_remains_unknown"
+          ]
+        },
+        {
+          "name": "capture::tests::controlled::c09_popped_unknown_remains_unknown",
+          "caseId": "C09",
+          "variants": [
+            "c09_popped_unknown_remains_unknown"
+          ]
+        },
+        {
+          "name": "capture::tests::controlled::c09_skipped_unknown_remains_unknown",
+          "caseId": "C09",
+          "variants": [
+            "c09_skipped_unknown_remains_unknown"
+          ]
+        },
+        {
+          "name": "capture::tests::controlled::c09_running_to_stopping_requires_stop",
+          "caseId": "C09",
+          "variants": [
+            "c09_running_to_stopping_requires_stop"
+          ]
+        },
+        {
+          "name": "capture::tests::controlled::c10_producer_priority_preserves_concurrent_abort",
+          "caseId": "C10",
+          "variants": [
+            "c10_producer_priority_preserves_concurrent_abort"
+          ]
+        },
+        {
+          "name": "capture::tests::controlled::c10_control_poll_failure_after_begin_stops_without_transport_loss",
+          "caseId": "C10",
+          "variants": [
+            "c10_control_poll_failure_after_begin_stops_without_transport_loss"
+          ]
+        },
+        {
+          "name": "capture::tests::controlled::c10_signal_during_stop_is_secondary_and_never_repeats_normal_stop",
+          "caseId": "C10",
+          "variants": [
+            "c10_signal_during_stop_is_secondary_and_never_repeats_normal_stop"
+          ]
+        },
+        {
+          "name": "capture::tests::controlled::c10_producer_abort_and_expiry_share_one_priority_boundary",
+          "caseId": "C10",
+          "variants": [
+            "c10_producer_abort_and_expiry_share_one_priority_boundary"
+          ]
+        },
+        {
+          "name": "capture::tests::controlled::c11_post_stop_deadline_is_checked_only_on_returned_boundaries",
+          "caseId": "C11",
+          "variants": [
+            "c11_post_stop_deadline_is_checked_only_on_returned_boundaries"
+          ]
+        },
+        {
+          "name": "capture::tests::controlled::c11_frame_limit_preserves_cleanup_reserve_without_truncation",
+          "caseId": "C11",
+          "variants": [
+            "c11_frame_limit_preserves_cleanup_reserve_without_truncation"
+          ]
+        },
+        {
+          "name": "capture::tests::controlled::c11_recovery_waits_for_both_active_and_queued_then_terminal",
+          "caseId": "C11",
+          "variants": [
+            "active-zero-queued-positive",
+            "active-positive-queued-zero",
+            "sealed-both-zero"
+          ]
+        },
+        {
+          "name": "capture::tests::controlled::c12_abort_empty_keeps_v1_footer_and_unknown_external_facts",
+          "caseId": "C12",
+          "variants": [
+            "c12_abort_empty_keeps_v1_footer_and_unknown_external_facts"
+          ]
+        },
+        {
+          "name": "capture::tests::controlled::c12_terminal_response_does_not_accept_late_signal_or_issue_more_commands",
+          "caseId": "C12",
+          "variants": [
+            "c12_terminal_response_does_not_accept_late_signal_or_issue_more_commands"
+          ]
+        },
+        {
+          "name": "c01_controlled_arguments_are_canonical_and_environment_never_activates_live",
+          "caseId": "C01",
+          "variants": [
+            "duration-0",
+            "leading-zero-01",
+            "duration-30001",
+            "plus-sign",
+            "trailing-space",
+            "empty-duration",
+            "overflow-duration",
+            "missing-flags",
+            "missing-live-switch",
+            "unknown-argument",
+            "duplicate-live-switch",
+            "duplicate-duration",
+            "reserved-environment-only"
+          ]
+        },
+        {
+          "name": "c01_controlled_default_off_at_both_duration_bounds",
+          "caseId": "C01",
+          "variants": [
+            "duration-1-default-off",
+            "duration-30000-default-off"
+          ]
+        },
+        {
+          "name": "capture::tests::output_failure_has_no_success_claim",
+          "caseId": "C12",
+          "variants": [
+            "write-zero-bytes",
+            "write-before-footer-at-688",
+            "partial-footer-at-700",
+            "full-footer-752-then-flush-error"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "controlled-hangs",
+      "suites": [
+        "portable"
+      ],
+      "platforms": [
+        "linux",
+        "windows"
+      ],
+      "sources": [
+        "crates/cache-probe-collector/tests/controlled_hangs.rs",
+        "crates/cache-probe-launcher/src/supervision.rs"
+      ],
+      "helpers": [
+        "synthetic_hang_child"
+      ],
+      "tests": [
+        {
+          "name": "h01_open_success_and_failure_after_release",
+          "caseId": "H01",
+          "variants": [
+            "h01_open_success_and_failure_after_release"
+          ]
+        },
+        {
+          "name": "h02_begin_success_and_failure_after_release",
+          "caseId": "H02",
+          "variants": [
+            "h02_begin_success_and_failure_after_release"
+          ]
+        },
+        {
+          "name": "h03_drain_success_and_failure_after_release",
+          "caseId": "H03",
+          "variants": [
+            "h03_drain_success_and_failure_after_release"
+          ]
+        },
+        {
+          "name": "h03_already_popped_drain_success_and_failure",
+          "caseId": "H03",
+          "variants": [
+            "h03_already_popped_drain_success_and_failure"
+          ]
+        },
+        {
+          "name": "h04_stop_success_and_failure_after_release",
+          "caseId": "H04",
+          "variants": [
+            "h04_stop_success_and_failure_after_release"
+          ]
+        },
+        {
+          "name": "h04_recovery_drain_success_and_failure",
+          "caseId": "H04",
+          "variants": [
+            "h04_recovery_drain_success_and_failure"
+          ]
+        },
+        {
+          "name": "h04_budget_status_success_and_failure",
+          "caseId": "H04",
+          "variants": [
+            "h04_budget_status_success_and_failure"
+          ]
+        },
+        {
+          "name": "h05_write_success_and_failure_after_release",
+          "caseId": "H05",
+          "variants": [
+            "h05_write_success_and_failure_after_release"
+          ]
+        },
+        {
+          "name": "h05_flush_success_and_failure_after_release",
+          "caseId": "H05",
+          "variants": [
+            "h05_flush_success_and_failure_after_release"
+          ]
+        },
+        {
+          "name": "h06_monitor_loss_regression_and_completed_receiver_are_independent",
+          "caseId": "H06",
+          "variants": [
+            "h06_monitor_loss_regression_and_completed_receiver_are_independent"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "windows-synthetic-ipc",
+      "suites": [
+        "ipc"
+      ],
+      "platforms": [
+        "windows"
+      ],
+      "sources": [
+        "crates/cache-probe-collector/src/abort_event.rs",
+        "crates/cache-probe-launcher/src/windows.rs",
+        "crates/cache-probe-launcher/tests/windows_ipc.rs",
+        "crates/cache-probe-launcher/src/worker.rs"
+      ],
+      "tests": [
+        {
+          "name": "abort_event::tests::c02_reserved_handle_encoding_is_exact",
+          "caseId": "C02/B03",
+          "variants": [
+            "c02_reserved_handle_encoding_is_exact"
+          ]
+        },
+        {
+          "name": "abort_event::tests::c02_query_errors_type_and_granted_rights_fail_closed",
+          "caseId": "C02/B03",
+          "variants": [
+            "c02_query_errors_type_and_granted_rights_fail_closed"
+          ]
+        },
+        {
+          "name": "c02_b03_real_windows_event_type_rights_and_invalid_startup",
+          "caseId": "C02/B03",
+          "variants": [
+            "c02_b03_real_windows_event_type_rights_and_invalid_startup",
+            "NonInheritableDecoy-no-adopt-no-wait-original-owner-close"
+          ]
+        },
+        {
+          "name": "c03_b03_distinct_attempts_duplicate_notification_and_binary_pipes",
+          "caseId": "C03/B03",
+          "variants": [
+            "c03_b03_distinct_attempts_duplicate_notification_and_binary_pipes"
+          ]
+        },
+        {
+          "name": "c03_b03_sender_loss_does_not_signal_or_acknowledge",
+          "caseId": "C03/B03",
+          "variants": [
+            "c03_b03_sender_loss_does_not_signal_or_acknowledge"
+          ]
+        },
+        {
+          "name": "c03_b03_sender_process_exits_without_notification",
+          "caseId": "C03/B03",
+          "variants": [
+            "c03_b03_sender_process_exits_without_notification"
+          ]
+        },
+        {
+          "variants": [
+            "b03_receiver_sha256_known_vectors_and_multiple_chunks"
+          ],
+          "name": "windows::tests::b03_receiver_sha256_known_vectors_and_multiple_chunks",
+          "caseId": "B03"
+        },
+        {
+          "variants": [
+            "b03_receiver_flush_failure_keeps_received_hash_without_forward_or_save"
+          ],
+          "name": "windows::tests::b03_receiver_flush_failure_keeps_received_hash_without_forward_or_save",
+          "caseId": "B03"
+        },
+        {
+          "variants": [
+            "c03_guest_evidence_preserves_trial_actual_publication_and_unknown_save"
+          ],
+          "name": "windows::tests::c03_guest_evidence_preserves_trial_actual_publication_and_unknown_save",
+          "caseId": "C03/B03"
+        },
+        {
+          "variants": [
+            "c03_publish_uses_actual_time_and_records_once_outside_owner"
+          ],
+          "name": "windows::tests::c03_publish_uses_actual_time_and_records_once_outside_owner",
+          "caseId": "C03/B03"
+        },
+        {
+          "variants": [
+            "b03_evidence_backpressure_is_nonblocking_and_cannot_report_flush_success"
+          ],
+          "name": "windows::tests::b03_evidence_backpressure_is_nonblocking_and_cannot_report_flush_success",
+          "caseId": "B03"
+        },
+        {
+          "caseId": "B03",
+          "variants": [
+            "byte-fragmentation",
+            "concurrent-guest-records-one-writer",
+            "trial-binding",
+            "EOF-complete"
+          ],
+          "name": "windows::tests::b03_child_diagnostics_fragment_interleave_and_final_eof_are_json"
+        },
+        {
+          "caseId": "B03",
+          "variants": [
+            "truncated-EOF",
+            "line-overflow",
+            "record-overflow",
+            "private-path",
+            "invalid-UTF8",
+            "duplicate-key"
+          ],
+          "name": "windows::tests::b03_child_diagnostics_reject_truncation_overflow_and_private_text"
+        },
+        {
+          "caseId": "B03",
+          "variants": [
+            "bounded-full-queue",
+            "partial-sink-failure",
+            "no-false-complete"
+          ],
+          "name": "windows::tests::b03_child_diagnostics_backpressure_and_sink_failure_are_not_complete"
+        },
+        {
+          "variants": [
+            "binary_destination",
+            "process_wait",
+            "process_exit_query",
+            "diagnostic_reader_spawn"
+          ],
+          "caseId": "B03/H05",
+          "name": "windows::tests::b03_binary_forward_failure_waits_for_final_diagnostic_and_evidence_flush"
+        }
+      ]
+    },
+    {
+      "id": "collector-compatibility",
+      "suites": [
+        "portable"
+      ],
+      "sources": [
+        "crates/cache-probe-collector/tests/cli.rs"
+      ],
+      "tests": [
+        {
+          "name": "usage_never_collects",
+          "caseId": "C01/C12",
+          "variants": [
+            "usage_never_collects"
+          ]
+        },
+        {
+          "name": "live_disabled_before_platform_calls",
+          "caseId": "C01/C12",
+          "variants": [
+            "live_disabled_before_platform_calls"
+          ]
+        },
+        {
+          "name": "audit_and_project_exit4",
+          "caseId": "C01/C12",
+          "variants": [
+            "audit_and_project_exit4"
+          ]
+        },
+        {
+          "name": "redacted_input_and_limits",
+          "caseId": "C01/C12",
+          "variants": [
+            "redacted_input_and_limits"
+          ]
+        },
+        {
+          "name": "duplicate_options_rejected",
+          "caseId": "C01/C12",
+          "variants": [
+            "duplicate_options_rejected"
+          ]
+        }
+      ],
+      "platforms": [
+        "linux",
+        "windows"
+      ]
+    },
+    {
+      "id": "windows-default-off-namespace",
+      "suites": [
+        "portable"
+      ],
+      "sources": [
+        "crates/cache-probe-collector/tests/cli.rs"
+      ],
+      "tests": [
+        {
+          "name": "windows_forbidden_namespace_is_rejected_before_open",
+          "caseId": "C01",
+          "variants": [
+            "physical-disk",
+            "pipe",
+            "globalroot",
+            "unc",
+            "extended-unc",
+            "dos-device-names"
+          ]
+        }
+      ],
+      "platforms": [
+        "windows"
+      ]
+    }
+  ],
+  "hangPoints": [
+    "open",
+    "begin",
+    "drain",
+    "popped",
+    "stop",
+    "recovery-drain",
+    "status",
+    "write",
+    "flush"
+  ],
+  "hangReleases": [
+    "ok",
+    "error"
+  ],
+  "sourceRoots": [
+    "crates/cache-probe-registration",
+    "crates/cache-probe-registration-win",
+    "crates/cache-probe-collector",
+    "crates/cache-probe-launcher"
+  ],
+  "sourceFiles": [
+    "Cargo.toml",
+    "Cargo.lock",
+    "rust-toolchain.toml",
+    ".github/workflows/probe-build-proof.yml",
+    "experiments/stack-trace/probe/tools/build.ps1",
+    "experiments/stack-trace/probe/tools/matrix-proof.mjs",
+    "experiments/stack-trace/probe/tools/matrix-cases.json",
+    "experiments/stack-trace/probe/tools/user-link-proof.mjs",
+    "experiments/stack-trace/probe/tools/test-build-contract.mjs",
+    "experiments/stack-trace/probe/tools/result-proof.mjs",
+    "experiments/stack-trace/probe/tools/test-user-link-proof.mjs",
+    "experiments/stack-trace/probe/host/user_sdk_layouts.c"
+  ]
+}

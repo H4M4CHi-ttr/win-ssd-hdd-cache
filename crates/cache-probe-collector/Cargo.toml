@@ -8,9 +8,13 @@ publish.workspace = true
 [features]
 default = []
 experimental-live = []
+synthetic-ipc = []
 
 [dependencies]
 cache-probe-core = { path = "../cache-probe-core" }
 
 [lints.rust]
 unsafe_code = "deny"
+
+[dev-dependencies]
+sha2.workspace = true

@@ -1,8 +1,17 @@
 //! Default-off experimental collector; no default or implicit live behavior.
 #![deny(unsafe_code)]
 
-mod capture;
+use cache_probe_collector::capture;
+#[cfg(all(windows, target_arch = "x86_64", feature = "experimental-live"))]
+#[allow(unsafe_code)]
+mod abort_event;
 mod input;
+#[cfg(all(windows, target_arch = "x86_64", feature = "experimental-live"))]
+impl capture::AbortSignal for abort_event::AbortEvent {
+    fn poll(&mut self) -> Result<bool, capture::AbortPollError> {
+        abort_event::AbortEvent::poll(self).map_err(|_| capture::AbortPollError)
+    }
+}
 #[cfg(all(windows, feature = "experimental-live"))]
 #[allow(unsafe_code)]
 mod win32;
@@ -19,6 +28,7 @@ enum Mode {
     Audit(PathBuf),
     Project(PathBuf),
     Collect(u32),
+    CollectControlled(u32),
 }
 
 fn parse(args: &[OsString]) -> Result<Mode, &'static str> {
@@ -34,7 +44,7 @@ fn parse(args: &[OsString]) -> Result<Mode, &'static str> {
         }
     }
     if args.len() == 4
-        && args[0] == "collect"
+        && (args[0] == "collect" || args[0] == "collect-controlled")
         && args[1] == "--experimental-live"
         && args[2] == "--duration-ms"
         && let Some(text) = args[3].to_str()
@@ -43,7 +53,11 @@ fn parse(args: &[OsString]) -> Result<Mode, &'static str> {
         && text.bytes().all(|b| b.is_ascii_digit())
         && let Ok(value @ 1..=30_000) = text.parse::<u32>()
     {
-        return Ok(Mode::Collect(value));
+        return Ok(if args[0] == "collect" {
+            Mode::Collect(value)
+        } else {
+            Mode::CollectControlled(value)
+        });
     }
     Err("PROBE_USAGE")
 }
@@ -56,6 +70,7 @@ fn run(args: &[OsString]) -> Result<u8, (&'static str, u8)> {
             Ok(0)
         }
         Mode::Collect(duration) => live(duration),
+        Mode::CollectControlled(duration) => live_controlled(duration),
         Mode::Audit(ref path) | Mode::Project(ref path) => {
             let bytes =
                 input::read_input(path, MAX_ARCHIVE_BYTES).map_err(|error| match error {
@@ -107,11 +122,58 @@ fn live(duration: u32) -> Result<u8, (&'static str, u8)> {
     Ok(4)
 }
 
+#[cfg(not(all(windows, target_arch = "x86_64", feature = "experimental-live")))]
+fn live_controlled(_duration: u32) -> Result<u8, (&'static str, u8)> {
+    Err(("PROBE_LIVE_DISABLED", 2))
+}
+
+#[cfg(all(windows, target_arch = "x86_64", feature = "experimental-live"))]
+fn live_controlled(duration: u32) -> Result<u8, (&'static str, u8)> {
+    if !abort_event::stdout_is_pipe() {
+        return Err(("PROBE_STDOUT_PIPE_REQUIRED", 2));
+    }
+    let mut signal = win32::startup_abort_event().map_err(|error| match error {
+        abort_event::EventError::Invalid => ("PROBE_ABORT_CONTROL_INVALID", 2),
+        abort_event::EventError::Unavailable => ("PROBE_ABORT_CONTROL_IO", 3),
+    })?;
+    let session =
+        capture::fresh_session(&mut win32::SystemRng).map_err(|error| (error.code(), 2))?;
+    let outcome = capture::collect_controlled(
+        win32::Device::open,
+        &mut win32::Clock::new(),
+        session,
+        duration,
+        &mut signal,
+    );
+    // No device or event handle is retained across potentially blocked stdout
+    // or diagnostic writes. Only this trial's bounded facts leave the owner.
+    drop(signal);
+    let result = match outcome.archive {
+        Ok(Some(bytes)) => output(&bytes).map(|()| 4),
+        Ok(None) => Err(("ABORT_BEFORE_BEGIN", 5)),
+        Err(error) => Err((
+            error.code(),
+            match error {
+                capture::CollectError::DeviceUnavailable | capture::CollectError::AbortControl => 3,
+                _ => 2,
+            },
+        )),
+    };
+    use std::io::Write;
+    // The receiver treats a missing/truncated diagnostic as lost. It must not
+    // change the archive/output exit contract or imply that evidence was saved.
+    let _ = io::stderr()
+        .lock()
+        .write_all(outcome.report.to_json().as_bytes());
+    result
+}
+
 fn main() -> ExitCode {
     match run(&std::env::args_os().skip(1).collect::<Vec<_>>()) {
         Ok(code) => ExitCode::from(code),
         Err((code, exit)) => {
-            eprintln!("{code}");
+            use std::io::Write;
+            let _ = writeln!(io::stderr().lock(), "{code}");
             ExitCode::from(exit)
         }
     }

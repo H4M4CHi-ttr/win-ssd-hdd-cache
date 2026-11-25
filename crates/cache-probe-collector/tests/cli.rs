@@ -86,6 +86,72 @@ fn live_disabled_before_platform_calls() {
 }
 
 #[test]
+fn c01_controlled_arguments_are_canonical_and_environment_never_activates_live() {
+    for duration in ["0", "01", "30001", "+1", "1 ", "", "99999999999999999999"] {
+        fixed(
+            run(&[
+                "collect-controlled",
+                "--experimental-live",
+                "--duration-ms",
+                duration,
+            ]),
+            2,
+            "PROBE_USAGE",
+        );
+    }
+    for args in [
+        vec!["collect-controlled"],
+        vec!["collect-controlled", "--duration-ms", "1"],
+        vec![
+            "collect-controlled",
+            "--experimental-live",
+            "--duration-ms",
+            "1",
+            "--unknown",
+        ],
+        vec![
+            "collect-controlled",
+            "--experimental-live",
+            "--experimental-live",
+            "--duration-ms",
+            "1",
+        ],
+        vec![
+            "collect-controlled",
+            "--experimental-live",
+            "--duration-ms",
+            "1",
+            "--duration-ms",
+            "1",
+        ],
+    ] {
+        fixed(run(&args), 2, "PROBE_USAGE");
+    }
+    let out = Command::new(env!("CARGO_BIN_EXE_cache-probe-collector"))
+        .env("P04_ABORT_EVENT_V1", "synthetic-secret-marker")
+        .output()
+        .unwrap();
+    fixed(out, 2, "PROBE_USAGE");
+}
+
+#[cfg(not(all(windows, target_arch = "x86_64", feature = "experimental-live")))]
+#[test]
+fn c01_controlled_default_off_at_both_duration_bounds() {
+    for duration in ["1", "30000"] {
+        fixed(
+            run(&[
+                "collect-controlled",
+                "--experimental-live",
+                "--duration-ms",
+                duration,
+            ]),
+            2,
+            "PROBE_LIVE_DISABLED",
+        );
+    }
+}
+
+#[test]
 fn audit_and_project_exit4() {
     let input = Input::new(&bytes());
     for (command, expected) in [

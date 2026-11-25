@@ -55,6 +55,8 @@ registration, boot-setting change, signing or loading step is provided.
 
 ## Before real Windows work
 
+The [controlled-capture and T1 registration source proof](../../../docs/contracts/p04-source-build-control.md) adds a default-off collector mode, a trusted child launcher and a synthetic registration model with a link-only Windows boundary. Its test package proposal is not a deployable signed driver package.
+
 Use the [read-only inventory handoff](../../../docs/handoff/2026-11-03-windows-next-step.md)
 on a specifically designated environment first. Device identity, effective ACL,
 special-use exclusions, attachment position, approved workload and recovery must

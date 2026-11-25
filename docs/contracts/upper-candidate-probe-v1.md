@@ -190,6 +190,8 @@ CDO errors have Information0 and no output: bad IOCTL STATUS_INVALID_DEVICE_REQU
 
 ## 7. Rust collector, freshness and privileged boundary
 
+The original CLI and archive contract below is preserved. The additive, default-off controlled mode in this checkout is specified in the [T1 registration and collector control supplement](p04-source-build-control.md).
+
 Create two crates in one issue: `cache-probe-core` (portable `forbid(unsafe_code)`, existing pinned serde/serde_json plus cache-types and cache-capture-core) and `cache-probe-collector` (CLI with a small separately reviewed `cfg(windows)` Win32 FFI capsule). No additional third-party crate is required. The CLI denies unsafe by default and allows it only in that capsule; it does not inherit/relax forbidden-unsafe rules of existing crates. Neither crate changes Rust product code or the existing cache-cli default binary.
 
 Win32 bindings are explicit, minimal `extern system` declarations for CreateFileW, DeviceIoControl, GetFileType (Kernel32) and BCryptGenRandom (Bcrypt), with exact Windows-width types. An OwnedHandle owns the successfully opened CDO; no raw handle escapes. Synchronous handle, no OVERLAPPED, fixed endpoint, no automatic elevation, no credential discovery, no disk enumeration or install. Cross-check declarations against primary headers/docs in source review and actual Windows link.

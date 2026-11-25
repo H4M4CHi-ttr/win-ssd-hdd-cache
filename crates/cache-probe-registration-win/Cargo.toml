@@ -1,0 +1,19 @@
+[package]
+name = "cache-probe-registration-win"
+version.workspace = true
+edition.workspace = true
+rust-version.workspace = true
+publish.workspace = true
+
+[dependencies]
+cache-probe-registration = { path = "../cache-probe-registration" }
+sha2.workspace = true
+
+[lints.rust]
+unsafe_code = "deny"
+
+[[bin]]
+name = "registration-link-proof"
+path = "src/bin/registration-link-proof.rs"
+test = false
+bench = false

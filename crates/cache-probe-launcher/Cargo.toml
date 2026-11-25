@@ -1,0 +1,24 @@
+[package]
+name = "cache-probe-launcher"
+version.workspace = true
+edition.workspace = true
+rust-version.workspace = true
+publish.workspace = true
+
+[features]
+default = []
+experimental-live = []
+synthetic-ipc = []
+
+[[bin]]
+name = "cache-probe-launcher"
+path = "src/main.rs"
+
+[[bin]]
+name = "p04-ipc-worker"
+path = "src/worker.rs"
+required-features = ["synthetic-ipc"]
+
+[dependencies]
+sha2.workspace = true
+serde_json.workspace = true

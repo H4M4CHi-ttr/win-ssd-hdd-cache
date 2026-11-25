@@ -57,6 +57,18 @@ pub fn stdout_is_pipe() -> bool {
     unsafe { GetFileType(handle) == 3 }
 }
 
+/// Private binary startup boundary; never exported by the collector library.
+#[cfg(target_arch = "x86_64")]
+pub(super) fn startup_abort_event()
+-> Result<crate::abort_event::AbortEvent, crate::abort_event::EventError> {
+    // SAFETY: main calls this once on its sole startup thread, before randomness,
+    // device open or background work. This binary has created no Rust owner of
+    // the inherited event and does not mutate its startup environment. The
+    // reviewed trusted launcher transfers that child handle exclusively; OS
+    // type/rights/inherit checks cannot authenticate a different launcher's origin.
+    unsafe { crate::abort_event::AbortEvent::from_environment() }
+}
+
 pub struct SystemRng;
 impl SessionSource for SystemRng {
     fn draw(&mut self) -> Result<u64, SessionError> {

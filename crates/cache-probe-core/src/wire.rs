@@ -186,6 +186,18 @@ impl Frame {
     pub const fn queued_records(&self) -> u32 {
         self.queued
     }
+    pub const fn known_counters(&self) -> u32 {
+        self.known
+    }
+    pub const fn producer_faults(&self) -> u32 {
+        self.faults
+    }
+    pub const fn dropped_records(&self) -> Option<u64> {
+        self.dropped
+    }
+    pub const fn skipped_records(&self) -> Option<u64> {
+        self.skipped
+    }
 }
 
 pub fn decode_response(expected: Request, actual_bytes: &[u8]) -> Result<Frame, ProbeError> {
